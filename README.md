@@ -10,6 +10,11 @@ This is a learning exercise as well as a test of the ability of Agentic AI to se
 - Requires environment variables in env or otherwise:
 OPENROUTER_API_KEY
 
+```bash
+LANGFUSE_SECRET_KEY="sk-lf-..."
+LANGFUSE_PUBLIC_KEY="pk-lf-..."
+LANGFUSE_BASE_URL="https://us.cloud.langfuse.com"
+```
 
 ## Planning documents
 
