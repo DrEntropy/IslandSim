@@ -1,6 +1,6 @@
 ## Three island tabletop exercise
 
-![alt text](image.png)
+![alt text](kalani-archipelago-map.svg)
 
 This is a learning exercise as well as a test of the ability of Agentic AI to serve as models of decision makers in a tabletop exercise.
 
