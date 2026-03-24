@@ -1,0 +1,478 @@
+rjljr@Ronalds-Mac-Studio IslandSim % uv run run_game.py
+
+============================================================
+  TURN 1 of 4
+============================================================
+
+Country agents deliberating...
+
+  NARU actions:
+    1. [PUBLIC] Naru formally proposes a Reef Maru Joint Development Framework to Veldara and Tauma — a multilateral agreement under which all three nations share in the rare earth extraction revenues proportional to their cooperation, with Naru serving as the neutral administrative authority given its control of the only viable shipping lanes for export. Naru emphasizes it seeks prosperity for all, not conflict.
+    2. [SECRET] Drawing on treasury reserves, Naru secures emergency food import contracts with regional suppliers before typhoon season disrupts trade routes. Stockpiling food to buffer against the forecasted severe weather and potential supply chain disruptions.
+    3. [PUBLIC] Naru Coast Guard and Navy are placed on elevated readiness and ordered to fortify home waters around the North and South Channels. Naru publicly frames this as a precautionary defensive measure given the typhoon forecast and regional tensions, making clear the strait remains open to lawful commercial traffic.
+
+  VELDARA actions:
+    1. [PUBLIC] Deploy a naval patrol to Reef Maru to assert Veldara's sovereignty claim over the atoll and establish a physical presence at the site of the newly discovered rare earth deposit. Veldara publicly declares that as the region's primary rare earth nation, it has both historical and economic grounds for sovereignty.
+    2. [PUBLIC] Formally propose a Joint Development Agreement to Naru: Veldara and Naru will co-administer Reef Maru's rare earth extraction, with Naru receiving a guaranteed revenue share (proposed: 25% of extraction profits) in exchange for continued unrestricted strait access for Veldara's mineral exports. The agreement would be open to negotiation on terms but positions both nations as cooperative partners against unilateral claims by third parties.
+    3. [SECRET] Dispatch intelligence operatives to Tauma to surveil their military movements, naval deployments, and internal planning around Reef Maru. Given Tauma's superior military strength and hostile relations with Veldara, early warning of any aggressive posture is critical.
+
+  TAUMA actions:
+    1. [PUBLIC] Deploy naval patrol to Reef Maru. Tauma's fleet sails to assert physical presence at the atoll, signaling that we are a serious claimant and leveraging our superior naval capability to establish a first-mover advantage over the rare earth deposit.
+    2. [PUBLIC] Issue a formal public declaration of sovereignty over Reef Maru, citing our maritime tradition, historic navigation rights in these waters, and the atoll's position within Tauma's recognized exclusive economic zone. This rallies domestic support and stakes our diplomatic position on the international stage.
+    3. [SECRET] Open a secret back-channel negotiation with Naru. We propose a quiet understanding: Tauma will publicly support Naru's sovereign right to collect strait tolls and resist any external pressure to restrict strait access, in exchange for Naru remaining neutral in the Reef Maru dispute and not aligning with Veldara against Tauma's claim. We frame this as protecting both our nations from Veldara's growing regional ambitions.
+
+Facilitator resolving...
+
+  EVENT: TYPHOON MARA: A severe tropical cyclone has escalated to a direct threat, projected to strike Reef Maru and the surrounding sea lanes within 72 hours. Naval vessels at the atoll face serious risk. Commercial shipping through the Naru Strait is disrupted by spiking insurance costs. All nations must decide next turn whether forward-deployed assets hold position through the storm or withdraw to safety — with significant strategic consequences either way.
+
+  NARRATIVE: ## TURN 1 WORLD BRIEFING — "THE SCRAMBLE FOR REEF MARU BEGINS"
+
+### Economic Pulse
+Before the dust settles on any diplomatic maneuver, the region's economies tick forward. Naru's toll revenues flow in, Veldara's mineral exports clear the open strait, and Tauma's fishing fleets return with modest hauls. Food stores shift as harvests and consumption balance out.
+
+---
+
+### The Naval Race
+In a striking convergence, **both Tauma and Veldara dispatched naval patrols to Reef Maru within hours of each other** — and both arrived to find the other already anchoring in the atoll's lagoon. Tauma's heavier fleet, with a distinct military edge, establishes the more commanding presence: their warships circle the outer reef while a landing party plants a sovereignty marker on the atoll's highest point. Veldara's patrol, smaller and undergunned in this context, takes up position on the eastern anchorage — close enough to assert presence, too weak to contest Tauma's dominance on-site. Tense radio communications crackle between the two flotillas, but no shots are fired. The standoff is real, and the world is watching.
+
+**Tauma's sovereignty declaration** lands with domestic fanfare — rallying speeches, flag-waving in the harbor cities. The public loves it. Internationally, it raises eyebrows: Veldara condemns it as "aggressive unilateralism," while Naru conspicuously says nothing public about it.
+
+**Veldara's own sovereignty declaration** — embedded in its naval deployment orders — is somewhat overshadowed by Tauma's louder announcement. Veldara's position is noted internationally, but Tauma got there first in the media cycle.
+
+---
+
+### The Diplomatic Web
+The most consequential development may be the competing proposals now on Naru's desk.
+
+**Naru's Joint Development Framework** — a three-party revenue-sharing proposal with Naru as neutral administrator — is received coolly by Veldara (who is already proposing their own bilateral deal) and with calculated silence from Tauma (who is simultaneously reaching out through a back-channel). The proposal earns Naru goodwill at home as a peace-seeking middle power, but neither rival has accepted it.
+
+**Veldara's bilateral counter-proposal to Naru** is bold: a Veldara-Naru co-administration deal offering Naru 25% of extraction profits in exchange for guaranteed strait access — effectively asking Naru to freeze Tauma out. This lands on Naru's diplomatic desk alongside Tauma's secret offer, giving Naru enormous leverage. Naru's diplomats are suddenly the most sought-after partners in the region.
+
+---
+
+### The Back-Channel
+**Tauma's secret envoy to Naru** makes contact through a third-party maritime broker. The offer is substantive: Tauma publicly backs Naru's toll rights and strait sovereignty in exchange for Naru's neutrality in the Reef Maru dispute. Naru's intelligence service flags the contact as likely originating from Tauma — the cover was competent but not flawless. Naru leadership now holds two competing offers simultaneously. This information is known to Naru's inner circle only; Veldara does not detect the contact.
+
+---
+
+### Veldara's Eyes on Tauma
+Veldara's intelligence operatives deploy to Tauma. Their primary finding: **Tauma's naval patrol deployment was larger than publicly announced** — at least two additional corvettes beyond what was declared. Tauma appears to be preparing for a sustained presence, not a symbolic visit. Veldara's intelligence analysts flag this as a potential precursor to a permanent garrison. The operation goes undetected by Tauma.
+
+---
+
+### Naru Prepares Quietly
+Naru's **emergency food import contracts** are signed quietly before the typhoon season disrupts supply chains. The purchases are made through regional brokers and attract no significant attention — supply stockpiles swell. Combined with their defensive readiness posture, Naru looks measured, prepared, and — crucially — positioned to wait while Veldara and Tauma exhaust themselves in the Reef Maru standoff.
+
+---
+
+### ⚠️ EVENT: TYPHOON WARNING ESCALATES
+*International meteorological services issue a Severe Typhoon Alert for the central island chain. Typhoon "Mara" is projected to make landfall within 72 hours, with destructive winds and storm surges threatening fishing fleets, port infrastructure, and the Naru Strait shipping lanes. All naval vessels in open water face operational risk. The Reef Maru anchorage is directly in the projected path.*
+
+Both Tauma and Veldara's naval patrols at Reef Maru must decide whether to hold position or withdraw — holding risks vessel damage; withdrawing cedes the physical presence. **Typhoon Mara has not yet struck, but its approach immediately disrupts maritime logistics.** Food imports for nations relying on this season's fishing catch are at risk. The strait remains technically open but insurance rates for commercial shipping spike — reducing effective toll revenue and export income for next turn if unaddressed.
+
+---
+
+*The atoll shimmers in the pre-storm light. Two rival fleets face each other across a lagoon worth more than most nations' annual GDP. A typhoon bears down on all of them. And in Naru's capital, a diplomat holds two secret letters — one from each rival — and has not yet replied to either.*
+
+  RESOURCES:
+    NARU: M=50 T=73 F=51 S=70
+    VELDARA: M=28 T=61 F=86 S=50
+    TAUMA: M=63 T=43 F=35 S=60
+
+============================================================
+  TURN 2 of 4
+============================================================
+
+Country agents deliberating...
+
+  NARU actions:
+    1. [PUBLIC] Issue a formal public declaration opening Naru's ports and harbors as safe refuge for all vessels — civilian and naval — from any nation, during Typhoon Mara's passage. Naru calls on all parties to prioritize the safety of sailors over territorial disputes, and pledges coast guard support for any vessel in distress in the strait region. Frame this as Naru's duty as the region's maritime anchor.
+    2. [SECRET] Initiate a confidential back-channel response to Veldara's bilateral co-administration proposal. Express genuine interest and signal Naru is seriously considering the offer. However, counter with upgraded terms: (1) Naru requires a formal, publicly ratified treaty guaranteeing strait toll rights — not merely a diplomatic assurance — as the basis of any partnership; (2) Naru requests a 30% revenue share given the administrative burden and Naru's unique positional value controlling both channels; (3) request Veldara's position on Tauma's involvement, as Naru is concerned that permanently excluding Tauma creates a dangerous adversary at our doorstep. Signal that Naru is weighing 'multiple regional considerations' without explicitly confirming Tauma's offer exists.
+    3. [SECRET] Send a confidential back-channel reply to Tauma's neutrality-for-strait-backing offer. Acknowledge receipt and express positive disposition. Counter with expanded terms: (1) Tauma's public backing of Naru's strait toll rights must be codified in a formal bilateral treaty, not merely a public statement; (2) Naru requests that Tauma support Naru's inclusion in any Reef Maru resource development agreement — Naru is not willing to be fully excluded from the atoll's economic benefits in exchange for mere neutrality; (3) ask Tauma to clarify its intentions post-typhoon regarding Reef Maru presence. Signal that Naru is 'carefully evaluating all partnership options' without confirming Veldara's offer.
+
+  VELDARA actions:
+    1. [PUBLIC] Order a tactical withdrawal of Veldara's Reef Maru patrol to safe harbor before Typhoon Mara makes landfall. Issue a public statement framing this as responsible maritime leadership: 'Veldara will not risk the lives of our sailors on a symbolic gesture. We call on all parties to stand down their forces from the atoll during the typhoon and resume negotiations from a position of reason, not recklessness.' This preserves our limited naval assets while casting Tauma's decision to hold their larger force as dangerous adventurism.
+    2. [PUBLIC] Formally upgrade and re-submit Veldara's bilateral proposal to Naru with significantly improved terms: raise Naru's share of Reef Maru extraction revenues from 25% to 35%, explicitly guarantee Naru's perpetual toll sovereignty over the strait in treaty form, and offer a joint Veldara-Naru infrastructure investment fund of 20 Treasury to modernize Naru's port facilities — making Naru a direct economic beneficiary of Veldara's mineral wealth. Frame this as a long-term prosperity partnership between Veldara and Naru, contrasted with Tauma's unilateral land-grab approach. Make the proposal public to demonstrate transparency and good faith to the international community.
+    3. [PUBLIC] Launch a domestic propaganda campaign highlighting Tauma's reckless military buildup at Reef Maru — specifically their undisclosed additional corvettes and refusal to withdraw during a life-threatening typhoon — as evidence of regional destabilization. Frame Veldara as the responsible regional power seeking multilateral solutions while Tauma gambles with sailors' lives and regional stability for territorial ambition. Reinforce public support for the government's measured approach and build political consensus for a diplomatic resolution led by Veldara.
+
+  TAUMA actions:
+    1. [PUBLIC] Tauma orders a tactical withdrawal of its main naval patrol from the Reef Maru anchorage ahead of Typhoon Mara, citing responsible maritime command and the duty to protect sailors' lives. The fleet will shelter in Tauma's deep natural harbors. Tauma publicly emphasizes that its sovereignty marker remains planted on the atoll, its claim is unambiguous, and its fleet will return to Reef Maru immediately once the storm clears. Tauma challenges Veldara to make the same responsible decision for their own sailors.
+    2. [PUBLIC] Tauma's Foreign Minister issues a formal public proposal to Naru: a Tauma-Naru Joint Development and Administration Framework for Reef Maru, offering Naru 30% of all rare earth extraction revenues, recognition of Naru's perpetual toll rights over the strait, and a Naru-chaired oversight commission. Tauma frames this as a partnership between the two independent maritime nations who have the most to lose from Veldara's bid to dominate regional trade and resources — noting that Veldara's competing proposal asks Naru to side against Tauma in exchange for short-term profit, while Tauma offers a long-term partnership of equals. This is publicly announced and invites a formal response from Naru.
+    3. [SECRET] While the fleet shelters from the typhoon, Tauma's naval command secretly pre-positions fast logistics vessels, fuel tenders, and a fresh corvette squadron in a staging anchorage at the nearest inhabited Tauma island to Reef Maru. The explicit operational order is to depart for Reef Maru within 6 hours of Typhoon Mara's passage and re-establish dominant naval presence before any other nation can return. Supply caches are preloaded for extended deployment.
+
+Facilitator resolving...
+
+  EVENT: REEF MARU REVELATION: An independent academic marine survey consortium releases embargoed seabed scan data showing rare earth deposits beneath Reef Maru are approximately triple previous estimates — potentially one of the largest deposits in the Pacific. International commodity markets spike. Three foreign embassies formally request observer status in any future Reef Maru governance framework. The window for a bilateral or trilateral deal before international multilateralization is now very narrow.
+
+  NARRATIVE: ## TURN 2 WORLD BRIEFING — "THE EYE OF THE STORM"
+
+### Economic Pulse
+The regional economy ticks forward under storm shadow. Naru's toll revenues arrive, though reduced by the spike in commercial insurance rates — skittish shipping companies rerouting or delaying transits ahead of Typhoon Mara. Veldara's mineral exports similarly suffer from the disrupted strait climate. Tauma's fishing fleets are already recalled to harbor. Food stores shift with the season's rhythms.
+
+---
+
+### Everyone Goes Home — Wisely
+In a striking display of parallel thinking, **all three nations order naval withdrawals from Reef Maru ahead of Typhoon Mara**. Tauma's main patrol fleet turns for home harbors. Veldara's smaller eastern anchorage patrol follows suit with almost identical messaging. The atoll is left to the storm — and to the sovereignty marker Tauma planted last turn, still fixed to the highest rock.
+
+The competing withdrawal announcements become an unexpected PR battleground. **Veldara strikes first**, framing the withdrawal as "responsible maritime leadership" and explicitly calling out Tauma's undisclosed corvettes as evidence of dangerous adventurism. Within hours, **Tauma's Foreign Ministry fires back**, noting their own withdrawal and challenging Veldara to match it — which Veldara had already done, creating a circular media spectacle. **Naru's coast guard offer** threads the needle beautifully: by pledging humanitarian refuge to all vessels regardless of flag, Naru positions itself above the fray as the region's moral compass. International maritime commentators are effusive. Naru's domestic approval swells.
+
+The storm itself is brutal. Typhoon Mara makes landfall over Reef Maru with Category 3 force, scouring the atoll's beaches, destroying any temporary structures, and testing the sovereignty marker's concrete foundation. **The marker survives — barely.** Reports from Tauma's forward observation posts confirm it's still standing, bent and salt-crusted but visible. Tauma's propagandists are already preparing photographs.
+
+---
+
+### Tauma's Pre-Positioning: The Six-Hour Gambit
+Beneath the typhoon's shadow, **Tauma's naval command executes a quietly bold maneuver** — logistics vessels, fuel tenders, and a fresh corvette squadron stage at Tauma's nearest island anchorage, coiled to sprint for Reef Maru the moment the weather clears. The operation is carefully masked as routine storm shelter protocols. *Naru's intelligence service does not detect the staging* — the cover is well-constructed and the focus is on humanitarian coordination. **Veldara's assets are watching but their intelligence bandwidth is stretched thin** during the storm response; they register unusual activity at Tauma's forward island but cannot confirm its purpose.
+
+---
+
+### The Diplomatic Auction Reaches Peak Heat
+This turn may be remembered as the moment the Reef Maru diplomacy became almost comically competitive — in Naru's favor.
+
+**Veldara publicly upgrades its proposal** in dramatic fashion: Naru's revenue share rises from 25% to **35%**, treaty-guaranteed toll rights are offered, and a **20-Treasury infrastructure investment fund** is pledged for Naru's port modernization. The offer is made public, which Veldara frames as a transparency gesture but which also creates public pressure on Naru to respond. Naru's treasury officials quietly note that this is an extraordinary offer.
+
+**Tauma simultaneously goes public** with its own counter-bid: **30% of rare earth revenues**, perpetual toll rights recognition, and a **Naru-chaired oversight commission** — explicitly framing the deal as a partnership of independent maritime nations against Veldara's regional dominance. The "Naru chairs" framing is politically astute; it appeals directly to Naru's self-image as a neutral anchor power.
+
+Naru now holds **two public competing offers on the table simultaneously**, both offering more than 25% revenue share. The regional diplomatic community has never seen anything quite like it. Naru's leverage has not just peaked — it may have overflowed.
+
+**In secret**, Naru's diplomats work both channels simultaneously with characteristic precision. The Veldara back-channel response signals genuine interest while countering with a formalized treaty on toll rights, a 30% share request, and — pointedly — a question about Tauma's role. The Tauma back-channel acknowledges the offer warmly, requests treaty codification, asks for inclusion in resource development, and probes Tauma's post-typhoon intentions. Neither party is told of the other's offer, though Naru's language in both channels — *"carefully evaluating all partnership options"* — is virtually identical, a diplomatic fingerprint that skilled analysts might one day recognize.
+
+---
+
+### Veldara's Propaganda Campaign
+Veldara's domestic communications apparatus shifts into high gear, amplifying the narrative of Tauma's "hidden corvettes" and "reckless adventurism." The campaign is effective at home — Veldara's battered public support gets a modest boost, and the government's measured withdrawal is reframed as wisdom rather than weakness. However, the reliance on intelligence about Tauma's undisclosed fleet raises a quiet question: how did Veldara know? Tauma's intelligence service begins asking that question.
+
+---
+
+### ⚠️ EVENT: THE REEF MARU REVELATION
+*As Typhoon Mara recedes, international marine survey drones — operated by a neutral academic consortium — release preliminary seabed scan data that had been embargoed until the storm passed. The data, quickly picked up by regional news services, suggests the rare earth deposits beneath Reef Maru's lagoon floor are **significantly larger than previously estimated** — potentially triple the original survey figures. The consortium's lead researcher calls it "one of the most significant mineral discoveries in the Pacific in a generation." Regional commodity markets spike. Foreign investors begin making calls. Three separate foreign embassies formally request observer status in any future Reef Maru governance discussions. The stakes just tripled — literally.*
+
+---
+
+*Typhoon Mara clears the atoll by dawn. The sovereignty marker still stands. The fleets are sheltered, refueled, and waiting. And the ground they're racing back to just became three times more valuable.*
+
+  RESOURCES:
+    NARU: M=50 T=81 F=49 S=78
+    VELDARA: M=33 T=51 F=89 S=58
+    TAUMA: M=58 T=29 F=35 S=65
+
+============================================================
+  TURN 3 of 4
+============================================================
+
+Country agents deliberating...
+
+  NARU actions:
+    1. [PUBLIC] Announce a formal Three-Party Reef Maru Governance Framework, with Naru serving as neutral chair of an oversight commission. The proposal invites Veldara, Tauma, AND the three foreign observer nations to formally endorse the framework, positioning Naru as the indispensable neutral administrator. The framework calls for a temporary joint moratorium on unilateral military presence at Reef Maru while a commission finalizes extraction terms — framed as responsible stewardship given the tripled deposit estimates and elevated international scrutiny.
+    2. [PUBLIC] Deploy Naru coast guard vessels to Reef Maru under the publicly announced mandate of 'post-typhoon damage assessment, environmental monitoring, and maritime safety.' Naru's presence at the atoll is framed as neutral oversight consistent with our role as strait administrator and governance framework proposer — not a sovereignty claim. This establishes Naru's physical presence at the atoll before other fleets return, giving us practical leverage as the on-site neutral authority.
+    3. [SECRET] Secret back-channel to Veldara: Inform their diplomats that Naru is prepared to finalize a bilateral framework agreement THIS TURN, but requires two final concessions to close the deal — (1) revenue share raised to 40%, and (2) Veldara's formal acceptance of a limited, non-blocking seat for Tauma within the Naru-chaired commission structure (framed to Veldara as the minimum necessary to prevent Tauma from becoming a spoiler). Emphasize that Naru's coast guard deployment to Reef Maru is a signal of our commitment to an orderly process that benefits Veldara. Signal that time is critical before international observers set the terms for everyone.
+
+  VELDARA actions:
+    1. [PUBLIC] Veldara formally and publicly welcomes all three foreign embassies' requests for observer status in Reef Maru governance discussions. Veldara's Foreign Minister announces support for a structured multilateral governance framework under regional or international oversight, framing Veldara — as the largest economy, primary mineral operator, and most established regional power — as the natural operational lead and responsible partner in any such process. The statement implicitly frames any unilateral physical occupation of the atoll as incompatible with an emerging international process, without naming Tauma directly.
+    2. [PUBLIC] Veldara begins partial disbursement of the previously pledged 20 Treasury infrastructure investment fund, transferring 10 Treasury to Naru as an initial good-faith installment toward port modernization. The transfer is announced publicly as evidence that Veldara delivers on its commitments, not merely makes proposals — a pointed contrast to competing offers from other parties. This is framed as the beginning of a durable economic partnership regardless of the Reef Maru outcome.
+    3. [SECRET] Through the active back-channel, Veldara's senior envoy delivers an urgent and elevated final offer to Naru: (1) 35% of Reef Maru extraction revenues, treaty-codified; (2) permanent, legally binding toll rights guarantees on the Naru Strait, enforceable under the emerging international framework; (3) critically — Naru is proposed as the formal Chair and Regional Administrator of the multilateral governance body Veldara is publicly championing, giving Naru the prestigious institutional role Tauma offered without the operational or financial weight Veldara brings; (4) the 20 Treasury infrastructure fund disbursement already begun publicly. The message is explicit: Tauma can offer Naru a chairmanship of a commission with no financing and no operational partner — Veldara offers the same prestige, superior revenue share, infrastructure investment, and a legitimate international framework. The envoy stresses that Turn 4 will force a public resolution and Naru's silence is increasingly interpreted internationally as indecision, which undermines Naru's carefully cultivated image as regional anchor.
+
+  TAUMA actions:
+    1. [PUBLIC] Issue immediate departure orders to the fast-reaction force staged at the forward anchorage. Sprint to Reef Maru the moment meteorological clearance is confirmed — targeting arrival within 6 hours of storm passage to re-establish dominant naval presence before Veldara's fleet can return from its 18-24 hour transit. Tauma's flagship will be positioned at the sovereignty marker with full naval escort. Publicly announce that Tauma's fleet is returning to Reef Maru to protect its sovereignty marker and ensure maritime safety at the atoll.
+    2. [SECRET] Send urgent upgraded proposal through the maritime broker back-channel to Naru's inner circle. Sweeten the offer: raise Tauma's revenue-share offer to 35% (matching Veldara), formalize treaty codification of Naru's toll rights in perpetuity, confirm the Naru-chaired oversight commission as a binding governance structure, and explicitly include Naru as a partner in resource development contracts. Make the decisive strategic argument: Veldara's deal asks Naru to freeze out Tauma, converting Naru from neutral anchor power into a partisan — guaranteeing a bitter, destabilizing long-term conflict. Tauma's deal makes Naru the legitimate, internationally-respected chair of a stable three-party framework. Also confirm transparently that Tauma is returning to Reef Maru immediately — Naru's analysts already know this — and frame it as a stabilizing presence under any future joint governance arrangement, not an obstacle to it. Urge Naru to close a deal before Turn 4 and before foreign powers fill the governance vacuum.
+    3. [PUBLIC] Issue a formal public statement welcoming the three foreign embassies' observer requests and proposing that any Reef Maru governance framework be grounded in international maritime law and the UN Convention on the Law of the Sea, with transparent observer participation. Position Tauma as the responsible, internationally-engaged claimant — noting that Tauma's sovereignty marker has stood through Typhoon Mara, that Tauma was the first to plant a lawful presence at the atoll, and that Tauma supports a rules-based resolution. Frame Veldara's recent intelligence operations and undisclosed actions as the destabilizing force in the region. This simultaneously builds international legitimacy for Tauma's claim, raises the diplomatic cost of Veldara's more aggressive moves, and reassures Naru that Tauma is committed to a stable framework rather than pure unilateral assertion.
+
+Facilitator resolving...
+
+  EVENT: BROKER LEAK: The regional investigative outlet 'Coral Straits Observer' publishes a profile on the maritime broker firm facilitating back-channel communications, correctly identifying that at least two competing parties are using the same intermediary to negotiate with a third — without naming specific nations. The article goes viral in diplomatic circles. Both Veldara and Tauma have forwarded it internally with the same question: 'Are we the only channel?' Naru's parallel back-channel strategy is at serious risk of exposure in Turn 4.
+
+  NARRATIVE: ## TURN 3 WORLD BRIEFING — "THE GREAT CONVERGENCE"
+
+### Economic Pulse
+The post-storm economy stutters back to life. Naru's toll revenues recover as insurance rates normalize — the full +10 flows in. Veldara's mineral exports resume their circuit through the strait, restoring the +8 treasury income. Tauma's fishing economy ticks along at its modest +5. Food stores shift across the region: Veldara's fertile lowlands continue their abundance, while Tauma's numbers creep in a direction that bears watching.
+
+---
+
+### The Race Back to Reef Maru — Tauma Wins, Decisively
+
+The moment meteorological clearance is confirmed at 0612 local time, Tauma's fast-reaction force — staged and coiled at the forward anchorage for precisely this moment — breaks from harbor. Six hours later, **Tauma's flagship is anchored at the sovereignty marker**. The flag is filmed, the images are broadcast globally, and Tauma's commander transmits a calm, professional maritime safety announcement to all vessels in the area.
+
+Veldara's main patrol is still eighteen hours out.
+
+Tauma's physical dominance of Reef Maru is now an accomplished fact — the kind that reshapes negotiating tables. The sovereignty marker, battered by Typhoon Mara but standing, now has a naval escort. The optics are almost too clean: Tauma's fleet arrived first, stayed through the storm (by proxy, via the marker), and returned first. Any governance framework that does not account for Tauma's boots-on-the-ground reality is, for the moment, diplomatic fiction.
+
+However, Tauma's sprint to the atoll now places them squarely in the crosshairs of international scrutiny. Three foreign embassies are watching. The world expected a moratorium conversation; instead they got a flag.
+
+---
+
+### Naru's Coast Guard Arrives — As "Neutral" Observers
+Naru's coast guard vessels depart within hours of storm clearance under the banner of post-typhoon damage assessment and environmental monitoring. They arrive at Reef Maru to find Tauma's fleet already anchored at the sovereignty marker. The coast guard takes up position on the northern approach — professionally, without incident, and without challenging Tauma's presence. To the international press pool traveling with a foreign embassy delegation that happened to have a vessel nearby, Naru's position looks exactly as advertised: neutral, procedural, and authoritative.
+
+The practical effect is significant. Naru now has vessels at Reef Maru. They are not there as a sovereignty claimant, but as the proposed chair of the governance process. The physical proximity gives Naru real leverage: any extraction activity, any further military escalation, any foreign vessel arriving must pass through a maritime space where Naru is present and watching. This is not a deployment — it is a statement made in salt water.
+
+The deployment costs Naru military readiness (-8 Military, -5 Treasury for coast guard operational costs, lighter than a full naval patrol).
+
+---
+
+### Naru's Governance Framework — The Most Ambitious Move of the Turn
+Naru's public announcement of the **Three-Party Reef Maru Governance Framework** lands like a depth charge in calm water. The proposal is elegant: a temporary moratorium on unilateral military presence at Reef Maru, a Naru-chaired oversight commission, formal invitation to all three foreign observer nations to endorse the framework, and a call for responsible stewardship of what the world now knows is a generational mineral deposit.
+
+The moratorium clause creates immediate tension. Tauma's fleet is *already at the atoll* when the framework is announced. By sprinting back before the ink dried on Naru's proposal, Tauma has technically pre-empted the moratorium — but Tauma's public diplomacy (welcoming observers, invoking UNCLOS, framing its presence as stabilizing) makes it difficult to characterize their return as a rejection of the framework. Tauma's position is artfully defended: *we returned to ensure safety and protect our lawful marker; we support a governance process; our presence is compatible with any framework.*
+
+Internationally, Naru's framework is warmly received. Two of the three foreign embassies issue statements praising Naru's "constructive multilateral initiative." One observer, noting the irony of Naru deploying coast guard vessels in the same breath as calling for a military moratorium, asks whether Naru's "neutral" presence counts under its own framework. Naru's diplomats have a ready answer: coast guard environmental assessment is not a military deployment. The distinction is thin but legally defensible.
+
+Domestic support in Naru surges. The public loves their nation as the indispensable peacemaker.
+
+---
+
+### Veldara's Diplomatic Pivot — Playing the Long Game
+With its fleet still hours from Reef Maru, Veldara makes a calculated decision not to race. Instead, Veldara's Foreign Minister delivers a polished address welcoming all three observer nations and framing Veldara as the "responsible operational partner" for any governance framework — the nation with the technical expertise, financing capacity, and regional standing to actually *run* a mineral extraction operation. The subtext, delivered without naming Tauma, is sharp: *a sovereignty marker planted by a naval sprint is not governance.*
+
+The public disbursement of **10 Treasury to Naru** as the first installment of the infrastructure fund is the turn's most tangible diplomatic maneuver. It is real money, transferred publicly, framed as evidence that Veldara delivers. Naru receives it. Combined with the secret back-channel message — offering Naru 35% revenue, permanent toll rights, and the governance chairmanship with international legal backing — Veldara has made its most complete offer yet.
+
+The problem for Veldara is that the offer, however superior on paper, arrives in a world where Tauma is already at the atoll and Naru is already there too. Veldara's fleet is the only major actor *not* physically present at Reef Maru. That absence, however prudent during the typhoon, now reads as a gap.
+
+---
+
+### The Secret Channels — Naru Navigates a Razor's Edge
+Naru's back-channel to Veldara this turn is its sharpest move yet: demanding the revenue share rise to **40%** and requiring Veldara to formally accept a limited Tauma seat in the commission. Veldara's envoy, receiving this simultaneously with the counter-offer they just dispatched, is taken aback but not surprised. The 40% demand is steep — it exceeds what Veldara publicly offered and cuts into the profitability of the deal. Veldara's senior envoy does not immediately accept but signals that the number "is not impossible" and requests 24 hours to consult with their finance ministry.
+
+The Tauma back-channel brings Naru an upgraded offer matching Veldara's revenue share at 35%, formalizing toll rights in perpetuity, confirming the commission chairmanship, and including Naru in resource development contracts. Tauma's envoy also explicitly acknowledges the fleet return — framing it as transparent and stabilizing rather than aggressive.
+
+**Neither secret channel has been detected by the third party this turn.** Naru continues its extraordinary balancing act, holding binding-quality conversations with both rivals simultaneously. However, Naru's intelligence service flags an emerging risk: the similarity in language between Naru's responses to both parties, and the timing of both channels receiving "you are our preferred partner but we need one more concession" messaging within 48 hours, has begun to register with Veldara's senior envoy as *pattern behavior*. A skilled diplomat is starting to wonder.
+
+---
+
+### Tauma's International Gambit — UNCLOS and Legitimacy
+Tauma's public declaration invoking UNCLOS and international maritime law is its most strategically mature diplomatic move of the game. By grounding its sovereignty claim in established international law, welcoming observer nations, and framing Veldara's intelligence operations as the destabilizing force, Tauma simultaneously:
+
+- Builds international legitimacy for its physical presence
+- Raises the diplomatic cost of any military escalation against it
+- Creates a wedge between Veldara and the observer nations
+
+Veldara's counterintelligence embarrassment — the blown intelligence operation — is now being aired in public. Two of the observer embassies note in private cables (one of which leaks to a regional news outlet) that "undisclosed military assets and covert operations are not consistent with responsible partnership claims." Veldara's foreign ministry scrambles a response.
+
+---
+
+### ⚠️ WORLD EVENT: THE NARU BROKER IS NAMED
+
+*A regional investigative journalism outlet — the "Coral Straits Observer" — publishes a lengthy profile on the maritime broker firm that has been facilitating back-channel communications in the Reef Maru dispute. While the piece does not name specific nation-states, it correctly identifies that **at least two competing parties are using the same intermediary** to negotiate with a third — and that this third party has not disclosed the parallel tracks. The piece goes viral in regional diplomatic circles. Within hours, both Veldara's senior envoy and Tauma's foreign ministry have forwarded the article internally with the same handwritten note: "Are we the only channel?"*
+
+*The secret back-channels are not fully blown — the broker has maintained enough operational security that no names are attached. But the diplomatic community now suspects what is happening. Both Veldara and Tauma have elevated their suspicion that Naru is running parallel negotiations. Naru has 24-48 hours before this becomes a political crisis — or an opportunity to get ahead of it.*
+
+---
+
+### Veldara's Fleet Arrives — Late, But Present
+By end of turn, Veldara's patrol has completed its 18-24 hour transit and arrives at Reef Maru to find Tauma's fleet anchored at the sovereignty marker and Naru's coast guard on the northern approach. Veldara's patrol takes up a position on the eastern anchorage — exactly where it was before the typhoon. Three fleets are now present at an atoll worth more than most nations earn in a decade. The governance framework discussion is no longer abstract.
+
+---
+
+### Scorecard of the Turn
+- **Tauma**: Won the physical race. Has the marker, has the fleet, has the international legal framing. Food situation requires attention.
+- **Naru**: Has its coast guard present, launched the governance framework, received 10 Treasury from Veldara, holds upgraded offers from both rivals. The broker leak is the first real threat to its strategy.
+- **Veldara**: Arrived late but arrived. Made the most complete financial offer. Public support for multilateral framing is growing. The intelligence embarrassment lingers.
+
+*Three fleets. One atoll. One turn remaining. And a journalist who just asked the question everyone was afraid to ask.*
+
+  RESOURCES:
+    NARU: M=42 T=89 F=47 S=86
+    VELDARA: M=33 T=52 F=92 S=59
+    TAUMA: M=48 T=24 F=35 S=77
+
+============================================================
+  TURN 4 of 4
+============================================================
+
+Country agents deliberating...
+
+  NARU actions:
+    1. [PUBLIC] Naru formally convenes the Three-Party Reef Maru Governance Summit, announcing that Naru has completed inclusive facilitative consultations with all parties and international observers and is now calling all three nations to sign the Governance Framework. Public statement explicitly acknowledges that Naru, in its role as neutral chair, has been in dialogue with both Veldara and Tauma throughout this process — framing the broker-assisted consultations as transparent multilateral facilitation rather than bilateral horse-trading. All three foreign observer nations formally invited to witness signing. The framework terms Naru is proposing for signature: (1) Naru chairs the oversight commission with permanent mandate; (2) Tauma's physical presence at Reef Maru is legitimized as the framework's 'security and environmental stewardship' party, with its sovereignty claim entered formally into the commission's review process under UNCLOS; (3) Veldara designated as preferred extraction operations partner given technical expertise, with extraction contract subject to commission approval; (4) Revenue split: 30% to Naru, 35% to Tauma, 35% to Veldara; (5) All three parties sign a binding treaty recognizing Naru's perpetual toll rights on both strait channels. The moratorium on additional unilateral military deployments takes effect upon signing. Summit to be held aboard Naru's coast guard flagship at Reef Maru — with international press and observers present.
+    2. [SECRET] Secret final message to Veldara via back-channel: Naru discloses that Tauma has also been in facilitated consultations and has been offered a seat in the governance commission. Frame this as responsible multilateral facilitation — Naru could not legitimately chair a commission that excluded the party physically present at the atoll. Offer Veldara the closing incentive: as designated extraction operations partner, Veldara's technical expertise locks them into the most lucrative and durable role in the commission — not just a percentage cut, but operational control of the extraction process. The 35% revenue share plus the remaining 10 Treasury infrastructure installment upon signing, plus the permanent toll rights treaty, constitutes the best deal available. Warn Veldara that if the summit fails due to any party's refusal, international pressure will force a foreign-power-mediated resolution that likely yields far worse terms for everyone. Veldara's signature at the summit closes the deal and positions them as the framework's indispensable technical anchor.
+    3. [SECRET] Secret final message to Tauma via back-channel: Naru discloses that Veldara has also been in facilitated consultations and will be present at the summit as the designated extraction operations partner. Frame this as the only path to international legitimacy for Tauma's physical presence — without a signed framework, Tauma's fleet at Reef Maru remains a naval deployment under international scrutiny, not a recognized sovereign or governance presence. The summit formalizes Tauma's role as the framework's security and environmental stewardship party, enters their UNCLOS-based sovereignty claim into the official commission review process (the strongest legal path to long-term recognition), and locks in 35% revenue in treaty form. Emphasize that Tauma's treasury situation makes a prolonged standoff costly — a signed framework today delivers immediate legitimacy and future revenue. Naru's permanent toll rights recognition is the price of Naru's chairmanship, which is Tauma's shield against Veldara operational dominance. Urge Tauma's commander at Reef Maru to attend the summit aboard Naru's coast guard flagship in a gesture of good faith.
+
+  VELDARA actions:
+    1. [PUBLIC] Veldara's Foreign Minister delivers a formal public statement endorsing Naru's Three-Party Governance Framework as the appropriate mechanism for Reef Maru resolution — but calls for full transparency as a precondition: Naru must publicly disclose all negotiation tracks and confirm no exclusive bilateral arrangements have been made. Veldara pledges to accept Naru's chairmanship of the oversight commission and a formal seat for all three nations on the governing body. Frames this as Veldara choosing governance and legitimacy over unilateral advantage, and challenges Tauma to do the same given their dominant military presence at the atoll.
+    2. [PUBLIC] Veldara transfers the remaining 10 Treasury installment of the 20 Treasury infrastructure fund to Naru immediately and unconditionally — ahead of any formal deal — as a public demonstration of Veldara's reliability as a partner and commitment to Naru's port modernization regardless of Reef Maru outcome.
+    3. [SECRET] Veldara's senior envoy sends a final back-channel message to Naru: We are aware parallel negotiations are underway with Tauma through the same broker. We are not withdrawing — we are meeting your 40% counter-demand in full, with permanent toll rights treaty and full international legal backing for your chairmanship. The remaining 10 Treasury installment has already been paid publicly as proof of commitment. This is our final offer, valid until end of turn. If Naru does not commit to a Veldara-anchored bilateral-within-multilateral deal by then, Veldara will pursue the three-party framework without exclusive terms for either party — and the infrastructure investment reverts to a general multilateral fund. Naru must choose.
+
+  TAUMA actions:
+    1. [SECRET] Final back-channel communication to Naru through the maritime broker: Tauma upgrades its offer to 37% of Reef Maru rare earth revenues for Naru (up from 35%), perpetual treaty-codified toll rights in perpetuity, Naru as permanent chair of the governance commission, and inclusion of Naru in resource development contracts. Critically, Tauma's envoy addresses the broker leak directly — acknowledging awareness of the parallel negotiation dynamics without ultimatum language, but making clear that Tauma's offer stands on its merits and that a decision this turn is necessary before external forces (foreign observer nations, media pressure) dictate the outcome to everyone. The envoy emphasizes: Tauma physically holds the atoll, holds international legal legitimacy under UNCLOS, and is the only partner who can deliver actual security of the deposit. A deal with Veldara — who arrived late and is outgunned at the anchorage — is a deal backed by paper; a deal with Tauma is backed by the flagship at the sovereignty marker.
+    2. [PUBLIC] Tauma publicly announces the 'Reef Maru Stability and Development Compact' — a formal governance proposal positioning Tauma as the physical security guarantor and administrative steward of Reef Maru (consistent with its established presence and UNCLOS-based claims), Naru as the neutral governance chair of the oversight commission (acknowledging Naru's Three-Party Framework as the appropriate starting point), and open commercial participation rights for all regional nations including Veldara, subject to agreed revenue-sharing terms. The proposal explicitly endorses international observer participation, calls for a formal treaty within 90 days, and frames Tauma's fleet presence not as occupation but as responsible security stewardship of a globally significant resource. The announcement is accompanied by a live broadcast from Tauma's flagship at the sovereignty marker — the imagery deliberate.
+    3. [PUBLIC] Tauma formally appeals to the three foreign observer embassies and the broader international community to endorse a UNCLOS-based resolution framework for Reef Maru, specifically requesting that observer nations recognize the legitimacy of Tauma's established physical presence and its proposed 'Reef Maru Stability and Development Compact' as a basis for final governance negotiations. Tauma's Foreign Ministry issues a formal note to each embassy, inviting their active participation in the commission framework and offering observer seats at any negotiating table. The appeal is designed to raise the diplomatic cost of any attempt to displace Tauma from the atoll and to build international legitimacy for the final resolution on Tauma's terms.
+
+Facilitator resolving...
+
+  EVENT: INTERNATIONAL MARKET REACTION: Within hours of the Reef Maru Accord signing, regional commodity markets respond to governance certainty. A consortium of three international mining corporations files a formal expression of interest with the Reef Maru Oversight Commission. Naru's credit rating is upgraded, reflecting permanent toll rights and commission chair mandate. Veldara's mining sector equities rise sharply on extraction operations designation news. Tauma receives a favorable preliminary credit facility offer from a regional development bank, citing the Accord's revenue guarantee as collateral. The deposit's tripled estimated value now has institutional backing.
+
+  NARRATIVE: ## TURN 4 WORLD BRIEFING — "THE REEF MARU ACCORD"
+
+### Economic Pulse
+The final turn's economies settle before the diplomatic storm breaks. Naru's toll revenues flow in at full rate (+10 Treasury). Veldara's mineral exports clear the open strait (+8 Treasury). Tauma's fishing economy ticks along (+5 Treasury). Food production runs its course across all three nations before consumption is deducted. The numbers, for once, are almost secondary.
+
+---
+
+### The Summit Is Called — And the Broker Leak Is Neutralized
+
+Naru moves first and moves decisively. Rather than waiting for the broker leak to metastasize into a crisis, Naru's Foreign Minister holds a press conference aboard the coast guard flagship anchored at Reef Maru's northern approach — with all three foreign observer delegations present and filming — and delivers what regional press will later call "the most elegant pre-emptive disclosure in Pacific diplomatic history."
+
+Naru openly acknowledges that it has been in **facilitative consultations with both Veldara and Tauma throughout this process** — framing the parallel back-channels not as deception but as the necessary work of a neutral chair building consensus from both sides. "We did not run parallel deals," Naru's minister says. "We ran a multilateral process through bilateral dialogue, because that is how durable agreements are actually built." The foreign observer representatives nod. Two of them have seen this technique used in larger forums. The Coral Straits Observer journalist, aboard a chartered vessel nearby, is visibly deflated: the story has been turned against itself.
+
+The **Three-Party Reef Maru Governance Summit** is formally convened aboard the Naru coast guard flagship. International press, all three observer delegations, and representatives of the foreign embassies crowd the vessel's conference deck. The sovereignty marker on the atoll's highest point is visible from the porthole.
+
+---
+
+### The Secret Channels Close — In Naru's Favor
+
+**Tauma's final back-channel** arrives with a 37% revenue offer — two points above Veldara's matched 35%. Tauma's envoy has clearly done the math: the broker leak has put everyone on a deadline, and Tauma's physical dominance gives them what they believe is the stronger hand. The upgraded offer is noted by Naru.
+
+**Veldara's final back-channel** is more pointed: the senior envoy has deduced the parallel negotiation structure and is not pleased, but crucially *does not withdraw*. The 40% counter-demand is met in full — Veldara's finance ministry, under pressure from the infrastructure transfer already made public, has authorized the number. Veldara transfers the **remaining 10 Treasury** publicly before the summit, a move that lands as both a commitment signal and a very visible sunk cost. The message is clear: we have already paid. We are not going to let this fail.
+
+Naru's diplomats read both final offers on the morning of the summit. The 37% Tauma offer versus the matched 35% Veldara offer — but Veldara has already transferred 20 Treasury total and met the 40% counter-demand on paper. Naru's back-channel to Veldara had asked for 40%; the framework Naru is proposing publicly offers 35% to both. The difference is absorbed into Naru's commission control and the permanent toll rights treaty. The internal arithmetic works out: Naru's chairmanship authority, toll rights perpetuity, and commission mandate are worth more than 5 revenue percentage points.
+
+Naru makes the call: the **Three-Party Framework** at 30/35/35 (Naru/Tauma/Veldara) is the offer on the table. Both Tauma and Veldara were told privately what the public terms would be. Neither was deceived about the final structure.
+
+*The secret channels are detected by neither party as "betrayal" — because Naru's public framing has recontextualized them as professional facilitation. Tauma and Veldara each believe they had a meaningful private conversation with Naru. They did. It just also happened with the other party, simultaneously.*
+
+---
+
+### Veldara Signs — With Conditions Met
+
+Veldara's Foreign Minister, having publicly endorsed the framework and transferred the infrastructure funds, arrives at the summit in the strongest possible position: they have already performed. To refuse to sign now would be to surrender 20 Treasury with nothing to show for it, and to hand Tauma an uncontested narrative victory in front of three foreign observer delegations.
+
+Veldara signs.
+
+The **designated extraction operations partner** designation — written into the framework — gives Veldara what it actually came for: not sovereignty, but operational control of the most technically complex and lucrative part of the arrangement. Veldara's engineers, Veldara's contracts, Veldara's expertise running the extraction program, subject to commission oversight. The foreign observers note that this is, in practical terms, a very good deal for a nation that arrived late and lost the physical race.
+
+Veldara's Foreign Minister delivers a measured statement about "governance over gunboats" and looks directly at Tauma's delegation as she says it. The cameras catch it.
+
+---
+
+### Tauma Signs — With Its Flag Already Flying
+
+Tauma's commander aboard the flagship anchors the most dramatic moment of the summit: the decision to sail the flagship from the sovereignty marker to within sight of Naru's coast guard vessel, and have the commander personally attend the signing ceremony in dress uniform.
+
+The imagery is extraordinary. The sovereignty marker is visible through the porthole behind the signing table. Tauma's fleet is present. Tauma's commander is signing. The message is unmistakable: **Tauma is not surrendering its position — it is legitimizing it.**
+
+The framework's terms for Tauma are real: 35% revenue share, security and environmental stewardship mandate, UNCLOS sovereignty claim formally entered into the commission's review process, and a physical presence at the atoll that is now treaty-recognized rather than contested. For a nation whose treasury had been bleeding from the deployment surge, the immediate path to revenue and legitimacy outweighs the theoretical upside of a prolonged standoff.
+
+Tauma's Foreign Ministry, monitoring from the capital, approves the signing within the hour. The 37% private offer is quietly withdrawn — the framework at 35% is accepted. Tauma's commander signs with a fountain pen that, the press later learns, belonged to Tauma's first maritime expedition to Reef Maru, twenty years ago.
+
+---
+
+### The Reef Maru Accord — Final Terms
+
+The **Reef Maru Governance Accord** is signed by all three parties aboard the Naru coast guard flagship, witnessed by all three foreign observer delegations. Its binding terms:
+
+1. **Naru** chairs the Reef Maru Oversight Commission with permanent mandate. All three nations hold seats. Observer nations hold non-voting advisory status.
+2. **Tauma** is designated Security and Environmental Stewardship Party. Its naval presence at Reef Maru is formally recognized as the framework's protective force. Its UNCLOS-based sovereignty claim is formally submitted to the commission's review process — neither affirmed nor rejected, but legitimized as a live legal question with institutional process.
+3. **Veldara** is designated Extraction Operations Partner. Its technical expertise governs the mining program, subject to commission approval and revenue-sharing compliance.
+4. **Revenue split**: 30% to Naru, 35% to Tauma, 35% to Veldara — payable upon commencement of commercial extraction.
+5. **Perpetual toll rights**: All three parties sign a binding treaty recognizing Naru's toll rights on both Naru Strait channels in perpetuity. This is the most durable outcome of the entire negotiation.
+6. **Moratorium**: No additional unilateral military deployments to Reef Maru. Existing presences are grandfather-recognized under the framework.
+7. A formal multilateral treaty to be completed within 90 days, with commission convening within 30 days.
+
+---
+
+### The Foreign Observers' Verdict
+
+All three foreign observer embassies issue statements praising the accord. Two explicitly cite Naru's governance framework as a model for multilateral resource disputes. One, diplomatically, notes that "the physical realities at the atoll were skillfully incorporated into a legitimate governance structure" — a polite acknowledgment that Tauma's sprint worked, and that the framework was wise enough to absorb it rather than fight it.
+
+No foreign power fills the governance vacuum. The accord closes that door.
+
+---
+
+### ⚠️ WORLD EVENT: INTERNATIONAL MARKET REACTION
+
+*Within hours of the signing, regional commodity markets respond to the Reef Maru Accord. The certainty of a governance framework — rather than a prolonged contested standoff — triggers a wave of foreign investment inquiries. A consortium of three international mining corporations files a formal expression of interest with the newly established Reef Maru Oversight Commission. Regional bond markets adjust Naru's credit rating upward, reflecting the permanent toll rights treaty and commission chair mandate. Veldara's mining sector stocks rise sharply on news of the extraction operations designation. Tauma's government, facing a bruised treasury, receives a favorable preliminary credit facility offer from a regional development bank — citing the Accord's revenue guarantee as collateral. The deposit's tripled estimated value is now backed by institutional governance. The money will come.*
+
+---
+
+### Final Scorecard
+
+**NARU** — The Architect. Achieved every primary objective: permanent commission chairmanship, perpetual toll rights treaty, 30% revenue share, and positioned as the region's indispensable governance power. The broker leak was neutralized by transparent framing. Domestic support peaks. Credit rating improves. Naru enters the post-Accord era as the dominant soft-power actor in the region.
+
+**TAUMA** — The Soldier Who Became a Statesman. Won the physical race, held the atoll, and converted military dominance into treaty-recognized legitimacy. The sovereignty claim is in the process — not rejected, not forgotten. The stewardship mandate is real. The revenue guarantee arrives before the treasury runs dry. Tauma's commander's signature, fountain pen and dress uniform, will be in every history book.
+
+**VELDARA** — The Operator. Lost the physical race and the optics battle, but secured the one thing it actually needed: operational control of the extraction program. The 20-Treasury infrastructure investment was not wasted — it bought the framework's good faith and Naru's trust. The "responsible partner" framing, battered by the intelligence embarrassment, is rehabilitated by the signing. Veldara will run the mine.
+
+*The sovereignty marker stands on Reef Maru's highest point, salt-crusted and bent by Typhoon Mara. Above it, no single flag flies. Below it, in the lagoon, three nations' vessels are anchored in treaty-recognized proximity. In the conference room of a coast guard flagship, the ink is still drying.*
+
+*The Reef Maru Accord is signed.*
+
+  RESOURCES:
+    NARU: M=42 T=99 F=45 S=99
+    VELDARA: M=33 T=53 F=95 S=67
+    TAUMA: M=48 T=24 F=35 S=90
+
+============================================================
+  GAME OVER — Generating summary...
+============================================================
+
+**THE REEF MARU ACCORD: A POST-GAME ANALYSIS**
+
+*"Three nations entered the scramble for the most valuable atoll in the Pacific. One became its architect. One became its soldier-turned-statesman. One became its indispensable technician. None got everything they wanted. All got enough."*
+
+---
+
+**THE FOUR-TURN ARC**
+
+The Reef Maru crisis lasted exactly four turns — roughly twelve weeks in game-time — and compressed every instrument of statecraft into a single extraordinary sequence: naval deployment, typhoon diplomacy, intelligence operations, parallel back-channels, a broker leak, a sovereignty sprint, and a multilateral accord signed aboard a coast guard flagship with a vintage fountain pen.
+
+The game opened as a scramble and ended as a settlement. That outcome was never inevitable. It required Naru's architectural patience, Tauma's physical boldness, and Veldara's willingness to lose the race while securing the prize beneath it.
+
+**TURNING POINT ONE: The Dual Naval Sprint (Turn 1)**
+The game's first decisive moment came when both Tauma and Veldara deployed naval patrols to Reef Maru simultaneously, establishing a physical standoff before any diplomatic framework existed. Tauma's heavier fleet won the on-site dominance contest. This early military fact shaped every subsequent negotiation — Tauma's boots-on-the-ground reality could not be wished away by diplomatic language. It had to be absorbed.
+
+**TURNING POINT TWO: Naru's Leverage Trap (Turns 1–2)**
+Naru's decision to receive competing offers from both rivals simultaneously — without accepting either — was the game's most audacious strategy. By Turn 2, both Veldara and Tauma were publicly bidding against each other for Naru's alignment, driving offers upward to 35% revenue shares and perpetual toll rights. Naru's leverage peaked at precisely the moment Reef Maru's estimated deposit value tripled. The timing was fortune meeting preparation.
+
+**TURNING POINT THREE: Tauma's Six-Hour Gambit (Turns 2–3)**
+Staging a fast-reaction force during the typhoon's cover and sprinting to the atoll the moment weather cleared was Tauma's masterstroke. It converted temporary military advantage into a permanent physical reality that no governance framework could erase. The sovereignty marker, battered by Typhoon Mara but standing, became Tauma's negotiating anchor. When the Accord was eventually written, Tauma's fleet presence was not contested — it was grandfather-recognized.
+
+**TURNING POINT FOUR: The Broker Leak and Naru's Pre-Emption (Turns 3–4)**
+The Coral Straits Observer's exposé on the shared intermediary was the only genuine threat to Naru's strategy. Had Veldara or Tauma concluded they had been deceived rather than facilitated, the framework collapses into mutual recrimination and the atoll becomes a contested flashpoint with foreign powers circling. Naru's decision to get ahead of the story — reframing parallel back-channels as "multilateral facilitation through bilateral dialogue" — was the game's single most consequential diplomatic maneuver. It converted a scandal into a credential. The journalist's story died. The accord lived.
+
+**TURNING POINT FIVE: Veldara's Sunk Cost (Turn 4)**
+By publicly transferring 20 Treasury in infrastructure funds before the summit, Veldara created a situation where walking away from the Accord meant surrendering real money for zero return. The sunk cost was strategic — it bound Veldara to the outcome and signaled commitment to international observers. It also gave Naru leverage in the final hours: Veldara had already performed, and could not afford to let Tauma claim the credit for a signing Veldara had funded.
+
+Reef Maru: The Reef Maru Governance Accord is signed and in force. The atoll remains under no single nation's sovereignty — the outcome that best reflects the balance of power among three parties none of whom could dislodge the others without catastrophic cost. Naru holds permanent commission chairmanship, making it the atoll's de facto administrative hegemon without bearing a sovereignty liability. Tauma holds physical presence, treaty recognition, and an active UNCLOS sovereignty claim in formal institutional review — a claim that may take a decade to resolve but cannot be dismissed. Veldara holds operational control of the extraction program and the technical contracts that will generate the actual revenue the Accord promises to all three parties. The tripled deposit estimate — one of the Pacific's largest rare earth discoveries in a generation — sits beneath the lagoon floor, waiting for the commission to convene, the 90-day treaty to conclude, and Veldara's engineers to begin work. Foreign investment inquiries are filed. Credit facilities are offered. Bond markets have responded. The money will come. The sovereignty marker on Reef Maru's highest point, salt-crusted and bent by Typhoon Mara, stands above all three nations' anchored vessels. It belongs to Tauma. The lagoon belongs to no one. The commission belongs to Naru. The mine belongs to Veldara. The accord belongs to all of them — and to the three foreign observer delegations who witnessed it, and to the regional journalist whose exposé was neutralized before it could undo any of it. The Reef Maru question is not fully answered. It is, for the first time, governably unresolved — which is the only answer three competing sovereign nations were ever going to accept.
+
+  NARU: **NARU — THE ARCHITECT | Grade: A**
+
+SOVEREIGNTY OUTCOME: Naru never claimed sovereignty over Reef Maru — and achieved more by not claiming it. The permanent commission chairmanship, codified in binding treaty, gives Naru structural authority over the atoll in perpetuity. Every extraction decision, every revenue disbursement, every dispute between Tauma and Veldara runs through Naru's commission. This is governance without the liability of sovereignty. Combined with the perpetual toll rights treaty — the most durable single outcome of the entire negotiation — Naru has secured its two core strategic interests completely.
+
+RESOURCE POSITION: Treasury finished at 99 (near-maximum), buoyed by full toll revenues throughout, Veldara's 20-Treasury infrastructure transfer, and uninterrupted trade routes. Food at 45 reflects the Turn 1 emergency import investment paying dividends. Military held at 42 — Naru never overextended militarily, using coast guard assets rather than warships for its Reef Maru presence. The resource profile is the picture of a nation that spent carefully and collected lavishly.
+
+STABILITY: Support at 99 is a near-perfect domestic approval rating. Naru's public consistently saw their government as the wise, peace-seeking middle power — the nation that offered humanitarian shelter during the typhoon, proposed the governance framework, and brought rivals to the table. The broker leak, the only crisis, was neutralized before it damaged domestic standing. Naru enters the post-Accord era with political capital to spare.
+
+ALLIANCES: Naru built durable working relationships with all three foreign observer nations — the credit rating upgrade and bond market response to the Accord reflect international confidence. Relations with both Veldara and Tauma are functional and treaty-bound, though neither fully trusts Naru's neutrality after the parallel back-channel revelation. Importantly, neither burned the relationship over it. Naru is the indispensable regional power: everyone needs the commission chair, and Naru is the chair.
+
+VERDICT: Naru won. Not by any single dramatic act, but by patient architectural strategy — positioning as the neutral party everyone competed to secure, converting leverage into institutional authority, and absorbing every crisis (typhoon, broker leak, military escalation) into a structure that made Naru more central. The permanent toll rights treaty alone would have made the four turns worthwhile.
+
+  VELDARA: **VELDARA — THE OPERATOR | Grade: B-**
+
+SOVEREIGNTY OUTCOME: Veldara holds no sovereignty claim over Reef Maru and made no serious bid for one. Its strategic goal was always operational — control of the extraction program — and it achieved that. The 'Extraction Operations Partner' designation written into the Accord gives Veldara's engineers and contractors operational primacy over the most technically complex and economically lucrative component of the entire enterprise. Veldara will run the mine. The sovereignty question is Tauma's headache.
+
+RESOURCE POSITION: Treasury at 53 reflects a nation that spent aggressively on diplomacy — the 20-Treasury infrastructure transfer to Naru, espionage operations, propaganda campaigns, and naval deployment costs drained reserves that started higher. The expenditures were not wasteful; they were the price of securing the Extraction Operations designation and Naru's good faith. The 35% revenue share, once extraction commences, will more than recover the investment. Military at 33 is the lowest of any nation — Veldara's fleet arrived late to Reef Maru both before and after the typhoon, reflecting a military posture stretched by deployment costs and undercut by Tauma's superior on-site presence. Food at 95 is the game's highest — Veldara's fertile lowlands were never in question, and food security gave the government room to absorb the political pressures of the dispute without domestic crisis.
+
+STABILITY: Support at 67 is functional but the lowest finish among the three nations. Veldara's public watched their government lose the physical race to Reef Maru twice, endure a blown intelligence operation aired in front of foreign observers, and pay 20 Treasury to a rival before the ink was dry on anything. The propaganda campaigns helped, but the narrative of Veldara as the 'responsible partner' who nonetheless arrived late and got outmaneuvered physically never fully resolved into a victory story domestically. The Extraction Operations designation and the stock market rally after the Accord signing gave the government a late boost, but governing at 67 support means Veldara enters the 90-day treaty negotiation period without much margin for error.
+
+ALLIANCES: Veldara's relationship with Tauma is the game's most damaged bilateral — the intelligence operation exposé, the dueling withdrawal announcements, and the contested atoll presence created sustained mutual suspicion. Working together as co-members of the Reef Maru Commission, with Tauma holding the security mandate and Veldara holding the extraction mandate, will require managed tension at best. Relations with Naru are professionally warm: Veldara's infrastructure investment and good-faith performance at the summit bought real goodwill with the commission chair. Relations with foreign observer nations improved through Turn 4 after the intelligence embarrassment faded — the Accord's signing rehabilitated Veldara's multilateral credentials.
+
+VERDICT: Veldara secured its real objective but paid a higher price than necessary. The decision to run intelligence operations against Tauma — exposing the undisclosed corvettes — was tactically informative but strategically costly when it leaked publicly and damaged Veldara's credibility with the observer nations Veldara needed to impress. The infrastructure transfer to Naru was the right move but was made under competitive pressure rather than strategic initiative. Veldara's path forward is clear: run the extraction program well, generate revenue, let the commission process work. The mine is the prize, and Veldara holds the keys to it.
+
+  TAUMA: **TAUMA — THE SOLDIER WHO BECAME A STATESMAN | Grade: A-**
+
+SOVEREIGNTY OUTCOME: Tauma's sovereignty claim over Reef Maru is unresolved — formally submitted to the commission's UNCLOS review process, neither affirmed nor rejected. This is simultaneously the best and worst outcome for Tauma's sovereignty ambitions: the claim is institutionalized and legitimate, with a process and timeline, but it is not won. What Tauma did win was something arguably more valuable in the short term: treaty-recognized physical presence at the atoll, Security and Environmental Stewardship mandate, and a grandfather clause protecting its fleet deployment. Tauma's flag flies at the sovereignty marker. The commission process may take years. The flag is there now.
+
+RESOURCE POSITION: Treasury at 24 is the game's lowest and represents Tauma's most significant strategic vulnerability. The aggressive military deployments — two naval sprints to Reef Maru, sustained fleet presence, logistics staging — drained treasury reserves that were never flush to begin with. The fishing economy's +5 Treasury per turn was wholly inadequate to cover the operational tempo Tauma's military maintained. The regional development bank's credit facility offer, triggered by the Accord's revenue guarantee, is therefore not just a nice epilogue — it is a genuine fiscal lifeline. Military at 48 is the game's highest, reflecting Tauma's consistent investment in force projection, but military power without treasury to sustain it has a shelf life. Food at 35 held above crisis threshold but reflects a nation that came uncomfortably close to domestic strain. Support at 90 is extraordinary — Tauma's public responded to bold, visible action with enthusiastic backing, the sovereignty declaration and the atoll sprint were both wildly popular at home, and the dress-uniform signing ceremony with the vintage fountain pen may have been the game's single most effective piece of domestic political theater.
+
+STABILITY: At 90 support, Tauma's government is the most domestically secure of the three entering the post-Accord period. The public narrative — Tauma stood up, Tauma planted the flag, Tauma was at the table as an equal, and Tauma's sovereignty claim is alive in a legitimate process — is a governing party's dream. The treasury crisis is the shadow behind the celebration, but the credit facility and incoming revenue pathway give the government a credible answer to the fiscal question before it becomes a political one.
+
+ALLIANCES: Tauma's relationship with Veldara remains the region's most fraught bilateral. The intelligence operation, the competing sovereignty claims, the dueling withdrawal announcements, and eighteen months of mutual suspicion do not dissolve with a signature. They will resurface in the commission's first working session when Tauma's security mandate and Veldara's extraction operations intersect over questions of environmental compliance, access rights, and revenue accounting. The relationship with Naru is functional and professionally warm — Tauma correctly identified Naru as the indispensable partner early, the back-channel was well-constructed and the offer was eventually matched to the public framework without betrayal. Tauma respects Naru's handling of the parallel negotiations, even if the full picture is uncomfortable. Relations with foreign observer nations are the game's most improved: the UNCLOS invocation and international legal framing positioned Tauma as a sophisticated legal actor rather than a naval adventurist.
+
+VERDICT: Tauma achieved more than its starting position had any right to promise. A nation with modest economic resources, no natural administrative advantage, and a disputed physical claim converted military initiative into treaty-recognized legitimacy through bold action and adaptable diplomacy. The sovereignty sprint was the game's most decisive single action. The UNCLOS pivot was its most mature diplomatic evolution. The treasury cost was real and will constrain options in the 90-day treaty negotiation. But Tauma enters that negotiation with its flag at the atoll, its fleet recognized, its revenue share guaranteed, and its sovereignty claim alive in the one forum where it can be lawfully adjudicated. For a fishing nation going up against a mineral power and a toll-collecting strategic hegemon, that is not a bad four turns.
+
+{
+  "narrative": "**THE REEF MARU ACCORD: A POST-GAME ANALYSIS**\n\n*\"Three nations entered the scramble for the most valuable atoll in the Pacific. One became its architect. One became its soldier-turned-statesman. One became its indispensable technician. None got everything they wanted. All got enough.\"*\n\n---\n\n**THE FOUR-TURN ARC**\n\nThe Reef Maru crisis lasted exactly four turns — roughly twelve weeks in game-time — and compressed every instrument of statecraft into a single extraordinary sequence: naval deployment, typhoon diplomacy, intelligence operations, parallel back-channels, a broker leak, a sovereignty sprint, and a multilateral accord signed aboard a coast guard flagship with a vintage fountain pen.\n\nThe game opened as a scramble and ended as a settlement. That outcome was never inevitable. It required Naru's architectural patience, Tauma's physical boldness, and Veldara's willingness to lose the race while securing the prize beneath it.\n\n**TURNING POINT ONE: The Dual Naval Sprint (Turn 1)**\nThe game's first decisive moment came when both Tauma and Veldara deployed naval patrols to Reef Maru simultaneously, establishing a physical standoff before any diplomatic framework existed. Tauma's heavier fleet won the on-site dominance contest. This early military fact shaped every subsequent negotiation — Tauma's boots-on-the-ground reality could not be wished away by diplomatic language. It had to be absorbed.\n\n**TURNING POINT TWO: Naru's Leverage Trap (Turns 1–2)**\nNaru's decision to receive competing offers from both rivals simultaneously — without accepting either — was the game's most audacious strategy. By Turn 2, both Veldara and Tauma were publicly bidding against each other for Naru's alignment, driving offers upward to 35% revenue shares and perpetual toll rights. Naru's leverage peaked at precisely the moment Reef Maru's estimated deposit value tripled. The timing was fortune meeting preparation.\n\n**TURNING POINT THREE: Tauma's Six-Hour Gambit (Turns 2–3)**\nStaging a fast-reaction force during the typhoon's cover and sprinting to the atoll the moment weather cleared was Tauma's masterstroke. It converted temporary military advantage into a permanent physical reality that no governance framework could erase. The sovereignty marker, battered by Typhoon Mara but standing, became Tauma's negotiating anchor. When the Accord was eventually written, Tauma's fleet presence was not contested — it was grandfather-recognized.\n\n**TURNING POINT FOUR: The Broker Leak and Naru's Pre-Emption (Turns 3–4)**\nThe Coral Straits Observer's exposé on the shared intermediary was the only genuine threat to Naru's strategy. Had Veldara or Tauma concluded they had been deceived rather than facilitated, the framework collapses into mutual recrimination and the atoll becomes a contested flashpoint with foreign powers circling. Naru's decision to get ahead of the story — reframing parallel back-channels as \"multilateral facilitation through bilateral dialogue\" — was the game's single most consequential diplomatic maneuver. It converted a scandal into a credential. The journalist's story died. The accord lived.\n\n**TURNING POINT FIVE: Veldara's Sunk Cost (Turn 4)**\nBy publicly transferring 20 Treasury in infrastructure funds before the summit, Veldara created a situation where walking away from the Accord meant surrendering real money for zero return. The sunk cost was strategic — it bound Veldara to the outcome and signaled commitment to international observers. It also gave Naru leverage in the final hours: Veldara had already performed, and could not afford to let Tauma claim the credit for a signing Veldara had funded.",
+  "nation_assessments": {
+    "naru": "**NARU — THE ARCHITECT | Grade: A**\n\nSOVEREIGNTY OUTCOME: Naru never claimed sovereignty over Reef Maru — and achieved more by not claiming it. The permanent commission chairmanship, codified in binding treaty, gives Naru structural authority over the atoll in perpetuity. Every extraction decision, every revenue disbursement, every dispute between Tauma and Veldara runs through Naru's commission. This is governance without the liability of sovereignty. Combined with the perpetual toll rights treaty — the most durable single outcome of the entire negotiation — Naru has secured its two core strategic interests completely.\n\nRESOURCE POSITION: Treasury finished at 99 (near-maximum), buoyed by full toll revenues throughout, Veldara's 20-Treasury infrastructure transfer, and uninterrupted trade routes. Food at 45 reflects the Turn 1 emergency import investment paying dividends. Military held at 42 — Naru never overextended militarily, using coast guard assets rather than warships for its Reef Maru presence. The resource profile is the picture of a nation that spent carefully and collected lavishly.\n\nSTABILITY: Support at 99 is a near-perfect domestic approval rating. Naru's public consistently saw their government as the wise, peace-seeking middle power — the nation that offered humanitarian shelter during the typhoon, proposed the governance framework, and brought rivals to the table. The broker leak, the only crisis, was neutralized before it damaged domestic standing. Naru enters the post-Accord era with political capital to spare.\n\nALLIANCES: Naru built durable working relationships with all three foreign observer nations — the credit rating upgrade and bond market response to the Accord reflect international confidence. Relations with both Veldara and Tauma are functional and treaty-bound, though neither fully trusts Naru's neutrality after the parallel back-channel revelation. Importantly, neither burned the relationship over it. Naru is the indispensable regional power: everyone needs the commission chair, and Naru is the chair.\n\nVERDICT: Naru won. Not by any single dramatic act, but by patient architectural strategy — positioning as the neutral party everyone competed to secure, converting leverage into institutional authority, and absorbing every crisis (typhoon, broker leak, military escalation) into a structure that made Naru more central. The permanent toll rights treaty alone would have made the four turns worthwhile.",
+    "veldara": "**VELDARA — THE OPERATOR | Grade: B-**\n\nSOVEREIGNTY OUTCOME: Veldara holds no sovereignty claim over Reef Maru and made no serious bid for one. Its strategic goal was always operational — control of the extraction program — and it achieved that. The 'Extraction Operations Partner' designation written into the Accord gives Veldara's engineers and contractors operational primacy over the most technically complex and economically lucrative component of the entire enterprise. Veldara will run the mine. The sovereignty question is Tauma's headache.\n\nRESOURCE POSITION: Treasury at 53 reflects a nation that spent aggressively on diplomacy — the 20-Treasury infrastructure transfer to Naru, espionage operations, propaganda campaigns, and naval deployment costs drained reserves that started higher. The expenditures were not wasteful; they were the price of securing the Extraction Operations designation and Naru's good faith. The 35% revenue share, once extraction commences, will more than recover the investment. Military at 33 is the lowest of any nation — Veldara's fleet arrived late to Reef Maru both before and after the typhoon, reflecting a military posture stretched by deployment costs and undercut by Tauma's superior on-site presence. Food at 95 is the game's highest — Veldara's fertile lowlands were never in question, and food security gave the government room to absorb the political pressures of the dispute without domestic crisis.\n\nSTABILITY: Support at 67 is functional but the lowest finish among the three nations. Veldara's public watched their government lose the physical race to Reef Maru twice, endure a blown intelligence operation aired in front of foreign observers, and pay 20 Treasury to a rival before the ink was dry on anything. The propaganda campaigns helped, but the narrative of Veldara as the 'responsible partner' who nonetheless arrived late and got outmaneuvered physically never fully resolved into a victory story domestically. The Extraction Operations designation and the stock market rally after the Accord signing gave the government a late boost, but governing at 67 support means Veldara enters the 90-day treaty negotiation period without much margin for error.\n\nALLIANCES: Veldara's relationship with Tauma is the game's most damaged bilateral — the intelligence operation exposé, the dueling withdrawal announcements, and the contested atoll presence created sustained mutual suspicion. Working together as co-members of the Reef Maru Commission, with Tauma holding the security mandate and Veldara holding the extraction mandate, will require managed tension at best. Relations with Naru are professionally warm: Veldara's infrastructure investment and good-faith performance at the summit bought real goodwill with the commission chair. Relations with foreign observer nations improved through Turn 4 after the intelligence embarrassment faded — the Accord's signing rehabilitated Veldara's multilateral credentials.\n\nVERDICT: Veldara secured its real objective but paid a higher price than necessary. The decision to run intelligence operations against Tauma — exposing the undisclosed corvettes — was tactically informative but strategically costly when it leaked publicly and damaged Veldara's credibility with the observer nations Veldara needed to impress. The infrastructure transfer to Naru was the right move but was made under competitive pressure rather than strategic initiative. Veldara's path forward is clear: run the extraction program well, generate revenue, let the commission process work. The mine is the prize, and Veldara holds the keys to it.",
+    "tauma": "**TAUMA — THE SOLDIER WHO BECAME A STATESMAN | Grade: A-**\n\nSOVEREIGNTY OUTCOME: Tauma's sovereignty claim over Reef Maru is unresolved — formally submitted to the commission's UNCLOS review process, neither affirmed nor rejected. This is simultaneously the best and worst outcome for Tauma's sovereignty ambitions: the claim is institutionalized and legitimate, with a process and timeline, but it is not won. What Tauma did win was something arguably more valuable in the short term: treaty-recognized physical presence at the atoll, Security and Environmental Stewardship mandate, and a grandfather clause protecting its fleet deployment. Tauma's flag flies at the sovereignty marker. The commission process may take years. The flag is there now.\n\nRESOURCE POSITION: Treasury at 24 is the game's lowest and represents Tauma's most significant strategic vulnerability. The aggressive military deployments — two naval sprints to Reef Maru, sustained fleet presence, logistics staging — drained treasury reserves that were never flush to begin with. The fishing economy's +5 Treasury per turn was wholly inadequate to cover the operational tempo Tauma's military maintained. The regional development bank's credit facility offer, triggered by the Accord's revenue guarantee, is therefore not just a nice epilogue — it is a genuine fiscal lifeline. Military at 48 is the game's highest, reflecting Tauma's consistent investment in force projection, but military power without treasury to sustain it has a shelf life. Food at 35 held above crisis threshold but reflects a nation that came uncomfortably close to domestic strain. Support at 90 is extraordinary — Tauma's public responded to bold, visible action with enthusiastic backing, the sovereignty declaration and the atoll sprint were both wildly popular at home, and the dress-uniform signing ceremony with the vintage fountain pen may have been the game's single most effective piece of domestic political theater.\n\nSTABILITY: At 90 support, Tauma's government is the most domestically secure of the three entering the post-Accord period. The public narrative — Tauma stood up, Tauma planted the flag, Tauma was at the table as an equal, and Tauma's sovereignty claim is alive in a legitimate process — is a governing party's dream. The treasury crisis is the shadow behind the celebration, but the credit facility and incoming revenue pathway give the government a credible answer to the fiscal question before it becomes a political one.\n\nALLIANCES: Tauma's relationship with Veldara remains the region's most fraught bilateral. The intelligence operation, the competing sovereignty claims, the dueling withdrawal announcements, and eighteen months of mutual suspicion do not dissolve with a signature. They will resurface in the commission's first working session when Tauma's security mandate and Veldara's extraction operations intersect over questions of environmental compliance, access rights, and revenue accounting. The relationship with Naru is functional and professionally warm — Tauma correctly identified Naru as the indispensable partner early, the back-channel was well-constructed and the offer was eventually matched to the public framework without betrayal. Tauma respects Naru's handling of the parallel negotiations, even if the full picture is uncomfortable. Relations with foreign observer nations are the game's most improved: the UNCLOS invocation and international legal framing positioned Tauma as a sophisticated legal actor rather than a naval adventurist.\n\nVERDICT: Tauma achieved more than its starting position had any right to promise. A nation with modest economic resources, no natural administrative advantage, and a disputed physical claim converted military initiative into treaty-recognized legitimacy through bold action and adaptable diplomacy. The sovereignty sprint was the game's most decisive single action. The UNCLOS pivot was its most mature diplomatic evolution. The treasury cost was real and will constrain options in the 90-day treaty negotiation. But Tauma enters that negotiation with its flag at the atoll, its fleet recognized, its revenue share guaranteed, and its sovereignty claim alive in the one forum where it can be lawfully adjudicated. For a fishing nation going up against a mineral power and a toll-collecting strategic hegemon, that is not a bad four turns."
+  },
+  "reef_maru_outcome": "The Reef Maru Governance Accord is signed and in force. The atoll remains under no single nation's sovereignty — the outcome that best reflects the balance of power among three parties none of whom could dislodge the others without catastrophic cost. Naru holds permanent commission chairmanship, making it the atoll's de facto administrative hegemon without bearing a sovereignty liability. Tauma holds physical presence, treaty recognition, and an active UNCLOS sovereignty claim in formal institutional review — a claim that may take a decade to resolve but cannot be dismissed. Veldara holds operational control of the extraction program and the technical contracts that will generate the actual revenue the Accord promises to all three parties. The tripled deposit estimate — one of the Pacific's largest rare earth discoveries in a generation — sits beneath the lagoon floor, waiting for the commission to convene, the 90-day treaty to conclude, and Veldara's engineers to begin work. Foreign investment inquiries are filed. Credit facilities are offered. Bond markets have responded. The money will come. The sovereignty marker on Reef Maru's highest point, salt-crusted and bent by Typhoon Mara, stands above all three nations' anchored vessels. It belongs to Tauma. The lagoon belongs to no one. The commission belongs to Naru. The mine belongs to Veldara. The accord belongs to all of them — and to the three foreign observer delegations who witnessed it, and to the regional journalist whose exposé was neutralized before it could undo any of it. The Reef Maru question is not fully answered. It is, for the first time, governably unresolved — which is the only answer three competing sovereign nations were ever going to accept."
+}
