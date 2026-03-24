@@ -4,6 +4,15 @@
 
 This is a learning exercise as well as a test of the ability of Agentic AI to serve as models of decision makers in a tabletop exercise.
 
+## setup
+
+- Requires uv
+- Requires environment variables in env or otherwise:
+OPENROUTER_API_KEY
+
+
+## Planning documents
+
 ### The situation
 Three island-nations face a crisis that forces negotiation, posturing, and strategic decision-making over multiple turns. A Facilitator agent (referee/GM) interprets actions, resolves outcomes using lightweight game rules + a simple simulation model + common sense, and injects events to keep things interesting.
 
@@ -144,3 +153,13 @@ There's no single winner. At game end, evaluate each nation on:
 - **Alliances**: Have they built durable partnerships or burned bridges?
 
 The Facilitator provides a narrative summary and assessment at game end.
+
+
+### MVP 
+**Start here:**
+
+1. Hardcode the world state and rules as a JSON config + rules document.
+2. Implement the Facilitator as a single LLM call per resolution phase (full world state + actions in, updated state + narrative out).
+3. Implement country agents as simple LLM calls (state + history in, actions out).
+4. Run 3–4 turns manually, inspect the logs.
+5. Evaluate: Are the agents making interesting decisions? Is the Facilitator applying rules consistently? Are the numbers adding the right amount of constraint without dominating?
