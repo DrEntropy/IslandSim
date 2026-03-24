@@ -4,16 +4,37 @@
 
 This is a learning exercise as well as a test of the ability of Agentic AI to serve as models of decision makers in a tabletop exercise.
 
-## setup
+## Setup
 
-- Requires uv
-- Requires environment variables in env or otherwise:
-OPENROUTER_API_KEY
+### Prerequisites
+
+- [uv](https://docs.astral.sh/uv/getting-started/installation/) (Python package manager)
+- An [OpenRouter](https://openrouter.ai/) API key
+- A [Langfuse](https://langfuse.com/) account (for observability/tracing)
+
+### Install
 
 ```bash
+git clone <repo-url> && cd IslandSim
+uv sync
+```
+
+### Configure environment
+
+Create a `.env` file in the project root:
+
+```bash
+OPENROUTER_API_KEY="your-openrouter-key"
 LANGFUSE_SECRET_KEY="sk-lf-..."
 LANGFUSE_PUBLIC_KEY="pk-lf-..."
 LANGFUSE_BASE_URL="https://us.cloud.langfuse.com"
+```
+
+### Run
+
+```bash
+uv run python run_game.py        # default 4 turns
+uv run python run_game.py 8      # custom turn count
 ```
 
 ## Planning documents
