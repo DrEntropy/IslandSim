@@ -105,7 +105,7 @@ Ordered roughly by impact-to-effort ratio. Each step builds on the ones before i
 
 ### 1. Structured game logs
 
-Save each turn's `TurnActions` and `TurnResolution` as JSON/JSONL alongside the narrative output. This is the foundation for everything else — analysis, replay, regression testing, and evaluation all require machine-readable data.
+Save each turn's `TurnActions` and `TurnResolution` as JSON/JSONL alongside the narrative output. This is the foundation for everything else — analysis, replay, regression testing, and evaluation all require machine-readable data. [IMPLEMENTED 3/25/26]
 
 ### 2. Rule engine for standard actions
 
