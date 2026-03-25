@@ -39,7 +39,29 @@ uv run python run_game.py 8      # custom turn count
 
 ## Status
 
-Already this shows that an LLM-driven multi agent tabletop exercise is not only feasible but can generate rich narratives and strategic interactions. The current implementation is a proof of concept with hardcoded rules and a single Facilitator agent. 
+IslandSim is now a working MVP. The repository implements a full playable loop with three country agents, a facilitator agent, structured turn resolution, persistent world state, private intel, event injection, and an end-of-game summary.
+
+What exists today:
+
+- Three country agents: Naru, Veldara, and Tauma
+- One facilitator agent that resolves all submitted actions into an updated world state
+- Typed Pydantic models for actions, turn resolution, and final summary
+- Concurrent country action collection with `asyncio.gather`
+- Hardcoded scenario config and rules in Python
+- Langfuse instrumentation for tracing
+- CLI entrypoint via `run_game.py`
+
+What this is today:
+
+- A proof-of-concept / MVP for LLM-driven tabletop simulation
+- Strong at generating coherent strategic behavior and narrative outcomes
+- Still dependent on facilitator judgment rather than a fully explicit simulation engine
+
+What it is not yet:
+
+- A validated policy-evaluation tool
+- A generalized scenario framework with pluggable worlds or rulesets
+- A deterministic or repeatable adjudication engine
 
 
 ## Planning documents
@@ -111,7 +133,7 @@ These encode the asymmetries: Naru is rich but food-insecure, Veldara is resourc
 
 ## Turn Structure
 
-Each game turn represents roughly **one month**. A full game runs **6–10 turns**.
+Each game turn represents roughly **one month**. The current implementation defaults to **4 turns**, with turn count configurable from the CLI.
 
 **Each turn:**
 
@@ -186,11 +208,33 @@ There's no single winner. At game end, evaluate each nation on:
 The Facilitator provides a narrative summary and assessment at game end.
 
 
-### MVP 
-**Start here:**
+### Implemented MVP
 
-1. Hardcode the world state and rules as a JSON config + rules document.
-2. Implement the Facilitator as a single LLM call per resolution phase (full world state + actions in, updated state + narrative out).
-3. Implement country agents as simple LLM calls (state + history in, actions out).
-4. Run 3–4 turns manually, inspect the logs.
-5. Evaluate: Are the agents making interesting decisions? Is the Facilitator applying rules consistently? Are the numbers adding the right amount of constraint without dominating?
+The initial MVP described above has been implemented.
+
+Completed:
+
+1. The world state, starting scenario, and rules framework are hardcoded in Python models/config.
+2. The Facilitator is implemented as a single structured LLM call per resolution phase.
+3. Country agents are implemented as separate structured LLM calls that receive state, history, and private intel.
+4. The game runs end-to-end for a configurable number of turns from the CLI.
+5. A summary agent produces a post-game narrative assessment and per-nation outcome review.
+
+### Current Architecture
+
+- `run_game.py` loads environment variables, enables instrumentation, and starts the async game loop.
+- `islandsim/game.py` orchestrates turn flow: collect country actions, resolve with facilitator, distribute private intel, and generate the final summary.
+- `islandsim/models.py` defines the structured schemas used for all agent outputs.
+- `islandsim/config.py` contains the starting world state and lightweight economic/action rules.
+- `islandsim/prompts.py` contains the country, facilitator, and summary prompt builders.
+- `islandsim/agents.py` defines the three country agents, facilitator, and summary agent.
+
+### Next Steps
+
+The next phase is to improve rigor and replayability:
+
+1. Make resource adjudication more explicit and less purely facilitator-driven.
+2. Persist turn logs in a cleaner machine-readable format for analysis across many runs.
+3. Add support for alternate scenarios and configurable starting states.
+4. Introduce better evaluation harnesses for repeatability and sensitivity testing.
+5. Refine prompts and rules so narrative quality stays high without losing consistency.
