@@ -37,6 +37,11 @@ uv run python run_game.py        # default 4 turns
 uv run python run_game.py 8      # custom turn count
 ```
 
+## Status
+
+Already this shows that an LLM-driven multi agent tabletop exercise is not only feasible but can generate rich narratives and strategic interactions. The current implementation is a proof of concept with hardcoded rules and a single Facilitator agent. 
+
+
 ## Planning documents
 
 ### The situation

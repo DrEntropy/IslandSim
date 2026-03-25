@@ -1,0 +1,75 @@
+IslandSim First Run Executive Summary
+=====================================
+
+Overview
+--------
+This four-turn simulation centered on the scramble for Reef Maru, a disputed atoll whose rare earth deposits became increasingly valuable over the course of the game. The scenario began as a sovereignty contest backed by naval deployments and ended in a negotiated governance accord that balanced military reality, economic incentives, and international legitimacy.
+
+Turn-by-Turn Summary
+--------------------
+Turn 1:
+- Naru positioned itself as a neutral broker, proposing a three-party joint development framework while quietly preparing for typhoon-related disruption.
+- Veldara and Tauma both deployed naval patrols to Reef Maru to assert competing sovereignty claims.
+- Tauma established the stronger on-site military presence and planted a sovereignty marker.
+- A severe storm event, Typhoon Mara, threatened the atoll and surrounding shipping lanes.
+
+Turn 2:
+- All parties withdrew their Reef Maru patrols ahead of the typhoon, avoiding immediate military losses.
+- Naru strengthened its diplomatic leverage by engaging both Veldara and Tauma through separate back channels.
+- Veldara and Tauma both escalated their public offers to Naru, effectively turning Naru into the key swing actor.
+- New survey data revealed that the Reef Maru deposit was about triple previous estimates, sharply raising the stakes and attracting foreign attention.
+
+Turn 3:
+- Tauma executed the most important tactical move of the game by rapidly returning to Reef Maru immediately after the storm, restoring a dominant physical presence before Veldara could arrive.
+- Naru deployed coast guard vessels under a neutral oversight and environmental monitoring justification, giving it physical presence without making a sovereignty claim.
+- Veldara focused on diplomacy and financial inducements, including a public transfer of funds to Naru.
+- A media leak exposed the use of a shared broker for back-channel talks, putting Naru's parallel negotiation strategy at risk.
+
+Turn 4:
+- Naru neutralized the broker leak by reframing its private diplomacy as legitimate multilateral facilitation.
+- Naru convened a governance summit aboard its flagship with international observers present.
+- Veldara and Tauma both accepted a three-party framework rather than risk losing influence to each other or to outside powers.
+- The Reef Maru Accord was signed.
+
+Final Outcome
+-------------
+The final settlement created a shared governance arrangement instead of granting full sovereignty to any one nation.
+
+- Naru became chair of the Reef Maru Oversight Commission and secured permanent treaty recognition of its toll rights in the strait.
+- Tauma retained treaty-recognized physical presence at Reef Maru and had its sovereignty claim formally entered into a UNCLOS-based review process.
+- Veldara became the designated extraction operations partner, giving it effective control over the mining program.
+- Revenue from future extraction was split 30% to Naru, 35% to Tauma, and 35% to Veldara.
+
+Why the Game Ended This Way
+---------------------------
+Three strategic dynamics determined the outcome:
+
+1. Naru's leverage:
+Naru never overcommitted early. By staying formally neutral while entertaining competing offers, it became the indispensable broker and ultimately shaped the institutional structure of the settlement.
+
+2. Tauma's physical control:
+Tauma's rapid return to the atoll after the typhoon created facts on the ground that no final deal could ignore. Its military presence translated into political legitimacy under the accord.
+
+3. Veldara's economic and technical value:
+Although Veldara lost the race for physical control, it stayed relevant through financing, diplomacy, and its credibility as the strongest operational mining partner.
+
+Assessment by Nation
+--------------------
+Naru:
+- Clear overall winner.
+- Converted neutrality into durable institutional power.
+- Finished with very high treasury and public support.
+
+Tauma:
+- Strong tactical winner.
+- Turned naval dominance into recognized security and stewardship authority.
+- Paid a heavy treasury cost but preserved its sovereignty ambitions.
+
+Veldara:
+- Mixed result, but still successful in core economic terms.
+- Failed to dominate the atoll politically or militarily.
+- Secured the extraction role that should matter most once mining begins.
+
+Bottom Line
+-----------
+The first run produced a credible and interesting outcome: not conquest, but a negotiated equilibrium. Naru emerged as the political architect, Tauma as the security power on the ground, and Veldara as the technical and economic operator. The simulation's strongest turning points were the typhoon, the revelation that the deposit was much larger than expected, Tauma's post-storm sprint back to the atoll, and Naru's successful handling of the broker leak.
