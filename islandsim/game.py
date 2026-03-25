@@ -1,8 +1,20 @@
 from __future__ import annotations
 
 import asyncio
+import os
+from typing import Callable
 
-from langfuse import observe
+if os.environ.get("LANGFUSE_SECRET_KEY"):
+    from langfuse import observe
+else:
+
+    def observe(name: str = "") -> Callable:
+        """No-op replacement for langfuse @observe when telemetry is disabled."""
+
+        def decorator(func: Callable) -> Callable:
+            return func
+
+        return decorator
 
 from islandsim.agents import (
     COUNTRY_AGENTS,

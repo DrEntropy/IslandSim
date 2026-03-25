@@ -1,11 +1,18 @@
 import argparse
 import asyncio
+import os
 
 import dotenv
-from pydantic_ai import Agent
 
 dotenv.load_dotenv()
-Agent.instrument_all()
+
+if os.environ.get("LANGFUSE_SECRET_KEY"):
+    from pydantic_ai import Agent
+
+    Agent.instrument_all()
+    print("Langfuse tracing enabled")
+else:
+    print("Langfuse tracing disabled (no LANGFUSE_SECRET_KEY found)")
 
 from islandsim.game import run_game
 

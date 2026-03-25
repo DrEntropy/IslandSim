@@ -10,7 +10,7 @@ A multi-agent tabletop exercise simulator where AI agents represent three island
 
 - [uv](https://docs.astral.sh/uv/getting-started/installation/) (Python package manager)
 - An [OpenRouter](https://openrouter.ai/) API key
-- A [Langfuse](https://langfuse.com/) account (for observability/tracing)
+- A [Langfuse](https://langfuse.com/) account (for observability/tracing, optional)
 
 ### Install
 
@@ -25,7 +25,7 @@ Create a `.env` file in the project root:
 
 ```bash
 OPENROUTER_API_KEY="your-openrouter-key"
-LANGFUSE_SECRET_KEY="sk-lf-..."
+LANGFUSE_SECRET_KEY="sk-lf-..."  # leave these keys out to disable tracing.
 LANGFUSE_PUBLIC_KEY="pk-lf-..."
 LANGFUSE_BASE_URL="https://us.cloud.langfuse.com"
 ```
