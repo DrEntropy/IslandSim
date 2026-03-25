@@ -1,8 +1,8 @@
-## Three island tabletop exercise
+# IslandSim
 
-![alt text](kalani-archipelago-map.svg)
+A multi-agent tabletop exercise simulator where AI agents represent three island-nations negotiating over a disputed resource discovery. A learning exercise and a test of agentic AI as a stand-in for human decision makers in strategic simulations.
 
-This is a learning exercise as well as a test of the ability of Agentic AI to serve as models of decision makers in a tabletop exercise.
+![Kalani Archipelago](kalani-archipelago-map.svg)
 
 ## Setup
 
@@ -37,204 +37,91 @@ uv run python run_game.py        # default 4 turns
 uv run python run_game.py 8      # custom turn count
 ```
 
+## How It Works
+
+Three country agents (Naru, Veldara, Tauma) and one facilitator agent play a turn-based game over a configurable number of turns. Each turn:
+
+1. All three country agents submit 1–3 actions concurrently (public or secret).
+2. The facilitator resolves all actions, updates world state, and distributes results.
+3. Private intel is revealed only to intended recipients.
+4. The facilitator may inject events (typhoons, leaks, foreign interest).
+
+After all turns, a summary agent produces a narrative assessment and per-nation outcome review. All agent outputs are structured Pydantic models, not free text.
+
+For full game rules, scenario details, and nation profiles, see [DESIGN.md](DESIGN.md).
+
+## Architecture
+
+```
+run_game.py              CLI entrypoint, env loading, instrumentation
+islandsim/
+  models.py              Pydantic schemas: WorldState, TurnActions, TurnResolution, GameSummary
+  agents.py              Agent definitions (3 country + facilitator + summary), context dataclasses
+  game.py                Game loop: collect_actions → resolve_turn → distribute intel → summary
+  config.py              Starting state, economic rules, action menu (hardcoded)
+  prompts.py             System prompts and per-turn prompt builders
+```
+
+Key design choices:
+- **pydantic-ai** for agent framework with structured output
+- **OpenRouter** for LLM access (Claude Sonnet 4.6)
+- **Langfuse** for observability — all game functions decorated with `@observe`, agents auto-instrumented
+- **asyncio.gather** for concurrent country agent execution
+
 ## Status
 
-IslandSim is now a working MVP. The repository implements a full playable loop with three country agents, a facilitator agent, structured turn resolution, persistent world state, private intel, event injection, and an end-of-game summary.
+IslandSim is a working MVP. The full game loop runs end-to-end and produces coherent, interesting outcomes.
 
-What exists today:
+### What works
 
-- Three country agents: Naru, Veldara, and Tauma
-- One facilitator agent that resolves all submitted actions into an updated world state
-- Typed Pydantic models for actions, turn resolution, and final summary
-- Concurrent country action collection with `asyncio.gather`
-- Hardcoded scenario config and rules in Python
-- Langfuse instrumentation for tracing
-- CLI entrypoint via `run_game.py`
+- Three country agents with distinct personalities and asymmetric starting positions
+- Facilitator agent that resolves actions, manages world state, and injects events
+- Private intelligence system, relationship tracking, resource management (0–100 scales)
+- Structured outputs throughout — every agent call returns typed Pydantic models
+- Langfuse tracing for full observability into agent reasoning
 
-What this is today:
+### Observations from initial runs
 
-- A proof-of-concept / MVP for LLM-driven tabletop simulation
-- Strong at generating coherent strategic behavior and narrative outcomes
-- Still dependent on facilitator judgment rather than a fully explicit simulation engine
+The first completed run (4 turns) produced a negotiated three-party governance accord over Reef Maru rather than a military outcome. Key observations:
 
-What it is not yet:
+- **Agents develop distinct strategies consistent with their roles.** Naru played broker, Tauma leveraged naval dominance, Veldara used economic and technical leverage. These emerged from the prompts and starting positions without explicit scripting.
+- **The facilitator generates meaningful events.** A typhoon forced tactical retreats; a media leak exposed back-channel diplomacy; revised survey data raised the stakes. These created genuine turning points.
+- **Narrative coherence is strong.** The game produced a plausible four-month diplomatic arc with cause-and-effect chains across turns.
+- **Resource adjudication is inconsistent.** The facilitator applies costs loosely — sometimes ignoring the action menu guidelines, sometimes inventing resource changes with no clear basis. This is the biggest quality gap.
 
-- A validated policy-evaluation tool
-- A generalized scenario framework with pluggable worlds or rulesets
-- A deterministic or repeatable adjudication engine
+### Known limitations
 
+- **No deterministic adjudication.** Resource changes are entirely LLM-judged. The facilitator can and does ignore cost guidelines.
+- **No structured output persistence.** Turn data is printed to stdout only — no machine-readable logs for cross-run analysis.
+- **Single hardcoded scenario.** One starting state, one set of nation profiles, one inciting event.
+- **No test suite.** The codebase has no automated tests.
+- **No repeatability mechanism.** Each run produces different outcomes with no seeding or replay capability.
+- **No validation of facilitator outputs.** The system doesn't check that the facilitator's updated world state is internally consistent (e.g., resource changes that don't add up, or values drifting outside 0–100 despite Pydantic constraints on the model).
 
-## Planning documents
+## Roadmap
 
-### The situation
-Three island-nations face a crisis that forces negotiation, posturing, and strategic decision-making over multiple turns. A Facilitator agent (referee/GM) interprets actions, resolves outcomes using lightweight game rules + a simple simulation model + common sense, and injects events to keep things interesting.
+Ordered roughly by impact-to-effort ratio. Each step builds on the ones before it.
 
-Three island-nations in a temperate sea, historically independent, loosely connected by trade. The geography is roughly linear, west to east:
+### 1. Structured game logs
 
-**Layout (west → east):**
+Save each turn's `TurnActions` and `TurnResolution` as JSON/JSONL alongside the narrative output. This is the foundation for everything else — analysis, replay, regression testing, and evaluation all require machine-readable data.
 
-Tauma sits in the open ocean to the west — a scattered chain of smaller islands with deep harbors. Naru is a single small island in the center. Veldara, the largest island, lies to the east. Between them, bands of shallow reef and rocky shoals make most of the water impassable to large vessels. The only safe shipping lanes are the two deep-water channels that pass on either side of Naru — the **North Channel** and the **South Channel**, collectively known as the **Naru Strait**. Any ship moving between Tauma and Veldara (or between the archipelago and the open ocean) must pass through one of these channels, right under Naru's nose.
+### 2. Rule engine for standard actions
 
-To the north, roughly equidistant from all three nations, lies **Reef Maru** — a small uninhabited atoll in waters where all three sovereignty claims overlap.
+Add a programmatic layer that applies resource costs for standard actions (deploy patrol = -10 Military, -5 Treasury) before the facilitator sees them. The facilitator still handles ambiguous outcomes and narrative, but the baseline math is enforced. Validate that facilitator outputs respect resource bounds.
 
-### Naru (The Strait Power)
+### 3. Batch runner
 
-- **Geography:** A single small island sitting between the two navigable channels. Limited farmland — mostly rocky with a port town and coast guard installations. Controls passage through the strait by geography alone.
-- **Strengths:** Strategic chokepoint, strong coast guard/navy relative to size, toll revenue from shipping.
-- **Weaknesses:** Food-dependent on imports, small population, economy collapses if trade stops.
-- **Personality:** Pragmatic, transactional. Historically neutral. Sees the strait as both its greatest asset and greatest vulnerability.
+A script that runs N games, collects structured outputs, and reports aggregate metrics: who controls Reef Maru, average resource deltas, how often conflict vs. negotiation occurs, distribution of final scores. Enables empirical learning about agent behavior and measures the impact of changes like the rule engine.
 
-### Veldara (The Resource Giant)
+### 4. Scenario configuration
 
-- **Geography:** Largest island, to the east. Mountainous interior with rich mineral deposits (rare earth metals critical for tech manufacturing), fertile lowland farmland, one major west-facing port.
-- **Strengths:** Resource wealth, food self-sufficiency, largest population.
-- **Weaknesses:** Underdeveloped navy, mining regions are inland and need port access through Naru-controlled waters to reach export markets, internal political tension between mining interests and farming communities.
-- **Personality:** Confident, sometimes overreaching. Sees itself as the natural regional leader.
+Extract `STARTING_STATE`, `ECONOMIC_RULES`, and nation profiles into data files (YAML or TOML). Start with one variant scenario to prove the abstraction, then expand.
 
-### Tauma (The Naval Power)
+### 5. Prompt regression testing (optional — needed for production use)
 
-- **Geography:** An archipelago-within-the-archipelago — a chain of smaller islands scattered across the open ocean to the west. Deep natural harbors, fishing economy, strong maritime tradition.
-- **Strengths:** Best navy in the region, skilled shipbuilders, controls key fishing grounds.
-- **Weaknesses:** Limited natural resources beyond fish, no rare earths, rocky soil makes farming difficult. Depends on Veldara for minerals and manufactured goods — all of which must transit through the Naru Strait.
-- **Personality:** Proud, independent, suspicious of Veldara's ambitions. Historical rivalry.
+Save "golden" game transcripts from good runs. When prompts change, run the batch runner and compare outcomes against the golden set for quality and consistency. Requires structured logs (#1) and batch runner (#3).
 
----
+### 6. Evaluation and analysis (optional — needed for production use)
 
-## The Inciting Event
-
-A massive deposit of rare earth minerals is discovered on **Reef Maru**, a small uninhabited atoll in disputed waters between all three nations. The deposit is estimated to be worth more than Veldara's entire existing reserves. All three nations have plausible (but contested) sovereignty claims.
-
-Simultaneously, a typhoon season is forecast to be unusually severe, threatening shipping routes and food supplies.
-
----
-
-## Resource System
-
-Each nation tracks **four resources** on a 0–100 scale:
-
-| Resource | Description |
-| --- | --- |
-| **Military Readiness** | Naval strength, troop readiness, defensive posture. Deploying forces costs readiness; it recovers slowly. |
-| **Treasury** | Wealth available for spending — trade deals, bribes, infrastructure, military ops. Income from trade/tolls each turn. |
-| **Food Supply** | Stockpiles + production. Drops if trade is disrupted. Below 20 = domestic unrest. Below 10 = crisis. |
-| **Public Support** | Domestic approval. Affected by perceived strength, economic conditions, and whether leaders seem competent. Below 25 = government instability. |
-
-### Starting Values
-
-|  | Military | Treasury | Food | Support |
-| --- | --- | --- | --- | --- |
-| **Naru** | 45 | 70 | 30 | 60 |
-| **Veldara** | 30 | 55 | 75 | 50 |
-| **Tauma** | 65 | 40 | 35 | 55 |
-
-These encode the asymmetries: Naru is rich but food-insecure, Veldara is resource-rich but militarily weak, Tauma is militarily strong but poor.
-
----
-
-## Turn Structure
-
-Each game turn represents roughly **one month**. The current implementation defaults to **4 turns**, with turn count configurable from the CLI.
-
-**Each turn:**
-
-1. **Facilitator** announces the current world state (resource levels, any events, public information).
-2. **Each country agent** submits actions (1–3 actions per turn). Actions can be public (announced to all) or secret (revealed only if detected or relevant).
-3. **Facilitator** resolves all actions simultaneously:
-    - Applies resource costs/gains from the rules framework.
-    - Uses judgment for ambiguous outcomes ("Veldara tries to secretly negotiate with Naru — does Tauma's intelligence network detect it?").
-    - Rolls for uncertain outcomes where appropriate (probability-weighted, not pure dice).
-    - Announces results to each country (some public, some private).
-4. **Facilitator** may inject an **event** (typhoon hits, pirate activity, a journalist leaks a secret deal, a foreign power expresses interest in the region).
-5. Repeat.
-
----
-
-## Action Menu (non-exhaustive)
-
-Countries can attempt anything plausible, but here are common actions with rough costs:
-
-**Military**
-
-- Deploy naval patrol to Reef Maru: -10 Military, -5 Treasury
-- Establish military base on the reef: -20 Military, -15 Treasury (takes 2 turns)
-- Naval blockade of a strait or port: -15 Military/turn, diplomatic fallout
-- Defensive posture (fortify home waters): -5 Military, +5 Support
-
-**Economic**
-
-- Propose trade deal (bilateral): variable Treasury, negotiated terms
-- Impose trade sanctions: -5 Treasury (lost trade), target loses more
-- Invest in infrastructure: -15 Treasury now, +income in future turns
-- Economic aid to another nation: -10 Treasury, +10 target's Support toward you
-
-**Diplomatic**
-
-- Public declaration of sovereignty over Reef Maru: +5 Support domestically, -relations with others
-- Propose joint development agreement: requires negotiation
-- Secret back-channel negotiation: risk of detection
-- Appeal to international community: slow but legitimizing, +5 Support
-- Espionage: -5 Treasury, chance of discovering secrets, chance of getting caught
-
-**Domestic**
-
-- Ration food supplies: slows Food decline, -5 Support
-- Propaganda campaign: -5 Treasury, +10 Support (diminishing returns)
-- Emergency food imports: -15 Treasury, +15 Food (if trade routes open)
-
----
-
-## Facilitator Rules of Thumb
-
-The Facilitator uses the resource costs above as guidelines, not absolute rules. The Facilitator should:
-
-- **Apply the numbers** for straightforward actions (deploying ships costs readiness).
-- **Use judgment** for outcomes that depend on context (does the secret deal get leaked? depends on how careful they were, whether the other side has invested in espionage, etc.).
-- **Model second-order effects** (a blockade doesn't just cost Military — it disrupts trade, which hits Treasury and Food for everyone who uses that route).
-- **Maintain a simple economic model**: each turn, nations gain Treasury from their economic base (Naru: +10 from tolls if strait is open; Veldara: +8 from mining exports; Tauma: +5 from fishing). Food production: Naru +3, Veldara +8, Tauma +5. Food consumption is ~5/turn for all.
-- **Track relationships** as a simple sentiment score between each pair of nations.
-- **Inject events** roughly every 2–3 turns to prevent stalemate and test adaptability.
-
----
-
-## Victory Conditions (Soft)
-
-There's no single winner. At game end, evaluate each nation on:
-
-- **Sovereignty outcome**: Who controls or shares Reef Maru?
-- **Resource position**: Are they better or worse off than they started?
-- **Stability**: Is public support above critical thresholds?
-- **Alliances**: Have they built durable partnerships or burned bridges?
-
-The Facilitator provides a narrative summary and assessment at game end.
-
-
-### Implemented MVP
-
-The initial MVP described above has been implemented.
-
-Completed:
-
-1. The world state, starting scenario, and rules framework are hardcoded in Python models/config.
-2. The Facilitator is implemented as a single structured LLM call per resolution phase.
-3. Country agents are implemented as separate structured LLM calls that receive state, history, and private intel.
-4. The game runs end-to-end for a configurable number of turns from the CLI.
-5. A summary agent produces a post-game narrative assessment and per-nation outcome review.
-
-### Current Architecture
-
-- `run_game.py` loads environment variables, enables instrumentation, and starts the async game loop.
-- `islandsim/game.py` orchestrates turn flow: collect country actions, resolve with facilitator, distribute private intel, and generate the final summary.
-- `islandsim/models.py` defines the structured schemas used for all agent outputs.
-- `islandsim/config.py` contains the starting world state and lightweight economic/action rules.
-- `islandsim/prompts.py` contains the country, facilitator, and summary prompt builders.
-- `islandsim/agents.py` defines the three country agents, facilitator, and summary agent.
-
-### Next Steps
-
-The next phase is to improve rigor and replayability:
-
-1. Make resource adjudication more explicit and less purely facilitator-driven.
-2. Persist turn logs in a cleaner machine-readable format for analysis across many runs.
-3. Add support for alternate scenarios and configurable starting states.
-4. Introduce better evaluation harnesses for repeatability and sensitivity testing.
-5. Refine prompts and rules so narrative quality stays high without losing consistency.
+With structured data and batch runs available, build analysis tooling: per-nation strategy classification, facilitator consistency scoring, resource trajectory visualization, sensitivity analysis across prompt/model/scenario changes.
