@@ -109,3 +109,21 @@ class GameSummary(BaseModel):
     reef_maru_outcome: str = Field(
         description="Final status of the Reef Maru dispute"
     )
+
+
+class TurnRecord(BaseModel):
+    """All data for a single game turn."""
+
+    turn: int
+    actions: dict[NationName, TurnActions]
+    resolution: TurnResolution
+
+
+class GameLog(BaseModel):
+    """Complete structured log of a game run."""
+
+    timestamp: str = Field(description="ISO 8601 timestamp of game start")
+    num_turns: int
+    initial_state: WorldState
+    turns: list[TurnRecord]
+    summary: GameSummary

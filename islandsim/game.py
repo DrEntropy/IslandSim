@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import datetime
 import os
 from typing import Callable
 
@@ -24,7 +25,15 @@ from islandsim.agents import (
     summary_agent,
 )
 from islandsim.config import STARTING_STATE
-from islandsim.models import GameSummary, NationName, TurnActions, WorldState
+from islandsim.models import (
+    GameLog,
+    GameSummary,
+    NationName,
+    TurnActions,
+    TurnRecord,
+    TurnResolution,
+    WorldState,
+)
 from islandsim.prompts import build_country_prompt, build_facilitator_prompt, build_summary_prompt
 
 
@@ -69,7 +78,7 @@ async def resolve_turn(
     all_actions: dict[NationName, TurnActions],
     history: list[str],
     turns_since_last_event: int,
-) -> WorldState:
+) -> TurnResolution:
     """Have the facilitator resolve all actions and return updated state."""
     ctx = FacilitatorContext(
         world_state=world_state,
@@ -94,13 +103,16 @@ async def generate_summary(
 
 
 @observe(name="islandsim_game")
-async def run_game(num_turns: int = 4) -> GameSummary:
+async def run_game(num_turns: int = 4) -> tuple[GameSummary, GameLog]:
     """Run the full game loop."""
     state = STARTING_STATE.model_copy(deep=True)
     state.max_turns = num_turns
+    initial_state = state.model_copy(deep=True)
+    timestamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
     history: list[str] = []
     private_intel: dict[NationName, list[str]] = {n: [] for n in NationName}
     turns_since_event = 0
+    turn_records: list[TurnRecord] = []
 
     for turn in range(1, num_turns + 1):
         state.turn = turn
@@ -121,6 +133,9 @@ async def run_game(num_turns: int = 4) -> GameSummary:
         # Phase 2: Facilitator resolves
         print("\nFacilitator resolving...")
         resolution = await resolve_turn(state, all_actions, history, turns_since_event)
+
+        # Record turn data
+        turn_records.append(TurnRecord(turn=turn, actions=all_actions, resolution=resolution))
 
         # Phase 3: Update state and history
         state = resolution.updated_state
@@ -163,4 +178,11 @@ async def run_game(num_turns: int = 4) -> GameSummary:
     for nation, assessment in summary.nation_assessments.items():
         print(f"\n  {nation.value.upper()}: {assessment}")
 
-    return summary
+    game_log = GameLog(
+        timestamp=timestamp,
+        num_turns=num_turns,
+        initial_state=initial_state,
+        turns=turn_records,
+        summary=summary,
+    )
+    return summary, game_log

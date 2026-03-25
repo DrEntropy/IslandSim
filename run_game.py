@@ -1,6 +1,7 @@
 import argparse
 import asyncio
 import os
+from pathlib import Path
 
 import dotenv
 
@@ -28,8 +29,16 @@ def main():
     )
     args = parser.parse_args()
 
-    summary = asyncio.run(run_game(num_turns=args.turns))
+    summary, game_log = asyncio.run(run_game(num_turns=args.turns))
     print("\n" + summary.model_dump_json(indent=2))
+
+    # Save structured game log
+    logs_dir = Path("logs")
+    logs_dir.mkdir(exist_ok=True)
+    safe_ts = game_log.timestamp.replace(":", "").replace("-", "").split(".")[0]
+    log_path = logs_dir / f"islandsim_{safe_ts}.json"
+    log_path.write_text(game_log.model_dump_json(indent=2))
+    print(f"\nGame log saved to {log_path}")
 
 
 if __name__ == "__main__":
