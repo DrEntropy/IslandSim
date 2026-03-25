@@ -23,12 +23,13 @@ IslandSim is a multi-agent tabletop exercise simulator where AI agents represent
 
 ## Project Structure
 
-- `run_game.py` — CLI entrypoint, loads env/instrumentation, runs the async game loop
-- `islandsim/models.py` — Pydantic models: `WorldState`, `NationState`, `Resources`, `TurnActions`, `Action`, `TurnResolution`, `GameSummary`, etc.
+- `run_game.py` — CLI entrypoint, loads env/instrumentation, runs the async game loop, saves structured game log to `logs/`
+- `islandsim/models.py` — Pydantic models: `WorldState`, `NationState`, `Resources`, `TurnActions`, `Action`, `TurnResolution`, `GameSummary`, `TurnRecord`, `GameLog`, etc.
 - `islandsim/agents.py` — Agent definitions (3 country agents + facilitator + summary agent), `NationContext`/`FacilitatorContext` dataclasses
-- `islandsim/game.py` — Game loop: `run_game()` orchestrates turns, `collect_actions()` runs country agents concurrently, `resolve_turn()` calls facilitator, `generate_summary()` produces end-game assessment
+- `islandsim/game.py` — Game loop: `run_game()` orchestrates turns, `collect_actions()` runs country agents concurrently, `resolve_turn()` calls facilitator, `generate_summary()` produces end-game assessment. Returns both `GameSummary` and a structured `GameLog` capturing every turn's actions and resolutions
 - `islandsim/config.py` — `STARTING_STATE` (hardcoded initial world state), `ECONOMIC_RULES` and `ACTION_MENU` text blocks used in prompts
 - `islandsim/prompts.py` — System prompts for each nation and the facilitator, plus per-turn prompt builders (`build_country_prompt`, `build_facilitator_prompt`, `build_summary_prompt`)
+- `logs/` — Structured JSON game logs (gitignored), one file per run named `islandsim_<timestamp>.json`
 - `test_pydantic.ipynb` — Early demo notebook (pydantic-ai + langfuse integration)
 
 ## Architecture
@@ -36,3 +37,7 @@ IslandSim is a multi-agent tabletop exercise simulator where AI agents represent
 The game loop (`run_game`) each turn: (1) runs all 3 country agents concurrently via `asyncio.gather`, each returning structured `TurnActions`, (2) passes all actions to the facilitator agent which returns a `TurnResolution` with updated `WorldState`, narrative, and private intel, (3) distributes private intel and tracks event injection timing. After all turns, a summary agent generates a `GameSummary`.
 
 All agent outputs use pydantic-ai's structured output — agents return typed Pydantic models, not free text. Country agents see their own resources, public info about others, relationships, history, and any private intel they've accumulated. The facilitator sees everything including secret actions.
+
+## Game Logging
+
+Each game run produces a structured JSON log (`GameLog` model) saved to `logs/islandsim_<timestamp>.json`. The log captures the initial world state, every turn's actions and facilitator resolution (via `TurnRecord`), and the final `GameSummary`. This provides a complete replay-friendly record of the game.

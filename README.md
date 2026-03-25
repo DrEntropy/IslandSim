@@ -54,13 +54,14 @@ For full game rules, scenario details, and nation profiles, see [DESIGN.md](DESI
 ## Architecture
 
 ```
-run_game.py              CLI entrypoint, env loading, instrumentation
+run_game.py              CLI entrypoint, env loading, instrumentation, log saving
 islandsim/
-  models.py              Pydantic schemas: WorldState, TurnActions, TurnResolution, GameSummary
+  models.py              Pydantic schemas: WorldState, TurnActions, TurnResolution, GameSummary, TurnRecord, GameLog
   agents.py              Agent definitions (3 country + facilitator + summary), context dataclasses
   game.py                Game loop: collect_actions → resolve_turn → distribute intel → summary
   config.py              Starting state, economic rules, action menu (hardcoded)
   prompts.py             System prompts and per-turn prompt builders
+logs/                    Structured JSON game logs (one per run, gitignored)
 ```
 
 Key design choices:
@@ -79,6 +80,7 @@ IslandSim is a working MVP. The full game loop runs end-to-end and produces cohe
 - Facilitator agent that resolves actions, manages world state, and injects events
 - Private intelligence system, relationship tracking, resource management (0–100 scales)
 - Structured outputs throughout — every agent call returns typed Pydantic models
+- Structured game logs — each run saves a complete JSON log to `logs/` with initial state, per-turn actions/resolutions, and final summary
 - Langfuse tracing for full observability into agent reasoning
 
 ### Observations from initial runs
@@ -93,7 +95,7 @@ The first completed run (4 turns) produced a negotiated three-party governance a
 ### Known limitations
 
 - **No deterministic adjudication.** Resource changes are entirely LLM-judged. The facilitator can and does ignore cost guidelines.
-- **No structured output persistence.** Turn data is printed to stdout only — no machine-readable logs for cross-run analysis.
+- ~~**No structured output persistence.** Turn data is printed to stdout only — no machine-readable logs for cross-run analysis.~~ Resolved — structured game logs now saved to `logs/`.
 - **Single hardcoded scenario.** One starting state, one set of nation profiles, one inciting event.
 - **No test suite.** The codebase has no automated tests.
 - **No repeatability mechanism.** Each run produces different outcomes with no seeding or replay capability.
