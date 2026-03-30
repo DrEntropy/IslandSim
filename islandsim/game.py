@@ -35,6 +35,7 @@ from islandsim.models import (
     WorldState,
 )
 from islandsim.prompts import build_country_prompt, build_facilitator_prompt, build_summary_prompt
+from islandsim.rules import apply_action_costs, apply_economic_adjustments, validate_resolution
 
 
 @observe(name="country_turn")
@@ -78,6 +79,9 @@ async def resolve_turn(
     all_actions: dict[NationName, TurnActions],
     history: list[str],
     turns_since_last_event: int,
+    econ_changes: dict[NationName, dict[str, int]] | None = None,
+    applied_costs: list | None = None,
+    unmatched_actions: list | None = None,
 ) -> TurnResolution:
     """Have the facilitator resolve all actions and return updated state."""
     ctx = FacilitatorContext(
@@ -85,6 +89,9 @@ async def resolve_turn(
         all_actions=all_actions,
         history=history,
         turns_since_last_event=turns_since_last_event,
+        econ_changes=econ_changes or {},
+        applied_costs=applied_costs or [],
+        unmatched_actions=unmatched_actions or [],
     )
     prompt = build_facilitator_prompt(ctx)
     result = await facilitator_agent.run(prompt)
@@ -130,9 +137,40 @@ async def run_game(num_turns: int = 4) -> tuple[GameSummary, GameLog]:
                 vis = action.visibility.value.upper()
                 print(f"    {i}. [{vis}] {action.description}")
 
+        # Phase 1.5: Rule engine pre-processing
+        adjusted_state, econ_changes = apply_economic_adjustments(state)
+        engine_state, applied_costs, unmatched = apply_action_costs(
+            adjusted_state, all_actions
+        )
+
+        print("\n  RULE ENGINE:")
+        for nation in NationName:
+            deltas = econ_changes.get(nation, {})
+            if deltas:
+                parts = [f"{k} {v:+d}" for k, v in deltas.items()]
+                print(f"    {nation.value.upper()} econ: {', '.join(parts)}")
+        for ac in applied_costs:
+            changes_parts = []
+            for n, d in ac.resource_changes.items():
+                for k, v in d.items():
+                    changes_parts.append(f"{k} {v:+d}")
+            print(
+                f"    {ac.nation.value.upper()} action [{ac.action_type.value}]: "
+                f"{', '.join(changes_parts) or 'no change'}"
+            )
+        if unmatched:
+            for nation, action in unmatched:
+                print(f"    {nation.value.upper()} unmatched: {action.description}")
+
         # Phase 2: Facilitator resolves
         print("\nFacilitator resolving...")
-        resolution = await resolve_turn(state, all_actions, history, turns_since_event)
+        resolution = await resolve_turn(
+            engine_state, all_actions, history, turns_since_event,
+            econ_changes, applied_costs, unmatched,
+        )
+
+        # Phase 2.5: Validate facilitator output
+        resolution = validate_resolution(engine_state, resolution, applied_costs)
 
         # Record turn data
         turn_records.append(TurnRecord(turn=turn, actions=all_actions, resolution=resolution))

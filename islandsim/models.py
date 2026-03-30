@@ -32,6 +32,28 @@ class ActionVisibility(str, Enum):
     SECRET = "secret"
 
 
+class StandardActionType(str, Enum):
+    """Standard actions with known resource costs enforced by the rule engine."""
+
+    # Military
+    NAVAL_PATROL = "naval_patrol"
+    ESTABLISH_BASE = "establish_base"
+    NAVAL_BLOCKADE = "naval_blockade"
+    DEFENSIVE_POSTURE = "defensive_posture"
+    # Economic
+    TRADE_SANCTIONS = "trade_sanctions"
+    INVEST_INFRASTRUCTURE = "invest_infrastructure"
+    ECONOMIC_AID = "economic_aid"
+    # Diplomatic
+    SOVEREIGNTY_DECLARATION = "sovereignty_declaration"
+    APPEAL_INTERNATIONAL = "appeal_international"
+    ESPIONAGE = "espionage"
+    # Domestic
+    RATION_FOOD = "ration_food"
+    PROPAGANDA = "propaganda"
+    EMERGENCY_FOOD_IMPORTS = "emergency_food_imports"
+
+
 class Action(BaseModel):
     description: str = Field(description="What the nation is doing")
     visibility: ActionVisibility
@@ -40,6 +62,13 @@ class Action(BaseModel):
     )
     category: str = Field(
         description="One of: military, economic, diplomatic, domestic"
+    )
+    action_type: StandardActionType | None = Field(
+        default=None,
+        description=(
+            "Standard action type from the action menu, if this is a standard "
+            "action. Use None for creative or custom actions not on the menu."
+        ),
     )
 
 

@@ -37,6 +37,9 @@ class FacilitatorContext:
     all_actions: dict[NationName, TurnActions]
     history: list[str]
     turns_since_last_event: int
+    econ_changes: dict[NationName, dict[str, int]] = dataclasses.field(default_factory=dict)
+    applied_costs: list = dataclasses.field(default_factory=list)
+    unmatched_actions: list = dataclasses.field(default_factory=list)
 
 
 # --- Country agents ---

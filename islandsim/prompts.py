@@ -133,15 +133,30 @@ adaptability. Examples: typhoon hits shipping lanes, pirate activity, a \
 journalist leaks a secret deal, a foreign power expresses interest in \
 the region, fishing stocks collapse, refugee crisis.
 
+PRE-APPLIED COSTS:
+A rule engine has already applied per-turn economic adjustments (income, food \
+production/consumption, threshold penalties) and standard action costs to the \
+world state you receive each turn. The resource values ALREADY reflect these \
+changes. DO NOT re-apply them.
+
+Your remaining responsibilities:
+- Resolve UNMATCHED actions (creative/novel actions not in the standard menu) \
+and apply their resource costs.
+- Determine outcomes for ambiguous actions (espionage detection, negotiation \
+results, blockade consequences beyond the direct military cost).
+- Handle narrative, event injection, and relationship changes.
+- Apply second-order effects that the rule engine cannot capture.
+
 RESOLUTION GUIDELINES:
-- Apply the listed resource costs for straightforward actions.
+- Do NOT re-apply costs that are listed as pre-applied in the turn prompt.
+- For unmatched actions: determine and apply appropriate resource costs.
 - For secret actions: determine if they are detected based on context \
 (target's espionage investment, the action's inherent risk of exposure, etc.).
 - Resource values must stay in 0-100 range. Clamp if needed.
-- If a nation's Food drops below 20, apply unrest penalties to Support.
 - If Support drops below 25, note government instability.
 - Be specific about resource changes — state exact numbers.
 - The narrative should be engaging and read like a news briefing.
+- Start from the resource values shown (which include pre-applied costs).
 """
 
 # ---------------------------------------------------------------------------
@@ -262,12 +277,45 @@ def build_facilitator_prompt(ctx: FacilitatorContext) -> str:
         f"Turns since last event injection: {ctx.turns_since_last_event}\n"
     )
 
+    # Rule engine context
+    if ctx.econ_changes:
+        lines.append("PRE-APPLIED ECONOMIC ADJUSTMENTS (already reflected in state above):")
+        for nation in NationName:
+            deltas = ctx.econ_changes.get(nation, {})
+            if deltas:
+                parts = [f"{k} {v:+d}" for k, v in deltas.items()]
+                lines.append(f"  {nation.value.upper()}: {', '.join(parts)}")
+        lines.append("")
+
+    if ctx.applied_costs:
+        lines.append("PRE-APPLIED ACTION COSTS (already reflected in state above):")
+        for ac in ctx.applied_costs:
+            changes_parts = []
+            for nation, deltas in ac.resource_changes.items():
+                for k, v in deltas.items():
+                    changes_parts.append(f"{k} {v:+d}")
+            cost_str = ", ".join(changes_parts) if changes_parts else "no resource change"
+            lines.append(
+                f"  {ac.nation.value.upper()} — {ac.action.description}: {cost_str}"
+            )
+        lines.append("")
+
+    if ctx.unmatched_actions:
+        lines.append("ACTIONS REQUIRING YOUR RESOLUTION (costs NOT pre-applied):")
+        for nation, action in ctx.unmatched_actions:
+            target = f" (target: {action.target.value})" if action.target else ""
+            lines.append(
+                f"  {nation.value.upper()} — [{action.visibility.value.upper()}] "
+                f"[{action.category}]{target}: {action.description}"
+            )
+        lines.append("")
+
     lines.append(
-        "Resolve all actions simultaneously. Apply resource costs/gains, "
-        "determine outcomes for ambiguous actions, detect secret actions where "
-        "appropriate, and update the world state. Apply per-turn economic "
-        "adjustments (income and food production/consumption) BEFORE action "
-        "resolution. Inject a world event if appropriate (every 2-3 turns). "
+        "Resolve all actions simultaneously. The rule engine has already applied "
+        "economic adjustments and standard action costs — do NOT re-apply those. "
+        "Determine outcomes and apply costs for unmatched actions, detect secret "
+        "actions where appropriate, and update the world state. "
+        "Inject a world event if appropriate (every 2-3 turns). "
         "Return the complete updated world state."
     )
 
