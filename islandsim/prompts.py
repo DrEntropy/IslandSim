@@ -8,6 +8,7 @@ from islandsim.models import NationName
 
 if TYPE_CHECKING:
     from islandsim.agents import FacilitatorContext, NationContext
+    from islandsim.models import WorldState
 
 
 # ---------------------------------------------------------------------------
@@ -137,13 +138,22 @@ PRE-APPLIED COSTS:
 A rule engine has already applied per-turn economic adjustments (income, food \
 production/consumption, threshold penalties) and standard action costs to the \
 world state you receive each turn. The resource values ALREADY reflect these \
-changes. DO NOT re-apply them.
+changes. In most cases, do NOT re-apply them.
+
+However, you have authority to OVERRIDE a pre-applied action if the game state \
+makes it invalid or implausible — for example, if a nation's resources are too \
+depleted for the action to realistically succeed, or if the action is blocked \
+by circumstances the rule engine does not model (e.g., a typhoon preventing \
+deployment, a blockade cutting off imports). When you override, reverse the \
+pre-applied cost in your updated state and explain why the action failed in \
+the narrative.
 
 Your remaining responsibilities:
 - Resolve UNMATCHED actions (creative/novel actions not in the standard menu) \
 and apply their resource costs.
 - Determine outcomes for ambiguous actions (espionage detection, negotiation \
 results, blockade consequences beyond the direct military cost).
+- Override pre-applied actions when game state makes them invalid.
 - Handle narrative, event injection, and relationship changes.
 - Apply second-order effects that the rule engine cannot capture.
 

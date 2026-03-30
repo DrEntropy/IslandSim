@@ -278,19 +278,19 @@ def validate_resolution(
                 fac_val = clamped
 
             # Check if facilitator undid pre-applied costs.
+            # The facilitator may legitimately reverse a pre-applied cost
+            # (e.g., rejecting an action due to game state), so we warn
+            # but do not override.
             expected = expected_by_nation.get(nation, {})
             if field in expected:
                 pre_applied_delta = expected[field]
                 fac_delta = fac_val - engine_val
-                # If we applied a cost (negative delta) but facilitator added
-                # back more than we deducted, that's suspicious
                 if pre_applied_delta < 0 and fac_delta > 0:
                     warnings.append(
                         f"{nation.value} {field}: rule engine applied "
-                        f"{pre_applied_delta}, but facilitator added {fac_delta} "
-                        f"back — overriding to engine value {engine_val}"
+                        f"{pre_applied_delta}, facilitator reversed {fac_delta} "
+                        f"(may be a legitimate override)"
                     )
-                    setattr(fac_resources, field, engine_val)
 
     if warnings:
         for w in warnings:
