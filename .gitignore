@@ -12,5 +12,3 @@ wheels/
 # env variables
 .env
 
-# Game logs
-logs/
