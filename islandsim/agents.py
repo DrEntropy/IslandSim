@@ -16,7 +16,8 @@ from islandsim.prompts import (
     FACILITATOR_SYSTEM_PROMPT,
 )
 
-MODEL = "openrouter:anthropic/claude-sonnet-4-6"
+COUNTRY_MODEL = "openrouter:anthropic/claude-haiku-4.5"
+FACILITATOR_MODEL = "openrouter:anthropic/claude-sonnet-4-6"
 
 
 @dataclasses.dataclass
@@ -45,7 +46,7 @@ class FacilitatorContext:
 # --- Country agents ---
 
 naru_agent = Agent(
-    MODEL,
+    COUNTRY_MODEL,
     output_type=TurnActions,
     system_prompt=COUNTRY_PROMPTS[NationName.NARU],
     name="naru_agent",
@@ -53,7 +54,7 @@ naru_agent = Agent(
 )
 
 veldara_agent = Agent(
-    MODEL,
+    COUNTRY_MODEL,
     output_type=TurnActions,
     system_prompt=COUNTRY_PROMPTS[NationName.VELDARA],
     name="veldara_agent",
@@ -61,7 +62,7 @@ veldara_agent = Agent(
 )
 
 tauma_agent = Agent(
-    MODEL,
+    COUNTRY_MODEL,
     output_type=TurnActions,
     system_prompt=COUNTRY_PROMPTS[NationName.TAUMA],
     name="tauma_agent",
@@ -77,7 +78,7 @@ COUNTRY_AGENTS: dict[NationName, Agent[None, TurnActions]] = {
 # --- Facilitator agent ---
 
 facilitator_agent: Agent[None, TurnResolution] = Agent(
-    MODEL,
+    FACILITATOR_MODEL,
     output_type=TurnResolution,
     system_prompt=FACILITATOR_SYSTEM_PROMPT,
     name="facilitator_agent",
@@ -87,7 +88,7 @@ facilitator_agent: Agent[None, TurnResolution] = Agent(
 # --- Summary agent (reuses facilitator persona) ---
 
 summary_agent: Agent[None, GameSummary] = Agent(
-    MODEL,
+    FACILITATOR_MODEL,
     output_type=GameSummary,
     system_prompt=FACILITATOR_SYSTEM_PROMPT,
     name="summary_agent",

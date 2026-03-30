@@ -42,10 +42,11 @@ uv run python run_game.py 8      # custom turn count
 
 Three country agents (Naru, Veldara, Tauma) and one facilitator agent play a turn-based game over a configurable number of turns. Each turn:
 
-1. All three country agents submit 1–3 actions concurrently (public or secret).
-2. The facilitator resolves all actions, updates world state, and distributes results.
-3. Private intel is revealed only to intended recipients.
-4. The facilitator may inject events (typhoons, leaks, foreign interest).
+1. All three country agents submit 1–3 actions concurrently (public or secret). Each action is classified as a standard type (via `StandardActionType` enum) or custom (`None`).
+2. A rule engine applies deterministic per-turn economic adjustments (income, food, threshold penalties) and pre-deducts resource costs for standard actions.
+3. The facilitator resolves all actions — pre-applied costs are communicated so they aren't double-counted. The facilitator handles narrative, ambiguous outcomes, custom action costs, and event injection.
+4. The rule engine validates the facilitator's output, ensuring pre-applied costs are respected.
+5. Private intel is revealed only to intended recipients.
 
 After all turns, a summary agent produces a narrative assessment and per-nation outcome review. All agent outputs are structured Pydantic models, not free text.
 
@@ -56,9 +57,10 @@ For full game rules, scenario details, and nation profiles, see [DESIGN.md](DESI
 ```
 run_game.py              CLI entrypoint, env loading, instrumentation, log saving
 islandsim/
-  models.py              Pydantic schemas: WorldState, TurnActions, TurnResolution, GameSummary, TurnRecord, GameLog
-  agents.py              Agent definitions (3 country + facilitator + summary), context dataclasses
-  game.py                Game loop: collect_actions → resolve_turn → distribute intel → summary
+  models.py              Pydantic schemas: WorldState, TurnActions, Action, StandardActionType, TurnResolution, GameSummary, etc.
+  agents.py              Agent definitions (3 country + facilitator + summary), context dataclasses, model config
+  game.py                Game loop: collect_actions → rule engine → resolve_turn → validate → summary
+  rules.py               Rule engine: economic adjustments, standard action costs, output validation
   config.py              Starting state, economic rules, action menu (hardcoded)
   prompts.py             System prompts and per-turn prompt builders
 logs/                    Structured JSON game logs (one per run, gitignored)
@@ -66,7 +68,8 @@ logs/                    Structured JSON game logs (one per run, gitignored)
 
 Key design choices:
 - **pydantic-ai** for agent framework with structured output
-- **OpenRouter** for LLM access (Claude Sonnet 4.6)
+- **OpenRouter** for LLM access — separate model configs for country agents (`COUNTRY_MODEL`) and facilitator/summary (`FACILITATOR_MODEL`) in `agents.py`
+- **Rule engine** for deterministic resource math — standard action costs enforced programmatically via `StandardActionType` enum on `Action`, with facilitator output validation
 - **Langfuse** for observability — all game functions decorated with `@observe`, agents auto-instrumented
 - **asyncio.gather** for concurrent country agent execution
 
@@ -90,16 +93,16 @@ The first completed run (4 turns) produced a negotiated three-party governance a
 - **Agents develop distinct strategies consistent with their roles.** Naru played broker, Tauma leveraged naval dominance, Veldara used economic and technical leverage. These emerged from the prompts and starting positions without explicit scripting.
 - **The facilitator generates meaningful events.** A typhoon forced tactical retreats; a media leak exposed back-channel diplomacy; revised survey data raised the stakes. These created genuine turning points.
 - **Narrative coherence is strong.** The game produced a plausible four-month diplomatic arc with cause-and-effect chains across turns.
-- **Resource adjudication is inconsistent.** The facilitator applies costs loosely — sometimes ignoring the action menu guidelines, sometimes inventing resource changes with no clear basis. This is the biggest quality gap.
+- ~~**Resource adjudication is inconsistent.** The facilitator applies costs loosely — sometimes ignoring the action menu guidelines, sometimes inventing resource changes with no clear basis. This is the biggest quality gap.~~ Resolved — a rule engine now enforces standard action costs and per-turn economic adjustments deterministically.
 
 ### Known limitations
 
-- **No deterministic adjudication.** Resource changes are entirely LLM-judged. The facilitator can and does ignore cost guidelines.
+- ~~**No deterministic adjudication.** Resource changes are entirely LLM-judged. The facilitator can and does ignore cost guidelines.~~ Resolved — rule engine enforces standard action costs and validates facilitator output.
 - ~~**No structured output persistence.** Turn data is printed to stdout only — no machine-readable logs for cross-run analysis.~~ Resolved — structured game logs now saved to `logs/`.
 - **Single hardcoded scenario.** One starting state, one set of nation profiles, one inciting event.
 - **No test suite.** The codebase has no automated tests.
 - **No repeatability mechanism.** Each run produces different outcomes with no seeding or replay capability.
-- **No validation of facilitator outputs.** The system doesn't check that the facilitator's updated world state is internally consistent (e.g., resource changes that don't add up, or values drifting outside 0–100 despite Pydantic constraints on the model).
+- ~~**No validation of facilitator outputs.** The system doesn't check that the facilitator's updated world state is internally consistent (e.g., resource changes that don't add up, or values drifting outside 0–100 despite Pydantic constraints on the model).~~ Resolved — rule engine validates and corrects facilitator output.
 
 ## Roadmap
 
@@ -111,7 +114,7 @@ Save each turn's `TurnActions` and `TurnResolution` as JSON/JSONL alongside the 
 
 ### 2. Rule engine for standard actions
 
-Add a programmatic layer that applies resource costs for standard actions (deploy patrol = -10 Military, -5 Treasury) before the facilitator sees them. The facilitator still handles ambiguous outcomes and narrative, but the baseline math is enforced. Validate that facilitator outputs respect resource bounds.
+Add a programmatic layer that applies resource costs for standard actions (deploy patrol = -10 Military, -5 Treasury) before the facilitator sees them. The facilitator still handles ambiguous outcomes and narrative, but the baseline math is enforced. Validate that facilitator outputs respect resource bounds. [IMPLEMENTED 3/30/26]
 
 ### 3. Batch runner
 
