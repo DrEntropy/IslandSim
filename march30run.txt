@@ -1,0 +1,172 @@
+ISLANDSIM RUN EVALUATION — March 30, 2026
+Log: logs/islandsim_20260330T204851.json
+Config: 5 turns, 3 nations (Naru, Veldara, Tauma)
+Models: see agents.py for COUNTRY_MODEL / FACILITATOR_MODEL
+
+================================================================================
+GAME SUMMARY (from log)
+================================================================================
+
+"Three Flags, One Table: How the Reef Maru Standoff Became a Blueprint — and Who Wrote It"
+
+Five turns ago, three island-nations scrambled toward an uninhabited atoll armed with
+conflicting legal claims, nationalist fervor, and naval hulls. None of the expected
+failures materialized — no government fell, no flag was hauled down, and the Orenian
+Consortium was not left adjudicating a fait accompli. Instead, the crisis produced a
+negotiated, internationally legitimized, trilateral governance framework that all three
+parties entered voluntarily.
+
+NATION VERDICTS:
+
+  Naru  — DECISIVE WINNER, ARCHITECT OF THE OUTCOME
+    Final: Military 0 | Treasury 49 | Food 32 | Support 100
+    Northern anchorage administrator. Controlled the narrative from Turn 1's secret
+    back-channel through Turn 5's transparency gambit. Strait authority intact and
+    legitimized. Military fully expended but bet on diplomacy over force paid off.
+
+  Veldara — STRONG SECOND, CONVERTED PAPER CLAIMS INTO DURABLE ARCHITECTURE
+    Final: Military 0 | Treasury 86 | Food 85 | Support 100
+    Went from a paper sovereignty claim to mineral logistics leadership under a
+    trilateral framework. Strongest financial position at game end. Revenue-sharing
+    terms face renegotiation (likely 5-10% decrease) but framework durability gained.
+
+  Tauma — SURPRISING THIRD, WON MORE THAN IT APPEARED TO LOSE
+    Final: Military 2 | Treasury 17 | Food 65 | Support 100
+    Most expensive game — aggressive spending left it financially exposed, typhoon
+    destroyed its base construction. But its garrison held through the storm, its
+    intelligence leverage was traded wisely for inclusion, and it exits with a formal
+    seat at the table and internationally recognized presence.
+
+REEF MARU OUTCOME: Trilateral governance framework, internationally recognized by
+the Orenian Consortium. Revenue-sharing negotiation within 90 days under Consortium
+facilitation. All three flags fly.
+
+RELATIONSHIPS (final):
+  Naru-Veldara:  +80 (started +10)
+  Naru-Tauma:    +65 (started +5)
+  Veldara-Tauma: +45 (started -10)
+
+KEY TURNING POINTS:
+  1. Naru's proactive transparency briefing to Consortium (Turn 5)
+  2. Tauma trading intelligence leverage for inclusion rather than deploying it (Turn 5)
+  3. Typhoon Seraya's accelerated landfall (Turn 3/4)
+  4. Veldara's pre-storm food aid to Tauma (Turn 4)
+  5. Naru's secret back-channel to Veldara (Turn 1)
+
+================================================================================
+EVALUATION
+================================================================================
+
+OVERALL QUALITY: Excellent run. The 5-turn game produced a dramatically satisfying arc
+with genuine strategic tension, a natural disaster as forcing function, and a cooperative
+resolution that emerged organically from the agents' decisions rather than feeling
+predetermined.
+
+AGENT BEHAVIOR ASSESSMENT:
+
+  Naru (country agent):
+  - Played the most sophisticated multi-track game: public diplomacy, secret bilateral
+    deal with Veldara, economic aid to Tauma, and a transparency gambit in the final turn.
+  - Strategic reasoning was consistently excellent — long, detailed, and well-calibrated
+    to Naru's position as a pragmatic strait power.
+  - The decision to brief the Consortium proactively on draft discrepancies (Turn 5) was
+    the game's most impressive individual move. The agent correctly identified that
+    pre-emptive transparency would neutralize Tauma's leverage.
+  - Weakness: Military reached 0 by Turn 4 through repeated defensive posture actions.
+    The agent could have been more conservative with military spending early on.
+  - Rating: A+
+
+  Veldara (country agent):
+  - Good diplomatic instincts. Correctly identified that its weak navy meant it needed
+    partnership over confrontation. The Turn 1 sovereignty declaration without naval
+    presence was risky but the agent pivoted well to the Naru alliance.
+  - The Ironspar recall (Turn 4) was a smart asset-preservation move.
+  - Food aid to Tauma before the storm showed genuine strategic creativity — turning an
+    adversarial relationship into a warming one at the right moment.
+  - The secret coordination with Naru in Turn 5 was made redundant by Naru's transparency
+    choice, showing that Veldara was sometimes a step behind its partner.
+  - Weakness: Occasionally too verbose in reasoning without proportionate strategic depth.
+  - Rating: A-
+
+  Tauma (country agent):
+  - The most interesting arc. Started as the aggressive military player, got financially
+    overextended, then pivoted to clever intelligence and diplomatic play.
+  - Turn 2's base establishment was strategically questionable given the approaching
+    typhoon and thin treasury — the agent acknowledged this risk but proceeded anyway.
+  - The espionage operation (Turn 3) was well-timed but the leverage evaporated when
+    Naru went public first. However, trading that leverage for a seat at the table
+    (Turn 5) showed excellent judgment.
+  - The final-turn reframing of the garrison as a "Stabilization Force" was a savvy
+    diplomatic move that matched what the other two nations were proposing.
+  - Weakness: Overspent in early turns. Treasury hit 0 in Turn 2, requiring bailouts.
+  - Rating: A-
+
+  Facilitator agent:
+  - Produced consistently high-quality narrative dispatches. The writing was engaging,
+    detailed, and structured like quality journalism.
+  - Resolutions were fair and tracked agent actions accurately. No obvious favoritism.
+  - Event injections were well-timed: the Orenian Consortium (Turn 2) added external
+    pressure at the right moment; Typhoon Seraya's acceleration (Turn 3) forced
+    difficult decisions; the media exposure (Turn 4) raised the stakes for the finale.
+  - Resource adjustments from the facilitator were generally reasonable, though some
+    custom actions had small treasury costs (-3 for diplomatic courier, -2 for
+    declaration logistics) that were minor enough not to matter much.
+  - The Turn 5 resolution was a satisfying capstone that tied together all the threads.
+  - One concern: the facilitator was perhaps too generous in outcome quality — all three
+    nations ended at 100 Support, which feels like the facilitator rewarded cooperation
+    rather than letting the resource model bite harder. The rule engine's -5 Support/turn
+    for food below 20 only briefly applied to Naru.
+  - Rating: A
+
+RULE ENGINE OBSERVATIONS:
+  - Pre-applied costs for standard actions (naval_patrol, defensive_posture, propaganda,
+    establish_base, espionage, economic_aid, emergency_food_imports, sovereignty_declaration,
+    appeal_international) appear to have worked correctly throughout.
+  - Economic adjustments (toll income, food production/consumption) tracked per turn.
+  - The facilitator respected pre-applied costs and didn't double-charge, which is the
+    intended behavior after the rule engine refactor.
+  - Naru's food crossing below 20 triggered the unrest mechanic briefly in Turn 4 —
+    this worked as designed.
+
+NARRATIVE ARC:
+  The game followed a classic crisis-to-cooperation arc:
+    Turn 1: Scramble (three-way rush to Reef Maru, sovereignty claims)
+    Turn 2: Escalation (Tauma base construction, secret alliances forming)
+    Turn 3: Revelation (Naru-Veldara accord goes public, espionage, typhoon approaches)
+    Turn 4: Crisis (Seraya landfall, infrastructure destruction, humanitarian responses)
+    Turn 5: Resolution (trilateral framework, transparency gambit, Consortium assessment)
+
+  This is a strong narrative structure. The typhoon served as an excellent deus ex machina
+  that prevented a purely diplomatic stalemate and forced genuine strategic decisions.
+
+AREAS FOR IMPROVEMENT:
+  1. Support scores converging to 100 for all three nations by game end suggests the
+     scoring might be too generous, or the facilitator is over-rewarding cooperative
+     actions. Consider tightening Support gains or adding more domestic political friction.
+  2. Military depletion was extreme — all three nations hit 0-2 by game end. The economic
+     costs of military actions may be too steep, or agents may not value military
+     preservation enough. Consider whether country agent prompts should emphasize the
+     risk of military exhaustion.
+  3. The secret/espionage mechanics worked well narratively but the espionage result
+     (Turn 3) was ironically made useless by timing. This is actually realistic and good
+     game design — intelligence doesn't always arrive in time.
+  4. 5 turns felt like the right length for this run. The arc was complete and satisfying
+     without overstaying its welcome.
+  5. The agents produced extremely long reasoning blocks (some 2000+ words). This is
+     valuable for understanding their thinking but may contribute to token costs. Consider
+     whether reasoning length should be constrained.
+
+REPLAYABILITY NOTES:
+  This run was notably cooperative in outcome. Different model temperatures, different
+  starting conditions, or more aggressive event injections could produce a much more
+  adversarial game. It would be interesting to see runs where:
+  - Typhoon doesn't arrive or arrives much later
+  - One nation chooses military escalation despite costs
+  - The Orenian Consortium takes a more interventionist posture
+  - Starting relationships are more hostile
+
+VERDICT: This is a showcase-quality run. The agents played to their nations' strengths,
+the facilitator maintained narrative coherence across all five turns, and the cooperative
+resolution emerged organically rather than feeling forced. The game demonstrates that the
+IslandSim framework can produce genuinely engaging, strategically rich multi-agent
+simulations.
