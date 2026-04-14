@@ -1,0 +1,146 @@
+meta:
+  name: "Jade Shoal Standoff"
+  description: >-
+    A tense maritime dispute in the South Jade Sea, where three nations
+    contest a newly discovered deep-sea mining site on a submerged shoal.
+
+game:
+  max_turns: 6
+  event_injection_guidance: "every 2 turns"
+  instability_threshold: 20
+
+nations:
+  naru:
+    traits: >-
+      Tiny trading hub. Controls the only deep-water port in the region.
+      Wealthy from port fees and financial services. Negligible military.
+      Entirely dependent on food imports. Diplomatically savvy, plays
+      larger neighbors against each other.
+    personality: >-
+      Naru is a tiny island-city with the only deep-water port capable of
+      servicing large cargo vessels in the South Jade Sea. You are
+      extremely wealthy from port fees, banking, and financial services,
+      but you have almost no military capability and zero domestic food
+      production. You import everything. Your survival strategy has always
+      been diplomacy — playing Veldara and Tauma against each other while
+      making yourself indispensable as a neutral trading hub. If either
+      neighbor decides to take your port by force, you cannot stop them.
+      Your leverage is economic, not military.
+    resources:
+      military: 15
+      treasury: 90
+      food: 20
+      support: 70
+    economy:
+      treasury_income: 15
+      requires_strait_for_income: false
+      food_production: 0
+
+  veldara:
+    traits: >-
+      Continental power with vast territory. Strong army but weak navy.
+      Rich agricultural heartland and growing industrial base. Ambitious
+      claims over Jade Shoal based on historical maps. Internal pressure
+      from nationalist movement.
+    personality: >-
+      Veldara occupies the large continental landmass bordering the South
+      Jade Sea. You have the largest population, a powerful army, and
+      growing industrial capability, but your navy is small and outdated.
+      Your agricultural output is the highest in the region. You claim
+      Jade Shoal based on centuries-old navigational charts. A powerful
+      nationalist movement at home demands you assert sovereignty — if
+      you appear weak, your government faces a domestic crisis. You need
+      Naru's port for international trade and Tauma's naval technology,
+      but you resent depending on smaller nations.
+    resources:
+      military: 50
+      treasury: 45
+      food: 85
+      support: 40
+    economy:
+      treasury_income: 6
+      requires_strait_for_income: true
+      food_production: 12
+
+  tauma:
+    traits: >-
+      Island chain with dominant navy. Controls sea lanes and has advanced
+      naval technology. Limited land, poor soil, dependent on Veldara for
+      food. Historical claim to Jade Shoal through fishing rights. Allied
+      with distant powers.
+    personality: >-
+      Tauma is an archipelago of volcanic islands with the most powerful
+      navy in the South Jade Sea. You have advanced naval technology,
+      submarine capability, and a network of alliances with distant
+      maritime powers. However, your islands have poor soil and limited
+      fresh water — you depend heavily on Veldara for food imports. Your
+      claim to Jade Shoal rests on centuries of fishing rights and a
+      recent scientific survey. You are confident at sea but vulnerable
+      on land. Your distant allies provide diplomatic backing but have
+      made clear they will not intervene militarily.
+    resources:
+      military: 75
+      treasury: 35
+      food: 25
+      support: 55
+    economy:
+      treasury_income: 4
+      requires_strait_for_income: false
+      food_production: 2
+
+food_consumption: 7
+
+relationships:
+  - [naru, veldara, 15]
+  - [naru, tauma, 20]
+  - [veldara, tauma, -25]
+
+starting_conditions:
+  reef_maru_status: >-
+    Contested. Jade Shoal is a submerged reef system where a Chinese
+    research vessel discovered polymetallic nodules containing rare earth
+    elements, cobalt, and manganese. All three nations have filed competing
+    claims. Tauma has stationed a coast guard cutter nearby. Veldara's
+    legislature has passed a resolution declaring sovereignty.
+  active_effects:
+    - "International arbitration tribunal has agreed to hear the case — ruling expected in 8 months"
+    - "Monsoon season approaching — naval operations will be limited"
+  strait_open: true
+
+strategic_context: >-
+  Three nations in the South Jade Sea contest Jade Shoal — a submerged reef
+  where valuable deep-sea minerals have been discovered. Veldara claims it
+  based on historical maps, Tauma based on fishing rights and a scientific
+  survey, and Naru argues for international waters and shared development.
+  An arbitration ruling is pending. Monsoon season will soon limit naval
+  operations. All trade flows through Naru's deep-water port.
+
+action_costs:
+  naval_patrol:
+    actor: {military: -10, treasury: -5}
+  establish_base:
+    actor: {military: -20, treasury: -15}
+  naval_blockade:
+    actor: {military: -15}
+  defensive_posture:
+    actor: {military: -5, support: 5}
+  trade_sanctions:
+    actor: {treasury: -5}
+  invest_infrastructure:
+    actor: {treasury: -15}
+  economic_aid:
+    actor: {treasury: -10}
+    target: {support: 10}
+  sovereignty_declaration:
+    actor: {support: 5}
+  appeal_international:
+    actor: {support: 5}
+  espionage:
+    actor: {treasury: -5}
+  ration_food:
+    actor: {support: -5}
+  propaganda:
+    actor: {treasury: -5, support: 10}
+  emergency_food_imports:
+    actor: {treasury: -15, food: 15}
+    requires_strait: true

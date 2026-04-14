@@ -1,14 +1,13 @@
 from __future__ import annotations
 
-import dataclasses
 from typing import TYPE_CHECKING
 
-from islandsim.config import ACTION_MENU, ECONOMIC_RULES
 from islandsim.models import NationName
 
 if TYPE_CHECKING:
     from islandsim.agents import FacilitatorContext, NationContext
     from islandsim.models import WorldState
+    from islandsim.scenario import ScenarioConfig
 
 
 # ---------------------------------------------------------------------------
@@ -24,11 +23,7 @@ YOUR NATION:
 {traits}
 
 STRATEGIC CONTEXT:
-Three island-nations (Naru, Veldara, Tauma) face a crisis over Reef Maru — a \
-small uninhabited atoll where a massive rare earth deposit has been discovered. \
-All three have overlapping sovereignty claims. The geography forces all major \
-shipping through the Naru Strait (two deep-water channels flanking Naru). A \
-severe typhoon season is forecast.
+{strategic_context}
 
 RULES:
 {economic_rules}
@@ -46,66 +41,22 @@ dependencies on other nations.
 - Your reasoning field is private — use it to explain your strategic thinking.
 """
 
-NARU_SYSTEM_PROMPT = _COUNTRY_BASE.format(
-    name="Naru",
-    traits=(
-        "Naru is a small island controlling the only two navigable channels "
-        "(North and South Channel) through the strait. You have strong coast "
-        "guard/navy relative to your size, and your treasury is healthy from "
-        "toll revenue. However, you are critically dependent on food imports — "
-        "if trade stops, your people starve. Your population is small. You are "
-        "pragmatic and transactional, historically neutral. The strait is both "
-        "your greatest asset and greatest vulnerability."
-    ),
-    economic_rules=ECONOMIC_RULES,
-    action_menu=ACTION_MENU,
-)
 
-VELDARA_SYSTEM_PROMPT = _COUNTRY_BASE.format(
-    name="Veldara",
-    traits=(
-        "Veldara is the largest island, lying to the east. You have rich "
-        "mineral deposits (rare earths critical for tech manufacturing), "
-        "fertile farmland, and the largest population. Your navy is weak. "
-        "Your mining regions are inland and need port access through the "
-        "Naru Strait to reach export markets. Internal politics are tense "
-        "between mining interests and farming communities. You see yourself "
-        "as the natural regional leader — confident, sometimes overreaching."
-    ),
-    economic_rules=ECONOMIC_RULES,
-    action_menu=ACTION_MENU,
-)
+def build_country_system_prompt(nation: NationName, scenario: ScenarioConfig) -> str:
+    """Build the system prompt for a country agent from scenario data."""
+    nation_cfg = scenario.nations[nation.value]
+    return _COUNTRY_BASE.format(
+        name=nation.value.capitalize(),
+        traits=nation_cfg.personality,
+        strategic_context=scenario.strategic_context,
+        economic_rules=scenario.render_economic_rules(),
+        action_menu=scenario.render_action_menu(),
+    )
 
-TAUMA_SYSTEM_PROMPT = _COUNTRY_BASE.format(
-    name="Tauma",
-    traits=(
-        "Tauma is an archipelago of smaller islands in the open ocean to the "
-        "west. You have the best navy in the region, deep natural harbors, "
-        "skilled shipbuilders, and a strong maritime tradition. However, you "
-        "lack natural resources beyond fish — no rare earths, poor farming "
-        "soil. You depend on Veldara for minerals and manufactured goods, all "
-        "of which must transit through the Naru Strait. You are proud, "
-        "independent, and suspicious of Veldara's ambitions. Historical "
-        "rivalry with Veldara."
-    ),
-    economic_rules=ECONOMIC_RULES,
-    action_menu=ACTION_MENU,
-)
 
-COUNTRY_PROMPTS = {
-    NationName.NARU: NARU_SYSTEM_PROMPT,
-    NationName.VELDARA: VELDARA_SYSTEM_PROMPT,
-    NationName.TAUMA: TAUMA_SYSTEM_PROMPT,
-}
-
-# ---------------------------------------------------------------------------
-# Facilitator system prompt
-# ---------------------------------------------------------------------------
-
-FACILITATOR_SYSTEM_PROMPT = f"""\
+_FACILITATOR_BASE = """\
 You are the Facilitator (game master) for a multi-turn tabletop exercise \
-involving three island-nations: Naru, Veldara, and Tauma. They are competing \
-and negotiating over Reef Maru, a disputed atoll with massive rare earth deposits.
+involving three island-nations: {nation_names}. {scenario_description}
 
 YOUR ROLE:
 - Resolve all submitted actions simultaneously and impartially.
@@ -119,17 +70,17 @@ and Food for nations using that route).
 - Maintain game balance and narrative interest.
 
 ECONOMIC MODEL:
-{ECONOMIC_RULES}
+{economic_rules}
 
 ACTION REFERENCE:
-{ACTION_MENU}
+{action_menu}
 
 RELATIONSHIP TRACKING:
 Track sentiment between each pair of nations. Hostile actions decrease \
 sentiment; cooperation increases it. Major betrayals cause large drops.
 
 EVENT INJECTION:
-Every 2-3 turns, inject a world event to prevent stalemate and test \
+{event_injection_guidance}, inject a world event to prevent stalemate and test \
 adaptability. Examples: typhoon hits shipping lanes, pirate activity, a \
 journalist leaks a secret deal, a foreign power expresses interest in \
 the region, fishing stocks collapse, refugee crisis.
@@ -163,11 +114,27 @@ RESOLUTION GUIDELINES:
 - For secret actions: determine if they are detected based on context \
 (target's espionage investment, the action's inherent risk of exposure, etc.).
 - Resource values must stay in 0-100 range. Clamp if needed.
-- If Support drops below 25, note government instability.
+- If Support drops below {instability_threshold}, note government instability.
 - Be specific about resource changes — state exact numbers.
 - The narrative should be engaging and read like a news briefing.
 - Start from the resource values shown (which include pre-applied costs).
 """
+
+
+def build_facilitator_system_prompt(scenario: ScenarioConfig) -> str:
+    """Build the facilitator system prompt from scenario data."""
+    nation_names = ", ".join(
+        n.capitalize() for n in scenario.nations
+    )
+    return _FACILITATOR_BASE.format(
+        nation_names=nation_names,
+        scenario_description=scenario.strategic_context,
+        economic_rules=scenario.render_economic_rules(),
+        action_menu=scenario.render_action_menu(),
+        event_injection_guidance=scenario.game.event_injection_guidance.capitalize(),
+        instability_threshold=scenario.game.instability_threshold,
+    )
+
 
 # ---------------------------------------------------------------------------
 # User-prompt builders (per-turn context)
@@ -325,7 +292,7 @@ def build_facilitator_prompt(ctx: FacilitatorContext) -> str:
         "economic adjustments and standard action costs — do NOT re-apply those. "
         "Determine outcomes and apply costs for unmatched actions, detect secret "
         "actions where appropriate, and update the world state. "
-        "Inject a world event if appropriate (every 2-3 turns). "
+        "Inject a world event if appropriate. "
         "Return the complete updated world state."
     )
 

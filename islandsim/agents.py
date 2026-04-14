@@ -11,13 +11,9 @@ from islandsim.models import (
     TurnResolution,
     WorldState,
 )
-from islandsim.prompts import (
-    COUNTRY_PROMPTS,
-    FACILITATOR_SYSTEM_PROMPT,
-)
-
-COUNTRY_MODEL = "openrouter:anthropic/claude-haiku-4.5"
-FACILITATOR_MODEL = "openrouter:anthropic/claude-sonnet-4-6"
+from islandsim.prompts import build_country_system_prompt, build_facilitator_system_prompt
+from islandsim.scenario import ScenarioConfig
+from islandsim.settings import OperationalConfig
 
 
 @dataclasses.dataclass
@@ -43,54 +39,42 @@ class FacilitatorContext:
     unmatched_actions: list = dataclasses.field(default_factory=list)
 
 
-# --- Country agents ---
+def create_agents(
+    scenario: ScenarioConfig,
+    settings: OperationalConfig,
+) -> tuple[
+    dict[NationName, Agent[None, TurnActions]],
+    Agent[None, TurnResolution],
+    Agent[None, GameSummary],
+]:
+    """Create all game agents from scenario and operational config."""
+    country_agents: dict[NationName, Agent[None, TurnActions]] = {}
+    for nation in NationName:
+        system_prompt = build_country_system_prompt(nation, scenario)
+        country_agents[nation] = Agent(
+            settings.models.country,
+            output_type=TurnActions,
+            system_prompt=system_prompt,
+            name=f"{nation.value}_agent",
+            retries=settings.retries,
+        )
 
-naru_agent = Agent(
-    COUNTRY_MODEL,
-    output_type=TurnActions,
-    system_prompt=COUNTRY_PROMPTS[NationName.NARU],
-    name="naru_agent",
-    retries=2,
-)
+    facilitator_prompt = build_facilitator_system_prompt(scenario)
 
-veldara_agent = Agent(
-    COUNTRY_MODEL,
-    output_type=TurnActions,
-    system_prompt=COUNTRY_PROMPTS[NationName.VELDARA],
-    name="veldara_agent",
-    retries=2,
-)
+    facilitator = Agent(
+        settings.models.facilitator,
+        output_type=TurnResolution,
+        system_prompt=facilitator_prompt,
+        name="facilitator_agent",
+        retries=settings.retries,
+    )
 
-tauma_agent = Agent(
-    COUNTRY_MODEL,
-    output_type=TurnActions,
-    system_prompt=COUNTRY_PROMPTS[NationName.TAUMA],
-    name="tauma_agent",
-    retries=2,
-)
+    summary = Agent(
+        settings.models.facilitator,
+        output_type=GameSummary,
+        system_prompt=facilitator_prompt,
+        name="summary_agent",
+        retries=settings.retries,
+    )
 
-COUNTRY_AGENTS: dict[NationName, Agent[None, TurnActions]] = {
-    NationName.NARU: naru_agent,
-    NationName.VELDARA: veldara_agent,
-    NationName.TAUMA: tauma_agent,
-}
-
-# --- Facilitator agent ---
-
-facilitator_agent: Agent[None, TurnResolution] = Agent(
-    FACILITATOR_MODEL,
-    output_type=TurnResolution,
-    system_prompt=FACILITATOR_SYSTEM_PROMPT,
-    name="facilitator_agent",
-    retries=2,
-)
-
-# --- Summary agent (reuses facilitator persona) ---
-
-summary_agent: Agent[None, GameSummary] = Agent(
-    FACILITATOR_MODEL,
-    output_type=GameSummary,
-    system_prompt=FACILITATOR_SYSTEM_PROMPT,
-    name="summary_agent",
-    retries=2,
-)
+    return country_agents, facilitator, summary

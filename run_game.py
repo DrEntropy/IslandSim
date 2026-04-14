@@ -7,13 +7,20 @@ import dotenv
 
 dotenv.load_dotenv()
 
-if os.environ.get("LANGFUSE_SECRET_KEY"):
+from islandsim.settings import load_settings
+
+_settings = load_settings()
+
+if _settings.langfuse and os.environ.get("LANGFUSE_SECRET_KEY"):
     from pydantic_ai import Agent
 
     Agent.instrument_all()
     print("Langfuse tracing enabled")
 else:
-    print("Langfuse tracing disabled (no LANGFUSE_SECRET_KEY found)")
+    if not _settings.langfuse:
+        print("Langfuse tracing disabled (langfuse: false in config.yaml)")
+    else:
+        print("Langfuse tracing disabled (no LANGFUSE_SECRET_KEY found)")
 
 from islandsim.game import run_game
 
@@ -24,12 +31,19 @@ def main():
         "turns",
         nargs="?",
         type=int,
-        default=4,
-        help="Number of turns to run (default: 4)",
+        default=None,
+        help="Number of turns to run (default: from config.yaml, or 4)",
+    )
+    parser.add_argument(
+        "--scenario",
+        default="reef_maru",
+        help="Scenario name — loads scenarios/<name>.yaml (default: reef_maru)",
     )
     args = parser.parse_args()
 
-    summary, game_log = asyncio.run(run_game(num_turns=args.turns))
+    summary, game_log = asyncio.run(
+        run_game(scenario_name=args.scenario, num_turns=args.turns)
+    )
     print("\n" + summary.model_dump_json(indent=2))
 
     # Save structured game log

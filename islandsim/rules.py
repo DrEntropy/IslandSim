@@ -7,6 +7,7 @@ facilitator LLM, and validates facilitator output afterward.
 from __future__ import annotations
 
 import dataclasses
+from typing import TYPE_CHECKING
 
 from islandsim.models import (
     Action,
@@ -16,6 +17,9 @@ from islandsim.models import (
     TurnResolution,
     WorldState,
 )
+
+if TYPE_CHECKING:
+    from islandsim.scenario import ScenarioConfig
 
 # ---------------------------------------------------------------------------
 # Cost registry
@@ -30,50 +34,6 @@ class ActionCost:
     target: dict[str, int] = dataclasses.field(default_factory=dict)
     requires_strait: bool = False
 
-
-ACTION_COSTS: dict[StandardActionType, ActionCost] = {
-    StandardActionType.NAVAL_PATROL: ActionCost(
-        actor={"military": -10, "treasury": -5},
-    ),
-    StandardActionType.ESTABLISH_BASE: ActionCost(
-        actor={"military": -20, "treasury": -15},
-    ),
-    StandardActionType.NAVAL_BLOCKADE: ActionCost(
-        actor={"military": -15},
-    ),
-    StandardActionType.DEFENSIVE_POSTURE: ActionCost(
-        actor={"military": -5, "support": 5},
-    ),
-    StandardActionType.TRADE_SANCTIONS: ActionCost(
-        actor={"treasury": -5},
-    ),
-    StandardActionType.INVEST_INFRASTRUCTURE: ActionCost(
-        actor={"treasury": -15},
-    ),
-    StandardActionType.ECONOMIC_AID: ActionCost(
-        actor={"treasury": -10},
-        target={"support": 10},
-    ),
-    StandardActionType.SOVEREIGNTY_DECLARATION: ActionCost(
-        actor={"support": 5},
-    ),
-    StandardActionType.APPEAL_INTERNATIONAL: ActionCost(
-        actor={"support": 5},
-    ),
-    StandardActionType.ESPIONAGE: ActionCost(
-        actor={"treasury": -5},
-    ),
-    StandardActionType.RATION_FOOD: ActionCost(
-        actor={"support": -5},
-    ),
-    StandardActionType.PROPAGANDA: ActionCost(
-        actor={"treasury": -5, "support": 10},
-    ),
-    StandardActionType.EMERGENCY_FOOD_IMPORTS: ActionCost(
-        actor={"treasury": -15, "food": 15},
-        requires_strait=True,
-    ),
-}
 
 # ---------------------------------------------------------------------------
 # Applied cost tracking
@@ -94,25 +54,6 @@ class AppliedCost:
 # Per-turn economic adjustments
 # ---------------------------------------------------------------------------
 
-# Income per turn when trade routes are functional.
-_TREASURY_INCOME: dict[NationName, int] = {
-    NationName.NARU: 10,
-    NationName.VELDARA: 8,
-    NationName.TAUMA: 5,
-}
-
-# Nations whose treasury income requires the strait to be open.
-_REQUIRES_STRAIT_FOR_INCOME: set[NationName] = {NationName.NARU, NationName.VELDARA}
-
-# Food production per turn.
-_FOOD_PRODUCTION: dict[NationName, int] = {
-    NationName.NARU: 3,
-    NationName.VELDARA: 8,
-    NationName.TAUMA: 5,
-}
-
-_FOOD_CONSUMPTION = 5  # All nations consume this per turn.
-
 
 def _clamp(value: int, lo: int = 0, hi: int = 100) -> int:
     return max(lo, min(hi, value))
@@ -120,6 +61,7 @@ def _clamp(value: int, lo: int = 0, hi: int = 100) -> int:
 
 def apply_economic_adjustments(
     state: WorldState,
+    scenario: ScenarioConfig,
 ) -> tuple[WorldState, dict[NationName, dict[str, int]]]:
     """Apply deterministic per-turn income, food, and threshold penalties.
 
@@ -131,18 +73,19 @@ def apply_economic_adjustments(
 
     for nation in NationName:
         ns = state.nations[nation]
+        nation_cfg = scenario.nations[nation.value]
         deltas: dict[str, int] = {}
 
         # Treasury income
-        income = _TREASURY_INCOME[nation]
-        if not state.strait_open and nation in _REQUIRES_STRAIT_FOR_INCOME:
+        income = nation_cfg.economy.treasury_income
+        if not state.strait_open and nation_cfg.economy.requires_strait_for_income:
             income = 0
         if income:
             deltas["treasury"] = income
             ns.resources.treasury = _clamp(ns.resources.treasury + income)
 
         # Food production and consumption
-        food_delta = _FOOD_PRODUCTION[nation] - _FOOD_CONSUMPTION
+        food_delta = nation_cfg.economy.food_production - scenario.food_consumption
         if food_delta:
             deltas["food"] = food_delta
             ns.resources.food = _clamp(ns.resources.food + food_delta)
@@ -168,6 +111,7 @@ def apply_economic_adjustments(
 def apply_action_costs(
     state: WorldState,
     all_actions: dict[NationName, TurnActions],
+    scenario: ScenarioConfig,
 ) -> tuple[WorldState, list[AppliedCost], list[tuple[NationName, Action]]]:
     """Apply resource costs for actions with a standard action_type.
 
@@ -177,6 +121,7 @@ def apply_action_costs(
     state = state.model_copy(deep=True)
     applied: list[AppliedCost] = []
     unmatched: list[tuple[NationName, Action]] = []
+    action_costs = scenario.get_action_costs()
 
     for nation, turn_actions in all_actions.items():
         for action in turn_actions.actions:
@@ -184,7 +129,7 @@ def apply_action_costs(
                 unmatched.append((nation, action))
                 continue
 
-            cost_def = ACTION_COSTS[action.action_type]
+            cost_def = action_costs[action.action_type]
 
             # Check conditions
             if cost_def.requires_strait and not state.strait_open:

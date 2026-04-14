@@ -1,0 +1,5 @@
+models:
+  country: "openrouter:anthropic/claude-haiku-4.5"
+  facilitator: "openrouter:anthropic/claude-sonnet-4-6"
+retries: 2
+default_turns: 4

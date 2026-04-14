@@ -35,9 +35,27 @@ You can use other providers, if you have the API key, just update the 'MODEL' va
 ### Run
 
 ```bash
-uv run python run_game.py        # default 4 turns
-uv run python run_game.py 8      # custom turn count
+uv run python run_game.py                          # default scenario (reef_maru), 4 turns
+uv run python run_game.py 8                         # custom turn count
+uv run python run_game.py --scenario south_china_sea  # variant scenario
+uv run python run_game.py 2 --scenario reef_maru    # quick 2-turn test
 ```
+
+### Configuration
+
+**Scenarios** are defined in `scenarios/*.yaml`. Each file specifies nation profiles, starting resources, economic parameters, relationships, action costs, and narrative context.
+
+**Operational config** (`config.yaml` at project root, optional) controls model selection, retries, and default turns:
+
+```yaml
+models:
+  country: "openrouter:anthropic/claude-haiku-4.5"
+  facilitator: "openrouter:anthropic/claude-sonnet-4-6"
+retries: 2
+default_turns: 4
+```
+
+To test with cheaper models or fewer turns, edit `config.yaml` — no code changes needed.
 
 ## How It Works
 
@@ -57,21 +75,28 @@ For full game rules, scenario details, and nation profiles, see [DESIGN.md](DESI
 
 ```
 run_game.py              CLI entrypoint, env loading, instrumentation, log saving
+scenarios/
+  reef_maru.yaml         Default scenario (Kalani Archipelago crisis)
+  south_china_sea.yaml   Variant scenario (Jade Shoal standoff)
+config.yaml              Operational config: models, retries, default turns (optional)
 islandsim/
   models.py              Pydantic schemas: WorldState, TurnActions, Action, StandardActionType, TurnResolution, GameSummary, etc.
-  agents.py              Agent definitions (3 country + facilitator + summary), context dataclasses, model config
+  scenario.py            Scenario config models, YAML loader, auto-generated prompt text
+  settings.py            Operational config model and loader
+  agents.py              Agent factory, context dataclasses
   game.py                Game loop: collect_actions → rule engine → resolve_turn → validate → summary
   rules.py               Rule engine: economic adjustments, standard action costs, output validation
-  config.py              Starting state, economic rules, action menu (hardcoded)
-  prompts.py             System prompts and per-turn prompt builders
+  prompts.py             System prompt builders and per-turn prompt builders
 logs/                    Structured JSON game logs (one per run, gitignored)
 ```
 
 Key design choices:
 
+- **YAML scenario files** for all game-specific configuration — nations, economics, action costs, narrative context
+- **Separate operational config** (`config.yaml`) for model selection and runtime settings — swap models for regression testing without touching scenarios
 - **pydantic-ai** for agent framework with structured output
-- **OpenRouter** for LLM access — separate model configs for country agents (`COUNTRY_MODEL`) and facilitator/summary (`FACILITATOR_MODEL`) in `agents.py`
 - **Rule engine** for deterministic resource math — standard action costs enforced programmatically via `StandardActionType` enum on `Action`, with facilitator output validation
+- **Auto-generated prompt text** — economic rules and action menu text rendered from scenario data, preventing drift between what agents are told and what the engine enforces
 - **Langfuse** for observability — all game functions decorated with `@observe`, agents auto-instrumented
 - **asyncio.gather** for concurrent country agent execution
 
@@ -101,7 +126,7 @@ The first completed run (4 turns) produced a negotiated three-party governance a
 
 - ~~**No deterministic adjudication.** Resource changes are entirely LLM-judged. The facilitator can and does ignore cost guidelines.~~ Resolved — rule engine enforces standard action costs and validates facilitator output.
 - ~~**No structured output persistence.** Turn data is printed to stdout only — no machine-readable logs for cross-run analysis.~~ Resolved — structured game logs now saved to `logs/`.
-- **Single hardcoded scenario.** One starting state, one set of nation profiles, one inciting event.
+- ~~**Single hardcoded scenario.** One starting state, one set of nation profiles, one inciting event.~~ Resolved — scenarios now loaded from YAML files with a `--scenario` flag.
 - **No test suite.** The codebase has no automated tests.
 - **No repeatability mechanism.** Each run produces different outcomes with no seeding or replay capability.
 - ~~**No validation of facilitator outputs.** The system doesn't check that the facilitator's updated world state is internally consistent (e.g., resource changes that don't add up, or values drifting outside 0–100 despite Pydantic constraints on the model).~~ Resolved — rule engine validates and corrects facilitator output.
@@ -120,7 +145,7 @@ Add a programmatic layer that applies resource costs for standard actions (deplo
 
 ### 3. Scenario configuration
 
-Extract `STARTING_STATE`, `ECONOMIC_RULES`, and nation profiles into data files (YAML or TOML). Start with one variant scenario to prove the abstraction, then expand.
+Extract `STARTING_STATE`, `ECONOMIC_RULES`, and nation profiles into data files (YAML or TOML). Start with one variant scenario to prove the abstraction, then expand. [IMPLEMENTED 4/14/26]
 
 ### 4. MVP CLI: human controls one nation
 

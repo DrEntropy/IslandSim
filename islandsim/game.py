@@ -5,7 +5,13 @@ import datetime
 import os
 from typing import Callable
 
-if os.environ.get("LANGFUSE_SECRET_KEY"):
+from pydantic_ai import Agent
+
+from islandsim.settings import load_settings as _load_settings
+
+_settings = _load_settings()
+
+if _settings.langfuse and os.environ.get("LANGFUSE_SECRET_KEY"):
     from langfuse import observe
 else:
 
@@ -18,13 +24,10 @@ else:
         return decorator
 
 from islandsim.agents import (
-    COUNTRY_AGENTS,
     FacilitatorContext,
     NationContext,
-    facilitator_agent,
-    summary_agent,
+    create_agents,
 )
-from islandsim.config import STARTING_STATE
 from islandsim.models import (
     GameLog,
     GameSummary,
@@ -36,6 +39,8 @@ from islandsim.models import (
 )
 from islandsim.prompts import build_country_prompt, build_facilitator_prompt, build_summary_prompt
 from islandsim.rules import apply_action_costs, apply_economic_adjustments, validate_resolution
+from islandsim.scenario import ScenarioConfig, load_scenario
+from islandsim.settings import OperationalConfig, load_settings
 
 
 @observe(name="country_turn")
@@ -44,9 +49,9 @@ async def run_country_agent(
     world_state: WorldState,
     history: list[str],
     private_intel: list[str],
+    agent: Agent[None, TurnActions],
 ) -> TurnActions:
     """Run a single country agent for one turn."""
-    agent = COUNTRY_AGENTS[nation]
     ctx = NationContext(
         nation=nation,
         world_state=world_state,
@@ -63,13 +68,15 @@ async def collect_actions(
     world_state: WorldState,
     history: list[str],
     private_intel: dict[NationName, list[str]],
+    country_agents: dict[NationName, Agent[None, TurnActions]],
 ) -> dict[NationName, TurnActions]:
     """Run all three country agents concurrently."""
-    results = await asyncio.gather(
-        run_country_agent(NationName.NARU, world_state, history, private_intel[NationName.NARU]),
-        run_country_agent(NationName.VELDARA, world_state, history, private_intel[NationName.VELDARA]),
-        run_country_agent(NationName.TAUMA, world_state, history, private_intel[NationName.TAUMA]),
-    )
+    results = await asyncio.gather(*(
+        run_country_agent(
+            nation, world_state, history, private_intel[nation], country_agents[nation],
+        )
+        for nation in NationName
+    ))
     return {r.nation: r for r in results}
 
 
@@ -79,6 +86,7 @@ async def resolve_turn(
     all_actions: dict[NationName, TurnActions],
     history: list[str],
     turns_since_last_event: int,
+    facilitator: Agent[None, TurnResolution],
     econ_changes: dict[NationName, dict[str, int]] | None = None,
     applied_costs: list | None = None,
     unmatched_actions: list | None = None,
@@ -94,7 +102,7 @@ async def resolve_turn(
         unmatched_actions=unmatched_actions or [],
     )
     prompt = build_facilitator_prompt(ctx)
-    result = await facilitator_agent.run(prompt)
+    result = await facilitator.run(prompt)
     return result.output
 
 
@@ -102,6 +110,7 @@ async def resolve_turn(
 async def generate_summary(
     world_state: WorldState,
     history: list[str],
+    summary_agent: Agent[None, GameSummary],
 ) -> GameSummary:
     """Generate the final game summary."""
     prompt = build_summary_prompt(world_state, history)
@@ -110,10 +119,18 @@ async def generate_summary(
 
 
 @observe(name="islandsim_game")
-async def run_game(num_turns: int = 4) -> tuple[GameSummary, GameLog]:
+async def run_game(
+    scenario_name: str = "reef_maru",
+    num_turns: int | None = None,
+) -> tuple[GameSummary, GameLog]:
     """Run the full game loop."""
-    state = STARTING_STATE.model_copy(deep=True)
-    state.max_turns = num_turns
+    scenario = load_scenario(scenario_name)
+    settings = load_settings()
+    country_agents, facilitator, summary_agent_inst = create_agents(scenario, settings)
+
+    state = scenario.to_starting_state()
+    turns = num_turns if num_turns is not None else settings.default_turns
+    state.max_turns = turns
     initial_state = state.model_copy(deep=True)
     timestamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
     history: list[str] = []
@@ -121,15 +138,18 @@ async def run_game(num_turns: int = 4) -> tuple[GameSummary, GameLog]:
     turns_since_event = 0
     turn_records: list[TurnRecord] = []
 
-    for turn in range(1, num_turns + 1):
+    print(f"\nScenario: {scenario.meta.name}")
+    print(f"Models: country={settings.models.country}, facilitator={settings.models.facilitator}")
+
+    for turn in range(1, turns + 1):
         state.turn = turn
         print(f"\n{'='*60}")
-        print(f"  TURN {turn} of {num_turns}")
+        print(f"  TURN {turn} of {turns}")
         print(f"{'='*60}")
 
         # Phase 1: Country agents submit actions
         print("\nCountry agents deliberating...")
-        all_actions = await collect_actions(state, history, private_intel)
+        all_actions = await collect_actions(state, history, private_intel, country_agents)
 
         for nation_name, turn_actions in all_actions.items():
             print(f"\n  {nation_name.value.upper()} actions:")
@@ -138,9 +158,9 @@ async def run_game(num_turns: int = 4) -> tuple[GameSummary, GameLog]:
                 print(f"    {i}. [{vis}] {action.description}")
 
         # Phase 1.5: Rule engine pre-processing
-        adjusted_state, econ_changes = apply_economic_adjustments(state)
+        adjusted_state, econ_changes = apply_economic_adjustments(state, scenario)
         engine_state, applied_costs, unmatched = apply_action_costs(
-            adjusted_state, all_actions
+            adjusted_state, all_actions, scenario,
         )
 
         print("\n  RULE ENGINE:")
@@ -166,7 +186,7 @@ async def run_game(num_turns: int = 4) -> tuple[GameSummary, GameLog]:
         print("\nFacilitator resolving...")
         resolution = await resolve_turn(
             engine_state, all_actions, history, turns_since_event,
-            econ_changes, applied_costs, unmatched,
+            facilitator, econ_changes, applied_costs, unmatched,
         )
 
         # Phase 2.5: Validate facilitator output
@@ -209,7 +229,7 @@ async def run_game(num_turns: int = 4) -> tuple[GameSummary, GameLog]:
     print("  GAME OVER — Generating summary...")
     print(f"{'='*60}")
 
-    summary = await generate_summary(state, history)
+    summary = await generate_summary(state, history, summary_agent_inst)
 
     print(f"\n{summary.narrative}")
     print(f"\nReef Maru: {summary.reef_maru_outcome}")
@@ -218,7 +238,7 @@ async def run_game(num_turns: int = 4) -> tuple[GameSummary, GameLog]:
 
     game_log = GameLog(
         timestamp=timestamp,
-        num_turns=num_turns,
+        num_turns=turns,
         initial_state=initial_state,
         turns=turn_records,
         summary=summary,

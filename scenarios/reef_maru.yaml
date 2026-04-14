@@ -1,0 +1,139 @@
+meta:
+  name: "Reef Maru Crisis"
+  description: >-
+    Three island-nations face off over a rare earth discovery on a disputed
+    atoll in the Kalani Archipelago.
+
+game:
+  max_turns: 8
+  event_injection_guidance: "every 2-3 turns"
+  instability_threshold: 25
+
+nations:
+  naru:
+    traits: >-
+      Pragmatic strait power. Controls the only two deep-water shipping
+      channels (North and South Channel). Rich from toll revenue but
+      critically dependent on food imports. Small population. Historically
+      neutral and transactional.
+    personality: >-
+      Naru is a small island controlling the only two navigable channels
+      (North and South Channel) through the strait. You have strong coast
+      guard/navy relative to your size, and your treasury is healthy from
+      toll revenue. However, you are critically dependent on food imports —
+      if trade stops, your people starve. Your population is small. You are
+      pragmatic and transactional, historically neutral. The strait is both
+      your greatest asset and greatest vulnerability.
+    resources:
+      military: 45
+      treasury: 70
+      food: 30
+      support: 60
+    economy:
+      treasury_income: 10
+      requires_strait_for_income: true
+      food_production: 3
+
+  veldara:
+    traits: >-
+      Largest island, resource giant. Rich mineral deposits (rare earths),
+      fertile farmland, largest population. Weak navy. Needs Naru Strait
+      for exports. Internal tension between mining and farming interests.
+      Confident, sometimes overreaching. Sees itself as natural regional leader.
+    personality: >-
+      Veldara is the largest island, lying to the east. You have rich
+      mineral deposits (rare earths critical for tech manufacturing),
+      fertile farmland, and the largest population. Your navy is weak.
+      Your mining regions are inland and need port access through the
+      Naru Strait to reach export markets. Internal politics are tense
+      between mining interests and farming communities. You see yourself
+      as the natural regional leader — confident, sometimes overreaching.
+    resources:
+      military: 30
+      treasury: 55
+      food: 75
+      support: 50
+    economy:
+      treasury_income: 8
+      requires_strait_for_income: true
+      food_production: 8
+
+  tauma:
+    traits: >-
+      Naval power. Archipelago with deep harbors and strong maritime
+      tradition. Best navy in the region. Limited resources beyond fish,
+      no rare earths, poor farming soil. Depends on Veldara for minerals
+      and goods transiting through Naru Strait. Proud, independent,
+      suspicious of Veldara's ambitions.
+    personality: >-
+      Tauma is an archipelago of smaller islands in the open ocean to the
+      west. You have the best navy in the region, deep natural harbors,
+      skilled shipbuilders, and a strong maritime tradition. However, you
+      lack natural resources beyond fish — no rare earths, poor farming
+      soil. You depend on Veldara for minerals and manufactured goods, all
+      of which must transit through the Naru Strait. You are proud,
+      independent, and suspicious of Veldara's ambitions. Historical
+      rivalry with Veldara.
+    resources:
+      military: 65
+      treasury: 40
+      food: 35
+      support: 55
+    economy:
+      treasury_income: 5
+      requires_strait_for_income: false
+      food_production: 5
+
+food_consumption: 5
+
+relationships:
+  - [naru, veldara, 10]
+  - [naru, tauma, 5]
+  - [veldara, tauma, -10]
+
+starting_conditions:
+  reef_maru_status: >-
+    Unclaimed. A massive rare earth deposit has just been discovered on Reef Maru,
+    a small uninhabited atoll in disputed waters where all three nations' sovereignty
+    claims overlap. The deposit is estimated to be worth more than Veldara's entire
+    existing reserves.
+  active_effects:
+    - "Severe typhoon season forecast — expected to threaten shipping routes and food supplies"
+  strait_open: true
+
+strategic_context: >-
+  Three island-nations (Naru, Veldara, Tauma) face a crisis over Reef Maru — a
+  small uninhabited atoll where a massive rare earth deposit has been discovered.
+  All three have overlapping sovereignty claims. The geography forces all major
+  shipping through the Naru Strait (two deep-water channels flanking Naru). A
+  severe typhoon season is forecast.
+
+action_costs:
+  naval_patrol:
+    actor: {military: -10, treasury: -5}
+  establish_base:
+    actor: {military: -20, treasury: -15}
+  naval_blockade:
+    actor: {military: -15}
+  defensive_posture:
+    actor: {military: -5, support: 5}
+  trade_sanctions:
+    actor: {treasury: -5}
+  invest_infrastructure:
+    actor: {treasury: -15}
+  economic_aid:
+    actor: {treasury: -10}
+    target: {support: 10}
+  sovereignty_declaration:
+    actor: {support: 5}
+  appeal_international:
+    actor: {support: 5}
+  espionage:
+    actor: {treasury: -5}
+  ration_food:
+    actor: {support: -5}
+  propaganda:
+    actor: {treasury: -5, support: 10}
+  emergency_food_imports:
+    actor: {treasury: -15, food: 15}
+    requires_strait: true
