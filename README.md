@@ -31,6 +31,7 @@ LANGFUSE_BASE_URL="https://us.cloud.langfuse.com"
 ```
 
 You can use other providers, if you have the API key, just update the 'MODEL' variable in `islandsim/agents.py` to the appropriate model string. The default is set to `openrouter:anthropic/claude-sonnet-4-6`.   For anthropic as provider use `MODEL = "anthropic:claude-sonnet-4-6"` and make sure to have the `ANTHROPIC_API_KEY` in your `.env` instead of `OPENROUTER_API_KEY`. 
+
 ### Run
 
 ```bash
@@ -67,6 +68,7 @@ logs/                    Structured JSON game logs (one per run, gitignored)
 ```
 
 Key design choices:
+
 - **pydantic-ai** for agent framework with structured output
 - **OpenRouter** for LLM access — separate model configs for country agents (`COUNTRY_MODEL`) and facilitator/summary (`FACILITATOR_MODEL`) in `agents.py`
 - **Rule engine** for deterministic resource math — standard action costs enforced programmatically via `StandardActionType` enum on `Action`, with facilitator output validation
@@ -116,18 +118,22 @@ Save each turn's `TurnActions` and `TurnResolution` as JSON/JSONL alongside the 
 
 Add a programmatic layer that applies resource costs for standard actions (deploy patrol = -10 Military, -5 Treasury) before the facilitator sees them. The facilitator still handles ambiguous outcomes and narrative, but the baseline math is enforced. Validate that facilitator outputs respect resource bounds. [IMPLEMENTED 3/30/26]
 
-### 3. Batch runner
-
-A script that runs N games, collects structured outputs, and reports aggregate metrics: who controls Reef Maru, average resource deltas, how often conflict vs. negotiation occurs, distribution of final scores. Enables empirical learning about agent behavior and measures the impact of changes like the rule engine.
-
-### 4. Scenario configuration
+### 3. Scenario configuration
 
 Extract `STARTING_STATE`, `ECONOMIC_RULES`, and nation profiles into data files (YAML or TOML). Start with one variant scenario to prove the abstraction, then expand.
 
-### 5. Prompt regression testing (optional — needed for production use)
+### 4. MVP CLI: human controls one nation
 
-Save "golden" game transcripts from good runs. When prompts change, run the batch runner and compare outcomes against the golden set for quality and consistency. Requires structured logs (#1) and batch runner (#3).
+Add a playable command-line interface where a human can control one nation (choose standard actions or enter custom actions) while the other two remain AI-driven. Show turn-by-turn state, validate affordability/constraints at input time, and still emit the same structured logs for replay and analysis.
 
-### 6. Evaluation and analysis (optional — needed for production use)
+### 5. Batch runner
+
+A script that runs N games, collects structured outputs, and reports aggregate metrics: who controls Reef Maru, average resource deltas, how often conflict vs. negotiation occurs, distribution of final scores. Enables empirical learning about agent behavior and measures the impact of changes like scenarios, prompts, and the rule engine.
+
+### 6. Prompt regression testing (optional — needed for production use)
+
+Save "golden" game transcripts from good runs. When prompts change, run the batch runner and compare outcomes against the golden set for quality and consistency. Requires structured logs (#1) and batch runner (#5).
+
+### 7. Evaluation and analysis (optional — needed for production use)
 
 With structured data and batch runs available, build analysis tooling: per-nation strategy classification, facilitator consistency scoring, resource trajectory visualization, sensitivity analysis across prompt/model/scenario changes.
