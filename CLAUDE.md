@@ -12,6 +12,7 @@ IslandSim is a multi-agent tabletop exercise simulator where AI agents represent
 - Run all Python commands via `uv run` (e.g., `uv run python`, `uv run pytest`, `uv run jupyter`)
 - Install dependencies: `uv sync`
 - Run the game: `uv run python run_game.py [num_turns] [--scenario name]`
+- **Testing**: Use 1 turn when verifying game runs (turns are slow due to LLM calls)
 - Environment variables required in `.env`: `OPENROUTER_API_KEY`, `LANGFUSE_SECRET_KEY`, `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_BASE_URL`
 
 ## Key Dependencies

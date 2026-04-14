@@ -24,6 +24,43 @@ from islandsim.rules import ActionCost
 
 
 # ---------------------------------------------------------------------------
+# Action label / category constants (shared with cli.py)
+# ---------------------------------------------------------------------------
+
+ACTION_CATEGORIES: dict[str, str] = {
+    "naval_patrol": "MILITARY",
+    "establish_base": "MILITARY",
+    "naval_blockade": "MILITARY",
+    "defensive_posture": "MILITARY",
+    "trade_sanctions": "ECONOMIC",
+    "invest_infrastructure": "ECONOMIC",
+    "economic_aid": "ECONOMIC",
+    "sovereignty_declaration": "DIPLOMATIC",
+    "appeal_international": "DIPLOMATIC",
+    "espionage": "DIPLOMATIC",
+    "ration_food": "DOMESTIC",
+    "propaganda": "DOMESTIC",
+    "emergency_food_imports": "DOMESTIC",
+}
+
+ACTION_LABELS: dict[str, str] = {
+    "naval_patrol": "Deploy naval patrol to Reef Maru",
+    "establish_base": "Establish military base on Reef Maru",
+    "naval_blockade": "Naval blockade of strait or port",
+    "defensive_posture": "Defensive posture (fortify home waters)",
+    "trade_sanctions": "Impose trade sanctions",
+    "invest_infrastructure": "Invest in infrastructure",
+    "economic_aid": "Economic aid to another nation",
+    "sovereignty_declaration": "Public declaration of sovereignty over Reef Maru",
+    "appeal_international": "Appeal to international community",
+    "espionage": "Espionage",
+    "ration_food": "Ration food supplies",
+    "propaganda": "Propaganda campaign",
+    "emergency_food_imports": "Emergency food imports",
+}
+
+
+# ---------------------------------------------------------------------------
 # Config models
 # ---------------------------------------------------------------------------
 
@@ -201,41 +238,9 @@ class ScenarioConfig(BaseModel):
             "DOMESTIC": [],
         }
 
-        _action_categories = {
-            "naval_patrol": "MILITARY",
-            "establish_base": "MILITARY",
-            "naval_blockade": "MILITARY",
-            "defensive_posture": "MILITARY",
-            "trade_sanctions": "ECONOMIC",
-            "invest_infrastructure": "ECONOMIC",
-            "economic_aid": "ECONOMIC",
-            "sovereignty_declaration": "DIPLOMATIC",
-            "appeal_international": "DIPLOMATIC",
-            "espionage": "DIPLOMATIC",
-            "ration_food": "DOMESTIC",
-            "propaganda": "DOMESTIC",
-            "emergency_food_imports": "DOMESTIC",
-        }
-
-        _action_labels = {
-            "naval_patrol": "Deploy naval patrol to Reef Maru",
-            "establish_base": "Establish military base on Reef Maru",
-            "naval_blockade": "Naval blockade of strait or port",
-            "defensive_posture": "Defensive posture (fortify home waters)",
-            "trade_sanctions": "Impose trade sanctions",
-            "invest_infrastructure": "Invest in infrastructure",
-            "economic_aid": "Economic aid to another nation",
-            "sovereignty_declaration": "Public declaration of sovereignty over Reef Maru",
-            "appeal_international": "Appeal to international community",
-            "espionage": "Espionage",
-            "ration_food": "Ration food supplies",
-            "propaganda": "Propaganda campaign",
-            "emergency_food_imports": "Emergency food imports",
-        }
-
         for key, cfg in self.action_costs.items():
-            category = _action_categories.get(key, "OTHER")
-            label = _action_labels.get(key, key.replace("_", " ").title())
+            category = ACTION_CATEGORIES.get(key, "OTHER")
+            label = ACTION_LABELS.get(key, key.replace("_", " ").title())
             parts = []
             for resource, delta in cfg.actor.items():
                 parts.append(f"{delta:+d} {resource.capitalize()}")

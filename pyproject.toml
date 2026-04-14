@@ -12,4 +12,5 @@ dependencies = [
     "openrouter>=0.7.11",
     "pydantic-ai>=1.70.0",
     "pyyaml>=6.0",
+    "rich>=13.0",
 ]

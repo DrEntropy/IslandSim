@@ -1,0 +1,296 @@
+{
+  "timestamp": "2026-04-14T21:20:13.292229+00:00",
+  "num_turns": 1,
+  "initial_state": {
+    "turn": 1,
+    "max_turns": 1,
+    "nations": {
+      "naru": {
+        "name": "naru",
+        "resources": {
+          "military": 45,
+          "treasury": 70,
+          "food": 30,
+          "support": 60
+        },
+        "traits": "Pragmatic strait power. Controls the only two deep-water shipping channels (North and South Channel). Rich from toll revenue but critically dependent on food imports. Small population. Historically neutral and transactional."
+      },
+      "veldara": {
+        "name": "veldara",
+        "resources": {
+          "military": 30,
+          "treasury": 55,
+          "food": 75,
+          "support": 50
+        },
+        "traits": "Largest island, resource giant. Rich mineral deposits (rare earths), fertile farmland, largest population. Weak navy. Needs Naru Strait for exports. Internal tension between mining and farming interests. Confident, sometimes overreaching. Sees itself as natural regional leader."
+      },
+      "tauma": {
+        "name": "tauma",
+        "resources": {
+          "military": 65,
+          "treasury": 40,
+          "food": 35,
+          "support": 55
+        },
+        "traits": "Naval power. Archipelago with deep harbors and strong maritime tradition. Best navy in the region. Limited resources beyond fish, no rare earths, poor farming soil. Depends on Veldara for minerals and goods transiting through Naru Strait. Proud, independent, suspicious of Veldara's ambitions."
+      }
+    },
+    "relationships": [
+      {
+        "nation_a": "naru",
+        "nation_b": "veldara",
+        "sentiment": 10
+      },
+      {
+        "nation_a": "naru",
+        "nation_b": "tauma",
+        "sentiment": 5
+      },
+      {
+        "nation_a": "veldara",
+        "nation_b": "tauma",
+        "sentiment": -10
+      }
+    ],
+    "reef_maru_status": "Unclaimed. A massive rare earth deposit has just been discovered on Reef Maru, a small uninhabited atoll in disputed waters where all three nations' sovereignty claims overlap. The deposit is estimated to be worth more than Veldara's entire existing reserves.",
+    "active_effects": [
+      "Severe typhoon season forecast — expected to threaten shipping routes and food supplies"
+    ],
+    "strait_open": true
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "actions": {
+        "naru": {
+          "nation": "naru",
+          "actions": [
+            {
+              "description": "Deploy naval patrol to Reef Maru to establish visible presence and assert sovereignty claim over the rare earth deposit",
+              "visibility": "public",
+              "target": null,
+              "category": "military",
+              "action_type": "naval_patrol"
+            },
+            {
+              "description": "Fortify home waters and defensive posture around the North and South Channels to protect strait infrastructure and reassure citizens",
+              "visibility": "public",
+              "target": null,
+              "category": "military",
+              "action_type": "defensive_posture"
+            },
+            {
+              "description": "Execute emergency food imports while trade routes remain open ahead of typhoon season to build strategic reserves",
+              "visibility": "public",
+              "target": null,
+              "category": "economic",
+              "action_type": "emergency_food_imports"
+            }
+          ],
+          "reasoning": "\nSTRATEGIC ASSESSMENT FOR NARU - TURN 1:\n\n**Core Vulnerabilities:**\n- Critically food-dependent (only +3 production vs -5 consumption = net -2/turn). Current food of 30 is dangerously close to crisis threshold of 10. Typhoon season will likely disrupt imports.\n- Treasury highly dependent on strait tolls (+10/turn). If blockaded, I lose primary income.\n- Militarily weaker than Tauma (45 vs 65) and comparable to Veldara (45 vs 30, slight advantage).\n\n**Immediate Threats:**\n- Tauma is militarily strongest and has weak Veldara relationship (-10). Tauma might be aggressive.\n- Veldara needs strait access for trade income. If Veldara and Tauma conflict, I could lose toll revenue.\n- Typhoon season creates disruption — shipping may be interrupted; food reserves are critical.\n\n**Strategic Opportunities:**\n1. **Reef Maru** is unclaimed and worth enormous wealth. Early naval presence establishes legitimacy.\n2. **Neutral broker position**: I have positive sentiment with both rivals. I can leverage this.\n3. **Food security** is my Achilles heel — I should prepare.\n4. **Strait control** is my leverage — I must protect it and keep it open.\n\n**TURN 1 STRATEGY:**\nI will pursue three complementary actions:\n\n1. **Deploy Naval Patrol to Reef Maru (MILITARY/PUBLIC)**: Establishes presence early, signals serious claim, signals stability to other nations (\"Naru is protecting disputed territory responsibly\"). Costs -10 Military, -5 Treasury. This is affordable and prudent given the urgency of the discovery.\n\n2. **Defensive Posture in home waters (DOMESTIC/PUBLIC)**: Fortifies the strait channels. Costs -5 Military, gains +5 Support. This improves domestic stability (important given food concerns) and protects my core asset (the channels themselves). Signals security and competence to citizens.\n\n3. **Emergency Food Imports (ECONOMIC/PUBLIC)**: Uses -15 Treasury to secure +15 Food while routes are open. Current food is 30; after normal consumption (-5) and production (+3), I'd be at 28, trending toward crisis. This brings me to 43, giving me a safety buffer before typhoon disruptions. This is rational insurance spending.\n\n**Why this sequence:**\n- Establishes my claim to Reef Maru early before others move.\n- Protects the strait (my lifeline).\n- Solves immediate food security before typhoons hit.\n- Remains NEUTRAL in the Veldara-Tauma conflict — I'm not taking sides.\n- Costs: 30 Military, 20 Treasury. Leaves me with 15 Military, 50 Treasury, 43 Food, 65 Support. Sustainable.\n\n**Long-term positioning:**\nWith food secured and domestic support high, I can later negotiate as a neutral broker, sell passage through the strait to the highest bidder, or even arbitrate Reef Maru claims.\n"
+        },
+        "veldara": {
+          "nation": "veldara",
+          "actions": [
+            {
+              "description": "Veldara declares sovereignty over Reef Maru, citing overlapping historical claims and the strategic importance of the rare earth deposit to regional development and economic prosperity.",
+              "visibility": "public",
+              "target": null,
+              "category": "diplomatic",
+              "action_type": "sovereignty_declaration"
+            },
+            {
+              "description": "Veldara dispatches a naval patrol to Reef Maru to assess conditions, gather intelligence on the deposit, and establish a visible presence on the atoll.",
+              "visibility": "secret",
+              "target": null,
+              "category": "military",
+              "action_type": "naval_patrol"
+            },
+            {
+              "description": "Veldara adopts a defensive posture, fortifying key port facilities and mineral transport infrastructure in anticipation of typhoon season and regional tensions over Reef Maru.",
+              "visibility": "public",
+              "target": null,
+              "category": "military",
+              "action_type": "defensive_posture"
+            }
+          ],
+          "reasoning": "\n**STRATEGIC ANALYSIS (TURN 1):**\n\nVeldara's position:\n- STRENGTHS: Largest population, fertile farmland (+8 food/turn), rich mineral reserves, good treasury position (55)\n- WEAKNESSES: Weak navy (Military=30, vs Naru=45 and Tauma=65), dependent on Naru Strait for trade access\n- KEY VULNERABILITY: Typhoon season will disrupt supply chains and threaten food production\n\n**IMMEDIATE PRIORITIES:**\n\n1. **Secure Reef Maru claim early** — The rare earth deposit represents transformational wealth. Acting first with a public sovereignty declaration establishes our claim and rallies domestic support before competitors mobilize. This is cheap (+5 Support, no resource cost beyond existing military/treasury) and positions us diplomatically.\n\n2. **Position for physical presence** — We need to establish a military foothold on Reef Maru before Tauma (who has superior military: 65 vs our 30) or Naru entrench themselves. A naval patrol is the first step (cheaper than a full base, tests our reach). Cost: -10 Military, -5 Treasury. This is affordable and demonstrates resolve.\n\n3. **Strengthen domestic stability** — With a typhoon season incoming and food consumption at -5/turn, we need to ensure food security. Our +8 food production is our advantage, but disruptions could hurt. We're currently at 75 food (healthy threshold), so we have breathing room, but should monitor.\n\n4. **Avoid overcommitment** — Our navy is our bottleneck. We cannot afford a costly military race against Tauma. Instead, use diplomacy and economic leverage while securing the Reef strategically.\n\n**CHOSEN ACTIONS:**\n\nAction 1 (PUBLIC): **Sovereignty declaration over Reef Maru** — Signals intent, rallies support, initiates the diplomatic claim. Low cost, high signaling value.\n\nAction 2 (SECRET): **Naval patrol to Reef Maru** — Establishes physical presence while remaining deniable as \"routine patrol.\" If detected, it's a measured response, not escalation. Costs -10 Military, -5 Treasury (we can absorb this). This gives us early intelligence and a foothold.\n\nAction 3 (PUBLIC): **Defensive posture (fortify home waters)** — Protects our key asset: the mineral regions and ports. Projects strength without aggression. Costs -5 Military, +5 Support (net gain to stability). Given the sentiment gap with Tauma (-10) and typhoon threat, this is prudent defense.\n\n**REASONING:**\n- We're making a calculated gambit: establish the claim publicly (cheap, rallies domestic backing), secure presence secretly (deters competitors, gives us options), and fortify defensively (projects strength while Naru Strait remains open and we maintain good sentiment with Naru).\n- This leaves our military relatively intact (15 Military remaining) for future escalation if needed, preserves treasury (45 remaining), and sets the diplomatic board in our favor.\n- Tauma's superior military is a long-term threat, but early moves on Reef Maru are about speed and positioning, not force.\n"
+        },
+        "tauma": {
+          "nation": "tauma",
+          "actions": [
+            {
+              "description": "Deploy naval patrol to Reef Maru to establish Tauma presence and assert sovereignty claim before rival nations can consolidate control of the rare earth deposit",
+              "visibility": "public",
+              "target": null,
+              "category": "military",
+              "action_type": "naval_patrol"
+            },
+            {
+              "description": "Public declaration of Tauma sovereignty over Reef Maru, emphasizing historical maritime claims and superior maritime capability",
+              "visibility": "public",
+              "target": null,
+              "category": "diplomatic",
+              "action_type": "sovereignty_declaration"
+            }
+          ],
+          "reasoning": "\nSTRATEGIC ANALYSIS:\n\n**Current Position:**\n- Tauma has military superiority (65 vs 45 Naru, 30 Veldara) and deep harbors—our core advantage\n- However, we depend entirely on Veldara for minerals via the Naru Strait (geography trap)\n- Veldara-Naru relationship is warming (+10), which threatens us; Veldara-Tauma is cold (-10)\n- Reef Maru's rare earth deposit is transformational—worth more than Veldara's reserves. Whoever controls this breaks the current dependency dynamic\n- Food is a concern: we produce +5/turn but consume -5, and typhoon season threatens production further\n- Support at 55 is healthy but not comfortable\n\n**Turn 1 Imperatives:**\n\n1. **Secure Reef Maru before rivals**: A military patrol establishes presence and prevents others from consolidating claims. We must move first while we have military advantage.\n\n2. **Strengthen public claim**: Public sovereignty declaration adds domestic support (+5) and signals resolve. This matters for international legitimacy when claims are contested.\n\n3. **Hedge against food crisis**: Typhoon season + food dependency is dangerous. If we can't feed ourselves and lose strait access, we're vulnerable. However, emergency imports (-15 Treasury) seem premature at +5 food/turn. Instead, I'll monitor and prepare.\n\n**Why not other options this turn:**\n- Naval blockade of strait: Too aggressive, too early. Veldara-Naru growing closer; we'd face unified opposition. Also we depend on the strait!\n- Trade sanctions: Counterproductive—we need Veldara's goods through the strait.\n- Propaganda/espionage: Lower priority than seizing the strategic asset.\n- Establish base on Reef Maru: Too expensive (20 Military, 15 Treasury) when we need mobility for typhoon response. Patrol first, consolidate later.\n\n**Long-term vision:**\nControl of Reef Maru breaks our mineral dependency on Veldara and gives us leverage. This is the turn to act before rivals respond.\n\n"
+        }
+      },
+      "resolution": {
+        "narrative": "## TURN 1 WORLD BRIEFING — \"The Rush to Reef Maru\"\n\n**INTERNATIONAL WIRE SERVICE — Regional Dispatch**\n\nThe discovery of a massive rare earth deposit on Reef Maru has shattered the fragile calm of the archipelago. Within days of the announcement, all three island-nations have dispatched naval patrols to the atoll, transforming an uninhabited speck of reef into one of the most contested pieces of real estate in the region.\n\n**Naval Convergence on Reef Maru.** Naru's patrol vessels were first to depart, their national ensign raised prominently as they anchored in the atoll's western lagoon. Close behind, Tauma's considerably larger naval contingent arrived from the south, anchoring in the eastern approaches and making no effort to conceal their displeasure at finding Naru already present. The two patrols are now maintaining a tense standoff at visual range, with radio communications reportedly terse and formal. Veldara's patrol — dispatched quietly without fanfare — arrived to find both rivals already entrenched, and has positioned itself off the northern reef shelf. *The secret nature of Veldara's dispatch was not well-kept:* with two other nations already monitoring the atoll closely, Tauma's lookouts logged a Veldaran vessel approaching from the northeast within hours. No nation can claim surprise.\n\n**Dueling Sovereignty Declarations.** Both Veldara and Tauma issued formal public declarations of sovereignty over Reef Maru on the same afternoon, creating an immediate diplomatic tangle. Veldara cited historical maritime records and the deposit's potential to \"power regional prosperity for generations.\" Tauma countered with references to ancestral fishing routes and what its Foreign Minister called \"unimpeachable maritime heritage.\" Naru has made no formal declaration — choosing instead to let its naval presence speak — a posture some analysts read as calculated restraint, others as hedging.\n\n**Naru Locks Down the Strait.** Citing typhoon preparedness, Naru has reinforced its defensive positions around both the North and South Channels of the Naru Strait. The move was welcomed domestically but drew pointed commentary from Veldara's trade ministry, which noted that Naru now controls the choke point through which Veldara's entire seaborne commerce flows — and that \"typhoon preparedness\" can look a great deal like strategic leverage.\n\n**Naru Buys Food While It Can.** In a pragmatic move ahead of the forecast typhoon season, Naru executed a large emergency food import order, filling its granaries to comfortable levels. Port officials confirmed the shipments cleared the strait before any complications arose. The government's approval rating ticked upward.\n\n**⚠️ WORLD EVENT — TYPHOON PREMONITION ARRIVES EARLY:** Meteorological services across the region have issued an urgent bulletin: *Tropical Cyclone Maret*, the first major storm of the season, is tracking directly toward the northern reef chain. Landfall is expected within **two turns**. Reef Maru sits in the projected path. Nations with naval assets near the atoll will face a choice: shelter their fleets or hold their ground. Shipping disruption in the Naru Strait is assessed as likely during passage.",
+        "action_results": [
+          {
+            "nation": "naru",
+            "action_description": "Deploy naval patrol to Reef Maru",
+            "outcome": "Naru patrol arrives first at the western lagoon, establishing a visible presence. With Tauma and Veldara also arriving, no single nation controls the atoll. Naru holds a slight positional advantage from early arrival but faces a three-way standoff.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "naru",
+            "action_description": "Fortify home waters and defensive posture around North and South Channels",
+            "outcome": "Strait fortifications are reinforced. Citizens are reassured. Naru now commands significant leverage over regional shipping — a fact not lost on Veldara. Support increases as promised.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "naru",
+            "action_description": "Execute emergency food imports",
+            "outcome": "Shipments clear the strait successfully before any disruption. Naru's food reserves are substantially strengthened heading into typhoon season. A prudent and well-timed investment.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "veldara",
+            "action_description": "Public declaration of sovereignty over Reef Maru",
+            "outcome": "Declaration issued simultaneously with Tauma's, diluting the impact of both. The international community notes the competing claims with concern. Domestic support rises modestly.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "veldara",
+            "action_description": "Secret naval patrol dispatched to Reef Maru",
+            "outcome": "Patrol arrives to find Naru and Tauma already present. The 'secret' nature of the dispatch was detected by Tauma's lookouts — Veldara's attempt at quiet positioning is now known to both rivals. Veldara gains intelligence on the deposit site but no positional advantage.",
+            "resource_changes": {},
+            "detected_by": [
+              "tauma",
+              "naru"
+            ]
+          },
+          {
+            "nation": "veldara",
+            "action_description": "Defensive posture — fortify port facilities and mineral transport infrastructure",
+            "outcome": "Port hardening proceeds smoothly. Veldara's home infrastructure is better prepared for typhoon season and potential conflict. Support rises.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "tauma",
+            "action_description": "Deploy naval patrol to Reef Maru",
+            "outcome": "Tauma's larger contingent arrives at the eastern approaches. The sight of Naru already present rankles Tauma's commanders. A tense standoff is established. Tauma's superior military strength is visible but not yet decisive.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "tauma",
+            "action_description": "Public declaration of Tauma sovereignty over Reef Maru",
+            "outcome": "Declaration issued same day as Veldara's, creating a diplomatic cacophony. Tauma's emphasis on maritime capability resonates domestically. The dual declarations from Veldara and Tauma have hardened the dispute with no resolution in sight.",
+            "resource_changes": {},
+            "detected_by": []
+          }
+        ],
+        "updated_state": {
+          "turn": 1,
+          "max_turns": 8,
+          "nations": {
+            "naru": {
+              "name": "naru",
+              "resources": {
+                "military": 15,
+                "treasury": 50,
+                "food": 56,
+                "support": 70
+              },
+              "traits": "Calculated and strategic; controls the strait chokepoint; pursuing measured sovereignty claim through presence rather than declaration; well-stocked for typhoon season"
+            },
+            "veldara": {
+              "name": "veldara",
+              "resources": {
+                "military": 0,
+                "treasury": 53,
+                "food": 81,
+                "support": 70
+              },
+              "traits": "Economically dependent on strait access; militarily weakest but diplomatically active; sovereignty declaration undercut by simultaneous Tauma claim; caught trying to play both open and covert games"
+            },
+            "tauma": {
+              "name": "tauma",
+              "resources": {
+                "military": 40,
+                "treasury": 40,
+                "food": 35,
+                "support": 65
+              },
+              "traits": "Most militarily capable; assertive and nationalistic; has largest presence at Reef Maru; sovereignty claim bolstered by show of force but complicated by Veldara's simultaneous declaration"
+            }
+          },
+          "relationships": [
+            {
+              "nation_a": "naru",
+              "nation_b": "veldara",
+              "sentiment": 5
+            },
+            {
+              "nation_a": "naru",
+              "nation_b": "tauma",
+              "sentiment": -5
+            },
+            {
+              "nation_a": "veldara",
+              "nation_b": "tauma",
+              "sentiment": -25
+            }
+          ],
+          "reef_maru_status": "Disputed — three-way naval standoff. Naru patrol holds western lagoon (arrived first). Tauma patrol holds eastern approaches (largest force). Veldara patrol holds northern reef shelf. No nation has established control. Deposit site is accessible but contested.",
+          "active_effects": [
+            "Severe typhoon season forecast — expected to threaten shipping routes and food supplies",
+            "Tropical Cyclone Maret tracking toward northern reef chain — projected Reef Maru landfall in 2 turns. Strait disruption likely during passage. Naval assets at Reef Maru face risk of damage if not withdrawn.",
+            "Three-way naval standoff at Reef Maru — risk of incident escalation if any nation reinforces or makes aggressive moves",
+            "Naru has fortified North and South Channels — strategic leverage over regional shipping now elevated",
+            "Veldara's secret patrol detected by Tauma and Naru — trust eroded"
+          ],
+          "strait_open": true
+        },
+        "event_injected": "Tropical Cyclone Maret — first major storm of the season — is tracking directly toward the northern reef chain. Projected to reach Reef Maru in two turns. Naval assets at the atoll face damage risk. Strait disruption likely during storm passage.",
+        "private_intel": {
+          "naru": [
+            "Your patrol commanders report Veldara's vessel approached from the northeast — the 'secret' dispatch was not concealed. Veldara is playing both public and shadow games simultaneously, suggesting internal disagreement or a dual-track strategy.",
+            "Strait fortifications are now robust. Your military advisors note that Veldara's entire trade income is now contingent on your goodwill — a significant piece of leverage you have not yet publicly exercised.",
+            "Your food stores are among the healthiest in the region heading into typhoon season. This is a strategic asset — nations that run short may come to you."
+          ],
+          "veldara": [
+            "Your patrol was spotted by both Naru and Tauma. The secrecy of the dispatch has been fully compromised. Both nations now know you are pursuing covert positioning alongside public diplomacy, which may damage trust in any future negotiations.",
+            "Military resources are critically low after deploying the patrol and fortifying ports. Veldara has virtually no offensive naval capability remaining this turn. Any escalation at Reef Maru would leave you exposed.",
+            "Tauma's simultaneous sovereignty declaration directly undercut your diplomatic initiative. Consider whether bilateral talks with Naru — who has NOT declared sovereignty — might offer a path to a joint development agreement before Tauma consolidates its military advantage."
+          ],
+          "tauma": [
+            "Your lookouts confirmed Veldara dispatched a patrol covertly — they were trying to slip in quietly while making noise diplomatically. This two-faced approach was noted by your intelligence officers and should be factored into any dealings with Veldara.",
+            "You have the largest military force at Reef Maru, but your treasury is strained and Tropical Cyclone Maret poses a direct threat to your patrol vessels. Withdrawing before the storm would protect your assets but cede ground; staying risks ship damage.",
+            "Naru has NOT issued a sovereignty declaration but has the most defensible position geographically. Watch for a Naru-Veldara alignment — both have moderate sentiment and Veldara needs strait access, which Naru controls."
+          ]
+        }
+      }
+    }
+  ],
+  "summary": {
+    "narrative": "## FINAL AFTER-ACTION REPORT — \"The Reef Maru Crisis: A Game Frozen in Amber\"\n\n**INTERNATIONAL WIRE SERVICE — Regional Analysis Desk**\n\nThe Reef Maru Crisis lasted precisely one turn before the game clock stopped — but in that single, frenetic round of maneuver and counter-maneuver, the three island-nations of the archipelago managed to establish a remarkably complex status quo that would have taken weeks of real-world diplomacy to untangle.\n\n### What Actually Happened\n\nThe discovery of the rare earth deposit triggered a textbook \"stag hunt\" problem: all three nations simultaneously calculated that moving first was better than waiting, and all three moved first. The result was not one winner planting a flag on an empty atoll — it was three rivals glaring at each other across contested reef waters, each with a legal and physical claim, none with a decisive one.\n\nNaru played the shrewdest opening hand. By dispatching its patrol quietly and early, it secured the western lagoon — historically the most navigable anchorage and the most legally defensible position for a nation that can argue strait-adjacent sovereign rights. More importantly, Naru chose *not* to issue a sovereignty declaration, preserving diplomatic flexibility while its navy did the talking. The emergency food import was a quietly excellent decision: with Typhoon Maret bearing down and the strait potentially closing, Naru filled its granaries before the window shut. The defensive posture around the strait — framed as typhoon preparedness — gave Naru strategic leverage over Veldara's trade lifeline at essentially no diplomatic cost, since the weather provided plausible cover.\n\nTauma arrived with the largest force and the loudest claim, but loudness and size don't automatically translate to control. Holding the eastern approaches is militarily significant — any extraction operation at the deposit site would need to pass through or around Tauma's position — but Tauma's treasury is the thinnest of the three, and sustaining a large naval patrol is expensive. The sovereignty declaration was emotionally satisfying domestically but added little material leverage. Tauma enters the post-game period as the nation with the most guns on scene and the least money to keep them there.\n\nVeldara's performance was the most puzzling. It dispatched its patrol \"secretly,\" a gambit that failed almost immediately — both rivals logged the vessel within hours, and Veldara gained none of the surprise benefit while still paying the deployment cost. The sovereignty declaration was well-timed rhetorically but arrived simultaneously with Tauma's, canceling out much of the international attention either might have generated. Most critically, Veldara burned its entire military budget to zero on the Reef Maru deployment, leaving its home waters completely undefended at the precise moment a major typhoon is forecast and Naru controls the strait. This is the most precarious strategic position in the game.\n\n### The Turning Point That Never Came\n\nThe game's most consequential unmade decision was *diplomacy*. Not a single nation reached out to another. There were no bilateral talks, no offers of joint development, no attempts to peel one rival away from the others. Every action was unilateral and adversarial. This collective failure to negotiate transformed a solvable resource dispute into a military standoff — one that Typhoon Maret was about to stress-test severely. Had the game continued, the storm's approach would have forced the first real choices: who blinks and withdraws their fleet to shelter, and who gambles on holding position through a cyclone to claim de facto control?\n\n### The Shadow of Maret\n\nCyclone Maret is the event that would have broken the stalemate. Nations sheltering their fleets would lose physical presence at Reef Maru. Nations holding position would risk losing their vessels entirely. With Veldara at zero military and food stocks the healthiest in the region, and Tauma holding the largest on-scene force but the thinnest treasury, the storm would have reshuffled every calculation made in Turn 1. Naru, with a full granary, a fortified strait, and the flexibility of its undeclared position, was best positioned to weather both the literal and figurative storm.",
+    "nation_assessments": {
+      "naru": "OUTCOME: STRONGEST POSITION. Naru ends the game as the quiet frontrunner. It holds the western lagoon (arrived first, most defensible anchorage), controls the Naru Strait under defensible 'typhoon preparedness' cover, and maintains healthy food stocks (56) after the emergency import — the highest real-terms food improvement of any nation. Military is depleted at 15 (the patrol was costly) and treasury at 50 is serviceable. Support remains strong at 70. Naru's decision to withhold a formal sovereignty declaration was its masterstroke: it preserved diplomatic options while establishing physical presence. Its greatest vulnerability is military thinness — if the strait needed active defense, Naru would struggle. Grade: B+. The nation that made the fewest mistakes and left the most options open.",
+      "veldara": "OUTCOME: MOST VULNERABLE POSITION. Veldara's single turn was a study in expensive half-measures. The 'secret' patrol dispatch failed to achieve surprise, costing Military and Treasury for zero stealth advantage. The sovereignty declaration arrived simultaneously with Tauma's, diluting both. Most critically, Veldara ends the game at Military=0 — completely defenseless — with the typhoon arriving in two turns and Naru controlling its only trade route. Treasury at 53 is adequate, but food at 81 is deceptively comfortable; if the strait closes during the typhoon, Veldara cannot import to replenish. The northern reef shelf position is the weakest of the three on-scene — hardest to reinforce and easiest to abandon under storm pressure. Veldara holds a sovereignty claim but no meaningful leverage to prosecute it. Grade: C-. Strong resources, catastrophic military overextension.",
+      "tauma": "OUTCOME: HIGH RISK, HIGH REWARD POSITION. Tauma made the boldest military commitment and holds the most tactically significant position — the eastern approaches control access to the deposit site itself. The sovereignty declaration resonates with a domestic audience and establishes a legal record. However, Tauma's financial position (Treasury=40, the lowest) makes sustaining the largest on-scene naval force deeply problematic. Food at 35 is the most precarious in the game, sitting uncomfortably close to the 20-unit unrest threshold if production is disrupted by the typhoon or if the patrol's consumption isn't offset. Support at 65 is healthy but not a buffer against a prolonged, costly standoff. Tauma is the nation most likely to either win decisively or collapse spectacularly — it has committed the most and can least afford to wait. Grade: B-. Tactically strong, strategically fragile."
+    },
+    "reef_maru_outcome": "UNRESOLVED — Three-Way Naval Standoff. Reef Maru's rare earth deposit remains untouched and uncontrolled. No nation has established a military base, conducted extraction operations, or achieved recognized legal sovereignty. The physical positions — Naru in the western lagoon, Tauma in the eastern approaches, Veldara on the northern reef shelf — represent a fragile, costly stalemate that benefits no one. The deposit is accessible in theory; in practice, any extraction attempt by one nation would require either defeating or circumventing two armed rivals. The approaching Typhoon Maret is the unresolved variable most likely to determine the atoll's fate: whoever weathers the storm with naval assets intact and a willingness to hold position will wake up to a dramatically altered strategic landscape. As the game closes, Reef Maru remains what it was at the start — disputed, valuable, and ungoverned — but the cost of that indetermination is now being paid in military deployments, treasury outflows, and political capital by all three nations simultaneously."
+  }
+}

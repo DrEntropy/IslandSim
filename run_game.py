@@ -23,6 +23,7 @@ else:
         print("Langfuse tracing disabled (no LANGFUSE_SECRET_KEY found)")
 
 from islandsim.game import run_game
+from islandsim.models import NationName
 
 
 def main():
@@ -39,10 +40,23 @@ def main():
         default="reef_maru",
         help="Scenario name — loads scenarios/<name>.yaml (default: reef_maru)",
     )
+    parser.add_argument(
+        "--play",
+        type=str,
+        default=None,
+        choices=["naru", "veldara", "tauma"],
+        metavar="NATION",
+        help="Play as the specified nation (other two remain AI-driven)",
+    )
     args = parser.parse_args()
 
+    human_nation = NationName(args.play) if args.play else None
     summary, game_log = asyncio.run(
-        run_game(scenario_name=args.scenario, num_turns=args.turns)
+        run_game(
+            scenario_name=args.scenario,
+            num_turns=args.turns,
+            human_nation=human_nation,
+        )
     )
     print("\n" + summary.model_dump_json(indent=2))
 

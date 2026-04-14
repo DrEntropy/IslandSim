@@ -69,14 +69,27 @@ async def collect_actions(
     history: list[str],
     private_intel: dict[NationName, list[str]],
     country_agents: dict[NationName, Agent[None, TurnActions]],
+    human_nation: NationName | None = None,
+    scenario: ScenarioConfig | None = None,
 ) -> dict[NationName, TurnActions]:
-    """Run all three country agents concurrently."""
-    results = await asyncio.gather(*(
-        run_country_agent(
-            nation, world_state, history, private_intel[nation], country_agents[nation],
-        )
-        for nation in NationName
-    ))
+    """Run all three country agents concurrently.
+
+    When *human_nation* is set, that nation's actions are collected via the
+    CLI instead of an AI agent.
+    """
+    tasks = []
+    for nation in NationName:
+        if nation == human_nation and scenario is not None:
+            from islandsim.cli import run_human_turn
+
+            tasks.append(run_human_turn(
+                nation, world_state, history, private_intel[nation], scenario,
+            ))
+        else:
+            tasks.append(run_country_agent(
+                nation, world_state, history, private_intel[nation], country_agents[nation],
+            ))
+    results = await asyncio.gather(*tasks)
     return {r.nation: r for r in results}
 
 
@@ -122,6 +135,7 @@ async def generate_summary(
 async def run_game(
     scenario_name: str = "reef_maru",
     num_turns: int | None = None,
+    human_nation: NationName | None = None,
 ) -> tuple[GameSummary, GameLog]:
     """Run the full game loop."""
     scenario = load_scenario(scenario_name)
@@ -148,8 +162,14 @@ async def run_game(
         print(f"{'='*60}")
 
         # Phase 1: Country agents submit actions
-        print("\nCountry agents deliberating...")
-        all_actions = await collect_actions(state, history, private_intel, country_agents)
+        if not human_nation:
+            print("\nCountry agents deliberating...")
+        else:
+            print("\nAI agents deliberating while you plan...")
+        all_actions = await collect_actions(
+            state, history, private_intel, country_agents,
+            human_nation=human_nation, scenario=scenario,
+        )
 
         for nation_name, turn_actions in all_actions.items():
             print(f"\n  {nation_name.value.upper()} actions:")
@@ -182,6 +202,9 @@ async def run_game(
             for nation, action in unmatched:
                 print(f"    {nation.value.upper()} unmatched: {action.description}")
 
+        # Snapshot state before resolution for delta display
+        prev_state = engine_state.model_copy(deep=True)
+
         # Phase 2: Facilitator resolves
         print("\nFacilitator resolving...")
         resolution = await resolve_turn(
@@ -191,6 +214,12 @@ async def run_game(
 
         # Phase 2.5: Validate facilitator output
         resolution = validate_resolution(engine_state, resolution, applied_costs)
+
+        # Display rich turn results for human player
+        if human_nation:
+            from islandsim.cli import display_turn_resolution
+
+            display_turn_resolution(resolution, human_nation, prev_state)
 
         # Record turn data
         turn_records.append(TurnRecord(turn=turn, actions=all_actions, resolution=resolution))
@@ -231,10 +260,15 @@ async def run_game(
 
     summary = await generate_summary(state, history, summary_agent_inst)
 
-    print(f"\n{summary.narrative}")
-    print(f"\nReef Maru: {summary.reef_maru_outcome}")
-    for nation, assessment in summary.nation_assessments.items():
-        print(f"\n  {nation.value.upper()}: {assessment}")
+    if human_nation:
+        from islandsim.cli import display_game_summary
+
+        display_game_summary(summary)
+    else:
+        print(f"\n{summary.narrative}")
+        print(f"\nReef Maru: {summary.reef_maru_outcome}")
+        for nation, assessment in summary.nation_assessments.items():
+            print(f"\n  {nation.value.upper()}: {assessment}")
 
     game_log = GameLog(
         timestamp=timestamp,

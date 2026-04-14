@@ -1237,6 +1237,7 @@ dependencies = [
     { name = "openrouter" },
     { name = "pydantic-ai" },
     { name = "pyyaml" },
+    { name = "rich" },
 ]
 
 [package.metadata]
@@ -1248,6 +1249,7 @@ requires-dist = [
     { name = "openrouter", specifier = ">=0.7.11" },
     { name = "pydantic-ai", specifier = ">=1.70.0" },
     { name = "pyyaml", specifier = ">=6.0" },
+    { name = "rich", specifier = ">=13.0" },
 ]
 
 [[package]]
