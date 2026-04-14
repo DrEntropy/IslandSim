@@ -149,7 +149,11 @@ Extract `STARTING_STATE`, `ECONOMIC_RULES`, and nation profiles into data files 
 
 ### 4. MVP CLI: human controls one nation
 
-Add a playable command-line interface (Typer?) where a human can control one nation (choose standard actions or enter custom actions) while the other two remain AI-driven. Show turn-by-turn state, validate affordability/constraints at input time, and still emit the same structured logs for replay and analysis.
+Add a playable command-line interface (Typer?) where a human can control one nation (choose standard actions or enter custom actions) while the other two remain AI-driven. Show turn-by-turn state, validate affordability/constraints at input time, and still emit the same structured logs for replay and analysis. 
+
+### 4.5 save game 
+
+This might require a file that saves the current game state after each turn for the CLI to read from and update? 
 
 ### 5. Batch runner
 
