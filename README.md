@@ -124,16 +124,25 @@ Extract `STARTING_STATE`, `ECONOMIC_RULES`, and nation profiles into data files 
 
 ### 4. MVP CLI: human controls one nation
 
-Add a playable command-line interface where a human can control one nation (choose standard actions or enter custom actions) while the other two remain AI-driven. Show turn-by-turn state, validate affordability/constraints at input time, and still emit the same structured logs for replay and analysis.
+Add a playable command-line interface (Typer?) where a human can control one nation (choose standard actions or enter custom actions) while the other two remain AI-driven. Show turn-by-turn state, validate affordability/constraints at input time, and still emit the same structured logs for replay and analysis.
 
 ### 5. Batch runner
 
 A script that runs N games, collects structured outputs, and reports aggregate metrics: who controls Reef Maru, average resource deltas, how often conflict vs. negotiation occurs, distribution of final scores. Enables empirical learning about agent behavior and measures the impact of changes like scenarios, prompts, and the rule engine.
 
-### 6. Prompt regression testing (optional — needed for production use)
+### 4. Evaluation 
 
-Save "golden" game transcripts from good runs. When prompts change, run the batch runner and compare outcomes against the golden set for quality and consistency. Requires structured logs (#1) and batch runner (#5).
+Develop some kind of evaluation for comparing the next phase to work. Per-nation strategy classification, facilitator consistency scoring, resource trajectory visualization.
 
-### 7. Evaluation and analysis (optional — needed for production use)
+### 5. Test different models / prompts and scenarios
 
-With structured data and batch runs available, build analysis tooling: per-nation strategy classification, facilitator consistency scoring, resource trajectory visualization, sensitivity analysis across prompt/model/scenario changes.
+Mostly interested in testing vs local models or other small models for nations for speed
+
+### 6. Test different models
+
+Local models, smaller models, etc. Will need some kind of rudimentary evals system to judge these
+
+### 7.  Report?
+Include "Golden" game transcripts form good runs.
+
+ 
