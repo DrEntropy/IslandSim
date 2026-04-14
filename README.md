@@ -149,7 +149,7 @@ Extract `STARTING_STATE`, `ECONOMIC_RULES`, and nation profiles into data files 
 
 ### 4. MVP CLI: human controls one nation
 
-Add a playable command-line interface (Typer?) where a human can control one nation (choose standard actions or enter custom actions) while the other two remain AI-driven. Show turn-by-turn state, validate affordability/constraints at input time, and still emit the same structured logs for replay and analysis. 
+Add a playable command-line interface where a human can control one nation while the other two remain AI-driven. Use `rich` for human-readable terminal output: resource tables, action menus, public history, private intel, and facilitator results. Keep the interaction line-oriented and agent-friendly: stable numbered menus, explicit prompts, free-text custom actions, and clear echo-back of parsed choices rather than cursor-driven TUI widgets. Human input should produce the same `TurnActions` model as AI agents, so the rule engine, facilitator, validation, and structured logs remain unchanged. Validate affordability/constraints at input time while still relying on the rule engine as the source of truth.
 
 ### 4.5 save game 
 
