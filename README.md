@@ -159,19 +159,15 @@ This might require a file that saves the current game state after each turn for 
 
 A script that runs N games, collects structured outputs, and reports aggregate metrics: who controls Reef Maru, average resource deltas, how often conflict vs. negotiation occurs, distribution of final scores. Enables empirical learning about agent behavior and measures the impact of changes like scenarios, prompts, and the rule engine.
 
-### 4. Evaluation 
+### 6. Evaluation 
 
 Develop some kind of evaluation for comparing the next phase to work. Per-nation strategy classification, facilitator consistency scoring, resource trajectory visualization.
 
-### 5. Test different models / prompts and scenarios
+### 7. Test different models / prompts and scenarios
 
 Mostly interested in testing vs local models or other small models for nations for speed
 
-### 6. Test different models
-
-Local models, smaller models, etc. Will need some kind of rudimentary evals system to judge these
-
-### 7.  Report?
+### 8.  Report?
 Include "Golden" game transcripts form good runs.
 
  
