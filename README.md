@@ -39,7 +39,29 @@ uv run python run_game.py                          # default scenario (reef_maru
 uv run python run_game.py 8                         # custom turn count
 uv run python run_game.py --scenario south_china_sea  # variant scenario
 uv run python run_game.py 2 --scenario reef_maru    # quick 2-turn test
+uv run python run_game.py --play naru              # play as Naru (AI runs the other two)
+uv run python run_game.py 6 --play veldara --scenario south_china_sea  # custom human game
 ```
+
+### Playing as a human
+
+Use `--play <nation>` to take control of one nation while the other two remain AI-driven. Valid values are `naru`, `veldara`, or `tauma`.
+
+Each turn, the CLI (powered by [rich](https://rich.readthedocs.io/)) walks you through:
+
+1. **Situation briefing** — your resources (Military, Treasury, Food, Support; color-coded by threshold), other nations' public resources, pairwise relationships, world status (Reef Maru, Naru Strait, active effects), recent history, and any private intel you've accumulated.
+2. **Action menu** — a numbered list of standard actions grouped by category (Military / Economic / Diplomatic / Domestic), each showing its resource cost and whether you can afford it given already-queued actions. You can also pick "Custom action" to write free-text for the facilitator to adjudicate.
+3. **For each action** you select: optional description override, visibility (public or secret), and a target nation when applicable (e.g. blockades, sanctions, aid, espionage).
+4. **Submit 1–3 actions** per turn, then confirm with `y` (submit), `edit` (remove the last action and keep going), or `cancel` (start over).
+5. **Strategic reasoning** — a private note recorded in the game log but not shared with other agents.
+
+After you submit, the AI countries' actions and the facilitator's resolution are printed: narrative, any world event injection, your resource deltas (before/after/change), and new private intel just for you. The final `GameSummary` and full `GameLog` JSON are saved to `logs/` as with any AI-only run.
+
+Notes:
+
+- Input is line-oriented (no cursor TUI), so it works over SSH and is scriptable.
+- Affordability is checked at input time as a warning, but the rule engine remains the source of truth for costs and bounds.
+- Turns can still be slow — each AI nation plus the facilitator involves LLM calls even when you play one nation.
 
 ### Configuration
 
