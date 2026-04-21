@@ -30,7 +30,7 @@ LANGFUSE_PUBLIC_KEY="pk-lf-..."
 LANGFUSE_BASE_URL="https://us.cloud.langfuse.com"
 ```
 
-You can use other providers, if you have the API key, just update the 'MODEL' variable in `islandsim/agents.py` to the appropriate model string. The default is set to `openrouter:anthropic/claude-sonnet-4-6`.   For anthropic as provider use `MODEL = "anthropic:claude-sonnet-4-6"` and make sure to have the `ANTHROPIC_API_KEY` in your `.env` instead of `OPENROUTER_API_KEY`. 
+You can use other providers, if you have the API key, just edit the models `config.yaml` to the appropriate model string. The default is set to `openrouter:anthropic/claude-sonnet-4-6`.   For anthropic as provider use `MODEL = "anthropic:claude-sonnet-4-6"` and make sure to have the `ANTHROPIC_API_KEY` in your `.env` instead of `OPENROUTER_API_KEY`. 
 
 ### Run
 
@@ -76,7 +76,7 @@ Notes:
 
 **Scenarios** are defined in `scenarios/*.yaml`. Each file specifies nation profiles, starting resources, economic parameters, relationships, action costs, and narrative context.
 
-**Operational config** (`config.yaml` at project root, optional) controls model selection, retries, and default turns:
+**Operational config** (`config.yaml` at project root, optional) controls model selection, retries, default turns, and whether Langfuse tracing is enabled:
 
 ```yaml
 models:
@@ -84,7 +84,10 @@ models:
   facilitator: "openrouter:anthropic/claude-sonnet-4-6"
 retries: 2
 default_turns: 4
+langfuse: true
 ```
+
+Set `langfuse: false` to disable tracing explicitly. Tracing is also disabled automatically if `LANGFUSE_SECRET_KEY` is not present in `.env`.
 
 To test with cheaper models or fewer turns, edit `config.yaml` — no code changes needed.
 
@@ -161,7 +164,8 @@ The first completed run (4 turns) produced a negotiated three-party governance a
 - **No test suite.** The codebase has no automated tests.
 - **No repeatability mechanism.** Each run produces different outcomes with no seeding or replay capability.
 - ~~**No validation of facilitator outputs.** The system doesn't check that the facilitator's updated world state is internally consistent (e.g., resource changes that don't add up, or values drifting outside 0–100 despite Pydantic constraints on the model).~~ Resolved — rule engine validates and corrects facilitator output.
-- **TUI report panels don't scroll.** The narrative / event / intel panels on the ResolutionScreen and SummaryScreen are wrapped in a `VerticalScroll`, but when content is taller than the viewport it gets clipped instead of scrolling. Likely a sizing / focus issue with the inner `Container(classes="panel")` inside the scroll region — fix before the next round of TUI polish.
+
+- **TUI*** The TUI is functional but rough — no input validation, no affordance for action costs or resource bounds, no polish on the briefing screen. It's a proof of concept for human play but not a finished product. 
 
 ## Roadmap
 
@@ -182,8 +186,7 @@ Extract `STARTING_STATE`, `ECONOMIC_RULES`, and nation profiles into data files 
 ### 4. Human plays one nation (TUI)
 
 Add a playable interface where a human controls one nation while the other two remain AI-driven. Human input produces the same `TurnActions` model as AI agents, so the rule engine, facilitator, validation, and structured logs stay unchanged. [IMPLEMENTED 4/20/26] — shipped as a Textual TUI (`--play <nation>`) driven by a long-lived `GameApp` with Briefing / Waiting / Resolution / Summary screens. AI country agents run as background tasks during the briefing so the human isn't blocked and their failures can't cancel the briefing.
-
-**Next time on the TUI**: fix scrolling in the report panels — the narrative / event / intel panels on the ResolutionScreen (and the per-nation panels on the SummaryScreen) currently clip instead of scrolling when content overflows.   And refactor to make sure DRY is respected.
+[IMPLEMENTED 4/20/26] — TUI is functional but rough;  
 
 ### 5. Stochastic resolution
 

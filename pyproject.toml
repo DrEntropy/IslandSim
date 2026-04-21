@@ -1,7 +1,7 @@
 [project]
 name = "islandsim"
 version = "0.1.0"
-description = "Add your description here"
+description = "Multi-agent tabletop exercise simulator for island-nation crisis negotiation"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
