@@ -202,7 +202,7 @@ Once skills exist, add an `invest_intelligence` standard action that spends Trea
 
 - Script that runs N games with a given configuration (scenario × models × prompt variant), collects structured outputs, and reports aggregate metrics: who controls Reef Maru, average resource deltas, conflict vs. negotiation frequency, distribution of final scores.
 - Log schema additions needed first: model identifiers, scenario name, prompt version so runs are comparable.
-- Evaluation layer on top: per-nation strategy classification, facilitator consistency scoring (e.g. are costs applied coherently across runs?), resource trajectory shape.
+- Evaluation layer on top: per-nation strategy classification, facilitator consistency scoring (e.g. are costs applied coherently across runs?), resource trajectory shape. Create score card
 - Goal: be able to say "change X moved outcome Y by Z"  
 
 ### 7. Model benchmarking
