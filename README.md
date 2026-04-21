@@ -185,10 +185,6 @@ Add a playable interface where a human controls one nation while the other two r
 
 **Next time on the TUI**: fix scrolling in the report panels — the narrative / event / intel panels on the ResolutionScreen (and the per-nation panels on the SummaryScreen) currently clip instead of scrolling when content overflows.   And refactor to make sure DRY is respected.
 
-### 4.5 save game  (Optional)
-
-This might require a file that saves the current game state after each turn for the CLI to read from and update? 
-
 ### 5. Stochastic resolution
 
 Add a `resolve(attacker, defender, difficulty)` function to the rule engine and expose it to the facilitator as a tool. The facilitator still chooses *when* to roll and sets difficulty based on narrative context; the engine returns a binding random result. This injects genuine uncertainty into outcomes that are currently decided by facilitator judgment alone (where Haiku runs have shown bias — every covert Tauma operation was detected).
@@ -202,23 +198,24 @@ First cut:
 
 Once skills exist, add an `invest_intelligence` standard action that spends Treasury to raise `intel_skill` over time — turning capability into a strategic investment rather than a fixed trait.
 
-### 6. Batch runner
+### 6. Empirical loop (batch runs + evaluation)
 
-A script that runs N games, collects structured outputs, and reports aggregate metrics: who controls Reef Maru, average resource deltas, how often conflict vs. negotiation occurs, distribution of final scores. Enables empirical learning about agent behavior and measures the impact of changes like scenarios, prompts, and the rule engine.  Some changes needed for this :
-- Improve log to include model types and scenario.
-- Create interactive log viewer to allow reader to explore reasoning.  Probably a simple web app that reads the structured logs and allows filtering by scenario, model, and outcome, with drill-down into per-turn actions, resolutions, and facilitator reasoning. (Simular to what langfuse looks like but customized for our game logs and with more narrative context.
-)
+- Script that runs N games with a given configuration (scenario × models × prompt variant), collects structured outputs, and reports aggregate metrics: who controls Reef Maru, average resource deltas, conflict vs. negotiation frequency, distribution of final scores.
+- Log schema additions needed first: model identifiers, scenario name, prompt version so runs are comparable.
+- Evaluation layer on top: per-nation strategy classification, facilitator consistency scoring (e.g. are costs applied coherently across runs?), resource trajectory shape.
+- Goal: be able to say "change X moved outcome Y by Z"  
 
-### 7. Evaluation 
+### 7. Model benchmarking
 
-Develop some kind of evaluation for comparing the next phase to work. Per-nation strategy classification, facilitator consistency scoring, resource trajectory visualization.
+Once #6 exists, use it to compare models on a defined axis. Primary interest: can a local or small model (qwen, gpt-oss, a smaller Claude) replace larger models for the country agents without meaningful quality loss? Need a concrete quality floor before running — e.g. "narrative coherence score within 10% of Sonnet baseline, turn latency under 15s."  
 
-### 8. Test different models / prompts and scenarios 
+### 8. Wrap and restart
 
-Mostly interested in testing vs local models or other small models for nations for speed
+IslandSim is a toyy learning project; at some point it's more valuable to start fresh with everything learned than to keep extending the toy. The intriguing possibility is packaging the lessons as a skills/plugin set for coding agents — a reusable scaffold for building structured multi-agent simulations.
 
-### 9.  Expand or restart with lessons learned
+Use `LESSONS.md` to track insights along the way.
 
-At this point the best path might be to start over with a new codebase that incorporates everything we learned.  One intriquing possibility is to use these lessons learned to create a set of skills / plugin for coding agents that would allow us to more easily build this kind of simulation in the future!
+ 
+ 
 
  
