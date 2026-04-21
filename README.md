@@ -185,26 +185,39 @@ Add a playable interface where a human controls one nation while the other two r
 
 **Next time on the TUI**: fix scrolling in the report panels — the narrative / event / intel panels on the ResolutionScreen (and the per-nation panels on the SummaryScreen) currently clip instead of scrolling when content overflows.   And refactor to make sure DRY is respected.
 
-### 4.5 save game 
+### 4.5 save game  (Optional)
 
 This might require a file that saves the current game state after each turn for the CLI to read from and update? 
 
-### 5. Batch runner
+### 5. Stochastic resolution
+
+Add a `resolve(attacker, defender, difficulty)` function to the rule engine and expose it to the facilitator as a tool. The facilitator still chooses *when* to roll and sets difficulty based on narrative context; the engine returns a binding random result. This injects genuine uncertainty into outcomes that are currently decided by facilitator judgment alone (where Haiku runs have shown bias — every covert Tauma operation was detected).
+
+First cut:
+
+- Add an `intel_skill` field to `NationState`, seeded per-nation from the scenario YAML (e.g. Veldara "sophisticated" → high, Tauma "crude" → low). One skill used for both offense and defense to keep the first iteration simple; split later if asymmetric capability becomes interesting.
+- Roll is opposed: attacker `intel_skill` vs. defender `intel_skill`, modulated by difficulty and optionally by resource state (e.g. a nation with very low Military has less operational cover for espionage).
+- Scope the tool to espionage / covert detection first, then expand to other judgment calls (typhoon severity, custom-action success degree).
+- Log every tool call in `TurnRecord` so we can audit whether the facilitator is re-rolling or selectively skipping the tool to steer the narrative. System prompt should enforce "one roll per resolution event, result is binding."
+
+Once skills exist, add an `invest_intelligence` standard action that spends Treasury to raise `intel_skill` over time — turning capability into a strategic investment rather than a fixed trait.
+
+### 6. Batch runner
 
 A script that runs N games, collects structured outputs, and reports aggregate metrics: who controls Reef Maru, average resource deltas, how often conflict vs. negotiation occurs, distribution of final scores. Enables empirical learning about agent behavior and measures the impact of changes like scenarios, prompts, and the rule engine.  Some changes needed for this :
 - Improve log to include model types and scenario.
 - Create interactive log viewer to allow reader to explore reasoning.  Probably a simple web app that reads the structured logs and allows filtering by scenario, model, and outcome, with drill-down into per-turn actions, resolutions, and facilitator reasoning. (Simular to what langfuse looks like but customized for our game logs and with more narrative context.
 )
 
-### 6. Evaluation 
+### 7. Evaluation 
 
 Develop some kind of evaluation for comparing the next phase to work. Per-nation strategy classification, facilitator consistency scoring, resource trajectory visualization.
 
-### 7. Test different models / prompts and scenarios 
+### 8. Test different models / prompts and scenarios 
 
 Mostly interested in testing vs local models or other small models for nations for speed
 
-### 8.  Expand or restart with lessons learned
+### 9.  Expand or restart with lessons learned
 
 At this point the best path might be to start over with a new codebase that incorporates everything we learned.  One intriquing possibility is to use these lessons learned to create a set of skills / plugin for coding agents that would allow us to more easily build this kind of simulation in the future!
 
