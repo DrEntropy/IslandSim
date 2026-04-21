@@ -39,29 +39,27 @@ uv run python run_game.py                          # default scenario (reef_maru
 uv run python run_game.py 8                         # custom turn count
 uv run python run_game.py --scenario south_china_sea  # variant scenario
 uv run python run_game.py 2 --scenario reef_maru    # quick 2-turn test
-uv run python run_game.py --play naru              # play as Naru (AI runs the other two)
+uv run python run_game.py --play naru              # play as Naru in the TUI (AI runs the other two)
 uv run python run_game.py 6 --play veldara --scenario south_china_sea  # custom human game
 ```
 
-### Playing as a human
+### Playing as a human (TUI)
 
-Use `--play <nation>` to take control of one nation while the other two remain AI-driven. Valid values are `naru`, `veldara`, or `tauma`.
+Use `--play <nation>` to take control of one nation while the other two remain AI-driven. Valid values are `naru`, `veldara`, or `tauma`. The interface is a full-screen [Textual](https://textual.textualize.io/) TUI — make sure your terminal window is reasonably large (roughly 140×40 or more) or things will wrap.
 
-Each turn, the CLI (powered by [rich](https://rich.readthedocs.io/)) walks you through:
+One long-lived `GameApp` owns the whole session, rotating between four screens:
 
-1. **Situation briefing** — your resources (Military, Treasury, Food, Support; color-coded by threshold), other nations' public resources, pairwise relationships, world status (Reef Maru, Naru Strait, active effects), recent history, and any private intel you've accumulated.
-2. **Action menu** — a numbered list of standard actions grouped by category (Military / Economic / Diplomatic / Domestic), each showing its resource cost and whether you can afford it given already-queued actions. You can also pick "Custom action" to write free-text for the facilitator to adjudicate.
-3. **For each action** you select: optional description override, visibility (public or secret), and a target nation when applicable (e.g. blockades, sanctions, aid, espionage).
-4. **Submit 1–3 actions** per turn, then confirm with `y` (submit), `edit` (remove the last action and keep going), or `cancel` (start over).
-5. **Strategic reasoning** — a private note recorded in the game log but not shared with other agents.
+1. **Briefing** — your resources, other nations, pairwise relationships, world status (Reef Maru, Naru Strait, active effects), plus a History / Private Intel tab. The action panel on the right has four category buttons (Military / Economic / Diplomatic / Domestic), a filtered list of actions with cost + affordability indicators, and a queue of the 1–3 actions you're building. Focus starts on the action list so arrow keys + Enter work immediately.
+2. **Action modal** — pops when you pick an action: pre-filled description you can edit (e.g. rewrite "Propaganda campaign" as "Propaganda campaign blaming Veldara for Reef Maru tensions"), visibility (Public/Secret), and a target nation when applicable. "Custom…" opens a free-text variant with no pre-fill.
+3. **Waiting** — shown while the AI country agents finish (they run concurrently during your briefing) and the facilitator resolves the turn. Facilitator calls usually take 20–40 s.
+4. **Resolution** — narrative of what happened, any world event injection, your resource delta table (before / after / change), and new private intel. Press Enter or click Continue to advance.
 
-After you submit, the AI countries' actions and the facilitator's resolution are printed: narrative, any world event injection, your resource deltas (before/after/change), and new private intel just for you. The final `GameSummary` and full `GameLog` JSON are saved to `logs/` as with any AI-only run.
+After the last turn, a final **Summary** screen shows the `GameSummary` narrative, Reef Maru outcome, and per-nation assessments. The structured `GameLog` is saved to `logs/` as with any AI-only run.
 
 Notes:
 
-- Input is line-oriented (no cursor TUI), so it works over SSH and is scriptable.
-- Affordability is checked at input time as a warning, but the rule engine remains the source of truth for costs and bounds.
-- Turns can still be slow — each AI nation plus the facilitator involves LLM calls even when you play one nation.
+- Affordability is indicated (✓/✗) but doesn't block; the rule engine is still the source of truth for costs and bounds.
+- If you don't see keyboard focus where you expect, Tab cycles through widgets on the current screen.
 
 ### Configuration
 
@@ -152,6 +150,7 @@ The first completed run (4 turns) produced a negotiated three-party governance a
 - **No test suite.** The codebase has no automated tests.
 - **No repeatability mechanism.** Each run produces different outcomes with no seeding or replay capability.
 - ~~**No validation of facilitator outputs.** The system doesn't check that the facilitator's updated world state is internally consistent (e.g., resource changes that don't add up, or values drifting outside 0–100 despite Pydantic constraints on the model).~~ Resolved — rule engine validates and corrects facilitator output.
+- **TUI report panels don't scroll.** The narrative / event / intel panels on the ResolutionScreen and SummaryScreen are wrapped in a `VerticalScroll`, but when content is taller than the viewport it gets clipped instead of scrolling. Likely a sizing / focus issue with the inner `Container(classes="panel")` inside the scroll region — fix before the next round of TUI polish.
 
 ## Roadmap
 
@@ -169,9 +168,11 @@ Add a programmatic layer that applies resource costs for standard actions (deplo
 
 Extract `STARTING_STATE`, `ECONOMIC_RULES`, and nation profiles into data files (YAML or TOML). Start with one variant scenario to prove the abstraction, then expand. [IMPLEMENTED 4/14/26]
 
-### 4. MVP CLI: human controls one nation
+### 4. Human plays one nation (TUI)
 
-Add a playable command-line interface where a human can control one nation while the other two remain AI-driven. Use `rich` for human-readable terminal output: resource tables, action menus, public history, private intel, and facilitator results. Keep the interaction line-oriented and agent-friendly: stable numbered menus, explicit prompts, free-text custom actions, and clear echo-back of parsed choices rather than cursor-driven TUI widgets. Human input should produce the same `TurnActions` model as AI agents, so the rule engine, facilitator, validation, and structured logs remain unchanged. Validate affordability/constraints at input time while still relying on the rule engine as the source of truth.
+Add a playable interface where a human controls one nation while the other two remain AI-driven. Human input produces the same `TurnActions` model as AI agents, so the rule engine, facilitator, validation, and structured logs stay unchanged. [IMPLEMENTED 4/20/26] — shipped as a Textual TUI (`--play <nation>`) driven by a long-lived `GameApp` with Briefing / Waiting / Resolution / Summary screens. AI country agents run as background tasks during the briefing so the human isn't blocked and their failures can't cancel the briefing.
+
+**Next time on the TUI**: fix scrolling in the report panels — the narrative / event / intel panels on the ResolutionScreen (and the per-nation panels on the SummaryScreen) currently clip instead of scrolling when content overflows.
 
 ### 4.5 save game 
 

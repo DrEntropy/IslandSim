@@ -46,7 +46,7 @@ def main():
         default=None,
         choices=["naru", "veldara", "tauma"],
         metavar="NATION",
-        help="Play as the specified nation (other two remain AI-driven)",
+        help="Play as the specified nation in the TUI (other two remain AI-driven)",
     )
     args = parser.parse_args()
 

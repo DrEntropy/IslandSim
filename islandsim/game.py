@@ -69,26 +69,14 @@ async def collect_actions(
     history: list[str],
     private_intel: dict[NationName, list[str]],
     country_agents: dict[NationName, Agent[None, TurnActions]],
-    human_nation: NationName | None = None,
-    scenario: ScenarioConfig | None = None,
 ) -> dict[NationName, TurnActions]:
-    """Run all three country agents concurrently.
-
-    When *human_nation* is set, that nation's actions are collected via the
-    CLI instead of an AI agent.
-    """
-    tasks = []
-    for nation in NationName:
-        if nation == human_nation and scenario is not None:
-            from islandsim.cli import run_human_turn
-
-            tasks.append(run_human_turn(
-                nation, world_state, history, private_intel[nation], scenario,
-            ))
-        else:
-            tasks.append(run_country_agent(
-                nation, world_state, history, private_intel[nation], country_agents[nation],
-            ))
+    """Run all three country agents concurrently (AI-only path)."""
+    tasks = [
+        run_country_agent(
+            nation, world_state, history, private_intel[nation], country_agents[nation],
+        )
+        for nation in NationName
+    ]
     results = await asyncio.gather(*tasks)
     return {r.nation: r for r in results}
 
@@ -137,7 +125,17 @@ async def run_game(
     num_turns: int | None = None,
     human_nation: NationName | None = None,
 ) -> tuple[GameSummary, GameLog]:
-    """Run the full game loop."""
+    """Run the full game loop.
+
+    When *human_nation* is set, the TUI-driven path in
+    :func:`islandsim.tui.run_game_tui` is used.  Otherwise this is the
+    AI-only path.
+    """
+    if human_nation is not None:
+        from islandsim.tui import run_game_tui
+
+        return await run_game_tui(scenario_name, num_turns, human_nation)
+
     scenario = load_scenario(scenario_name)
     settings = load_settings()
     country_agents, facilitator, summary_agent_inst = create_agents(scenario, settings)
@@ -152,6 +150,8 @@ async def run_game(
     turns_since_event = 0
     turn_records: list[TurnRecord] = []
 
+    # Line-UI / AI-only path below.  The TUI path dispatched to
+    # run_game_tui() above and never reaches here.
     print(f"\nScenario: {scenario.meta.name}")
     print(f"Models: country={settings.models.country}, facilitator={settings.models.facilitator}")
 
@@ -162,13 +162,9 @@ async def run_game(
         print(f"{'='*60}")
 
         # Phase 1: Country agents submit actions
-        if not human_nation:
-            print("\nCountry agents deliberating...")
-        else:
-            print("\nAI agents deliberating while you plan...")
+        print("\nCountry agents deliberating...")
         all_actions = await collect_actions(
             state, history, private_intel, country_agents,
-            human_nation=human_nation, scenario=scenario,
         )
 
         for nation_name, turn_actions in all_actions.items():
@@ -215,36 +211,23 @@ async def run_game(
         # Phase 2.5: Validate facilitator output
         resolution = validate_resolution(engine_state, resolution, applied_costs)
 
-        # Display rich turn results for human player
-        if human_nation:
-            from islandsim.cli import display_turn_resolution
-
-            display_turn_resolution(resolution, human_nation, prev_state)
-
-        # Record turn data
         turn_records.append(TurnRecord(turn=turn, actions=all_actions, resolution=resolution))
 
-        # Phase 3: Update state and history
         state = resolution.updated_state
         history.append(f"Turn {turn}: {resolution.narrative}")
 
-        # Distribute private intel
         for nation in NationName:
             nation_intel = resolution.private_intel.get(nation, [])
             if nation_intel:
                 private_intel[nation].extend(nation_intel)
 
-        # Track event injection
         if resolution.event_injected:
             turns_since_event = 0
             print(f"\n  EVENT: {resolution.event_injected}")
         else:
             turns_since_event += 1
 
-        # Print turn narrative
         print(f"\n  NARRATIVE: {resolution.narrative}")
-
-        # Print resource summary
         print(f"\n  RESOURCES:")
         for name, ns in state.nations.items():
             r = ns.resources
@@ -253,22 +236,16 @@ async def run_game(
                 f"M={r.military} T={r.treasury} F={r.food} S={r.support}"
             )
 
-    # Final summary
     print(f"\n{'='*60}")
     print("  GAME OVER — Generating summary...")
     print(f"{'='*60}")
 
     summary = await generate_summary(state, history, summary_agent_inst)
 
-    if human_nation:
-        from islandsim.cli import display_game_summary
-
-        display_game_summary(summary)
-    else:
-        print(f"\n{summary.narrative}")
-        print(f"\nReef Maru: {summary.reef_maru_outcome}")
-        for nation, assessment in summary.nation_assessments.items():
-            print(f"\n  {nation.value.upper()}: {assessment}")
+    print(f"\n{summary.narrative}")
+    print(f"\nReef Maru: {summary.reef_maru_outcome}")
+    for nation, assessment in summary.nation_assessments.items():
+        print(f"\n  {nation.value.upper()}: {assessment}")
 
     game_log = GameLog(
         timestamp=timestamp,

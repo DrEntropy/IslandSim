@@ -24,7 +24,7 @@ from islandsim.rules import ActionCost
 
 
 # ---------------------------------------------------------------------------
-# Action label / category constants (shared with cli.py)
+# Action label / category constants (shared with tui.py)
 # ---------------------------------------------------------------------------
 
 ACTION_CATEGORIES: dict[str, str] = {
