@@ -733,7 +733,8 @@ class WaitingScreen(Screen):
 
 _RESOLUTION_CSS = """
 Screen { background: $surface; }
-.panel { border: round $primary; padding: 0 1; margin-bottom: 1; }
+VerticalScroll { height: 1fr; min-height: 0; }
+.panel { height: auto; border: round $primary; padding: 0 1; margin-bottom: 1; }
 .narrative { border: round $warning; }
 .event { border: thick $error; }
 .intel { border: round $success; }
@@ -804,7 +805,8 @@ class ResolutionScreen(Screen):
 
 _SUMMARY_CSS = """
 Screen { background: $surface; }
-.panel { border: round $primary; padding: 0 1; margin-bottom: 1; }
+VerticalScroll { height: 1fr; min-height: 0; }
+.panel { height: auto; border: round $primary; padding: 0 1; margin-bottom: 1; }
 #done-bar { height: 3; align: center middle; dock: bottom; }
 """
 
