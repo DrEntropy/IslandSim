@@ -43,6 +43,17 @@ uv run python run_game.py --play naru              # play as Naru in the TUI (AI
 uv run python run_game.py 6 --play veldara --scenario south_china_sea  # custom human game
 ```
 
+### Reading game logs
+
+Every run writes a structured `GameLog` JSON file to `logs/`. The `islandsim-log` console script renders one into a human-readable transcript (actions, events, narrative, resource deltas per turn, plus the final summary):
+
+```bash
+uv run islandsim-log                              # newest log in logs/ → stdout
+uv run islandsim-log logs/islandsim_<ts>.json     # specific log
+uv run islandsim-log --out transcript.txt         # write to file
+uv run islandsim-log --verbose                    # also include reasoning, action results, private intel
+```
+
 ### Playing as a human (TUI)
 
 Use `--play <nation>` to take control of one nation while the other two remain AI-driven. Valid values are `naru`, `veldara`, or `tauma`. The interface is a full-screen [Textual](https://textual.textualize.io/) TUI — make sure your terminal window is reasonably large (roughly 140×40 or more) or things will wrap.
@@ -180,17 +191,21 @@ This might require a file that saves the current game state after each turn for 
 
 ### 5. Batch runner
 
-A script that runs N games, collects structured outputs, and reports aggregate metrics: who controls Reef Maru, average resource deltas, how often conflict vs. negotiation occurs, distribution of final scores. Enables empirical learning about agent behavior and measures the impact of changes like scenarios, prompts, and the rule engine.
+A script that runs N games, collects structured outputs, and reports aggregate metrics: who controls Reef Maru, average resource deltas, how often conflict vs. negotiation occurs, distribution of final scores. Enables empirical learning about agent behavior and measures the impact of changes like scenarios, prompts, and the rule engine.  Some changes needed for this :
+- Improve log to include model types and scenario.
+- Create interactive log viewer to allow reader to explore reasoning.  Probably a simple web app that reads the structured logs and allows filtering by scenario, model, and outcome, with drill-down into per-turn actions, resolutions, and facilitator reasoning. (Simular to what langfuse looks like but customized for our game logs and with more narrative context.
+)
 
 ### 6. Evaluation 
 
 Develop some kind of evaluation for comparing the next phase to work. Per-nation strategy classification, facilitator consistency scoring, resource trajectory visualization.
 
-### 7. Test different models / prompts and scenarios
+### 7. Test different models / prompts and scenarios 
 
 Mostly interested in testing vs local models or other small models for nations for speed
 
-### 8.  Report?
-Include "Golden" game transcripts form good runs.
+### 8.  Expand or restart with lessons learned
+
+At this point the best path might be to start over with a new codebase that incorporates everything we learned.  One intriquing possibility is to use these lessons learned to create a set of skills / plugin for coding agents that would allow us to more easily build this kind of simulation in the future!
 
  

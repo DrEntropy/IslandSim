@@ -1228,7 +1228,7 @@ wheels = [
 [[package]]
 name = "islandsim"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "dotenv" },
     { name = "jupyter" },
