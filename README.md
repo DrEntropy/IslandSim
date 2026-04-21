@@ -30,7 +30,7 @@ LANGFUSE_PUBLIC_KEY="pk-lf-..."
 LANGFUSE_BASE_URL="https://us.cloud.langfuse.com"
 ```
 
-You can use other providers, if you have the API key, just edit the models `config.yaml` to the appropriate model string. The default is set to `openrouter:anthropic/claude-sonnet-4-6`.   For anthropic as provider use `MODEL = "anthropic:claude-sonnet-4-6"` and make sure to have the `ANTHROPIC_API_KEY` in your `.env` instead of `OPENROUTER_API_KEY`. 
+You can use other providers by changing the model strings in `config.yaml`. For example, to use Anthropic directly instead of OpenRouter, set `models.country` and/or `models.facilitator` to values like `anthropic:claude-sonnet-4-6` and provide the corresponding provider API key in `.env` (for example `ANTHROPIC_API_KEY` instead of `OPENROUTER_API_KEY`).
 
 ### Run
 
