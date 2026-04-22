@@ -25,6 +25,7 @@ else:
 
 from islandsim.agents import (
     FacilitatorContext,
+    FacilitatorDeps,
     NationContext,
     create_agents,
 )
@@ -87,12 +88,17 @@ async def resolve_turn(
     all_actions: dict[NationName, TurnActions],
     history: list[str],
     turns_since_last_event: int,
-    facilitator: Agent[None, TurnResolution],
+    facilitator: Agent[FacilitatorDeps, TurnResolution],
     econ_changes: dict[NationName, dict[str, int]] | None = None,
     applied_costs: list | None = None,
     unmatched_actions: list | None = None,
 ) -> TurnResolution:
-    """Have the facilitator resolve all actions and return updated state."""
+    """Have the facilitator resolve all actions and return updated state.
+
+    Per-turn ``FacilitatorDeps`` carries the post-rule-engine state to
+    the ``skill_roll`` tool and collects a roll log that is attached to
+    the returned resolution.
+    """
     ctx = FacilitatorContext(
         world_state=world_state,
         all_actions=all_actions,
@@ -103,8 +109,11 @@ async def resolve_turn(
         unmatched_actions=unmatched_actions or [],
     )
     prompt = build_facilitator_prompt(ctx)
-    result = await facilitator.run(prompt)
-    return result.output
+    deps = FacilitatorDeps(world_state=world_state)
+    result = await facilitator.run(prompt, deps=deps)
+    resolution = result.output
+    resolution.skill_rolls = list(deps.roll_log)
+    return resolution
 
 
 @observe(name="generate_summary")

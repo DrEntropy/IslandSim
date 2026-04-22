@@ -84,6 +84,15 @@ class NationState(BaseModel):
     name: NationName
     resources: Resources
     traits: str = Field(description="Brief personality and situation description")
+    intel_skill: int = Field(
+        ge=0,
+        le=100,
+        default=50,
+        description=(
+            "Intelligence/espionage capability (0-100). Used as both "
+            "offense and defense in opposed skill rolls."
+        ),
+    )
 
 
 class WorldState(BaseModel):
@@ -117,6 +126,24 @@ class ActionResult(BaseModel):
     )
 
 
+class SkillRollRecord(BaseModel):
+    """One invocation of the facilitator's skill_roll tool."""
+
+    attacker: NationName
+    defender: NationName
+    difficulty: int = Field(
+        description="0 routine, +20 hard, +40 extreme; subtracted from the attacker's score"
+    )
+    attacker_skill: int
+    defender_skill: int
+    roll: int = Field(description="Raw random component of the roll")
+    margin: int = Field(description="Final signed score; success if >= 0")
+    success: bool
+    context: str = Field(
+        description="Short facilitator-supplied note naming the resolution event"
+    )
+
+
 class TurnResolution(BaseModel):
     narrative: str = Field(description="Public narrative of what happened this turn")
     action_results: list[ActionResult]
@@ -127,6 +154,10 @@ class TurnResolution(BaseModel):
     private_intel: dict[NationName, list[str]] = Field(
         default_factory=dict,
         description="Per-nation private information revealed this turn",
+    )
+    skill_rolls: list[SkillRollRecord] = Field(
+        default_factory=list,
+        description="All skill_roll tool invocations made during this turn's resolution",
     )
 
 

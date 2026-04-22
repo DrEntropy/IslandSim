@@ -122,7 +122,11 @@ def _compute_remaining(
     return remaining
 
 
-def _resources_markup(nation: NationName, resources: Resources) -> str:
+def _resources_markup(
+    nation: NationName,
+    resources: Resources,
+    intel_skill: int | None = None,
+) -> str:
     lines = [f"[bold]{nation.value.upper()}[/]", ""]
     for field in ("military", "treasury", "food", "support"):
         val = getattr(resources, field)
@@ -130,6 +134,10 @@ def _resources_markup(nation: NationName, resources: Resources) -> str:
         filled = val // 10
         bar = "█" * filled + "·" * (10 - filled)
         lines.append(f"[{style}]{field.capitalize():<9} {val:>3}  {bar}[/]")
+    if intel_skill is not None:
+        filled = intel_skill // 10
+        bar = "█" * filled + "·" * (10 - filled)
+        lines.append(f"[dim]Intel     {intel_skill:>3}  {bar}[/]")
     return "\n".join(lines)
 
 
@@ -445,8 +453,8 @@ Screen { background: $surface; }
 .panel { border: round $primary; padding: 0 1; }
 .panel-title { text-style: bold; color: $accent; }
 
-#resources-panel { width: 42; height: 9; }
-#others-panel { width: 1fr; height: 9; }
+#resources-panel { width: 42; height: 10; }
+#others-panel { width: 1fr; height: 10; }
 #rel-panel { width: 42; height: 8; }
 #world-panel { width: 1fr; height: 8; }
 #ctx-panel { width: 1fr; }
@@ -503,9 +511,10 @@ class BriefingScreen(Screen):
             )
             with Container(id="top-row"):
                 with Container(id="resources-panel", classes="panel"):
+                    own = self.state.nations[self.nation]
                     yield Static(
                         _resources_markup(
-                            self.nation, self.state.nations[self.nation].resources
+                            self.nation, own.resources, own.intel_skill
                         ),
                         id="resources-display",
                     )

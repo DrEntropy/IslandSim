@@ -33,6 +33,7 @@ nations:
       treasury_income: 10
       requires_strait_for_income: true
       food_production: 3
+    intel_skill: 50
 
   veldara:
     traits: >-
@@ -57,6 +58,7 @@ nations:
       treasury_income: 8
       requires_strait_for_income: true
       food_production: 8
+    intel_skill: 70
 
   tauma:
     traits: >-
@@ -83,6 +85,7 @@ nations:
       treasury_income: 5
       requires_strait_for_income: false
       food_production: 5
+    intel_skill: 30
 
 food_consumption: 5
 

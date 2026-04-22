@@ -198,6 +198,7 @@ First cut:
 - Roll is opposed: attacker `intel_skill` vs. defender `intel_skill`, modulated by difficulty and optionally by resource state (e.g. a nation with very low Military has less operational cover for espionage).
 - Scope the tool to espionage / covert detection first, then expand to other judgment calls (typhoon severity, custom-action success degree).
 - Log every tool call in `TurnRecord` so we can audit whether the facilitator is re-rolling or selectively skipping the tool to steer the narrative. System prompt should enforce "one roll per resolution event, result is binding."
+[WIP 4/22/26] —  
 
 Once skills exist, add an `invest_intelligence` standard action that spends Treasury to raise `intel_skill` over time — turning capability into a strategic investment rather than a fixed trait.
 

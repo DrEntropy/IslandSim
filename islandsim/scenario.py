@@ -87,6 +87,12 @@ class NationConfig(BaseModel):
     personality: str
     resources: Resources
     economy: NationEconomy
+    intel_skill: int = Field(
+        ge=0,
+        le=100,
+        default=50,
+        description="Starting intel/espionage skill used by opposed skill rolls.",
+    )
 
 
 class ActionCostConfig(BaseModel):
@@ -139,6 +145,7 @@ class ScenarioConfig(BaseModel):
                 name=nation,
                 resources=cfg.resources.model_copy(),
                 traits=cfg.traits,
+                intel_skill=cfg.intel_skill,
             )
 
         relationships = [
