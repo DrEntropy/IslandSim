@@ -205,6 +205,11 @@ First cut:
 
 Once skills exist, add an `invest_intelligence` standard action that spends Treasury to raise `intel_skill` over time — turning capability into a strategic investment rather than a fixed trait.
 
+### 5.5 Reproducibility / testing
+
+- Add a 'mock' llm that replays from a fixed set of responses.
+- Add unit tests that use this .
+
 ### 6. Empirical loop (batch runs + evaluation)
 
 - Script that runs N games with a given configuration (scenario × models × prompt variant), collects structured outputs, and reports aggregate metrics: who controls Reef Maru, average resource deltas, conflict vs. negotiation frequency, distribution of final scores.

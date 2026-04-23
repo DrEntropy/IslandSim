@@ -89,24 +89,53 @@ PRE-APPLIED COSTS:
 A rule engine has already applied per-turn economic adjustments (income, food \
 production/consumption, threshold penalties) and standard action costs to the \
 world state you receive each turn. The resource values ALREADY reflect these \
-changes. In most cases, do NOT re-apply them.
+changes. Do NOT restate them.
 
-However, you have authority to OVERRIDE a pre-applied action if the game state \
-makes it invalid or implausible — for example, if a nation's resources are too \
-depleted for the action to realistically succeed, or if the action is blocked \
-by circumstances the rule engine does not model (e.g., a typhoon preventing \
-deployment, a blockade cutting off imports). When you override, reverse the \
-pre-applied cost in your updated state and explain why the action failed in \
-the narrative.
+OUTPUT MODEL — STATE CHANGES:
+You do NOT return a new world state. Instead, emit a list of typed \
+``StateChange`` entries in the ``changes`` field; the game engine applies \
+them to produce the next state. Every change carries a ``reason`` string \
+used for the audit log — be specific and terse.
 
-Your remaining responsibilities:
-- Resolve UNMATCHED actions (creative/novel actions not in the standard menu) \
-and apply their resource costs.
-- Determine outcomes for ambiguous actions (espionage detection, negotiation \
-results, blockade consequences beyond the direct military cost).
-- Override pre-applied actions when game state makes them invalid.
-- Handle narrative, event injection, and relationship changes.
-- Apply second-order effects that the rule engine cannot capture.
+Change kinds:
+- ``resource`` — adjust one of {{military, treasury, food, support}} for a \
+nation by a signed ``delta``. Use this for any resource effects the rule \
+engine did not pre-apply (unmatched actions, second-order effects, \
+threshold adjustments, event consequences). Values are clamped to 0..100.
+- ``relationship`` — shift sentiment between two nations by a signed \
+``delta`` (clamped -100..100). Hostile actions decrease; cooperation \
+increases; major betrayals cause large drops.
+- ``strait`` — open or close the Naru Strait.
+- ``effect_add`` / ``effect_remove`` — manage ``active_effects`` (ongoing \
+conditions like "typhoon", "blockade in place").
+- ``reef_maru_status`` — replace the narrative sovereignty string.
+
+OVERRIDING A PRE-APPLIED ACTION:
+If a pre-applied standard action is invalid or implausible in context \
+(e.g. blockaded, can't deploy in a typhoon, resources too depleted, \
+action pre-empted by a faster-acting nation), emit ``resource`` changes \
+that NET OUT the original cost — fully or partially. The pre-applied \
+cost deltas are listed in the turn prompt for reference; invert them \
+(or a fraction) and cite the action by description in ``reason`` so the \
+audit log shows the connection. Example: if Naru's NAVAL_PATROL \
+pre-applied ``military -15, treasury -5`` but the strait is blockaded, \
+emit ``resource`` changes ``naru.military +15`` and ``naru.treasury +5`` \
+each with reason ``"NAVAL_PATROL cancelled: strait blockaded"``. Partial \
+reversals are fine (e.g. +8 military if only half the deployment \
+happened before events intervened).
+
+Do NOT try to emit changes that mutate turn number, max_turns, nation \
+identities, or intel_skill — those are engine-owned.
+
+Your responsibilities:
+- Emit ``resource`` changes for UNMATCHED actions (creative/novel actions \
+not in the standard menu) and their second-order effects.
+- Determine outcomes for ambiguous actions (espionage detection, \
+negotiation results, blockade consequences beyond direct cost).
+- Emit ``resource`` changes that net out a pre-applied cost when the \
+action is invalid (see override pattern above).
+- Emit ``relationship`` changes as warranted by the turn's events.
+- Write ``narrative``, ``action_results``, and optionally ``event_injected``.
 
 SKILL ROLLS (binding randomness):
 A ``skill_roll`` tool is available. Use it to resolve covert-action \
@@ -132,11 +161,12 @@ Other judgment calls (typhoon severity, custom-action success degree) \
 remain your narrative judgment.
 
 RESOLUTION GUIDELINES:
-- Do NOT re-apply costs that are listed as pre-applied in the turn prompt.
-- For unmatched actions: determine and apply appropriate resource costs.
+- Do NOT re-emit changes for costs listed as pre-applied in the turn prompt.
+- For unmatched actions: emit ``resource`` changes for their costs.
 - For secret actions: call ``skill_roll`` to determine whether they are \
 detected rather than deciding by narrative feel alone.
-- Resource values must stay in 0-100 range. Clamp if needed.
+- Resource deltas are clamped to keep values in 0-100; you don't need to \
+clamp yourself.
 - If Support drops below {instability_threshold}, note government instability.
 - Be specific about resource changes — state exact numbers.
 - The narrative should be engaging and read like a news briefing.
@@ -314,12 +344,15 @@ def build_facilitator_prompt(ctx: FacilitatorContext) -> str:
         lines.append("")
 
     lines.append(
-        "Resolve all actions simultaneously. The rule engine has already applied "
-        "economic adjustments and standard action costs — do NOT re-apply those. "
-        "Determine outcomes and apply costs for unmatched actions, detect secret "
-        "actions where appropriate, and update the world state. "
-        "Inject a world event if appropriate. "
-        "Return the complete updated world state."
+        "Resolve all actions simultaneously. The rule engine has already "
+        "applied economic adjustments and standard action costs — do NOT "
+        "re-emit changes for those. Emit `resource` changes for unmatched "
+        "actions and second-order effects, `relationship` changes as "
+        "warranted, and `resource` changes that net out a pre-applied "
+        "cost if any action is invalid in context (cite the action in "
+        "`reason`). Detect secret actions via skill_roll. Inject a world "
+        "event if appropriate. Return `narrative`, `action_results`, "
+        "`changes`, and optionally `event_injected` / `private_intel`."
     )
 
     return "\n".join(lines)

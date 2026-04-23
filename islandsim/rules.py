@@ -12,10 +12,17 @@ from typing import TYPE_CHECKING
 
 from islandsim.models import (
     Action,
+    ActiveEffectAdd,
+    ActiveEffectRemove,
     NationName,
+    ReefMaruStatusChange,
+    Relationship,
+    RelationshipChange,
+    ResourceChange,
     StandardActionType,
+    StateChange,
+    StraitChange,
     TurnActions,
-    TurnResolution,
     WorldState,
 )
 
@@ -222,68 +229,109 @@ def skill_roll(
 
 
 # ---------------------------------------------------------------------------
-# Facilitator output validation
+# Declarative state-change application
 # ---------------------------------------------------------------------------
 
 
-def validate_resolution(
-    post_engine_state: WorldState,
-    resolution: TurnResolution,
-    applied_costs: list[AppliedCost],
-) -> TurnResolution:
-    """Validate and correct the facilitator's resolution if needed.
+@dataclasses.dataclass
+class AppliedChange:
+    """Record of a StateChange that was applied, with its final (clamped) effect."""
 
-    Ensures pre-applied costs are respected and resources stay in bounds.
+    change: StateChange
+    effect: str
+    """Human-readable summary of what actually changed, after clamping."""
+
+
+def _find_relationship(state: WorldState, a: NationName, b: NationName) -> Relationship | None:
+    """Relationships are unordered pairs; look up regardless of order."""
+    for rel in state.relationships:
+        if {rel.nation_a, rel.nation_b} == {a, b}:
+            return rel
+    return None
+
+
+def apply_changes(
+    state: WorldState,
+    changes: list[StateChange],
+) -> tuple[WorldState, list[AppliedChange], list[str]]:
+    """Apply the facilitator's declarative state changes.
+
+    Returns (new_state, applied, warnings). Each change produces at most one
+    AppliedChange; rejected changes go into warnings. All numeric fields are
+    clamped. WorldState fields not mentioned by any change (turn, max_turns,
+    nations dict keys, intel_skill, etc.) are left untouched by construction.
     """
-    updated = resolution.updated_state
+    state = state.model_copy(deep=True)
+    applied: list[AppliedChange] = []
     warnings: list[str] = []
 
-    # Build expected minimum changes per nation from pre-applied costs.
-    expected_by_nation: dict[NationName, dict[str, int]] = {}
-    for ac in applied_costs:
-        for nation, deltas in ac.resource_changes.items():
-            if nation not in expected_by_nation:
-                expected_by_nation[nation] = {}
-            for field, delta in deltas.items():
-                expected_by_nation[nation][field] = (
-                    expected_by_nation[nation].get(field, 0) + delta
-                )
+    for change in changes:
+        match change:
+            case ResourceChange():
+                resources = state.nations[change.nation].resources
+                current = getattr(resources, change.field)
+                new_val = _clamp(current + change.delta)
+                setattr(resources, change.field, new_val)
+                actual = new_val - current
+                applied.append(AppliedChange(
+                    change=change,
+                    effect=f"{change.nation.value}.{change.field} {actual:+d} "
+                           f"({current} → {new_val})",
+                ))
 
-    for nation in NationName:
-        engine_resources = post_engine_state.nations[nation].resources
-        fac_resources = updated.nations[nation].resources
-
-        for field in ("military", "treasury", "food", "support"):
-            engine_val = getattr(engine_resources, field)
-            fac_val = getattr(fac_resources, field)
-
-            # Clamp to bounds (safety net)
-            clamped = _clamp(fac_val)
-            if clamped != fac_val:
-                warnings.append(
-                    f"{nation.value} {field}: facilitator returned {fac_val}, "
-                    f"clamped to {clamped}"
-                )
-                setattr(fac_resources, field, clamped)
-                fac_val = clamped
-
-            # Check if facilitator undid pre-applied costs.
-            # The facilitator may legitimately reverse a pre-applied cost
-            # (e.g., rejecting an action due to game state), so we warn
-            # but do not override.
-            expected = expected_by_nation.get(nation, {})
-            if field in expected:
-                pre_applied_delta = expected[field]
-                fac_delta = fac_val - engine_val
-                if pre_applied_delta < 0 and fac_delta > 0:
+            case RelationshipChange():
+                rel = _find_relationship(state, change.nation_a, change.nation_b)
+                if rel is None:
                     warnings.append(
-                        f"{nation.value} {field}: rule engine applied "
-                        f"{pre_applied_delta}, facilitator reversed {fac_delta} "
-                        f"(may be a legitimate override)"
+                        f"relationship: no pair {change.nation_a.value}/"
+                        f"{change.nation_b.value}"
                     )
+                    continue
+                current = rel.sentiment
+                rel.sentiment = max(-100, min(100, current + change.delta))
+                actual = rel.sentiment - current
+                applied.append(AppliedChange(
+                    change=change,
+                    effect=f"{rel.nation_a.value}↔{rel.nation_b.value} sentiment "
+                           f"{actual:+d} ({current} → {rel.sentiment})",
+                ))
+
+            case StraitChange():
+                prev = state.strait_open
+                state.strait_open = change.open
+                applied.append(AppliedChange(
+                    change=change,
+                    effect=f"strait_open {prev} → {state.strait_open}",
+                ))
+
+            case ActiveEffectAdd():
+                if change.effect not in state.active_effects:
+                    state.active_effects.append(change.effect)
+                applied.append(AppliedChange(
+                    change=change, effect=f"+effect: {change.effect}",
+                ))
+
+            case ActiveEffectRemove():
+                if change.effect in state.active_effects:
+                    state.active_effects.remove(change.effect)
+                    applied.append(AppliedChange(
+                        change=change, effect=f"-effect: {change.effect}",
+                    ))
+                else:
+                    warnings.append(
+                        f"effect_remove: no such active effect '{change.effect}'"
+                    )
+
+            case ReefMaruStatusChange():
+                prev = state.reef_maru_status
+                state.reef_maru_status = change.new_status
+                applied.append(AppliedChange(
+                    change=change,
+                    effect=f"reef_maru_status: '{prev}' → '{state.reef_maru_status}'",
+                ))
 
     if warnings:
         for w in warnings:
             print(f"  [RULE ENGINE WARNING] {w}")
 
-    return resolution
+    return state, applied, warnings

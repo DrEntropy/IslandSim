@@ -767,11 +767,13 @@ class ResolutionScreen(Screen):
         resolution: TurnResolution,
         player: NationName,
         prev_state: WorldState,
+        final_state: WorldState,
     ):
         super().__init__()
         self.resolution = resolution
         self.player = player
         self.prev_state = prev_state
+        self.final_state = final_state
 
     def compose(self) -> ComposeResult:
         with VerticalScroll():
@@ -787,7 +789,7 @@ class ResolutionScreen(Screen):
                     f"[bold]Resource Changes ({self.player.value.upper()})[/]"
                 )
                 prev_r = self.prev_state.nations[self.player].resources
-                new_r = self.resolution.updated_state.nations[self.player].resources
+                new_r = self.final_state.nations[self.player].resources
                 yield Static(_delta_markup(prev_r, new_r))
             intel = self.resolution.private_intel.get(self.player, [])
             if intel:
@@ -800,7 +802,7 @@ class ResolutionScreen(Screen):
 
     def on_mount(self) -> None:
         self.app.title = (
-            f"Turn {self.resolution.updated_state.turn} Results — "
+            f"Turn {self.final_state.turn} Results — "
             f"{self.player.value.upper()}"
         )
         self.query_one("#btn-continue", Button).focus()
@@ -927,9 +929,12 @@ class GameApp(App[None]):
         resolution: TurnResolution,
         player: NationName,
         prev_state: WorldState,
+        final_state: WorldState,
     ) -> None:
         self._continue_future = asyncio.get_event_loop().create_future()
-        self.switch_screen(ResolutionScreen(resolution, player, prev_state))
+        self.switch_screen(
+            ResolutionScreen(resolution, player, prev_state, final_state)
+        )
         await self._continue_future
 
     async def show_summary(self, summary: GameSummary) -> None:
@@ -966,8 +971,8 @@ class GameApp(App[None]):
         )
         from islandsim.rules import (
             apply_action_costs,
+            apply_changes,
             apply_economic_adjustments,
-            validate_resolution,
         )
         from islandsim.scenario import load_scenario
         from islandsim.settings import load_settings
@@ -1049,14 +1054,20 @@ class GameApp(App[None]):
                     engine_state, all_actions, history, turns_since_event,
                     facilitator, econ_changes, applied_costs, unmatched,
                 )
-                resolution = validate_resolution(engine_state, resolution, applied_costs)
+                state, _applied_changes, _change_warnings = apply_changes(
+                    engine_state, resolution.changes,
+                )
 
-                await self.show_resolution(resolution, self.human_nation, prev_state)
+                await self.show_resolution(
+                    resolution, self.human_nation, prev_state, state,
+                )
 
                 turn_records.append(
-                    TurnRecord(turn=turn, actions=all_actions, resolution=resolution)
+                    TurnRecord(
+                        turn=turn, actions=all_actions,
+                        resolution=resolution, final_state=state,
+                    )
                 )
-                state = resolution.updated_state
                 history.append(f"Turn {turn}: {resolution.narrative}")
                 for nation in NationName:
                     nation_intel = resolution.private_intel.get(nation, [])

@@ -44,15 +44,15 @@ digraph islandsim_flow {
   rules   [label=<<b>rule_engine</b><br/><font point-size="9">apply_economic_adjustments + apply_action_costs</font>>,
            fillcolor="#ecfeff", color="#0e7490"];
 
-  // Facilitator LLM — can call the skill_roll tool.
-  facil   [label=<<b>facilitator</b><br/><font point-size="9">resolve_turn</font>>];
+  // Facilitator LLM — emits a list[StateChange]; can call the skill_roll tool.
+  facil   [label=<<b>facilitator</b><br/><font point-size="9">resolve_turn → list[StateChange]</font>>];
 
   // skill_roll is a pydantic-ai tool the facilitator can invoke 0..n times.
   skill   [label=<<b>skill_roll</b><br/><font point-size="9">opposed roll vs intel_skill</font>>,
            fillcolor="#ecfeff", color="#0e7490"];
 
-  // Post-resolution validation re-asserts pre-deducted costs.
-  validate [label=<<b>validate</b><br/><font point-size="9">validate_resolution · distribute intel</font>>,
+  // Mechanically apply the facilitator's declarative state changes (clamped, audited).
+  validate [label=<<b>apply_changes</b><br/><font point-size="9">apply each StateChange · clamp · distribute intel</font>>,
             fillcolor="#ecfeff", color="#0e7490"];
 
   // Terminal summary agent.
