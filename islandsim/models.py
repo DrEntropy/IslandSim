@@ -1,7 +1,8 @@
+import json
 from enum import Enum
-from typing import Annotated, Literal, Union
+from typing import Annotated, Any, Literal, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class NationName(str, Enum):
@@ -231,6 +232,19 @@ class TurnResolution(BaseModel):
         default_factory=list,
         description="All skill_roll tool invocations made during this turn's resolution",
     )
+
+    @field_validator("changes", "action_results", "skill_rolls", mode="before")
+    @classmethod
+    def _parse_json_string(cls, v: Any) -> Any:
+        """Coerce stringified JSON arrays back to lists.
+
+        Some LLMs emit list-typed fields as a JSON-encoded string instead of
+        a real JSON array. Parse them here so the structured-output pipeline
+        doesn't fail validation and force a retry.
+        """
+        if isinstance(v, str):
+            return json.loads(v)
+        return v
 
 
 class GameSummary(BaseModel):
