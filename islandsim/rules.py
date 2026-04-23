@@ -1,7 +1,8 @@
 """Rule engine for deterministic resource adjudication.
 
 Applies per-turn economic adjustments and standard action costs before the
-facilitator LLM, and validates facilitator output afterward.
+facilitator LLM, and mechanically applies the facilitator's declarative
+``list[StateChange]`` afterward (with clamping and audit logging).
 """
 
 from __future__ import annotations
