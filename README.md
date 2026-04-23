@@ -107,6 +107,9 @@ For full game rules, scenario details, and nation profiles, see [DESIGN.md](DESI
 
 ## Architecture
 
+See [docs/agent_flow.md](docs/agent_flow.md) for a Mermaid diagram of the
+agentic flow (country agents → rule engine → facilitator → summary).
+
 ```
 run_game.py              CLI entrypoint, env loading, instrumentation, log saving
 scenarios/

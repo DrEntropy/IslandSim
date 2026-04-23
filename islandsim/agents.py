@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import dataclasses
+import random
 
 from pydantic_ai import Agent, RunContext
 
@@ -57,6 +58,7 @@ class FacilitatorDeps:
 def create_agents(
     scenario: ScenarioConfig,
     settings: OperationalConfig,
+    rng: random.Random | None = None,
 ) -> tuple[
     dict[NationName, Agent[None, TurnActions]],
     Agent[FacilitatorDeps, TurnResolution],
@@ -103,7 +105,7 @@ def create_agents(
         state = ctx.deps.world_state
         attacker_skill = state.nations[attacker].intel_skill
         defender_skill = state.nations[defender].intel_skill
-        outcome = _skill_roll(attacker_skill, defender_skill, difficulty)
+        outcome = _skill_roll(attacker_skill, defender_skill, difficulty, rng=rng)
         ctx.deps.roll_log.append(
             SkillRollRecord(
                 attacker=attacker,
