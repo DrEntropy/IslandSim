@@ -126,7 +126,7 @@ def _render_turn(
         out.append("")
 
     out.append("  RESOURCES:")
-    new_state = turn.resolution.updated_state
+    new_state = turn.final_state
     for n in NATION_ORDER:
         out.append(
             _resource_row(
@@ -167,7 +167,7 @@ def render(log: GameLog, verbose: bool = False) -> str:
     prev = log.initial_state
     for turn in log.turns:
         _render_turn(turn, log.num_turns, prev, out, verbose)
-        prev = turn.resolution.updated_state
+        prev = turn.final_state
     _render_summary(log, out)
     return "\n".join(out)
 

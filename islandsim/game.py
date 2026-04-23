@@ -40,7 +40,7 @@ from islandsim.models import (
     WorldState,
 )
 from islandsim.prompts import build_country_prompt, build_facilitator_prompt, build_summary_prompt
-from islandsim.rules import apply_action_costs, apply_economic_adjustments, validate_resolution
+from islandsim.rules import apply_action_costs, apply_changes, apply_economic_adjustments
 from islandsim.scenario import ScenarioConfig, load_scenario
 from islandsim.settings import OperationalConfig, load_settings
 
@@ -220,12 +220,20 @@ async def run_game(
             facilitator, econ_changes, applied_costs, unmatched,
         )
 
-        # Phase 2.5: Validate facilitator output
-        resolution = validate_resolution(engine_state, resolution, applied_costs)
+        # Phase 2.5: Apply declarative state changes from the facilitator
+        state, applied_changes, _change_warnings = apply_changes(
+            engine_state, resolution.changes,
+        )
 
-        turn_records.append(TurnRecord(turn=turn, actions=all_actions, resolution=resolution))
+        if applied_changes:
+            print("\n  STATE CHANGES:")
+            for ac in applied_changes:
+                print(f"    {ac.effect} — {ac.change.reason}")
 
-        state = resolution.updated_state
+        turn_records.append(TurnRecord(
+            turn=turn, actions=all_actions, resolution=resolution, final_state=state,
+        ))
+
         history.append(f"Turn {turn}: {resolution.narrative}")
 
         for nation in NationName:

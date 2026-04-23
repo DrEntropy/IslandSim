@@ -8,9 +8,9 @@ Nodes:
 
 - **collect_actions** — 3 country agents run concurrently via `asyncio.gather`, each returning a structured `TurnActions`.
 - **rule_engine** — deterministic: `apply_economic_adjustments` + `apply_action_costs` on standard actions.
-- **facilitator** — LLM resolution of the turn.
+- **facilitator** — LLM resolution of the turn; emits a `list[StateChange]` (typed mutations with `reason` strings) rather than a full new `WorldState`.
 - **skill_roll** — pydantic-ai tool the facilitator can invoke 0..n times for covert-action detection (opposed roll vs `intel_skill`).
-- **validate** — `validate_resolution` re-asserts pre-deducted costs; private intel is distributed.
+- **apply_changes** — rule engine mechanically applies each `StateChange`, clamps resources, and writes the audit log.
 - **summary** — terminal LLM pass producing `GameSummary`; the full `GameLog` is written to `logs/`.
 
 The conditional edge out of **validate** loops back until `turn == max_turns`.

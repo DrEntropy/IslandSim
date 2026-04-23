@@ -36,8 +36,8 @@
 <!-- end -->
 <g id="node2" class="node">
 <title>end</title>
-<ellipse fill="black" stroke="#6d28d9" cx="236.34" cy="-18" rx="28.37" ry="18"/>
-<text xml:space="preserve" text-anchor="middle" x="236.34" y="-14.12" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">__end__</text>
+<ellipse fill="black" stroke="#6d28d9" cx="215.34" cy="-18" rx="28.37" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="215.34" y="-14.12" font-family="Helvetica,sans-Serif" font-size="10.00" fill="white">__end__</text>
 </g>
 <!-- collect -->
 <g id="node4" class="node">
@@ -68,15 +68,15 @@
 <!-- facil -->
 <g id="node6" class="node">
 <title>facil</title>
-<path fill="#f5f3ff" stroke="#6d28d9" d="M204.8,-265.25C204.8,-265.25 151.88,-265.25 151.88,-265.25 145.88,-265.25 139.88,-259.25 139.88,-253.25 139.88,-253.25 139.88,-241.25 139.88,-241.25 139.88,-235.25 145.88,-229.25 151.88,-229.25 151.88,-229.25 204.8,-229.25 204.8,-229.25 210.8,-229.25 216.8,-235.25 216.8,-241.25 216.8,-241.25 216.8,-253.25 216.8,-253.25 216.8,-259.25 210.8,-265.25 204.8,-265.25"/>
-<text xml:space="preserve" text-anchor="start" x="153.59" y="-247.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00">facilitator</text>
-<text xml:space="preserve" text-anchor="start" x="152.84" y="-238.7" font-family="Helvetica,sans-Serif" font-size="9.00">resolve_turn</text>
+<path fill="#f5f3ff" stroke="#6d28d9" d="M215.42,-265.25C215.42,-265.25 79.25,-265.25 79.25,-265.25 73.25,-265.25 67.25,-259.25 67.25,-253.25 67.25,-253.25 67.25,-241.25 67.25,-241.25 67.25,-235.25 73.25,-229.25 79.25,-229.25 79.25,-229.25 215.42,-229.25 215.42,-229.25 221.42,-229.25 227.42,-235.25 227.42,-241.25 227.42,-241.25 227.42,-253.25 227.42,-253.25 227.42,-259.25 221.42,-265.25 215.42,-265.25"/>
+<text xml:space="preserve" text-anchor="start" x="122.59" y="-247.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00">facilitator</text>
+<text xml:space="preserve" text-anchor="start" x="80.21" y="-238.7" font-family="Helvetica,sans-Serif" font-size="9.00">resolve_turn → list[StateChange]</text>
 </g>
 <!-- rules&#45;&gt;facil -->
 <g id="edge4" class="edge">
 <title>rules&#45;&gt;facil</title>
-<path fill="none" stroke="#4b5563" d="M131.06,-312.27C139.43,-300.93 150.53,-285.9 159.87,-273.25"/>
-<polygon fill="#4b5563" stroke="#4b5563" points="162.02,-275.05 164.52,-266.95 157.52,-271.73 162.02,-275.05"/>
+<path fill="none" stroke="#4b5563" d="M124.49,-312.27C128.38,-301.36 133.5,-287.03 137.9,-274.69"/>
+<polygon fill="#4b5563" stroke="#4b5563" points="140.53,-275.64 140.58,-267.16 135.26,-273.75 140.53,-275.64"/>
 </g>
 <!-- skill -->
 <g id="node7" class="node">
@@ -88,55 +88,55 @@
 <!-- facil&#45;&gt;skill -->
 <g id="edge5" class="edge">
 <title>facil&#45;&gt;skill</title>
-<path fill="none" stroke="#4b5563" stroke-dasharray="5,2" d="M216.98,-247.25C241.25,-247.25 273.35,-247.25 302.37,-247.25"/>
-<polygon fill="#4b5563" stroke="#4b5563" points="302.16,-250.05 310.16,-247.25 302.16,-244.45 302.16,-250.05"/>
-<text xml:space="preserve" text-anchor="middle" x="264.4" y="-252" font-family="Helvetica,sans-Serif" font-size="10.00"> tool_call </text>
+<path fill="none" stroke="#4b5563" stroke-dasharray="5,2" d="M227.75,-247.25C251.98,-247.25 278.46,-247.25 302.26,-247.25"/>
+<polygon fill="#4b5563" stroke="#4b5563" points="302.07,-250.05 310.07,-247.25 302.07,-244.45 302.07,-250.05"/>
+<text xml:space="preserve" text-anchor="middle" x="269.71" y="-252" font-family="Helvetica,sans-Serif" font-size="10.00"> tool_call </text>
 </g>
 <!-- validate -->
 <g id="node8" class="node">
 <title>validate</title>
-<path fill="#ecfeff" stroke="#0e7490" d="M308.17,-192.25C308.17,-192.25 164.5,-192.25 164.5,-192.25 158.5,-192.25 152.5,-186.25 152.5,-180.25 152.5,-180.25 152.5,-168.25 152.5,-168.25 152.5,-162.25 158.5,-156.25 164.5,-156.25 164.5,-156.25 308.17,-156.25 308.17,-156.25 314.17,-156.25 320.17,-162.25 320.17,-168.25 320.17,-168.25 320.17,-180.25 320.17,-180.25 320.17,-186.25 314.17,-192.25 308.17,-192.25"/>
-<text xml:space="preserve" text-anchor="start" x="216.09" y="-174.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00">validate</text>
-<text xml:space="preserve" text-anchor="start" x="165.46" y="-165.7" font-family="Helvetica,sans-Serif" font-size="9.00">validate_resolution · distribute intel</text>
+<path fill="#ecfeff" stroke="#0e7490" d="M314.55,-192.25C314.55,-192.25 116.12,-192.25 116.12,-192.25 110.13,-192.25 104.13,-186.25 104.13,-180.25 104.13,-180.25 104.13,-168.25 104.13,-168.25 104.13,-162.25 110.13,-156.25 116.13,-156.25 116.13,-156.25 314.55,-156.25 314.55,-156.25 320.55,-156.25 326.55,-162.25 326.55,-168.25 326.55,-168.25 326.55,-180.25 326.55,-180.25 326.55,-186.25 320.55,-192.25 314.55,-192.25"/>
+<text xml:space="preserve" text-anchor="start" x="175.96" y="-174.8" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00">apply_changes</text>
+<text xml:space="preserve" text-anchor="start" x="117.09" y="-165.7" font-family="Helvetica,sans-Serif" font-size="9.00">apply each StateChange · clamp · distribute intel</text>
 </g>
 <!-- facil&#45;&gt;validate -->
 <g id="edge7" class="edge">
 <title>facil&#45;&gt;validate</title>
-<path fill="none" stroke="#4b5563" d="M192.38,-229.06C199.64,-220.17 208.63,-209.16 216.59,-199.42"/>
-<polygon fill="#4b5563" stroke="#4b5563" points="218.57,-201.42 221.47,-193.45 214.24,-197.88 218.57,-201.42"/>
+<path fill="none" stroke="#4b5563" d="M163.8,-229.06C172.4,-220.08 183.07,-208.94 192.46,-199.14"/>
+<polygon fill="#4b5563" stroke="#4b5563" points="194.47,-201.09 197.98,-193.37 190.42,-197.21 194.47,-201.09"/>
 </g>
 <!-- skill&#45;&gt;facil -->
 <g id="edge6" class="edge">
 <title>skill&#45;&gt;facil</title>
-<path fill="none" stroke="#4b5563" stroke-dasharray="5,2" d="M311.65,-244.61C291.43,-244.08 269.06,-243.81 248.53,-244.25 241.33,-244.4 233.71,-244.65 226.26,-244.93"/>
-<polygon fill="#4b5563" stroke="#4b5563" points="226.34,-242.12 218.46,-245.24 226.56,-247.72 226.34,-242.12"/>
+<path fill="none" stroke="#4b5563" stroke-dasharray="5,2" d="M311.63,-244.88C302.3,-244.62 292.81,-244.4 283.81,-244.25 268.65,-244 252.55,-244.07 236.93,-244.3"/>
+<polygon fill="#4b5563" stroke="#4b5563" points="237.26,-241.5 229.31,-244.43 237.35,-247.1 237.26,-241.5"/>
 </g>
 <!-- validate&#45;&gt;collect -->
 <g id="edge8" class="edge">
 <title>validate&#45;&gt;collect</title>
-<path fill="none" stroke="#4b5563" stroke-dasharray="5,2" d="M242.56,-192.52C253.07,-224.61 271.19,-295.03 249.34,-348.5 244.67,-359.92 236.29,-370.22 227.56,-378.7"/>
+<path fill="none" stroke="#4b5563" stroke-dasharray="5,2" d="M225.08,-192.6C241.66,-224.54 271.49,-294.31 249.34,-348.5 244.67,-359.92 236.29,-370.22 227.56,-378.7"/>
 <polygon fill="#4b5563" stroke="#4b5563" points="225.69,-376.61 221.66,-384.07 229.46,-380.75 225.69,-376.61"/>
-<text xml:space="preserve" text-anchor="middle" x="299.76" y="-285" font-family="Helvetica,sans-Serif" font-size="10.00"> turn &lt; max_turns </text>
+<text xml:space="preserve" text-anchor="middle" x="296.9" y="-285" font-family="Helvetica,sans-Serif" font-size="10.00"> turn &lt; max_turns </text>
 </g>
 <!-- summary -->
 <g id="node9" class="node">
 <title>summary</title>
-<path fill="#f5f3ff" stroke="#6d28d9" d="M340.8,-109C340.8,-109 131.88,-109 131.88,-109 125.88,-109 119.88,-103 119.88,-97 119.88,-97 119.88,-85 119.88,-85 119.88,-79 125.88,-73 131.88,-73 131.88,-73 340.8,-73 340.8,-73 346.8,-73 352.8,-79 352.8,-85 352.8,-85 352.8,-97 352.8,-97 352.8,-103 346.8,-109 340.8,-109"/>
-<text xml:space="preserve" text-anchor="start" x="211.96" y="-91.55" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00">summary</text>
-<text xml:space="preserve" text-anchor="start" x="132.84" y="-82.45" font-family="Helvetica,sans-Serif" font-size="9.00">generate_summary → GameSummary + GameLog</text>
+<path fill="#f5f3ff" stroke="#6d28d9" d="M319.8,-109C319.8,-109 110.88,-109 110.88,-109 104.88,-109 98.88,-103 98.88,-97 98.88,-97 98.88,-85 98.88,-85 98.88,-79 104.88,-73 110.88,-73 110.88,-73 319.8,-73 319.8,-73 325.8,-73 331.8,-79 331.8,-85 331.8,-85 331.8,-97 331.8,-97 331.8,-103 325.8,-109 319.8,-109"/>
+<text xml:space="preserve" text-anchor="start" x="190.96" y="-91.55" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="11.00">summary</text>
+<text xml:space="preserve" text-anchor="start" x="111.84" y="-82.45" font-family="Helvetica,sans-Serif" font-size="9.00">generate_summary → GameSummary + GameLog</text>
 </g>
 <!-- validate&#45;&gt;summary -->
 <g id="edge9" class="edge">
 <title>validate&#45;&gt;summary</title>
-<path fill="none" stroke="#4b5563" stroke-dasharray="5,2" d="M236.34,-156.02C236.34,-145.21 236.34,-131.06 236.34,-118.8"/>
-<polygon fill="#4b5563" stroke="#4b5563" points="239.14,-119 236.34,-111 233.54,-119 239.14,-119"/>
-<text xml:space="preserve" text-anchor="middle" x="279.46" y="-128.75" font-family="Helvetica,sans-Serif" font-size="10.00"> turn == max_turns </text>
+<path fill="none" stroke="#4b5563" stroke-dasharray="5,2" d="M215.34,-156.02C215.34,-145.21 215.34,-131.06 215.34,-118.8"/>
+<polygon fill="#4b5563" stroke="#4b5563" points="218.14,-119 215.34,-111 212.54,-119 218.14,-119"/>
+<text xml:space="preserve" text-anchor="middle" x="258.46" y="-128.75" font-family="Helvetica,sans-Serif" font-size="10.00"> turn == max_turns </text>
 </g>
 <!-- summary&#45;&gt;end -->
 <g id="edge10" class="edge">
 <title>summary&#45;&gt;end</title>
-<path fill="none" stroke="#4b5563" d="M236.34,-72.81C236.34,-64.62 236.34,-54.62 236.34,-45.48"/>
-<polygon fill="#4b5563" stroke="#4b5563" points="239.14,-45.54 236.34,-37.54 233.54,-45.54 239.14,-45.54"/>
+<path fill="none" stroke="#4b5563" d="M215.34,-72.81C215.34,-64.62 215.34,-54.62 215.34,-45.48"/>
+<polygon fill="#4b5563" stroke="#4b5563" points="218.14,-45.54 215.34,-37.54 212.54,-45.54 218.14,-45.54"/>
 </g>
 <!-- l_llm -->
 <g id="node10" class="node">

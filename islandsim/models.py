@@ -1,6 +1,8 @@
+import json
 from enum import Enum
+from typing import Annotated, Any, Literal, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 
 class NationName(str, Enum):
@@ -144,10 +146,81 @@ class SkillRollRecord(BaseModel):
     )
 
 
+ResourceField = Literal["military", "treasury", "food", "support"]
+
+
+class ResourceChange(BaseModel):
+    """Adjust one resource of one nation by a signed delta (clamped 0..100)."""
+
+    kind: Literal["resource"] = "resource"
+    nation: NationName
+    field: ResourceField
+    delta: int
+    reason: str = Field(description="Short rationale, used for audit log")
+
+
+class RelationshipChange(BaseModel):
+    """Adjust sentiment between two nations by a signed delta (clamped -100..100)."""
+
+    kind: Literal["relationship"] = "relationship"
+    nation_a: NationName
+    nation_b: NationName
+    delta: int
+    reason: str = Field(description="Short rationale, used for audit log")
+
+
+class StraitChange(BaseModel):
+    """Open or close the Naru Strait."""
+
+    kind: Literal["strait"] = "strait"
+    open: bool
+    reason: str = Field(description="Short rationale, used for audit log")
+
+
+class ActiveEffectAdd(BaseModel):
+    """Add a narrative effect to WorldState.active_effects."""
+
+    kind: Literal["effect_add"] = "effect_add"
+    effect: str
+    reason: str = Field(description="Short rationale, used for audit log")
+
+
+class ActiveEffectRemove(BaseModel):
+    """Remove an effect from WorldState.active_effects (no-op if absent)."""
+
+    kind: Literal["effect_remove"] = "effect_remove"
+    effect: str
+    reason: str = Field(description="Short rationale, used for audit log")
+
+
+class ReefMaruStatusChange(BaseModel):
+    """Replace the narrative reef_maru_status string."""
+
+    kind: Literal["reef_maru_status"] = "reef_maru_status"
+    new_status: str
+    reason: str = Field(description="Short rationale, used for audit log")
+
+
+StateChange = Annotated[
+    Union[
+        ResourceChange,
+        RelationshipChange,
+        StraitChange,
+        ActiveEffectAdd,
+        ActiveEffectRemove,
+        ReefMaruStatusChange,
+    ],
+    Field(discriminator="kind"),
+]
+
+
 class TurnResolution(BaseModel):
     narrative: str = Field(description="Public narrative of what happened this turn")
-    action_results: list[ActionResult]
-    updated_state: WorldState
+    action_results: list[ActionResult] = Field(default_factory=list)
+    changes: list[StateChange] = Field(
+        default_factory=list,
+        description="Typed state mutations applied by the game engine after resolution",
+    )
     event_injected: str | None = Field(
         default=None, description="Random event injected this turn, if any"
     )
@@ -159,6 +232,19 @@ class TurnResolution(BaseModel):
         default_factory=list,
         description="All skill_roll tool invocations made during this turn's resolution",
     )
+
+    @field_validator("changes", "action_results", "skill_rolls", mode="before")
+    @classmethod
+    def _parse_json_string(cls, v: Any) -> Any:
+        """Coerce stringified JSON arrays back to lists.
+
+        Some LLMs emit list-typed fields as a JSON-encoded string instead of
+        a real JSON array. Parse them here so the structured-output pipeline
+        doesn't fail validation and force a retry.
+        """
+        if isinstance(v, str):
+            return json.loads(v)
+        return v
 
 
 class GameSummary(BaseModel):
@@ -177,6 +263,9 @@ class TurnRecord(BaseModel):
     turn: int
     actions: dict[NationName, TurnActions]
     resolution: TurnResolution
+    final_state: WorldState = Field(
+        description="World state after the rule engine applied the facilitator's changes"
+    )
 
 
 class GameLog(BaseModel):
