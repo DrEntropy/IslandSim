@@ -13,3 +13,6 @@ wheels/
 .env
 
 .DS_Store
+
+# Runtime game logs. Curated reference logs may still be force-added.
+logs/islandsim_*.json

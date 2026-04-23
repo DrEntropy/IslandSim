@@ -37,6 +37,17 @@ def _render_header(log: GameLog, out: list[str]) -> None:
     out.append(BAR)
     out.append(f"  ISLANDSIM GAME LOG — {log.timestamp}")
     out.append(f"  {log.num_turns} turn(s)")
+    if log.metadata is not None:
+        meta = log.metadata
+        out.append(f"  Scenario: {meta.scenario_name} ({meta.scenario_display_name})")
+        out.append(f"  Mode: {meta.mode}" + (f" as {meta.human_nation.value}" if meta.human_nation else ""))
+        out.append(
+            "  Models: "
+            f"country={meta.models.get('country', '?')}, "
+            f"facilitator={meta.models.get('facilitator', '?')}"
+        )
+        if meta.seed is not None:
+            out.append(f"  Seed: {meta.seed}")
     out.append(BAR)
     out.append("")
     out.append("Opening Resources:")

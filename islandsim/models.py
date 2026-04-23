@@ -257,6 +257,25 @@ class GameSummary(BaseModel):
     )
 
 
+class RunMetadata(BaseModel):
+    """Operational metadata needed to compare or reproduce a run."""
+
+    schema_version: int = 1
+    scenario_name: str
+    scenario_display_name: str
+    mode: Literal["ai", "human"]
+    human_nation: NationName | None = None
+    seed: int | None = None
+    models: dict[str, str]
+    config: dict[str, Any] = Field(
+        default_factory=dict,
+        description="Full operational config snapshot used for this run.",
+    )
+    retries: int
+    default_turns: int
+    langfuse: bool
+
+
 class TurnRecord(BaseModel):
     """All data for a single game turn."""
 
@@ -272,6 +291,13 @@ class GameLog(BaseModel):
     """Complete structured log of a game run."""
 
     timestamp: str = Field(description="ISO 8601 timestamp of game start")
+    metadata: RunMetadata | None = Field(
+        default=None,
+        description=(
+            "Run configuration metadata. Optional for compatibility with "
+            "logs written before schema_version 1."
+        ),
+    )
     num_turns: int
     initial_state: WorldState
     turns: list[TurnRecord]

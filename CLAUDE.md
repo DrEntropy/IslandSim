@@ -41,7 +41,7 @@ IslandSim is a multi-agent tabletop exercise simulator where AI agents represent
 - `islandsim/rules.py` — Rule engine: `apply_economic_adjustments()` for deterministic per-turn income/food/penalties, `apply_action_costs()` for standard action costs (keyed off `Action.action_type`), `skill_roll()` for opposed stochastic checks (exposed to the facilitator as a tool via `agents.py`), and `apply_changes()` to mechanically apply the facilitator's declarative `list[StateChange]` with clamping and audit logging. Invalid changes (e.g. removing a nonexistent effect) are collected as warnings, not exceptions.
 - `islandsim/prompts.py` — System prompt builders (`build_country_system_prompt`, `build_facilitator_system_prompt`) and per-turn prompt builders (`build_country_prompt`, `build_facilitator_prompt`, `build_summary_prompt`)
 - `islandsim/log_reader.py` — `islandsim-log` console script: renders a `GameLog` JSON file into a human-readable transcript (actions, events, narrative, per-turn resource deltas, final summary). Supports `--out` and `--verbose`.
-- `logs/` — Structured JSON game logs, one file per run named `islandsim_<timestamp>.json`. Tracked in git as a reference set; old logs become unloadable when model schemas change and should be pruned at that point.
+- `logs/` — Structured JSON game logs, one file per run named `islandsim_<timestamp>.json`. New runtime logs are ignored by default; curated reference logs can be force-added. Old reference logs become unloadable when model schemas change and should be pruned at that point.
 - `test_pydantic.ipynb` — Early demo notebook (pydantic-ai + langfuse integration)
 
 ## Architecture
@@ -73,4 +73,4 @@ Constraints / gotchas worth remembering:
 
 ## Game Logging
 
-Each game run produces a structured JSON log (`GameLog` model) saved to `logs/islandsim_<timestamp>.json`. The log captures the initial world state, every turn's actions and facilitator resolution (via `TurnRecord`), and the final `GameSummary`. This provides a complete replay-friendly record of the game.
+Each game run produces a structured JSON log (`GameLog` model) saved to `logs/islandsim_<timestamp>.json`. The log captures run metadata, the initial world state, every turn's actions and facilitator resolution (via `TurnRecord`), and the final `GameSummary`. This provides a complete replay-friendly record of the game.

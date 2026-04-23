@@ -34,6 +34,7 @@ from islandsim.models import (
     GameLog,
     GameSummary,
     NationName,
+    RunMetadata,
     TurnActions,
     TurnRecord,
     TurnResolution,
@@ -269,6 +270,17 @@ async def run_game(
 
     game_log = GameLog(
         timestamp=timestamp,
+        metadata=RunMetadata(
+            scenario_name=scenario_name,
+            scenario_display_name=scenario.meta.name,
+            mode="ai",
+            seed=seed,
+            models=settings.models.model_dump(),
+            config=settings.model_dump(),
+            retries=settings.retries,
+            default_turns=settings.default_turns,
+            langfuse=settings.langfuse,
+        ),
         num_turns=turns,
         initial_state=initial_state,
         turns=turn_records,

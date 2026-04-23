@@ -20,7 +20,7 @@ Running notes on what's worked, what hasn't, and what to carry forward to a futu
 - **Unchecked facilitator discretion creates systematic bias.** In the Haiku run, every single covert Tauma operation was detected.  This is just the facilitator judgment. This is the core motivator for stochastic resolution (roadmap #5).
 - **Support inflation is a rule-engine gap.** All three nations ended at 100 Support despite wildly different strategic positions. The facilitator grants +5 for almost any public action framed sympathetically, and the rule engine doesn't cap aggregate Support gains. Either cap Support deltas per turn, or tie Support more directly to resource-reality thresholds (food crisis → support drain, military collapse → support drain).
 - **Strategic texture plateaus at ~4 turns with the current rule set.** There's nothing to *do* with Reef Maru once claimed. This suggests setting up the system to do as many turns necessary to get to the end state.  It also suggests in future system to add more 'what happens next' to keep the game going? 
-- **Secret actions are the highest-leverage mechanic.** More strategic texture came out of covert ops + detection than any other system. This also motivates the choice of espionage as teh first new mechanic to add in the next iteration for stocahstic resolution.
+- **Secret actions are the highest-leverage mechanic.** More strategic texture came out of covert ops + detection than any other system. This also motivates the choice of espionage as the first new mechanic to add in the next iteration for stochastic resolution.
 
 ## Tooling and observability
 

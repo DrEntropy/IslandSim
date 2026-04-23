@@ -45,7 +45,7 @@ uv run python run_game.py 6 --play veldara --scenario south_china_sea  # custom 
 
 ### Reading game logs
 
-Every run writes a structured `GameLog` JSON file to `logs/`. The `islandsim-log` console script renders one into a human-readable transcript (actions, events, narrative, resource deltas per turn, plus the final summary):
+Every run writes a structured `GameLog` JSON file to `logs/`. New runtime logs are ignored by default so smoke runs do not dirty the worktree; force-add a log only when it is meant to become a curated reference artifact. The `islandsim-log` console script renders one into a human-readable transcript (run metadata, actions, events, narrative, resource deltas per turn, plus the final summary):
 
 ```bash
 uv run islandsim-log                              # newest log in logs/ → stdout
@@ -138,7 +138,7 @@ islandsim/
   game.py                Game loop: collect_actions → rule engine → resolve_turn → validate → summary
   rules.py               Rule engine: economic adjustments, standard action costs, output validation
   prompts.py             System prompt builders and per-turn prompt builders
-logs/                    Structured JSON game logs (one per run, gitignored)
+logs/                    Structured JSON game logs (new runtime logs ignored by default; curated reference logs can be force-added)
 ```
 
 Key design choices:
@@ -161,7 +161,7 @@ IslandSim is a working MVP. The full game loop runs end-to-end and produces cohe
 - Facilitator agent that resolves actions, manages world state, and injects events
 - Private intelligence system, relationship tracking, resource management (0–100 scales)
 - Structured outputs throughout — every agent call returns typed Pydantic models
-- Structured game logs — each run saves a complete JSON log to `logs/` with initial state, per-turn actions/resolutions, and final summary
+- Structured game logs — each run saves a complete JSON log to `logs/` with run metadata, initial state, per-turn actions/resolutions, and final summary
 - Langfuse tracing for full observability into agent reasoning
 
 ### Observations from initial runs
@@ -180,10 +180,10 @@ The first completed run (4 turns) produced a negotiated three-party governance a
 - ~~**No structured output persistence.** Turn data is printed to stdout only — no machine-readable logs for cross-run analysis.~~ Resolved — structured game logs now saved to `logs/`.
 - ~~**Single hardcoded scenario.** One starting state, one set of nation profiles, one inciting event.~~ Resolved — scenarios now loaded from YAML files with a `--scenario` flag.
 - **No test suite.** The codebase has no automated tests.
-- **No repeatability mechanism.** Each run produces different outcomes with no seeding or replay capability.
+- ~~**No repeatability mechanism.** Each run produces different outcomes with no seeding or replay capability.~~ Partially resolved — `--seed` makes rule-engine skill rolls reproducible, but LLM outputs are still provider/model dependent. Full replay still needs mocked or recorded agent responses.
 - ~~**No validation of facilitator outputs.** The system doesn't check that the facilitator's updated world state is internally consistent (e.g., resource changes that don't add up, or values drifting outside 0–100 despite Pydantic constraints on the model).~~ Resolved — rule engine validates and corrects facilitator output.
 
-- **TUI*** The TUI is functional but rough — no input validation, no affordance for action costs or resource bounds, no polish on the briefing screen. It's a proof of concept for human play but not a finished product. 
+- **TUI.** The TUI is functional but still a proof of concept. It now shows costs and affordability, but needs stronger input validation, terminal-size polish, and better handling for failed AI/facilitator calls.
 
 ## Roadmap
 
@@ -204,7 +204,6 @@ Extract `STARTING_STATE`, `ECONOMIC_RULES`, and nation profiles into data files 
 ### 4. Human plays one nation (TUI)
 
 Add a playable interface where a human controls one nation while the other two remain AI-driven. Human input produces the same `TurnActions` model as AI agents, so the rule engine, facilitator, validation, and structured logs stay unchanged. [IMPLEMENTED 4/20/26] — shipped as a Textual TUI (`--play <nation>`) driven by a long-lived `GameApp` with Briefing / Waiting / Resolution / Summary screens. AI country agents run as background tasks during the briefing so the human isn't blocked and their failures can't cancel the briefing.
-[IMPLEMENTED 4/20/26] — TUI is functional but rough;  
 
 ### 5. Stochastic resolution
 
@@ -216,14 +215,15 @@ First cut:
 - Roll is opposed: attacker `intel_skill` vs. defender `intel_skill`, modulated by difficulty and optionally by resource state (e.g. a nation with very low Military has less operational cover for espionage).
 - Scope the tool to espionage / covert detection first, then expand to other judgment calls (typhoon severity, custom-action success degree).
 - Log every tool call in `TurnRecord` so we can audit whether the facilitator is re-rolling or selectively skipping the tool to steer the narrative. System prompt should enforce "one roll per resolution event, result is binding."
-[WIP 4/22/26] —  
+[IMPLEMENTED 4/22/26] — `intel_skill` is seeded from scenario YAML, `skill_roll` is exposed as a facilitator tool, `--seed` makes skill-roll noise reproducible, and `TurnResolution.skill_rolls` records every tool call.
 
 Once skills exist, add an `invest_intelligence` standard action that spends Treasury to raise `intel_skill` over time — turning capability into a strategic investment rather than a fixed trait.
 
 ### 5.5 Reproducibility / testing
 
-- Add a 'mock' llm that replays from a fixed set of responses.
-- Add unit tests that use this .
+- Add unit tests for scenario loading, economic adjustments, action costs, state-change application, seeded skill rolls, and log rendering.
+- Add a mock or recorded LLM path that replays fixed agent responses for full-loop regression tests without live model calls.
+- Keep run metadata in every new `GameLog` (`scenario_name`, model names, seed, mode, config snapshot) so cross-run comparisons are meaningful.
 
 ### 6. Empirical loop (batch runs + evaluation)
 
