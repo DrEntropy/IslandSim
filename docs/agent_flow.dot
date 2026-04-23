@@ -1,0 +1,95 @@
+// IslandSim agentic flow — LangGraph-style state graph.
+// Render:  dot -Tsvg docs/agent_flow.dot -o docs/agent_flow.svg
+//
+// Nodes are runtime stages in islandsim/game.py:run_game().
+// Dashed edges are conditional; solid edges are unconditional.
+
+digraph islandsim_flow {
+  rankdir=TB;
+  bgcolor="white";
+  pad=0.3;
+  nodesep=0.35;
+  ranksep=0.5;
+
+  node [
+    shape=box,
+    style="rounded,filled",
+    fillcolor="#f5f3ff",
+    color="#6d28d9",
+    fontname="Helvetica",
+    fontsize=11,
+    margin="0.18,0.10",
+  ];
+  edge [
+    color="#4b5563",
+    fontname="Helvetica",
+    fontsize=10,
+    arrowsize=0.8,
+  ];
+
+  // Start / end sentinels (LangGraph style: filled black ovals).
+  start [label="__start__", shape=ellipse, style="filled",
+         fillcolor="black", fontcolor="white", fontsize=10, margin="0.1,0.03"];
+  end   [label="__end__",   shape=ellipse, style="filled",
+         fillcolor="black", fontcolor="white", fontsize=10, margin="0.1,0.03"];
+
+  // Setup: load scenario + operational config, build agents, starting state.
+  setup [label=<<b>setup</b><br/><font point-size="9">load_scenario · load_settings · create_agents · starting WorldState</font>>,
+         fillcolor="#ecfeff", color="#0e7490"];
+
+  // Country agents run concurrently (asyncio.gather).
+  collect [label=<<b>collect_actions</b><br/><font point-size="9">3 country agents · asyncio.gather</font>>];
+
+  // Procedural rule engine — economic adjustments + standard action costs (incl. RNG for skill rolls).
+  rules   [label=<<b>rule_engine</b><br/><font point-size="9">apply_economic_adjustments + apply_action_costs</font>>,
+           fillcolor="#ecfeff", color="#0e7490"];
+
+  // Facilitator LLM — can call the skill_roll tool.
+  facil   [label=<<b>facilitator</b><br/><font point-size="9">resolve_turn</font>>];
+
+  // skill_roll is a pydantic-ai tool the facilitator can invoke 0..n times.
+  skill   [label=<<b>skill_roll</b><br/><font point-size="9">opposed roll vs intel_skill</font>>,
+           fillcolor="#ecfeff", color="#0e7490"];
+
+  // Post-resolution validation re-asserts pre-deducted costs.
+  validate [label=<<b>validate</b><br/><font point-size="9">validate_resolution · distribute intel</font>>,
+            fillcolor="#ecfeff", color="#0e7490"];
+
+  // Terminal summary agent.
+  summary [label=<<b>summary</b><br/><font point-size="9">generate_summary → GameSummary + GameLog</font>>];
+
+  // Keep facilitator and skill_roll side-by-side so the tool loop stays local.
+  { rank=same; facil; skill; }
+
+  // Edges
+  start   -> setup;
+  setup   -> collect;
+  collect -> rules;
+  rules   -> facil;
+
+  // Tool-call loop (conditional, 0..n iterations).
+  facil   -> skill   [label=" tool_call ", style=dashed, constraint=false];
+  skill   -> facil   [style=dashed, constraint=false];
+
+  facil   -> validate;
+
+  // Conditional edge: loop while turn < max_turns, else terminate.
+  validate -> collect [label=" turn &lt; max_turns ", style=dashed];
+  validate -> summary [label=" turn == max_turns ", style=dashed];
+  summary  -> end;
+
+  // Legend
+  subgraph cluster_legend {
+    label="legend";
+    labeljust="l";
+    fontsize=9;
+    fontname="Helvetica";
+    color="#d1d5db";
+    style="dashed";
+    node [shape=box, style="rounded,filled", fontsize=9, margin="0.1,0.05"];
+
+    l_llm   [label="LLM node",        fillcolor="#f5f3ff", color="#6d28d9"];
+    l_det   [label="procedural code", fillcolor="#ecfeff", color="#0e7490"];
+    l_llm -> l_det [style=invis];
+  }
+}

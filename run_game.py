@@ -48,6 +48,12 @@ def main():
         metavar="NATION",
         help="Play as the specified nation in the TUI (other two remain AI-driven)",
     )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=None,
+        help="Random seed for reproducible skill-roll outcomes",
+    )
     args = parser.parse_args()
 
     human_nation = NationName(args.play) if args.play else None
@@ -56,6 +62,7 @@ def main():
             scenario_name=args.scenario,
             num_turns=args.turns,
             human_nation=human_nation,
+            seed=args.seed,
         )
     )
     print("\n" + summary.model_dump_json(indent=2))

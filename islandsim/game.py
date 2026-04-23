@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 import datetime
 import os
+import random
 from typing import Callable
 
 from pydantic_ai import Agent
@@ -25,6 +26,7 @@ else:
 
 from islandsim.agents import (
     FacilitatorContext,
+    FacilitatorDeps,
     NationContext,
     create_agents,
 )
@@ -87,12 +89,17 @@ async def resolve_turn(
     all_actions: dict[NationName, TurnActions],
     history: list[str],
     turns_since_last_event: int,
-    facilitator: Agent[None, TurnResolution],
+    facilitator: Agent[FacilitatorDeps, TurnResolution],
     econ_changes: dict[NationName, dict[str, int]] | None = None,
     applied_costs: list | None = None,
     unmatched_actions: list | None = None,
 ) -> TurnResolution:
-    """Have the facilitator resolve all actions and return updated state."""
+    """Have the facilitator resolve all actions and return updated state.
+
+    Per-turn ``FacilitatorDeps`` carries the post-rule-engine state to
+    the ``skill_roll`` tool and collects a roll log that is attached to
+    the returned resolution.
+    """
     ctx = FacilitatorContext(
         world_state=world_state,
         all_actions=all_actions,
@@ -103,8 +110,11 @@ async def resolve_turn(
         unmatched_actions=unmatched_actions or [],
     )
     prompt = build_facilitator_prompt(ctx)
-    result = await facilitator.run(prompt)
-    return result.output
+    deps = FacilitatorDeps(world_state=world_state)
+    result = await facilitator.run(prompt, deps=deps)
+    resolution = result.output
+    resolution.skill_rolls = list(deps.roll_log)
+    return resolution
 
 
 @observe(name="generate_summary")
@@ -124,6 +134,7 @@ async def run_game(
     scenario_name: str = "reef_maru",
     num_turns: int | None = None,
     human_nation: NationName | None = None,
+    seed: int | None = None,
 ) -> tuple[GameSummary, GameLog]:
     """Run the full game loop.
 
@@ -134,11 +145,12 @@ async def run_game(
     if human_nation is not None:
         from islandsim.tui import run_game_tui
 
-        return await run_game_tui(scenario_name, num_turns, human_nation)
+        return await run_game_tui(scenario_name, num_turns, human_nation, seed=seed)
 
+    rng = random.Random(seed) if seed is not None else None
     scenario = load_scenario(scenario_name)
     settings = load_settings()
-    country_agents, facilitator, summary_agent_inst = create_agents(scenario, settings)
+    country_agents, facilitator, summary_agent_inst = create_agents(scenario, settings, rng=rng)
 
     state = scenario.to_starting_state()
     turns = num_turns if num_turns is not None else settings.default_turns

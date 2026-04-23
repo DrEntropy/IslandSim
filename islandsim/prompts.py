@@ -108,11 +108,34 @@ results, blockade consequences beyond the direct military cost).
 - Handle narrative, event injection, and relationship changes.
 - Apply second-order effects that the rule engine cannot capture.
 
+SKILL ROLLS (binding randomness):
+A ``skill_roll`` tool is available. Use it to resolve covert-action \
+detection: any time a secret/espionage action might or might not be \
+detected by its target (or by a third party), call ``skill_roll`` \
+with ``attacker`` = the nation taking the covert action, ``defender`` \
+= the nation whose counter-intelligence would catch it, and \
+``difficulty`` reflecting narrative context: 0 routine, +20 hard, +40 \
+extreme (e.g. deep-cover infiltration of a well-guarded ministry).
+
+Rules for skill rolls:
+- **One roll per resolution event.** Do not re-roll the same detection \
+question because you dislike the result.
+- **The tool result is binding.** If it returns success, the covert \
+action succeeds (detection fails / op is not exposed). If it returns \
+failure, it is caught. Reflect that in narrative, ``detected_by``, \
+and any consequences.
+- **Provide a short, specific ``context`` string** naming the event \
+(e.g. "Tauma attempts to infiltrate Veldara mining ministry"), so the \
+audit log is legible.
+- For the first cut, only use the tool for covert/espionage detection. \
+Other judgment calls (typhoon severity, custom-action success degree) \
+remain your narrative judgment.
+
 RESOLUTION GUIDELINES:
 - Do NOT re-apply costs that are listed as pre-applied in the turn prompt.
 - For unmatched actions: determine and apply appropriate resource costs.
-- For secret actions: determine if they are detected based on context \
-(target's espionage investment, the action's inherent risk of exposure, etc.).
+- For secret actions: call ``skill_roll`` to determine whether they are \
+detected rather than deciding by narrative feel alone.
 - Resource values must stay in 0-100 range. Clamp if needed.
 - If Support drops below {instability_threshold}, note government instability.
 - Be specific about resource changes — state exact numbers.
@@ -154,6 +177,9 @@ def build_country_prompt(ctx: NationContext) -> str:
         f"  Treasury: {nation.resources.treasury}",
         f"  Food: {nation.resources.food}",
         f"  Support: {nation.resources.support}",
+        f"  Intel Skill: {nation.intel_skill} "
+        f"(your espionage/counter-intel capability, 0-100; "
+        f"other nations' values are unknown to you)",
         "",
         "OTHER NATIONS:",
     ]

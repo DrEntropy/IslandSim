@@ -112,6 +112,19 @@ def _render_turn(
                 out.append(f"      - {item}")
         out.append("")
 
+    if turn.resolution.skill_rolls:
+        out.append("  SKILL ROLLS:")
+        for r in turn.resolution.skill_rolls:
+            verdict = "SUCCESS" if r.success else "FAIL"
+            out.append(
+                f"    - {r.attacker.value} vs {r.defender.value} "
+                f"(diff +{r.difficulty}): "
+                f"{r.attacker_skill} - {r.defender_skill} "
+                f"{r.roll:+d} = {r.margin:+d} → {verdict}"
+            )
+            out.append(f"        ctx: {r.context}")
+        out.append("")
+
     out.append("  RESOURCES:")
     new_state = turn.resolution.updated_state
     for n in NATION_ORDER:

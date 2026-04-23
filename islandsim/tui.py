@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import asyncio
 import datetime
+import random
 from typing import TYPE_CHECKING
 
 from textual import on
@@ -122,7 +123,11 @@ def _compute_remaining(
     return remaining
 
 
-def _resources_markup(nation: NationName, resources: Resources) -> str:
+def _resources_markup(
+    nation: NationName,
+    resources: Resources,
+    intel_skill: int | None = None,
+) -> str:
     lines = [f"[bold]{nation.value.upper()}[/]", ""]
     for field in ("military", "treasury", "food", "support"):
         val = getattr(resources, field)
@@ -130,6 +135,10 @@ def _resources_markup(nation: NationName, resources: Resources) -> str:
         filled = val // 10
         bar = "█" * filled + "·" * (10 - filled)
         lines.append(f"[{style}]{field.capitalize():<9} {val:>3}  {bar}[/]")
+    if intel_skill is not None:
+        filled = intel_skill // 10
+        bar = "█" * filled + "·" * (10 - filled)
+        lines.append(f"[dim]Intel     {intel_skill:>3}  {bar}[/]")
     return "\n".join(lines)
 
 
@@ -445,8 +454,8 @@ Screen { background: $surface; }
 .panel { border: round $primary; padding: 0 1; }
 .panel-title { text-style: bold; color: $accent; }
 
-#resources-panel { width: 42; height: 9; }
-#others-panel { width: 1fr; height: 9; }
+#resources-panel { width: 42; height: 10; }
+#others-panel { width: 1fr; height: 10; }
 #rel-panel { width: 42; height: 8; }
 #world-panel { width: 1fr; height: 8; }
 #ctx-panel { width: 1fr; }
@@ -503,9 +512,10 @@ class BriefingScreen(Screen):
             )
             with Container(id="top-row"):
                 with Container(id="resources-panel", classes="panel"):
+                    own = self.state.nations[self.nation]
                     yield Static(
                         _resources_markup(
-                            self.nation, self.state.nations[self.nation].resources
+                            self.nation, own.resources, own.intel_skill
                         ),
                         id="resources-display",
                     )
@@ -872,11 +882,13 @@ class GameApp(App[None]):
         scenario_name: str,
         num_turns: int | None,
         human_nation: NationName,
+        seed: int | None = None,
     ):
         super().__init__()
         self.scenario_name = scenario_name
         self.num_turns_arg = num_turns
         self.human_nation = human_nation
+        self.seed = seed
         self.result: tuple[GameSummary, GameLog] | None = None
         self.game_error: BaseException | None = None
         self._briefing_future: asyncio.Future[TurnActions] | None = None
@@ -963,8 +975,9 @@ class GameApp(App[None]):
         try:
             scenario = load_scenario(self.scenario_name)
             settings = load_settings()
+            rng = random.Random(self.seed) if self.seed is not None else None
             country_agents, facilitator, summary_agent_inst = create_agents(
-                scenario, settings,
+                scenario, settings, rng=rng,
             )
 
             state = scenario.to_starting_state()
@@ -1081,9 +1094,10 @@ async def run_game_tui(
     scenario_name: str,
     num_turns: int | None,
     human_nation: NationName,
+    seed: int | None = None,
 ) -> tuple[GameSummary, GameLog]:
     """Run the full human-player game loop inside a single long-lived TUI."""
-    app = GameApp(scenario_name, num_turns, human_nation)
+    app = GameApp(scenario_name, num_turns, human_nation, seed=seed)
     await app.run_async()
     if app.game_error is not None:
         raise app.game_error

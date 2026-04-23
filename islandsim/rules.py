@@ -7,6 +7,7 @@ facilitator LLM, and validates facilitator output afterward.
 from __future__ import annotations
 
 import dataclasses
+import random
 from typing import TYPE_CHECKING
 
 from islandsim.models import (
@@ -174,6 +175,50 @@ def apply_action_costs(
             ))
 
     return state, applied, unmatched
+
+
+# ---------------------------------------------------------------------------
+# Stochastic skill rolls
+# ---------------------------------------------------------------------------
+
+
+_DEFAULT_RNG = random.Random()
+
+
+@dataclasses.dataclass
+class SkillRollOutcome:
+    """Result of a single opposed skill roll."""
+
+    attacker_skill: int
+    defender_skill: int
+    difficulty: int
+    roll: int
+    margin: int
+    success: bool
+
+
+def skill_roll(
+    attacker_skill: int,
+    defender_skill: int,
+    difficulty: int = 0,
+    rng: random.Random | None = None,
+) -> SkillRollOutcome:
+    """Opposed skill check with uniform noise.
+
+    margin = attacker_skill - defender_skill - difficulty + U(-30, +30)
+    success when margin >= 0.
+    """
+    r = rng if rng is not None else _DEFAULT_RNG
+    noise = r.randint(-30, 30)
+    margin = attacker_skill - defender_skill - difficulty + noise
+    return SkillRollOutcome(
+        attacker_skill=attacker_skill,
+        defender_skill=defender_skill,
+        difficulty=difficulty,
+        roll=noise,
+        margin=margin,
+        success=margin >= 0,
+    )
 
 
 # ---------------------------------------------------------------------------
