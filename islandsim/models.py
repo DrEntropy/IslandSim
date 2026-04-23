@@ -216,7 +216,7 @@ StateChange = Annotated[
 
 class TurnResolution(BaseModel):
     narrative: str = Field(description="Public narrative of what happened this turn")
-    action_results: list[ActionResult]
+    action_results: list[ActionResult] = Field(default_factory=list)
     changes: list[StateChange] = Field(
         default_factory=list,
         description="Typed state mutations applied by the game engine after resolution",

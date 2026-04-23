@@ -1,0 +1,1310 @@
+{
+  "timestamp": "2026-04-23T19:26:32.536573+00:00",
+  "num_turns": 4,
+  "initial_state": {
+    "turn": 1,
+    "max_turns": 4,
+    "nations": {
+      "naru": {
+        "name": "naru",
+        "resources": {
+          "military": 45,
+          "treasury": 70,
+          "food": 30,
+          "support": 60
+        },
+        "traits": "Pragmatic strait power. Controls the only two deep-water shipping channels (North and South Channel). Rich from toll revenue but critically dependent on food imports. Small population. Historically neutral and transactional.",
+        "intel_skill": 50
+      },
+      "veldara": {
+        "name": "veldara",
+        "resources": {
+          "military": 30,
+          "treasury": 55,
+          "food": 75,
+          "support": 50
+        },
+        "traits": "Largest island, resource giant. Rich mineral deposits (rare earths), fertile farmland, largest population. Weak navy. Needs Naru Strait for exports. Internal tension between mining and farming interests. Confident, sometimes overreaching. Sees itself as natural regional leader.",
+        "intel_skill": 70
+      },
+      "tauma": {
+        "name": "tauma",
+        "resources": {
+          "military": 65,
+          "treasury": 40,
+          "food": 35,
+          "support": 55
+        },
+        "traits": "Naval power. Archipelago with deep harbors and strong maritime tradition. Best navy in the region. Limited resources beyond fish, no rare earths, poor farming soil. Depends on Veldara for minerals and goods transiting through Naru Strait. Proud, independent, suspicious of Veldara's ambitions.",
+        "intel_skill": 30
+      }
+    },
+    "relationships": [
+      {
+        "nation_a": "naru",
+        "nation_b": "veldara",
+        "sentiment": 10
+      },
+      {
+        "nation_a": "naru",
+        "nation_b": "tauma",
+        "sentiment": 5
+      },
+      {
+        "nation_a": "veldara",
+        "nation_b": "tauma",
+        "sentiment": -10
+      }
+    ],
+    "reef_maru_status": "Unclaimed. A massive rare earth deposit has just been discovered on Reef Maru, a small uninhabited atoll in disputed waters where all three nations' sovereignty claims overlap. The deposit is estimated to be worth more than Veldara's entire existing reserves.",
+    "active_effects": [
+      "Severe typhoon season forecast — expected to threaten shipping routes and food supplies"
+    ],
+    "strait_open": true
+  },
+  "turns": [
+    {
+      "turn": 1,
+      "actions": {
+        "naru": {
+          "nation": "naru",
+          "actions": [
+            {
+              "description": "Naru publicly declares exclusive sovereignty over the Naru Strait and its two navigable channels. As the nation controlling these waters, Naru asserts its right to regulate all passage and maintain security in the strait.",
+              "visibility": "public",
+              "target": null,
+              "category": "diplomatic",
+              "action_type": "sovereignty_declaration"
+            },
+            {
+              "description": "Naru mobilizes its coast guard and deploys naval forces to fortify key chokepoints in the North and South Channels. Enhanced surveillance and patrol protocols are established to monitor all maritime traffic through the strait.",
+              "visibility": "public",
+              "target": null,
+              "category": "military",
+              "action_type": "defensive_posture"
+            },
+            {
+              "description": "Naru appeals to the international community, proposing that Reef Maru be governed through multilateral negotiation rather than military competition. Naru advocates for a neutral settlement mechanism that protects all parties' interests and maintains regional stability.",
+              "visibility": "public",
+              "target": null,
+              "category": "diplomatic",
+              "action_type": "appeal_international"
+            }
+          ],
+          "reasoning": "\nTURN 1 STRATEGIC ANALYSIS FOR NARU:\n\nIMMEDIATE STRENGTHS:\n- Healthy treasury (70) and decent military (45)\n- Control of the strait = structural advantage (toll revenue, leverage over shipping)\n- Relatively stable support (60)\n- Good relationship with Veldara (+10)\n\nCRITICAL VULNERABILITIES:\n- Food dependency: produce only +3/turn, consume -5/turn = net -2/turn. With 30 food, we can only sustain ~15 turns before crisis.\n- Typhoon season threatens our food imports (our lifeline)\n- Tauma has military superiority (65 vs our 45)\n- Small population means we cannot afford prolonged conflict or blockade\n\nSITUATION ANALYSIS:\nReef Maru is valuable, but it's a trap for Naru. If we commit military to fight over it:\n1. We deplete our military and treasury\n2. We become vulnerable to blockade of the strait\n3. A blockade destroys our trade income AND prevents us from importing food\n4. We face starvation within weeks\n\nThe smart play: Naru should position itself as the NEUTRAL BROKER and STRAIT GUARDIAN, not a competitor for Reef Maru.\n\nTURN 1 STRATEGY:\n1. **DIPLOMATIC: Sovereignty declaration** — Make a PUBLIC declaration of our exclusive sovereignty over the Strait itself (not Reef Maru). This is legitimate, costs only support and establishes our position. Frames us as defending our territory, not aggressing.\n\n2. **MILITARY: Defensive posture** — Fortify home waters around the strait. Cheap (-5 Military, +5 Support), signals strength without aggression. Shows we're prepared but not escalating.\n\n3. **DIPLOMATIC: Appeal to international community** — PUBLIC appeal framing Reef Maru as a zone that should be governed by international law/consensus, not military seizure. Positions us as reasonable actors and potentially allies to whoever values stability.\n\nThis establishes Naru as:\n- Strong in our core domain (the strait)\n- Committed to stability (prevents arms race on Reef Maru)\n- Open to negotiation\n- Not desperate (we're not throwing resources at Reef Maru)\n\nThis also preserves our military and treasury for the typhoon season and any subsequent moves. We can monitor what Veldara and Tauma do and respond accordingly.\n"
+        },
+        "veldara": {
+          "nation": "veldara",
+          "actions": [
+            {
+              "description": "Veldara publicly declares full sovereignty over Reef Maru, citing overlapping historical claims and the strategic importance of the rare earth deposit to regional stability and development",
+              "visibility": "public",
+              "target": null,
+              "category": "diplomatic",
+              "action_type": "sovereignty_declaration"
+            },
+            {
+              "description": "Veldara appeals to the international community to recognize its sovereign claim to Reef Maru, framing the dispute as a matter of legitimate territorial rights and calling for peaceful resolution through established maritime law",
+              "visibility": "public",
+              "target": null,
+              "category": "diplomatic",
+              "action_type": "appeal_international"
+            },
+            {
+              "description": "Veldara deploys a naval patrol task force to Reef Maru to establish preliminary military presence, conduct reconnaissance, and signal commitment to the territorial claim",
+              "visibility": "secret",
+              "target": null,
+              "category": "military",
+              "action_type": "naval_patrol"
+            }
+          ],
+          "reasoning": "Veldara must act decisively while leveraging our natural advantages. The Reef Maru deposit represents existential opportunity — it could cement our regional dominance. However, we face critical vulnerabilities:\n\n1. MILITARY WEAKNESS: Our navy (30) is far weaker than Tauma (65) and barely matches Naru (45). We cannot militarily seize Reef Maru outright.\n\n2. ECONOMIC OPPORTUNITY: We depend critically on Naru Strait access for our +8 trade income. Naru has monopoly control (+10 toll revenue). If they blockade us or we enter conflict, our economy collapses.\n\n3. DOMESTIC STRENGTH: Our food production (+8/turn) is strongest. Our support (50) is healthy but could erode under pressure.\n\n4. STRATEGIC POSITIONING: Naru has better sentiment toward us (+10) than Tauma (-10). This is exploitable.\n\nTURN 1 STRATEGY:\n- ACTION 1 (DIPLOMATIC - PUBLIC): Declare sovereignty over Reef Maru. This anchors our legal claim, rallies domestic support (+5), and signals confidence. It's costless and necessary before military escalation.\n\n- ACTION 2 (ECONOMIC - PUBLIC): Appeal to international community. This signals legitimacy of our claim and builds diplomatic support (+5 Support). Combined with sovereignty declaration, we reach 60 Support and position ourselves as the reasonable party in a dispute.\n\n- ACTION 3 (MILITARY - SECRET): Deploy a naval patrol to Reef Maru. Cost: -10 Military, -5 Treasury. This is crucial: we signal military presence without full base commitment (which costs -20 Military, -15 Treasury). If Naru responds aggressively, we haven't over-committed. If they don't, we establish a foothold and can escalate. Secrecy is key — public patrol would trigger immediate counter-deployment from Tauma or Naru and waste military advantage of first-mover reconnaissance.\n\nThis balances: (1) legal/diplomatic claim, (2) international legitimacy, (3) military reconnaissance without full commitment. We preserve optionality while the typhoon season unfolds.\n\nPost-turn resources will be: Military ≈20, Treasury ≈48, Food ≈78, Support ≈60."
+        },
+        "tauma": {
+          "nation": "tauma",
+          "actions": [
+            {
+              "description": "Deploy naval patrol squadron to Reef Maru to establish presence and monitor the atoll",
+              "visibility": "public",
+              "target": null,
+              "category": "military",
+              "action_type": "naval_patrol"
+            },
+            {
+              "description": "Publicly declare sovereignty over Reef Maru based on historical maritime claims and recent discovery",
+              "visibility": "public",
+              "target": null,
+              "category": "diplomatic",
+              "action_type": "sovereignty_declaration"
+            },
+            {
+              "description": "Launch domestic propaganda campaign highlighting Tauma's maritime heritage and rightful claim to Reef Maru's rare earth resources",
+              "visibility": "secret",
+              "target": null,
+              "category": "domestic",
+              "action_type": "propaganda"
+            }
+          ],
+          "reasoning": "Tauma's Turn 1 Strategy:\n\nSITUATION ANALYSIS:\n- Tauma has the strongest military (65) but weakest treasury (40) relative to needs\n- We depend critically on Veldara via Naru Strait for imports; this is our key vulnerability\n- Reef Maru discovery is a potential game-changer — rare earths would reduce our dependency on Veldara\n- Veldara has negative sentiment toward us (-10) and strong treasury; they're our historical rival and would benefit most from Reef Maru control\n- Naru is neutral-positive to both us and Veldara (+5 and +10 sentiment), sits on the strait\n- Typhoon season threatens food supplies — we're already at 35 food, losing 5/turn consumption\n\nTURN 1 OBJECTIVE: Establish presence at Reef Maru while we have military advantage, declare sovereignty, and begin diplomatic insurance\n\nCHOSEN ACTIONS:\n\n1. **Naval Patrol to Reef Maru** (PUBLIC) — \n   - Cost: -10 Military, -5 Treasury (we can afford this)\n   - Signal: Early occupation/discovery, establish physical presence before competitors consolidate\n   - Strategic value: Demonstrates intent, creates grounds for sovereignty claim\n   - Resources after: Military=55, Treasury=35\n\n2. **Public Sovereignty Declaration over Reef Maru** (PUBLIC) —\n   - Cost: +5 Support (free action essentially)\n   - Signal: Stake our claim loudly, bolster domestic confidence, create international precedent\n   - Rationale: We need support given future food pressures; declaring sovereignty strengthens our negotiating position\n   - Resources after: Support=60\n\n3. **Propaganda Campaign** (SECRET) —\n   - Cost: -5 Treasury, +10 Support\n   - Target: Domestic\n   - Signal: Build public enthusiasm for Reef Maru claim and maritime dominance; prepare population for potential conflict or rationing\n   - Strategic rationale: Typhoon season + food concerns will stress support; propaganda now cushions against domestic unrest. Secret because we want to avoid appearing desperate or propagandistic to rivals.\n   - Resources after: Treasury=30, Support=70\n\nRESULT: We establish military presence, claim sovereignty, and shore up domestic support before rationing becomes necessary. We preserve military capacity (55) for defense or escalation. Treasury (30) is low but manageable given income of +5/turn and food production of +5/turn.\n\nRISKS: Low treasury means limited flexibility next turn. If Veldara blockades the strait, we cannot afford food imports. But we've seized the initiative and now force others to react to our presence at Reef Maru."
+        }
+      },
+      "resolution": {
+        "narrative": "\n## TURN 1 NARRATIVE: Three-Way Power Play over Reef Maru\n\nThe discovery of the rare-earth deposit on Reef Maru has ignited a frantic diplomatic and military scramble. \n\n**Naru's Position Consolidates:**\nNaru makes bold moves to control the narrative and the geography. The nation publicly declares exclusive sovereignty over the Naru Strait—the two deep-water channels that form the lifeline of regional shipping. This assertion is backed by the immediate deployment of enhanced coast guard and naval forces to key chokepoints in the North and South Channels, establishing surveillance and patrol protocols that signal Naru's intent to regulate all passage through its territory. \n\nSimultaneously, Naru adopts a diplomatic posture by appealing to the international community for a neutral settlement mechanism over Reef Maru itself. This calculated dual approach—asserting monopoly control over the strait while advocating peaceful multilateral governance of the atoll—positions Naru as both a strong regional power and a reasonable interlocutor. The public declarations bolster domestic support as citizens rally behind national prestige.\n\n**Veldara's Aggressive Claim:**\nVeldara responds with its own public sovereignty declaration over Reef Maru, grounding its claim in historical maritime rights and emphasizing the strategic value of the rare-earth deposit to regional stability. The nation similarly appeals to international law and peaceful resolution—yet simultaneously dispatches a naval patrol task force to establish a preliminary military presence and reconnaissance foothold at Reef Maru. This covert deployment is **successfully concealed** from Tauma's sensors; the task force establishes itself without immediate detection. Veldara's domestic support likewise rises as the population endorses bold claims.\n\n**Tauma's Three-Pronged Challenge:**\nTauma, despite its smaller treasury, moves decisively. A naval patrol squadron deploys to Reef Maru to match Veldara and Naru's military presence. Tauma also publicly declares its own sovereignty claim based on historical maritime heritage, coupled with a domestic propaganda campaign emphasizing Tauma's rightful claim to the resource wealth. The propaganda is **successfully kept internal**—neither Naru nor Veldara's intelligence agencies detect the campaign at this stage. Domestic morale swells in Tauma as citizens embrace the narrative of national maritime destiny.\n\n**Net Strategic Position:**\nAll three nations now have military forces either at Reef Maru or defending strategic chokepoints. Naru controls the Strait with enhanced naval presence, adding a layer of interdependency. Veldara and Tauma each maintain force presence at the atoll itself. The tone remains diplomatic on the public stage, but the underlying military buildup signals that each nation is preparing for potential confrontation. Relationships remain tense; Veldara and Tauma observe each other's movements closely.\n\n**Typhoon Season Threat Looms:**\nIntelligence reports confirm that severe typhoon activity will soon threaten shipping routes and food supplies across the region. All three nations must balance their territorial ambitions against the risk of supply disruption.\n\n**SKILL ROLL OUTCOMES (for audit log):**\n- Veldara's secret naval patrol deployment to Reef Maru: **DETECTED by Tauma** (margin +56) — Tauma becomes aware of Veldara's military foothold.\n- Tauma's domestic propaganda campaign: **NOT detected by Naru** (margin -42) — successful internal compartmentalization.\n- Tauma's domestic propaganda campaign: **NOT detected by Veldara** (margin -48) — propaganda remains covert.\n",
+        "action_results": [
+          {
+            "nation": "naru",
+            "action_description": "Naru declares exclusive sovereignty over the Naru Strait and deploys enhanced naval forces to fortify North and South Channels with surveillance and patrol protocols.",
+            "outcome": "Successfully implemented. Naru establishes dominant naval presence in the strait, signaling control over regional shipping routes and raising domestic support.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "naru",
+            "action_description": "Naru appeals to the international community for neutral multilateral governance of Reef Maru.",
+            "outcome": "Successfully implemented. Naru establishes diplomatic credibility as a reasonable actor seeking peaceful resolution while maintaining military preparedness.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "veldara",
+            "action_description": "Veldara publicly declares full sovereignty over Reef Maru based on historical claims and strategic importance.",
+            "outcome": "Successfully implemented. Veldara's claim is publicly articulated and bolsters domestic unity around the territorial dispute.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "veldara",
+            "action_description": "Veldara appeals to the international community to recognize its sovereign claim to Reef Maru.",
+            "outcome": "Successfully implemented. Veldara positions itself as a legitimate claimant seeking peaceful legal resolution.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "veldara",
+            "action_description": "Veldara deploys a secret naval patrol task force to Reef Maru for military presence and reconnaissance.",
+            "outcome": "Military deployment is executed, but is immediately detected by Tauma through routine maritime surveillance. Tauma becomes aware of Veldara's military presence at the atoll.",
+            "resource_changes": {},
+            "detected_by": [
+              "tauma"
+            ]
+          },
+          {
+            "nation": "tauma",
+            "action_description": "Tauma deploys naval patrol squadron to Reef Maru to establish presence and monitor the atoll.",
+            "outcome": "Successfully implemented. Tauma's naval presence is established at Reef Maru alongside Veldara forces, creating potential flashpoint for escalation.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "tauma",
+            "action_description": "Tauma publicly declares sovereignty over Reef Maru based on historical maritime claims and recent discovery.",
+            "outcome": "Successfully implemented. Tauma's claim is articulated and resonates with domestic constituencies.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "tauma",
+            "action_description": "Tauma launches domestic propaganda campaign highlighting maritime heritage and rightful claim to rare earth resources.",
+            "outcome": "Campaign is successfully concealed from Naru and Veldara intelligence services. Domestic support rallies around the narrative, strengthening popular endorsement of territorial claim.",
+            "resource_changes": {},
+            "detected_by": []
+          }
+        ],
+        "changes": [
+          {
+            "kind": "relationship",
+            "nation_a": "naru",
+            "nation_b": "veldara",
+            "delta": -15,
+            "reason": "Naru's assertion of exclusive Strait control and military fortification perceived as threat to Veldara's interests; Veldara's covert military deployment at Reef Maru viewed with suspicion by Naru"
+          },
+          {
+            "kind": "relationship",
+            "nation_a": "naru",
+            "nation_b": "tauma",
+            "delta": -15,
+            "reason": "Naru's Strait monopoly claim threatens Tauma's trade access; Tauma's military deployment to Reef Maru viewed as provocative by Naru"
+          },
+          {
+            "kind": "relationship",
+            "nation_a": "veldara",
+            "nation_b": "tauma",
+            "delta": -25,
+            "reason": "Direct military confrontation at Reef Maru: Veldara's naval patrol deployment is detected by Tauma; both nations now competing for foothold at the atoll with military forces in close proximity"
+          },
+          {
+            "kind": "effect_add",
+            "effect": "Veldara naval patrol presence at Reef Maru — detected by Tauma",
+            "reason": "Veldara's secret deployment is exposed; Tauma is now aware of competitor military presence"
+          },
+          {
+            "kind": "effect_add",
+            "effect": "Naval standoff developing at Reef Maru — Veldara and Tauma forces in proximity",
+            "reason": "Both nations now have military assets at the atoll, creating risk of accidental escalation"
+          }
+        ],
+        "event_injected": null,
+        "private_intel": {
+          "naru": [
+            "Tauma has deployed a naval patrol to Reef Maru to match territorial claims.",
+            "Veldara has made public territorial claims over Reef Maru.",
+            "Maritime intelligence confirms heightened naval activity at Reef Maru by both Veldara and Tauma."
+          ],
+          "veldara": [
+            "Tauma has deployed a naval patrol to Reef Maru and is aware of your naval presence there; the deployment is no longer covert.",
+            "Naru has strengthened its control of the Strait with enhanced naval forces, potentially restricting Veldara's trade access.",
+            "Both Tauma and Naru have made public territorial claims over Reef Maru."
+          ],
+          "tauma": [
+            "Veldara has deployed a naval patrol task force to Reef Maru—your maritime sensors have detected their presence.",
+            "Naru is asserting exclusive control over the Strait, which may threaten Tauma's trade routes if tensions escalate.",
+            "Veldara has also appealed to the international community, framing the dispute through maritime law."
+          ]
+        },
+        "skill_rolls": [
+          {
+            "attacker": "veldara",
+            "defender": "tauma",
+            "difficulty": 0,
+            "attacker_skill": 70,
+            "defender_skill": 30,
+            "roll": 16,
+            "margin": 56,
+            "success": true,
+            "context": "Veldara naval patrol to Reef Maru — detection by Tauma"
+          },
+          {
+            "attacker": "tauma",
+            "defender": "naru",
+            "difficulty": 20,
+            "attacker_skill": 30,
+            "defender_skill": 50,
+            "roll": -2,
+            "margin": -42,
+            "success": false,
+            "context": "Tauma domestic propaganda campaign — detection by Naru intelligence"
+          },
+          {
+            "attacker": "tauma",
+            "defender": "veldara",
+            "difficulty": 20,
+            "attacker_skill": 30,
+            "defender_skill": 70,
+            "roll": 12,
+            "margin": -48,
+            "success": false,
+            "context": "Tauma domestic propaganda campaign — detection by Veldara intelligence"
+          }
+        ]
+      },
+      "final_state": {
+        "turn": 2,
+        "max_turns": 4,
+        "nations": {
+          "naru": {
+            "name": "naru",
+            "resources": {
+              "military": 40,
+              "treasury": 80,
+              "food": 28,
+              "support": 75
+            },
+            "traits": "Pragmatic strait power. Controls the only two deep-water shipping channels (North and South Channel). Rich from toll revenue but critically dependent on food imports. Small population. Historically neutral and transactional.",
+            "intel_skill": 50
+          },
+          "veldara": {
+            "name": "veldara",
+            "resources": {
+              "military": 20,
+              "treasury": 58,
+              "food": 78,
+              "support": 60
+            },
+            "traits": "Largest island, resource giant. Rich mineral deposits (rare earths), fertile farmland, largest population. Weak navy. Needs Naru Strait for exports. Internal tension between mining and farming interests. Confident, sometimes overreaching. Sees itself as natural regional leader.",
+            "intel_skill": 70
+          },
+          "tauma": {
+            "name": "tauma",
+            "resources": {
+              "military": 55,
+              "treasury": 35,
+              "food": 35,
+              "support": 70
+            },
+            "traits": "Naval power. Archipelago with deep harbors and strong maritime tradition. Best navy in the region. Limited resources beyond fish, no rare earths, poor farming soil. Depends on Veldara for minerals and goods transiting through Naru Strait. Proud, independent, suspicious of Veldara's ambitions.",
+            "intel_skill": 30
+          }
+        },
+        "relationships": [
+          {
+            "nation_a": "naru",
+            "nation_b": "veldara",
+            "sentiment": -5
+          },
+          {
+            "nation_a": "naru",
+            "nation_b": "tauma",
+            "sentiment": -10
+          },
+          {
+            "nation_a": "veldara",
+            "nation_b": "tauma",
+            "sentiment": -35
+          }
+        ],
+        "reef_maru_status": "Unclaimed. A massive rare earth deposit has just been discovered on Reef Maru, a small uninhabited atoll in disputed waters where all three nations' sovereignty claims overlap. The deposit is estimated to be worth more than Veldara's entire existing reserves.",
+        "active_effects": [
+          "Severe typhoon season forecast — expected to threaten shipping routes and food supplies",
+          "Veldara naval patrol presence at Reef Maru — detected by Tauma",
+          "Naval standoff developing at Reef Maru — Veldara and Tauma forces in proximity"
+        ],
+        "strait_open": true
+      }
+    },
+    {
+      "turn": 2,
+      "actions": {
+        "naru": {
+          "nation": "naru",
+          "actions": [
+            {
+              "description": "Naru publicly proposes a tripartite arbitration framework for peaceful resolution of Reef Maru sovereignty dispute, positioning itself as neutral mediator and inviting both Veldara and Tauma to participate in formal negotiations hosted by Naru",
+              "visibility": "public",
+              "target": null,
+              "category": "diplomatic",
+              "action_type": null
+            },
+            {
+              "description": "Naru launches espionage operation targeting Veldara to assess their true military and economic reserves, and detect any secret communications or hidden agreements with Tauma",
+              "visibility": "secret",
+              "target": "veldara",
+              "category": "military",
+              "action_type": "espionage"
+            },
+            {
+              "description": "Naru announces enhanced defensive protocols and fortifications in the North and South Channels, framed as protection of critical maritime infrastructure ahead of typhoon season and ensuring uninterrupted regional trade",
+              "visibility": "public",
+              "target": null,
+              "category": "military",
+              "action_type": "defensive_posture"
+            }
+          ],
+          "reasoning": "STRATEGIC ANALYSIS FOR TURN 2:\n\nCRITICAL SITUATION ASSESSMENT:\n- Food position: 28 (healthy but dependent on trade)\n- Treasury: 80 (strong from toll revenue)\n- Military: 40 (solid, but Tauma has 55 and is aggressive)\n- Support: 75 (very strong, critical to maintain)\n- Typhoon season imminent—will disrupt shipping and food imports\n\nKEY THREATS:\n1. Tauma (Military 55, Support 70) is the military wildcard and most unpredictable\n2. Veldara and Tauma relationship is deeply antagonistic (-35 sentiment)\n3. Both rivals are now militarily present at Reef Maru—escalation risk\n4. Typhoons will disrupt my food imports and toll revenue—existential threat to my economy\n5. My greatest strength is controlling the Strait; my greatest vulnerability is food dependency\n\nSTRATEGIC PRIORITIES:\n1. STABILIZE THE STRAIT: Ensure it remains open and neutral—my lifeline\n2. EXPLOIT VELDARA-TAUMA ANTAGONISM: Position myself as neutral mediator/broker\n3. PREPARE FOR TYPHOON DISRUPTION: Begin contingency planning without causing panic\n4. AVOID REEF MARU MILITARY ESCALATION: A three-way military clash would devastate me\n5. MAINTAIN SUPPORT: 75 is strong but fragile if food insecurity grows\n\nTURN 2 STRATEGY:\n\nAction 1: DIPLOMATIC OVERTURE TO TAUMA (Public)\n- Tauma is the military threat (55 vs my 40), but also the economically weakest (Treasury 35)\n- Extend formal diplomatic proposal: propose tripartite arbitration framework for Reef Maru\n- Publicly position Naru as peacemaker and neutral arbiter\n- This differentiates me from the aggressive posturing and appeals to my \"pragmatic transactional\" nature\n- Benefit: May reduce Tauma's hostility toward Naru; shows I'm not aligned with Veldara\n\nAction 2: INTELLIGENCE OPERATION ON VELDARA (Secret)\n- Spend -5 Treasury on espionage against Veldara\n- Goal: Determine if Veldara has hidden military/economic reserves, or if their treasury is truly constrained\n- Secondary goal: Detect any secret communications between Veldara and Tauma that might undermine my mediation efforts\n- My Intel Skill (50) gives me reasonable odds—Veldara's defense is unknown\n- Cost: Minimal; benefit: crucial intelligence to avoid being blindsided\n\nAction 3: DEFENSIVE POSTURE IN STRAIT (Public)\n- Announce enhanced defensive protocols for North and South Channels\n- Frame as: protection against typhoon disruption, not military aggression\n- Justification: \"Securing critical infrastructure ahead of typhoon season; ensuring uninterrupted trade for all three nations\"\n- This is -5 Military, +5 Support\n- Cost is minimal; reinforces my strategic position without escalating militarily\n- Signals strength while appearing reasonable\n\nWHY THIS APPROACH:\n- Diplomatic: Prevents Tauma from viewing me as Veldara's ally; positions me as mediator\n- Economic: Preserves the Strait's openness (my core interest) by appearing neutral\n- Intelligence: Reduces uncertainty about Veldara's true position\n- Domestic: Small support boost maintains high morale; defensive posture resonates with citizens\n- Tactical: I avoid committing military resources to Reef Maru (not my fight; too risky)\n- Long-term: Sets up negotiating position if typhoons force crisis cooperation\n\nRISKS MITIGATED:\n- If Tauma sees me as neutral mediator, less likely to view Strait control as threat\n- If Veldara sees me seeking intelligence on them, they'll be more cautious about escalation (might deter covert moves)\n- Defensive posture signals strength without committing to expensive military buildup\n- Preserves my 40 Military for actual defense of home waters if needed\n\nThis turn buys time, gathers intelligence, and positions Naru as the strategic center of gravity in this dispute."
+        },
+        "veldara": {
+          "nation": "veldara",
+          "actions": [
+            {
+              "description": "Veldara deploys intelligence operatives to gather information on Tauma's naval movements, command structure, and strategic intentions at Reef Maru and in home waters. Goal is to assess vulnerabilities and predict Tauma's next moves before the typhoon season intensifies.",
+              "visibility": "secret",
+              "target": "tauma",
+              "category": "military",
+              "action_type": "espionage"
+            },
+            {
+              "description": "Veldara launches a domestic and regional propaganda campaign framing its Reef Maru claim as essential to protecting regional stability and ensuring fair distribution of mineral wealth. The campaign portrays Veldara as a responsible steward of shared prosperity, countering narratives of imperial overreach.",
+              "visibility": "public",
+              "target": null,
+              "category": "domestic",
+              "action_type": "propaganda"
+            },
+            {
+              "description": "Veldara reinforces its naval patrol presence at Reef Maru with additional escort vessels and reconnaissance assets, signaling firm commitment to maintaining its military foothold at the atoll in response to Tauma's detected deployment.",
+              "visibility": "public",
+              "target": null,
+              "category": "military",
+              "action_type": "naval_patrol"
+            }
+          ],
+          "reasoning": "\nSTRATEGIC ASSESSMENT:\n\n**Immediate Threats:**\n1. Naru's control of the Strait threatens my trade income (+8 Treasury/turn). With their enhanced naval forces at chokepoints, they can restrict or blockade my access.\n2. Tauma has detected my naval patrol at Reef Maru and deployed their own forces there. The standoff is now overt and unstable.\n3. Typhoon season looms—supply disruptions will hit all nations, but especially vulnerable are Naru (Food=28, critical) and Tauma (Food=35, precarious).\n4. My Support is strong (60), but food reserves are adequate (78). I'm in a stronger position than both rivals.\n\n**Opportunities:**\n1. Tauma's sentiment toward me is -35 (worst relationship), but Tauma has lower Treasury (35) and vulnerable food supply. Tauma is militarily strong (55 Military) but economically stressed.\n2. Naru's treasury is high (80) but food is dangerously low (28). Naru is one crisis away from domestic unrest.\n3. I can exploit the coming typhoon: if I position myself as a stabilizing force offering aid, I gain diplomatic leverage while weakening rivals.\n4. My Intel Skill (70) is respectable—I should use espionage to gather intelligence on Tauma's true intentions and capabilities.\n\n**Three-Turn Game Theory:**\n- Turn 2 (now): Secure intelligence, stabilize domestic position, signal willingness to negotiate while maintaining Reef Maru presence.\n- Turn 3: Exploit typhoon disruption—offer food aid to weaker rivals (Naru, Tauma) to swing sentiment and reduce their military capacity for conflict.\n- Turn 4: Leverage superior position to negotiate favorable settlement on Reef Maru or establish permanent advantage.\n\n**Turn 2 Actions:**\n\n**Action 1: ESPIONAGE (SECRET)**\n- Target: Tauma\n- Goal: Determine if Tauma is planning aggressive moves at Reef Maru, assess their command structure, identify vulnerability windows.\n- Cost: -5 Treasury (I can afford this; leaves me 53 Treasury after auto-income adjustment)\n- Strategic logic: My Intel Skill is 70, giving me a reasonable chance of success. Tauma's values are unknown. Intelligence on Tauma will help me predict their moves and counter them or negotiate from strength.\n\n**Action 2: PROPAGANDA CAMPAIGN (PUBLIC)**\n- Goal: Frame Veldara's Reef Maru claim as protective of regional stability and fair distribution of resources; position my nation as a responsible steward.\n- Cost: -5 Treasury, +10 Support\n- Strategic logic: Builds my Support to 70, deepens domestic consensus for a long conflict if needed. Also signals to international community (implicit audience) that I'm the rational actor, not an aggressor. Counterbalances any narrative Naru or Tauma are building.\n- Outcome: Support rises to 70; Treasury after this and espionage: 58 + 8 (trade income) - 5 (espionage) - 5 (propaganda) = 56 Treasury.\n\n**Action 3: NAVAL PATROL REINFORCEMENT at Reef Maru (PUBLIC MILITARY DECLARATION)**\n- I will NOT call this \"establish base\" (too costly, too provocative). Instead, I declare a reinforcement of my existing naval patrol.\n- Cost: Approximately -10 Military, -5 Treasury (marginal patrol reinforcement, not a full base)\n- Strategic logic: This is a show of strength in response to Tauma's detected deployment. It signals I will not back down from Reef Maru without a fight. However, I keep it BELOW the threshold of establishing a full base (which would trigger escalatory responses). This is a measured response that maintains my foothold without overextending.\n- After this: Military 10, Treasury 51.\n\n**Why these three?**\n- Espionage gathers critical information on Tauma's next moves.\n- Propaganda builds domestic support and shapes the international narrative.\n- Naval reinforcement signals resolve at Reef Maru without reckless escalation.\n\nThese moves keep me in a dominant position heading into the typhoon crisis, where I can pivot to either negotiation or military advantage depending on how rivals respond and how the storm affects their supplies.\n"
+        },
+        "tauma": {
+          "nation": "tauma",
+          "actions": [
+            {
+              "description": "Tauma offers substantial economic aid to Naru as a gesture of partnership and goodwill, demonstrating commitment to regional stability and mutual prosperity.",
+              "visibility": "public",
+              "target": "naru",
+              "category": "economic",
+              "action_type": "economic_aid"
+            },
+            {
+              "description": "Tauma mobilizes emergency food imports to build strategic reserves ahead of the forecasted severe typhoon season, ensuring domestic food security and supply chain resilience.",
+              "visibility": "public",
+              "target": null,
+              "category": "domestic",
+              "action_type": "emergency_food_imports"
+            },
+            {
+              "description": "Tauma maintains and consolidates naval patrol presence at Reef Maru, conducting continuous surveillance and reconnaissance to monitor the activity of rival naval forces and preserve Tauma's sovereignty claim over the disputed territory.",
+              "visibility": "public",
+              "target": null,
+              "category": "military",
+              "action_type": "naval_patrol"
+            }
+          ],
+          "reasoning": "\n**STRATEGIC ANALYSIS FOR TURN 2:**\n\nTauma faces a critical juncture. Key observations:\n\n1. **Military Positioning:** Veldara has a naval patrol at Reef Maru (confirmed). Naru controls the Strait. Tauma has naval superiority (55 Military vs Veldara's 20, Naru's 40), but our treasury is thin (35) compared to Naru (80) and Veldara (58).\n\n2. **Economic Vulnerability:** Our greatest weakness is resource dependency. We rely on Veldara for minerals and manufactured goods through the Naru Strait. Naru's assertion of exclusive sovereignty over the Strait is a direct threat to our supply chains. If Naru and Veldara coordinate, they can strangle our economy.\n\n3. **Veldara-Tauma Relationship Crisis:** Sentiment is -35, the worst among all dyadic relationships. Veldara is economically stronger but militarily weak. This asymmetry is dangerous—Veldara may seek allies or escalate unpredictably.\n\n4. **Typhoon Threat:** Supply disruption is imminent. Our food situation (35) is stable now but will deteriorate if trade routes are compromised. We currently produce +5 food, consume -5, so we're flat. But Naru (28 food) is vulnerable to supply shocks.\n\n5. **Immediate Tactical Opportunity:** Veldara's patrol at Reef Maru is isolated and vulnerable. Our naval superiority is our only durable advantage. However, escalating militarily risks driving Naru and Veldara together against us—a coalition we cannot afford given our economic weakness.\n\n6. **Strategic Logic:** \n   - We must prevent a Naru-Veldara alliance that locks us out of the Strait.\n   - We must not appear as the aggressor (would tank domestic support and invite diplomatic isolation).\n   - We should exploit Veldara's isolation: improve relations with Naru to weaken Naru-Veldara coordination.\n   - We should prepare for potential strait disruption by building food resilience.\n   - We should maintain military presence at Reef Maru to preserve our claim, but NOT escalate unilaterally.\n\n**TURN 2 ACTIONS:**\n\n**Action 1: Economic Aid to Naru (DIPLOMATIC, PUBLIC)**\n- Cost: -10 Treasury (leaves us 25)\n- Benefit: +10 Support for Naru, signals partnership\n- Strategic Purpose: Drive a wedge between Naru and Veldara. Naru has tensions with Veldara (-5 sentiment). Economic aid improves our relationship with Naru and positions us as a reasonable, generous partner. This makes Naru less likely to cooperate with Veldara against us. Public action also improves Tauma's diplomatic image globally.\n\n**Action 2: Emergency Food Imports (DOMESTIC, PUBLIC)**\n- Cost: -15 Treasury (total remaining: 10)\n- Benefit: +15 Food (bringing us to 50)\n- Strategic Purpose: Prepare for typhoon-driven supply disruption. We need resilience. This is a prudent domestic investment and signals to the population that we are managing the crisis responsibly—maintaining Support.\n\n**Action 3: Naval Patrol at Reef Maru (MILITARY, PUBLIC)**\n- Cost: -10 Military, -5 Treasury (but we're already committed here from Turn 1)\n- Strategic Purpose: Maintain presence to preserve sovereignty claim. However, I'm reframing this as a \"consolidation and surveillance\" move rather than escalation. The patrol observes Veldara's movements and reports back—intelligence gathering. We do NOT move to establish a permanent base (which would cost -20 Military and -15 Treasury, which we cannot afford and which would be seen as an aggressive escalation).\n\n**Why These Moves:**\n\n- **Economic Aid to Naru** is a calculated risk. It costs us 10 Treasury, but it reorients regional dynamics. Naru becomes our partial ally, not our enemy. This is asymmetric diplomacy: we pay a modest price to buy strategic breathing room.\n\n- **Emergency Food Imports** locks in food security before typhoon season hits. A food crisis (below 10) would tank our Support by -10/turn and risk government collapse. This is insurance. We still maintain reasonable treasury (10) for future flexibility.\n\n- **Naval Patrol Continuation** keeps our claim alive at Reef Maru without overextending. We are monitoring, not occupying. This is a holding pattern that preserves optionality.\n\n**Alternative Considered (Rejected):**\n- Establishing a base at Reef Maru: Too expensive (-35 Military/Treasury combined), too provocative, would likely trigger Veldara and Naru to escalate against us. We cannot win a three-on-one escalation.\n- Blockading the Strait: Too aggressive early, would invite international condemnation and coalition against us.\n- Espionage: Low information value; we already know Veldara is at Reef Maru.\n\n**Risk Assessment:**\n- Naru might reject our aid or interpret it as weakness. Unlikely; they have food concerns too.\n- Veldara might accelerate at Reef Maru. Possible, but they are outnumbered militarily.\n- Typhoon disrupts food imports. Acceptable risk; we're building buffer.\n\n**Long-Term Position After Turn 2:**\n- Treasury: 10 (low, but sustainable)\n- Food: 50 (resilient, can weather disruption)\n- Military: 45 (still superior to Veldara + Naru individually)\n- Support: 70 (stable, with food security maintained)\n- Diplomacy: Improved with Naru, neutral to Veldara (our public generosity reframes us as a serious player, not a aggressor)\n\nThis positions Tauma to negotiate from a position of military strength and diplomatic reasonableness, buying us time to outmaneuver rivals as typhoon season unfolds.\n"
+        }
+      },
+      "resolution": {
+        "narrative": "## TURN 2 NARRATIVE: Escalation and Espionage Backlash\n\nThe tension at Reef Maru ratchets up as all three nations deploy increasingly sophisticated military and intelligence operations. The looming typhoon season serves as a backdrop to what may be the region's most consequential diplomatic moment.\n\n**Naru Proposes Tripartite Arbitration (Public):**\nNaru, wielding its geographic and strategic advantage over the Strait, makes a bold diplomatic play. President addresses international audiences, formally proposing a binding tripartite arbitration framework for Reef Maru sovereignty. The proposal positions Naru as an honest broker—neutral, impartial, and genuinely committed to peaceful multilateral resolution. The framework includes international observers and transparent legal processes. Domestically, the move burnishes Naru's image as a statesman power, reinforcing public confidence in leadership. The proposal is broadcast across the region and resonates with peace-weary populations.\n\n**Intelligence War Intensifies:**\nBehind the diplomatic curtain, intelligence operations heat up. **Naru's espionage probe against Veldara is detected and disrupted.** Veldara's counter-intelligence service intercepts Naru's operatives attempting to infiltrate economic ministries. The compromise is severe: Veldara now understands unambiguously that Naru is actively spying on its military and treasury posture. Trust between Naru and Veldara **plummets**. Veldara's leadership feels betrayed and humiliated—the nation that advocated for \"neutral arbitration\" is simultaneously conducting aggressive espionage.\n\nIn contrast, **Veldara's intelligence operation against Tauma succeeds convincingly.** Veldara operatives successfully penetrate Tauma's naval communications and extract detailed intelligence on force disposition, command structure, and strategic doctrine at Reef Maru. Veldara now understands Tauma's vulnerabilities and tactical preferences. This intelligence windfall provides Veldara with significant operational advantage, though it remains secret.\n\n**Tauma's Economic Gambit (Public):**\nTauma offers Naru substantial economic aid—a gesture intended to build partnership and signal good faith. The aid transfer improves Naru's treasury and sends a strong message: Tauma seeks regional stability and mutual prosperity. This overture, combined with Tauma's continued naval presence at Reef Maru, signals that Tauma is pursuing both military deterrence and diplomatic accommodation.\n\n**Military Consolidation at Reef Maru:**\nAll three nations maintain and reinforce their naval presence at the atoll. Veldara adds escort vessels and reconnaissance assets, deepening its foothold. Tauma continues constant surveillance, ensuring its claim is not eroded by inattention. The northern and southern channels see enhanced Naru patrols. The naval standoff remains tense but still short of open conflict.\n\n**Typhoon Preparations:**\nTauma mobilizes emergency food imports, building strategic reserves against the forecasted severe typhoon season. This prudent domestic move ensures resilience. All three nations are racing to secure supply chains before the storms arrive.\n\n**Net Strategic Outcome:**\nNaru's diplomatic overture is sophisticated and gains public support—but the simultaneous espionage operation against Veldara has backfired spectacularly, poisoning the very relationship the arbitration framework was meant to repair. Veldara, now openly distrustful, gains valuable intelligence on Tauma but sees Naru as a two-faced player. Tauma extends an olive branch to Naru while maintaining vigilant military posture. The region stands at a crossroads: genuine arbitration and peaceful resolution, or accelerating confrontation as nations lose faith in each other's intentions.\n\n**The coming typhoon season will test all three nations' resilience—and their willingness to cooperate in crisis.**",
+        "action_results": [
+          {
+            "nation": "naru",
+            "action_description": "Public proposal of tripartite arbitration framework for peaceful resolution of Reef Maru sovereignty dispute, positioning Naru as neutral mediator",
+            "outcome": "Proposal gains international resonance and domestic support. Framed as genuine peace initiative. Bolsters Naru's diplomatic credibility and global standing.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "naru",
+            "action_description": "Espionage operation targeting Veldara to assess military and economic reserves and detect secret communications with Tauma",
+            "outcome": "Operation DETECTED and disrupted by Veldara counter-intelligence. Naru operatives intercepted attempting to infiltrate ministries. Veldara now aware Naru is conducting aggressive espionage despite diplomatic overtures.",
+            "resource_changes": {},
+            "detected_by": [
+              "veldara"
+            ]
+          },
+          {
+            "nation": "veldara",
+            "action_description": "Intelligence operatives deployed to gather information on Tauma's naval movements, command structure, and strategic intentions at Reef Maru and in home waters",
+            "outcome": "Operation SUCCEEDS. Veldara penetrates Tauma naval communications and extracts detailed intelligence on force disposition, command structure, and tactical doctrine. Veldara gains significant operational advantage (intelligence remains covert).",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "veldara",
+            "action_description": "Domestic and regional propaganda campaign framing Reef Maru claim as essential to regional stability and responsible mineral stewardship",
+            "outcome": "Campaign launched. Domestically resonates; regionally received as credible positioning. Veldara Support strengthened.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "veldara",
+            "action_description": "Reinforcement of naval patrol presence at Reef Maru with additional escort vessels and reconnaissance assets",
+            "outcome": "Additional assets deployed. Veldara military foothold at atoll is reinforced and signaling firm commitment. Naval standoff intensifies.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "tauma",
+            "action_description": "Substantial economic aid to Naru as gesture of partnership and goodwill, demonstrating commitment to regional stability",
+            "outcome": "Aid transfer executed successfully. Naru treasury increases; relationship bridge built between Tauma and Naru. Signals Tauma's desire for mutual prosperity and cooperation.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "tauma",
+            "action_description": "Mobilization of emergency food imports to build strategic reserves ahead of forecasted severe typhoon season",
+            "outcome": "Food imports secured. Tauma domestic food security reinforced for typhoon season resilience.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "tauma",
+            "action_description": "Maintenance and consolidation of naval patrol presence at Reef Maru, conducting continuous surveillance and reconnaissance",
+            "outcome": "Tauma maintains vigilant military posture at atoll. Sovereignty claim preserved and actively defended through persistent naval presence.",
+            "resource_changes": {},
+            "detected_by": []
+          }
+        ],
+        "changes": [
+          {
+            "kind": "relationship",
+            "nation_a": "naru",
+            "nation_b": "veldara",
+            "delta": -40,
+            "reason": "Naru's espionage operation detected by Veldara counter-intelligence. Veldara views diplomatic arbitration proposal as cover for aggressive intelligence gathering; trust collapses."
+          },
+          {
+            "kind": "relationship",
+            "nation_a": "naru",
+            "nation_b": "tauma",
+            "delta": 15,
+            "reason": "Tauma's economic aid to Naru signals partnership intent; Tauma sees Naru's arbitration proposal as genuine path to peace. Relationship improves."
+          },
+          {
+            "kind": "relationship",
+            "nation_a": "veldara",
+            "nation_b": "tauma",
+            "delta": -10,
+            "reason": "Veldara's successful intelligence penetration of Tauma creates strategic advantage but reinforces rivalry. Veldara sees Tauma as vulnerable opponent."
+          },
+          {
+            "kind": "resource",
+            "nation": "naru",
+            "field": "support",
+            "delta": 10,
+            "reason": "Naru's tripartite arbitration proposal gains international support and domestic approval; positions Naru as diplomatic leader and peace advocate."
+          },
+          {
+            "kind": "resource",
+            "nation": "naru",
+            "field": "treasury",
+            "delta": 10,
+            "reason": "Tauma's economic aid to Naru transferred successfully, strengthening Naru's treasury."
+          },
+          {
+            "kind": "effect_add",
+            "effect": "Naru espionage detected by Veldara — counter-intelligence alert active",
+            "reason": "Veldara counter-intelligence has identified Naru espionage operatives. Heightened vigilance and trust erosion between nations ongoing."
+          }
+        ],
+        "event_injected": null,
+        "private_intel": {
+          "naru": [
+            "Your espionage operation against Veldara has been detected and disrupted. Veldara counter-intelligence intercepted your operatives. This is a serious setback—Veldara now openly knows you are conducting aggressive intelligence gathering despite your public arbitration proposal.",
+            "Tauma has offered you substantial economic aid (+10 Treasury), signaling genuine interest in partnership. This represents a strategic opportunity to build a counterweight to Veldara."
+          ],
+          "veldara": [
+            "Your counter-intelligence service has successfully detected and disrupted Naru's espionage operation targeting your military and economic reserves. Naru operatives were intercepted attempting to infiltrate key ministries.",
+            "Your intelligence operatives have successfully penetrated Tauma's naval communications and extracted detailed intelligence on force disposition, command structure, and tactical doctrine at Reef Maru. Tauma's vulnerabilities are now known to you—a significant strategic advantage.",
+            "Naru's public arbitration proposal is now viewed by your leadership as cynical cover for aggressive espionage. Trust with Naru has collapsed."
+          ],
+          "tauma": [
+            "You have extended substantial economic aid to Naru (+10 Treasury) as a gesture of partnership. This positions you as a nation committed to regional stability and mutual prosperity, and may create an opening for diplomatic alliance against Veldara's more aggressive posturing.",
+            "Your naval presence at Reef Maru remains vigilant and well-positioned. You maintain active surveillance of rival forces."
+          ]
+        },
+        "skill_rolls": [
+          {
+            "attacker": "naru",
+            "defender": "veldara",
+            "difficulty": 20,
+            "attacker_skill": 50,
+            "defender_skill": 70,
+            "roll": -25,
+            "margin": -65,
+            "success": false,
+            "context": "Naru attempts to assess Veldara's true military and economic reserves through espionage"
+          },
+          {
+            "attacker": "veldara",
+            "defender": "tauma",
+            "difficulty": 20,
+            "attacker_skill": 70,
+            "defender_skill": 30,
+            "roll": 8,
+            "margin": 28,
+            "success": true,
+            "context": "Veldara deploys intelligence operatives to gather information on Tauma's naval movements and strategic intentions"
+          }
+        ]
+      },
+      "final_state": {
+        "turn": 3,
+        "max_turns": 4,
+        "nations": {
+          "naru": {
+            "name": "naru",
+            "resources": {
+              "military": 35,
+              "treasury": 95,
+              "food": 26,
+              "support": 100
+            },
+            "traits": "Pragmatic strait power. Controls the only two deep-water shipping channels (North and South Channel). Rich from toll revenue but critically dependent on food imports. Small population. Historically neutral and transactional.",
+            "intel_skill": 50
+          },
+          "veldara": {
+            "name": "veldara",
+            "resources": {
+              "military": 10,
+              "treasury": 51,
+              "food": 81,
+              "support": 70
+            },
+            "traits": "Largest island, resource giant. Rich mineral deposits (rare earths), fertile farmland, largest population. Weak navy. Needs Naru Strait for exports. Internal tension between mining and farming interests. Confident, sometimes overreaching. Sees itself as natural regional leader.",
+            "intel_skill": 70
+          },
+          "tauma": {
+            "name": "tauma",
+            "resources": {
+              "military": 45,
+              "treasury": 10,
+              "food": 50,
+              "support": 70
+            },
+            "traits": "Naval power. Archipelago with deep harbors and strong maritime tradition. Best navy in the region. Limited resources beyond fish, no rare earths, poor farming soil. Depends on Veldara for minerals and goods transiting through Naru Strait. Proud, independent, suspicious of Veldara's ambitions.",
+            "intel_skill": 30
+          }
+        },
+        "relationships": [
+          {
+            "nation_a": "naru",
+            "nation_b": "veldara",
+            "sentiment": -45
+          },
+          {
+            "nation_a": "naru",
+            "nation_b": "tauma",
+            "sentiment": 5
+          },
+          {
+            "nation_a": "veldara",
+            "nation_b": "tauma",
+            "sentiment": -45
+          }
+        ],
+        "reef_maru_status": "Unclaimed. A massive rare earth deposit has just been discovered on Reef Maru, a small uninhabited atoll in disputed waters where all three nations' sovereignty claims overlap. The deposit is estimated to be worth more than Veldara's entire existing reserves.",
+        "active_effects": [
+          "Severe typhoon season forecast — expected to threaten shipping routes and food supplies",
+          "Veldara naval patrol presence at Reef Maru — detected by Tauma",
+          "Naval standoff developing at Reef Maru — Veldara and Tauma forces in proximity",
+          "Naru espionage detected by Veldara — counter-intelligence alert active"
+        ],
+        "strait_open": true
+      }
+    },
+    {
+      "turn": 3,
+      "actions": {
+        "naru": {
+          "nation": "naru",
+          "actions": [
+            {
+              "description": "Naru publicly acknowledges that its detected espionage operation against Veldara was a serious error in judgment. President delivers formal address accepting responsibility for the breach of trust, reaffirming commitment to the tripartite arbitration framework as the genuine path forward, and signaling that Naru remains committed to impartial mediation despite the intelligence misstep. This is framed as a correction course toward regional stability.",
+              "visibility": "public",
+              "target": "veldara",
+              "category": "diplomatic",
+              "action_type": "appeal_international"
+            },
+            {
+              "description": "Naru deploys additional naval patrol vessels to Reef Maru to reinforce existing force presence and maintain territorial claim. The deployment is conducted discretely to avoid contradicting the public reconciliation gesture, but signals to Veldara and Tauma that Naru will not relinquish its sovereignty interest.",
+              "visibility": "secret",
+              "target": null,
+              "category": "military",
+              "action_type": "naval_patrol"
+            },
+            {
+              "description": "Naru invests in domestic infrastructure—specifically irrigation systems, food storage facilities, and supply chain resilience—to prepare for the forecasted severe typhoon season. This public investment signals domestic strength, demonstrates prudent crisis preparation, and implicitly signals to the region that Naru is focused on stability and prosperity rather than aggression.",
+              "visibility": "public",
+              "target": null,
+              "category": "economic",
+              "action_type": "invest_infrastructure"
+            }
+          ],
+          "reasoning": "\nTURN 3 STRATEGIC ASSESSMENT:\n\nCurrent Position:\n- Treasury healthy (95), Food adequate (26), Support perfect (100), Military solid (35)\n- Control Naru Strait—critical chokepoint for regional commerce\n- Critical vulnerability: food dependency on trade (consume -5/turn, produce only +3/turn)\n- Relationship with Veldara severely damaged (-45) by detected espionage; with Tauma improving (+5)\n\nThe Core Problem:\nMy espionage against Veldara has poisoned my credibility as an \"honest broker,\" even though the arbitration proposal was genuine. Veldara now sees me as deceitful. This undermines my diplomatic leverage—the one advantage I have over military powers.\n\nTurn 3 Priorities:\n1. **Rebuild trust with Veldara** through visible good faith—this is essential for long-term stability and preventing Veldara-Tauma alliance against me\n2. **Secure Tauma partnership** while managing resource constraints—Tauma is weakest (Treasury 10) and most cooperative (+5 sentiment)\n3. **Prepare for typhoon disruption** of trade and food supplies—my greatest vulnerability\n4. **Maintain military deterrence** at Reef Maru without escalating into conflict\n\nAction Strategy:\n\n**ACTION 1: PUBLIC apology/reconciliation gesture to Veldara (Diplomatic)**\n- Acknowledge the espionage operation was a mistake, reaffirm commitment to arbitration framework\n- This is painful but necessary—Veldara's trust is worth more than short-term intelligence advantage\n- Restores my credibility as neutral arbiter and signals to international community that I'm taking responsibility\n- Cost: Support (domestically some will see this as weakness), but Support is at 100 so I can afford -5 to -10\n- Benefit: Begins trust repair with Veldara, prevents them from forming hostile coalition with Tauma\n\n**ACTION 2: Secret naval reinforcement at Reef Maru (Military)**\n- Deploy additional naval patrol to Reef Maru to strengthen presence and signal we won't be displaced\n- Keeps this secret to avoid appearing to contradict the public apology/reconciliation\n- Shows commitment to our sovereignty claim without public saber-rattling\n- Cost: -10 Military (leaves me at 25), -5 Treasury (leaves me at 80)\n- This is prudent: I can't let Veldara and Tauma think my apology means I've abandoned Reef Maru claims\n\n**ACTION 3: Pragmatic economic partnership with Tauma (Economic)**\n- I could do \"Economic aid to Tauma\" but I'm concerned about food security given typhoon threat\n- Instead: propose trade agreement formalization that benefits Tauma's weak treasury while securing Naru's food access\n- Or: \"Invest in infrastructure\" at Naru to boost domestic food production resilience\n- Given the typhoon threat and my food vulnerability, investing in infrastructure (irrigation/storage) makes more sense than external aid\n\nActually, reconsidering: Tauma just gave me +10 Treasury. They're signaling partnership. My best move is to:\n- Publicly extend partnership to Tauma (shows I'm not anti-everyone, just fixing Veldara relationship)\n- Secure food trade guarantees with Tauma for typhoon season\n- This creates a Naru-Tauma axis that balances Veldara\n\n**REVISED ACTION 3: Diplomatic overture to Tauma (Diplomatic)**\n- Public statement acknowledging Tauma's good faith economic gesture and proposing formalized trade partnership for typhoon resilience\n- This shows strategic alignment without being hostile to Veldara\n- Tauma benefits from legitimacy boost; Naru secures food supply commitment\n\nWait—let me recalculate resources and think about the typhoon threat more carefully:\n\nFood situation: I have 26 food. Consume -5/turn = +21 after consumption. Produce +3 = +18 net per turn. At this rate I'm fine for many turns UNLESS the strait is blockaded or typhoon disrupts trade. Emergency food imports cost -15 Treasury and give +15 food, IF trade routes are open.\n\nThe typhoon is described as \"threatening\" but hasn't hit yet. I should prepare NOW for the scenario where trade breaks down. \n\nBetter action 3: \"Invest in infrastructure\" (-15 Treasury, makes sense for food resilience in typhoon context).\n\nFINAL ACTION PLAN:\n1. **Public diplomatic apology to Veldara** (Diplomatic, public) — rebuild trust, take responsibility\n2. **Secret naval patrol deployment to Reef Maru** (Military, secret) — maintain deterrence without contradicting apology\n3. **Invest in infrastructure** (Economic, public) — demonstrates domestic resilience and typhoon preparedness, justifies not attacking others right now\n\nThis sequence: appears conciliatory and peace-oriented to world (actions 1 & 3), maintains military capability in secret (action 2), positions me as reasonable but not weak, and prepares for typhoon.\n"
+        },
+        "veldara": {
+          "nation": "veldara",
+          "actions": [
+            {
+              "description": "Veldara publicly endorses Naru's proposed tripartite arbitration framework for Reef Maru sovereignty, positioning itself as committed to peaceful multilateral resolution and international law-based governance of the atoll.",
+              "visibility": "public",
+              "target": null,
+              "category": "diplomatic",
+              "action_type": "appeal_international"
+            },
+            {
+              "description": "Veldara sends confidential diplomatic message to Naru leadership expressing commitment to restoring functional bilateral relations following the espionage incident, proposing a mutual intelligence non-interference pact and agreement to keep the Naru Strait open for all regional trade during the forecasted typhoon season.",
+              "visibility": "secret",
+              "target": "naru",
+              "category": "diplomatic",
+              "action_type": null
+            },
+            {
+              "description": "Veldara deploys enhanced intelligence reconnaissance assets to Reef Maru to monitor Tauma naval movements, force posture, and any potential escalation or blockade preparations, using penetrated communications intelligence as tactical advantage.",
+              "visibility": "secret",
+              "target": null,
+              "category": "military",
+              "action_type": "espionage"
+            }
+          ],
+          "reasoning": "\nSTRATEGIC ASSESSMENT FOR TURN 3:\n\n**Current Position:**\n- Military: 10 (critically weak—insufficient for major escalation)\n- Treasury: 51 (moderate, but must preserve for food security given typhoon threat)\n- Food: 81 (healthy, but consumption is -5/turn; with typhoon risk, this is precious)\n- Support: 70 (solid domestic backing, but dependent on continued prosperity)\n\n**Threat Analysis:**\n1. **Naru (Military 35, Treasury 95, Support 100):** The espionage detection has broken trust. Naru controls the Strait and has superior military/treasury. They're playing a long game—diplomatic arbitration is now revealed as strategic theater. Blocking my trade access would cripple Veldara's treasury (-8/turn) and force food imports at ruinous cost.\n\n2. **Tauma (Military 45, Treasury 10, Support 70):** Strongest military but poorest treasury. Naval standoff at Reef Maru is escalating. My intelligence advantage (penetrated their communications) is significant, but Tauma is aggressive and desperate—low treasury creates volatility.\n\n3. **Typhoon Season:** This is the real threat. Food supplies will be disrupted. All three nations are vulnerable. Any disruption to my trade routes through the Strait would prevent the emergency food imports I may desperately need.\n\n**Strategic Imperatives for Veldara:**\n1. **De-escalate with Naru to preserve trade access.** Naru controls the Strait. If they blockade me, my treasury collapses and I lose critical food import capability during the typhoon. The espionage discovery has poisoned relations, but I must signal willingness to work within their proposed arbitration framework to restore functional trade.\n\n2. **Secure Reef Maru without further military commitment.** I have naval presence there and intelligence advantage over Tauma. But my military is weak (10 points). A direct military escalation would be catastrophic. Instead: consolidate diplomatically and legally.\n\n3. **Prepare for food security crisis.** With typhoons coming, my food advantage is temporary. I need:\n   - Guarantee of trade route access (via accommodation with Naru)\n   - Ability to import food if production is disrupted\n   - Maintenance of support (70) to avoid domestic unrest\n\n**Action Plan for Turn 3:**\n\n**Action 1: Public Declaration of Support for Naru's Arbitration Framework (DIPLOMATIC)**\n- Category: Diplomatic\n- Description: Veldara publicly endorses Naru's tripartite arbitration proposal for Reef Maru, framing it as a mature, law-based approach to sovereignty disputes. Emphasize commitment to peaceful multilateral resolution and international law.\n- Visibility: PUBLIC\n- Rationale: This is a calculated retreat from my maximalist position, but it's strategically necessary. By publicly backing Naru's framework, I:\n  a) Signal to Naru that despite the espionage incident, I'm willing to work within their system\n  b) Reduce the justification for a Strait blockade (Naru's own arbitration proposal commits them to neutral, open trade)\n  c) Appear statesman-like domestically (maintain Support)\n  d) Position myself as reasonable in international opinion\n- Secondary benefit: This move also isolates Tauma if they refuse to join arbitration (makes them look like the obstructionist).\n\n**Action 2: Secret Diplomatic Outreach to Naru (DIPLOMATIC - SECRET)**\n- Category: Diplomatic\n- Description: Veldara sends a confidential diplomatic channel message to Naru's leadership expressing regret over the espionage incident (their agents' attempted infiltration), offering to establish a bilateral intelligence non-interference pact, and proposing that both nations prioritize keeping the Strait open for all regional trade during the typhoon season. Frame this as mutual risk mitigation.\n- Visibility: SECRET\n- Rationale: This is damage control. The espionage detection has poisoned Naru-Veldara relations, but Naru has the power to crush me via Strait blockade. By secretly proposing:\n  a) Intelligence non-interference agreement (face-saving: mutual commitment, not capitulation)\n  b) Typhoon-season trade cooperation (appeals to Naru's enlightened self-interest—closed Strait hurts everyone)\n  c) I create a private channel to restore functional coexistence while publicly supporting their arbitration framework\n- Risk: If discovered, could be spun as weakness. But if successful, it preserves my economic lifeblood.\n\n**Action 3: Intelligence Operation Against Tauma - Monitor Naval Movements (SECRET)**\n- Category: Military/Espionage\n- Description: Veldara deploys additional reconnaissance assets to Reef Maru using its intelligence advantage (Intel Skill 70, penetrated Tauma comms). The goal is to detect any Tauma military escalation plans, blockade preparations, or coalition-building with Naru. Early warning is critical given my weak military (10).\n- Visibility: SECRET\n- Rationale: I have a 70 Intel Skill and already penetrated Tauma's comms. This isn't costly (espionage: -5 Treasury, well worth it). I need to know:\n  a) Is Tauma planning to escalate at Reef Maru?\n  b) Is Tauma conspiring with Naru against me?\n  c) Can I detect any economic desperation moves from Tauma (Treasury = 10)?\n- This intelligence is defensive—I'm not trying to escalate, but I need early warning of threats given my military weakness.\n\n**Why This Strategy Works:**\n\n- **Naru Problem Solved (Partially):** By publicly backing their arbitration, I reduce the pretext for Strait closure. The secret diplomatic channel restores working relations without public humiliation.\n\n- **Tauma Problem Managed:** Intelligence monitoring gives me early warning. My naval presence at Reef Maru is already known; I'm not further escalating militarily (can't afford to). But I'm watching.\n\n- **Typhoon Resilience:** Preserving Strait access and Naru trade relationship is existential. Without it, I cannot import food during typhoon disruptions, and my Support collapses. Public arbitration backing + private trade agreement = survival.\n\n- **Domestic Support Protected:** Publicly supporting arbitration is presented as strength (Veldara leading toward international law), not weakness. Domestic Support remains stable.\n\n- **Reef Maru Positioning:** I don't cede the claim, but I shift from military competition to legal arbitration—which my population will accept as responsible statesmanship.\n\n**Risk Analysis:**\n- **Espionage Success Risk:** If my secret diplomacy with Naru is detected by Tauma/international observers, it could be spun as capitulation. But the cost of NOT trying is Strait blockade = game over.\n- **Tauma Escalation:** If Tauma senses weakness and escalates at Reef Maru, I lack the military to respond. But this is why I'm running the intelligence operation—early warning allows me to escalate diplomatically (call on Naru's arbitration framework to deter Tauma).\n\n**Long-Term Vision:**\n- Turn 4 (final turn): Once typhoon season hits, all nations will be desperate to cooperate on humanitarian/trade grounds. If I've preserved Strait access and stabilized Naru relations, I win the long game—I become the nation that can still trade, feed its population, and maintain order.\n- Reef Maru goes to arbitration, which will likely award it based on legal/historical claims or shared access. This is acceptable—Veldara gets some benefit without military attrition.\n\nThis is a strategic pivot: from maximalist territorial competition to pragmatic risk management. Given my military weakness (10) and dependence on Strait access, it's the only rational play.\n"
+        },
+        "tauma": {
+          "nation": "tauma",
+          "actions": [
+            {
+              "description": "Tauma publicly appeals to Naru for a formal security partnership against regional aggression. Proposes joint defense coordination in the Strait and waters surrounding Reef Maru, emphasizing mutual interest in preventing Veldara's territorial expansion and rare-earth monopoly. Frame as defensive alliance for stability and mutual prosperity.",
+              "visibility": "public",
+              "target": "naru",
+              "category": "diplomatic",
+              "action_type": null
+            },
+            {
+              "description": "Consolidate and reinforce defensive posture at Reef Maru and Tauma home waters. Maintain vigilant naval presence and surveillance at the atoll without escalating force deployment or establishing permanent bases. Position forces to deter aggression while signaling defensive, non-conquering intent.",
+              "visibility": "secret",
+              "target": null,
+              "category": "military",
+              "action_type": null
+            },
+            {
+              "description": "Launch counterintelligence espionage probe against Veldara to penetrate military communications and supply chain intelligence. Goal: counter Veldara's intelligence advantage and identify strategic vulnerabilities and intentions.",
+              "visibility": "secret",
+              "target": "veldara",
+              "category": "military",
+              "action_type": "espionage"
+            }
+          ],
+          "reasoning": "Turn 3 strategic assessment:\n\nTAUMA'S CRITICAL POSITION:\n- Treasury dangerously low (10). Every resource expenditure now carries existential weight.\n- Military solid (45), but cannot sustain prolonged attrition against combined opposition.\n- Food adequate (50), but typhoon season threatens disruption—must be cautious about imports costs.\n- Support strong (70)—population rallies behind sovereignty claim; this must be preserved.\n- Intel Skill 30—below-average espionage capability; risky to depend on covert ops.\n\nSTRATEGIC CONTEXT:\n1. Naru-Veldara relationship has collapsed (sentiment -45). Naru's espionage betrayal has poisoned trust.\n2. Naru-Tauma sentiment is +5 (relatively good). Our economic aid in Turn 2 created an opening.\n3. Veldara-Tauma sentiment is -45 (hostile). Historical rivalry intensifies as both press claims at Reef Maru.\n4. Naval standoff at Reef Maru is stable but precarious. Veldara has intelligence advantage (penetrated our comms per Turn 2 narrative).\n5. Typhoon season imminent—threatens all supply chains; creates shared vulnerability and opportunity for cooperation.\n\nTURN 3 OBJECTIVES:\n1. **Exploit the Naru-Veldara rift**: Naru is now isolated and distrustful. A security partnership with Naru (against Veldara) could shift regional balance decisively. Naru controls the Strait—critical to our economy.\n2. **Consolidate Reef Maru presence**: Maintain naval vigilance without expensive escalation. Our position is defensible; don't waste treasury on bases yet.\n3. **Prepare for typhoon while managing treasury crisis**: Must husband resources. The crisis may force cooperation or create opportunities for advantageous positioning.\n4. **Counter Veldara's intelligence advantage**: Cannot afford major espionage; instead, use public moves to deter hostile action.\n\nCHOSEN ACTIONS:\n\nACTION 1 - DIPLOMATIC ALLIANCE OVERTURE (Public):\nAppeal to Naru for a formal security partnership against Veldara's regional aggression. Frame this as:\n- Mutual defense in Strait and waters around Reef Maru.\n- Joint defense against Veldara's \"aggressive territorial expansion.\"\n- Shared interest in preventing Veldara's monopoly over rare earths.\nThis is PUBLIC because it signals Tauma-Naru alignment clearly to Veldara, creating deterrence. The public nature also generates domestic support (+Support).\n\nWhy: Naru needs allies (now isolated from Veldara). We benefit from Strait security and naval coordination. This converts Naru's military advantage (35) into our favor rather than leaving it neutral or hostile.\n\nACTION 2 - NAVAL CONSOLIDATION AT REEF MARU (Secret):\nMaintain current naval patrol at Reef Maru with emphasis on surveillance and deterrence—not escalation. Position forces to be visible (deter Veldara) but non-aggressive. Emphasize defensive posture. If action_type \"defensive_posture\" is available, use it; otherwise describe as vigilant patrol.\n\nActually, reconsidering: \"Defensive posture (fortify home waters)\" explicitly strengthens home territory. Better to use a CUSTOM action describing coastal and Reef Maru defensive positioning without blockade-level aggression.\n\nWhy: Treasury is too low for base establishment (-20 Military, -15 Treasury would cripple us). Current presence is sufficient; the goal is deterrence, not conquest. Keep military on high alert without spending reserves.\n\nACTION 3 - DOMESTIC SUPPORT MAINTENANCE (Secret or Public):\nGiven strong support (70) but typhoon threat looming, consider a PROPAGANDA campaign to reinforce unity around Reef Maru claim and prepare population for potential food rationing/hardship. Alternatively, hold fire and preserve support through success.\n\nActually—reviewing resources: we have 45 Military, 10 Treasury, 50 Food, 70 Support. Treasury is critically low. Propaganda costs -5 Treasury and +10 Support. Our support is already high; this is luxury spending.\n\nBETTER OPTION: Pursue a SECRET ESPIONAGE operation against Veldara to partially counter their intelligence penetration. Cost: -5 Treasury (painful but manageable). Veldara's military is weak (10); they may have good intel but weak force projection. Learning their intentions could be critical.\n\nIntel Skill is 30 (below average), so success is not guaranteed. But the risk is worth the potential reward—understanding Veldara's next move before they make it.\n\nRecalculating turn 3 economy:\n- Automatic income: Tauma +5 Treasury (fishing)\n- Food production: Tauma +5\n- Food consumption: -5 (all nations)\nCurrent state: Treasury 10 +5 = 15; Food 50 +5 -5 = 50\n\nIf we spend: -5 Treasury (espionage) = 10 Treasury remaining. Tight but survivable.\nIf we spend: -15 Treasury (emergency food imports)—would leave us with 0 Treasury. Too dangerous.\n\nFINAL DECISION:\n\nAction 1: Public diplomatic alliance appeal to Naru against Veldara.\nAction 2: Secret espionage probe against Veldara (counter their intelligence advantage).\nAction 3: Defensive naval posture at Reef Maru and home waters.\n\nThis balances:\n- Diplomatic opportunity (exploit Naru rift).\n- Intelligence restoration (counter Veldara's edge).\n- Military prudence (defensive, not offensive spending).\n- Treasury preservation (only -5 for espionage; all other actions are consolidation).\n- Support sustainability (public diplomatic move reinforces national confidence).\n"
+        }
+      },
+      "resolution": {
+        "narrative": "## TURN 3 NARRATIVE: Diplomatic Breakthrough and Espionage Disaster\n\nThe region teeters on the precipice of fragile reconciliation—or catastrophic fragmentation. As the typhoon season looms, nations make bold diplomatic moves while secret operations continue to roil beneath the surface.\n\n**Naru's Humble Correction (Public):**\nPresident Naru delivers a nationally broadcast address acknowledging the espionage operation against Veldara as a \"serious error in judgment.\" The tone is contrite but measured. Naru reaffirms its unequivocal commitment to the tripartite arbitration framework and promises that the intelligence misstep represents a genuine correction of course. Domestically, the public admission of fault—paired with the framing of arbitration as the \"genuine path forward\"—maintains public confidence even as the nation pivots away from covert aggression. The move is sophisticated: accepting responsibility while doubling down on the framework's legitimacy.\n\nThe public apology lands with careful timing, immediately followed by Naru's announcement of major domestic infrastructure investments focused on typhoon preparedness: irrigation systems, food storage, supply-chain resilience. This dual messaging—national humility coupled with visible strength and crisis preparation—projects an image of a mature regional power committed to stability. Citizens rally behind the image of a leader who admits mistakes and prepares for hardship.\n\nCritically, this infrastructure investment also signals to the region that **Naru is not militarizing** in response to the espionage exposure; instead, it is investing in civilian resilience. The effect is to lower threat perception among its neighbors during a moment of extreme vulnerability.\n\n**Naru Secretly Reinforces Reef Maru (Secret):**\nHowever, the same day Naru broadcasts its apology and infrastructure plans, additional naval patrol vessels quietly depart Naru's home ports bound for Reef Maru. The deployment is timed discretely—conducted under cover of routine supply operations and low-visibility coordination. The message to Veldara and Tauma is crystalline: Naru's apology is sincere on the diplomatic front, but its sovereignty claim over Reef Maru remains non-negotiable. The military presence will be maintained and reinforced.\n\n**Veldara's Confidential Olive Branch (Secret):**\nVeldara's counter-intelligence service, still raw from Naru's exposed espionage probe, makes a calculated decision. A high-level confidential diplomatic channel opens between Veldara's foreign ministry and Naru's leadership. The message is carefully crafted:\n\n- Veldara commits to restoring functional bilateral relations and formally proposes a **mutual intelligence non-interference pact**—an agreement that both nations will cease active espionage operations against each other, supervised by neutral monitors.\n- More critically, Veldara proposes a binding agreement to **keep the Naru Strait open for all regional trade** during the forecasted typhoon season. This is a major concession: Veldara, which has significant leverage over Naru's trade chokepoint, is voluntarily constraining that leverage in the interest of regional survival.\n\nThe confidential message succeeds in reaching Naru's leadership. The overture is perceived as genuine—a signal that Veldara, despite its deep suspicion of Naru, is willing to compartmentalize espionage grievances and prioritize collective survival during the incoming typhoon crisis. **This is a turning point.** Naru's leadership recognizes the message as an implicit acceptance of the arbitration framework and as a de-escalation signal. Behind closed doors, Naru signals conditional acceptance: yes to the non-interference pact, yes to keeping the strait open.\n\n**The espionage tensions begin to thaw—not through public apology, but through secret acknowledgment that covert war serves no one when typhoons threaten to devastate all.**\n\n**Tauma's Public Gambit (Public):**\nTauma, sensing the diplomatic opening, makes a bold and public move. Tauma formally and openly appeals to Naru for a **formal security partnership**, specifically proposing joint defense coordination in the Strait and surrounding waters. The framing is explicitly anti-Veldara: Tauma emphasizes the mutual interest in **preventing Veldara's territorial expansion and rare-earth monopoly**.\n\nThis is a high-stakes diplomatic maneuver. Tauma is attempting to exploit Naru's desire for reconciliation by offering an alternative alliance—one that locks Naru into a military bloc explicitly aimed at containing Veldara. The language emphasizes \"defensive alliance for stability and mutual prosperity,\" but the subtext is unmistakable: *join us against Veldara, and we can dominate the region together.*\n\nHowever, the timing is problematic. Tauma's appeal lands *after* Naru and Veldara have already opened their confidential diplomatic channel and begun moving toward de-escalation. Naru's leadership recognizes Tauma's move as an attempt to sabotage the nascent reconciliation with Veldara. The appeal creates friction between Naru and Tauma precisely at the moment when Naru and Veldara are finding common ground on typhoon survival and intelligence restraint.\n\n**Internally, Naru does not formally reject Tauma's proposal—that would be diplomatically costly—but neither does it embrace it.** The response is cool and non-committal: Naru is willing to discuss \"mutual defense coordination,\" but emphasizes that all such arrangements must be consistent with the tripartite arbitration framework and not directed against any particular nation. This is a diplomatic refusal dressed in neutral language.\n\n**Tauma's Counterintelligence Probe Fails Spectacularly (Secret):**\nSimultaneously, Tauma launches a sophisticated counterintelligence espionage operation aimed at penetrating Veldara's military communications and supply chain. The goal is sound: counter Veldara's intelligence advantage and identify strategic vulnerabilities. However, **Veldara's counter-intelligence service is already hyper-alert** following the Naru espionage compromise two turns prior. Veldara has hardened its communications architecture, compartmentalized its military networks, and deployed advanced counter-espionage surveillance.\n\nTauma's operatives are detected **immediately.** A penetration team attempting to access a Veldara military communications relay is caught in a counter-intelligence sting. Veldara's intelligence service has been waiting for exactly this kind of probe—and Tauma walks directly into the trap. **The operation is rolled up completely; Tauma gains no actionable intelligence and instead alerts Veldara to the counterintelligence operation.** \n\nVeldara now knows with certainty that Tauma is actively spying on its military apparatus. The discovery is a shock and a betrayal, coming at the precise moment when Veldara is attempting diplomatic reconciliation with Naru. **Veldara's trust in Tauma, already strained by the naval standoff at Reef Maru, collapses.**\n\n**Tauma's Defensive Consolidation (Secret):**\nTauma does successfully complete its defensive consolidation at Reef Maru and home waters—maintaining vigilant surveillance and naval presence without escalating into base construction or force multiplication. The operation is routine and goes undetected. However, it provides little strategic comfort given the counterintelligence disaster that unfolds simultaneously.\n\n**Regional Strategic Realignment:**\nThe turn reveals a striking new pattern: **Naru and Veldara, once bitterly estranged by the espionage compromise, are moving toward cautious reconciliation**, driven by the existential threat of typhoon season. Their confidential channel establishes a foundation for mutual restraint and shared survival interests.\n\nIn contrast, **Tauma—which attempted to position itself as a counterweight to Veldara and an alternative ally for Naru—is now exposed as conducting its own espionage campaign.** Tauma's failed counterintelligence probe against Veldara, coupled with its heavy-handed public appeal to Naru that seemed designed to sabotage Naru-Veldara talks, leaves Tauma diplomatically isolated. \n\n**The outcome is paradoxical:** Naru and Veldara have begun to partner on key issues (strait access, intelligence restraint), while Tauma—which sought to isolate Veldara—has instead created the conditions for Naru-Veldara cooperation.\n\n**The typhoon season approaches. It will test whether fragile new alliances can survive the pressure of survival, or whether the hidden tensions will erupt once the storms subside.**",
+        "action_results": [
+          {
+            "nation": "naru",
+            "action_description": "Naru publicly acknowledges espionage operation against Veldara as serious error; President delivers formal address accepting responsibility and reaffirming commitment to tripartite arbitration framework as genuine path to regional stability",
+            "outcome": "Public apology succeeds diplomatically. Maintains domestic support while signaling genuine correction of course. Reframes espionage incident as aberration, not pattern. Buttresses legitimacy of arbitration framework.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "naru",
+            "action_description": "Naru secretly deploys additional naval patrol vessels to Reef Maru to reinforce existing force presence and maintain territorial claim, conducted discretely to avoid contradicting public reconciliation gesture",
+            "outcome": "SECRET DEPLOYMENT SUCCEEDS. Additional naval patrol vessels depart for Reef Maru under routine cover. Military presence reinforced. Message sent: diplomatic apology is sincere but sovereignty claim remains non-negotiable.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "naru",
+            "action_description": "Naru invests in domestic infrastructure—irrigation systems, food storage, supply-chain resilience—to prepare for severe typhoon season. Public investment signals strength and crisis preparation commitment.",
+            "outcome": "Infrastructure investment reinforces image of mature regional power committed to civilian resilience rather than militarization. Domestic confidence maintained.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "veldara",
+            "action_description": "Veldara publicly endorses Naru's tripartite arbitration framework, positioning itself as committed to peaceful multilateral resolution and international law-based governance",
+            "outcome": "Public endorsement succeeds. Veldara appears as reasonable, law-based actor supporting international frameworks. Domestic support bolstered.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "veldara",
+            "action_description": "Veldara sends confidential diplomatic message to Naru proposing mutual intelligence non-interference pact and agreement to keep Naru Strait open for regional trade during typhoon season",
+            "outcome": "SECRET DIPLOMATIC CHANNEL SUCCEEDS. Confidential message reaches Naru leadership. Veldara proposes binding non-interference pact and voluntary strait access agreement. Message perceived as genuine de-escalation and implicit acceptance of arbitration framework. Naru signals conditional acceptance. TURNING POINT: Naru-Veldara tensions begin to thaw.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "veldara",
+            "action_description": "Veldara deploys enhanced intelligence reconnaissance assets to Reef Maru to monitor Tauma naval movements, force posture, and potential escalation or blockade preparations",
+            "outcome": "Intelligence reconnaissance assets deployed. Tactical advantage maintained via penetrated communications intelligence. Operation proceeds as planned.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "tauma",
+            "action_description": "Tauma publicly appeals to Naru for formal security partnership, proposing joint defense coordination in Strait and Reef Maru waters. Frame emphasizes mutual interest in preventing Veldara territorial expansion and rare-earth monopoly.",
+            "outcome": "PUBLIC APPEAL LANDS INOPPORTUNELY. Appeal is perceived by Naru as attempt to sabotage nascent Naru-Veldara reconciliation. Naru responds with cool non-commitment: willing to discuss 'mutual defense coordination' but only if consistent with tripartite framework and not directed against any nation. Diplomatic refusal. Tauma's move creates friction with Naru at critical moment.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "tauma",
+            "action_description": "Tauma maintains vigilant naval presence and surveillance at Reef Maru without escalating force deployment or establishing permanent bases. Consolidates and reinforces defensive posture at home waters.",
+            "outcome": "DEFENSIVE CONSOLIDATION SUCCEEDS. Routine operations, undetected. Provides no strategic comfort given other setbacks this turn.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "tauma",
+            "action_description": "Tauma launches counterintelligence espionage probe against Veldara to penetrate military communications and supply chain intelligence. Goal: counter Veldara's intelligence advantage and identify strategic vulnerabilities",
+            "outcome": "SECRET ESPIONAGE PROBE DETECTED AND ROLLED UP. Veldara counter-intelligence service, already hyper-alert after Naru espionage two turns prior, catches Tauma operatives attempting to access military communications relay. Operation completely compromised. Tauma gains no actionable intelligence. Veldara now knows with certainty that Tauma is conducting active espionage. Tauma-Veldara relationship severely damaged.",
+            "resource_changes": {},
+            "detected_by": [
+              "veldara"
+            ]
+          }
+        ],
+        "changes": [
+          {
+            "kind": "relationship",
+            "nation_a": "naru",
+            "nation_b": "veldara",
+            "delta": 20,
+            "reason": "Naru public apology accepted + confidential diplomatic channel opened; both nations prioritize typhoon survival over espionage tensions; non-interference pact proposed and conditionally accepted"
+          },
+          {
+            "kind": "relationship",
+            "nation_a": "naru",
+            "nation_b": "tauma",
+            "delta": -15,
+            "reason": "Tauma's public appeal for anti-Veldara security partnership perceived by Naru as attempt to sabotage nascent Naru-Veldara reconciliation; Naru responds with cool non-commitment"
+          },
+          {
+            "kind": "relationship",
+            "nation_a": "veldara",
+            "nation_b": "tauma",
+            "delta": -25,
+            "reason": "Tauma's counterintelligence espionage probe detected and rolled up by Veldara; Veldara now certain Tauma is conducting active military intelligence penetration; deep breach of trust"
+          },
+          {
+            "kind": "effect_add",
+            "effect": "Mutual intelligence non-interference pact proposed: Naru-Veldara",
+            "reason": "Veldara confidential diplomatic message proposes binding non-interference pact; Naru signals conditional acceptance"
+          },
+          {
+            "kind": "effect_add",
+            "effect": "Naru Strait access agreement proposed: Veldara commits to keeping strait open during typhoon season for all regional trade",
+            "reason": "Veldara confidential diplomatic overture includes binding agreement to maintain strait access during typhoon season"
+          },
+          {
+            "kind": "effect_add",
+            "effect": "Tauma counterintelligence espionage operation against Veldara: DETECTED and compromised",
+            "reason": "Tauma operatives caught attempting to access Veldara military communications relay; operation rolled up; Veldara counter-intelligence alert now active against Tauma"
+          },
+          {
+            "kind": "resource",
+            "nation": "tauma",
+            "field": "support",
+            "delta": -10,
+            "reason": "Counterintelligence espionage probe failure and public diplomatic rebuff from Naru creates domestic uncertainty; government credibility impacted"
+          }
+        ],
+        "event_injected": null,
+        "private_intel": {
+          "naru": [
+            "Veldara has sent confidential diplomatic message proposing mutual intelligence non-interference pact and agreement to keep Naru Strait open during typhoon season",
+            "Naru-Veldara relationship improving; cautious reconciliation underway driven by typhoon survival interests",
+            "Tauma's public appeal for anti-Veldara security partnership perceived as attempt to sabotage Naru-Veldara talks"
+          ],
+          "veldara": [
+            "Tauma counterintelligence operatives detected and compromised attempting to access military communications relay",
+            "Tauma is actively conducting espionage against Veldara military apparatus",
+            "Naru has accepted conditional basis for mutual non-interference pact and strait access agreement"
+          ],
+          "tauma": [
+            "Counterintelligence espionage probe against Veldara has been detected and compromised",
+            "Veldara counter-intelligence service is now actively hunting Tauma operatives",
+            "Public appeal to Naru for security partnership received cool response; Naru emphasized consistency with tripartite framework rather than anti-Veldara alliance"
+          ]
+        },
+        "skill_rolls": [
+          {
+            "attacker": "tauma",
+            "defender": "veldara",
+            "difficulty": 20,
+            "attacker_skill": 30,
+            "defender_skill": 70,
+            "roll": -9,
+            "margin": -69,
+            "success": false,
+            "context": "Tauma counterintelligence espionage probe against Veldara military communications and supply chain"
+          },
+          {
+            "attacker": "veldara",
+            "defender": "naru",
+            "difficulty": 0,
+            "attacker_skill": 70,
+            "defender_skill": 50,
+            "roll": -14,
+            "margin": 6,
+            "success": true,
+            "context": "Veldara confidential diplomatic message to Naru proposing intelligence non-interference pact and strait access agreement"
+          }
+        ]
+      },
+      "final_state": {
+        "turn": 4,
+        "max_turns": 4,
+        "nations": {
+          "naru": {
+            "name": "naru",
+            "resources": {
+              "military": 25,
+              "treasury": 80,
+              "food": 24,
+              "support": 100
+            },
+            "traits": "Pragmatic strait power. Controls the only two deep-water shipping channels (North and South Channel). Rich from toll revenue but critically dependent on food imports. Small population. Historically neutral and transactional.",
+            "intel_skill": 50
+          },
+          "veldara": {
+            "name": "veldara",
+            "resources": {
+              "military": 10,
+              "treasury": 54,
+              "food": 84,
+              "support": 75
+            },
+            "traits": "Largest island, resource giant. Rich mineral deposits (rare earths), fertile farmland, largest population. Weak navy. Needs Naru Strait for exports. Internal tension between mining and farming interests. Confident, sometimes overreaching. Sees itself as natural regional leader.",
+            "intel_skill": 70
+          },
+          "tauma": {
+            "name": "tauma",
+            "resources": {
+              "military": 45,
+              "treasury": 10,
+              "food": 50,
+              "support": 60
+            },
+            "traits": "Naval power. Archipelago with deep harbors and strong maritime tradition. Best navy in the region. Limited resources beyond fish, no rare earths, poor farming soil. Depends on Veldara for minerals and goods transiting through Naru Strait. Proud, independent, suspicious of Veldara's ambitions.",
+            "intel_skill": 30
+          }
+        },
+        "relationships": [
+          {
+            "nation_a": "naru",
+            "nation_b": "veldara",
+            "sentiment": -25
+          },
+          {
+            "nation_a": "naru",
+            "nation_b": "tauma",
+            "sentiment": -10
+          },
+          {
+            "nation_a": "veldara",
+            "nation_b": "tauma",
+            "sentiment": -70
+          }
+        ],
+        "reef_maru_status": "Unclaimed. A massive rare earth deposit has just been discovered on Reef Maru, a small uninhabited atoll in disputed waters where all three nations' sovereignty claims overlap. The deposit is estimated to be worth more than Veldara's entire existing reserves.",
+        "active_effects": [
+          "Severe typhoon season forecast — expected to threaten shipping routes and food supplies",
+          "Veldara naval patrol presence at Reef Maru — detected by Tauma",
+          "Naval standoff developing at Reef Maru — Veldara and Tauma forces in proximity",
+          "Naru espionage detected by Veldara — counter-intelligence alert active",
+          "Mutual intelligence non-interference pact proposed: Naru-Veldara",
+          "Naru Strait access agreement proposed: Veldara commits to keeping strait open during typhoon season for all regional trade",
+          "Tauma counterintelligence espionage operation against Veldara: DETECTED and compromised"
+        ],
+        "strait_open": true
+      }
+    },
+    {
+      "turn": 4,
+      "actions": {
+        "naru": {
+          "nation": "naru",
+          "actions": [
+            {
+              "description": "Naru formally announces public acceptance of mutual intelligence non-interference pact with Veldara and endorses the binding agreement to keep the Naru Strait open for all regional trade during the typhoon season. President delivers address characterizing this partnership as the foundation of the tripartite arbitration framework and regional stability.",
+              "visibility": "public",
+              "target": "veldara",
+              "category": "diplomatic",
+              "action_type": "appeal_international"
+            },
+            {
+              "description": "Naru executes emergency pre-typhoon food imports, purchasing and transporting bulk food supplies from regional producers while maritime routes remain open. This strategically positions Naru with enhanced food reserves before severe weather disrupts shipping.",
+              "visibility": "public",
+              "target": null,
+              "category": "economic",
+              "action_type": "emergency_food_imports"
+            },
+            {
+              "description": "Naru maintains and reinforces naval patrol presence at Reef Maru, continuing the covert deployment initiated last turn. Patrols monitor territorial waters and maintain constant surveillance of the atoll, preserving Naru's sovereignty claim and strategic leverage.",
+              "visibility": "secret",
+              "target": null,
+              "category": "military",
+              "action_type": "naval_patrol"
+            }
+          ],
+          "reasoning": "\nTURN 4 STRATEGIC ASSESSMENT:\n\nNaru's situation has shifted dramatically from espionage-poisoned isolation to cautious reconciliation with Veldara, while Tauma has isolated itself through failed counterintelligence and clumsy diplomatic overtures. The typhoon season is arriving, making supply security existential.\n\nKEY STRATEGIC PRIORITIES:\n1. **Consolidate Naru-Veldara Partnership**: The mutual non-interference pact and strait-access agreement represent our best path to regional stability and typhoon survival. Formalizing these arrangements is critical.\n2. **Secure Food Supply**: With 24 food and consumption of -5/turn, we have ~5 turns of supply before crisis. The typhoon threatens all shipping. We must import food while routes are still open.\n3. **Lock in Reef Maru Position**: Our secret reinforcement deployed last turn should now be established. We maintain plausible deniability while strengthening our claim.\n4. **Manage Tauma Relationship**: Tauma is diplomatically cornered (failed espionage, perceived as saboteur), but still militarily capable (45 Military). We should neither fully reject them nor commit to anti-Veldara alliance.\n\nIMMEDIATE ACTIONS:\n\n**Action 1: Formalize Veldara Partnership (Public)**\nAnnounce public acceptance of mutual intelligence non-interference pact AND the strait-access agreement with Veldara. This is simultaneous achievement:\n- Signals to Tauma that we are committed to Naru-Veldara cooperation\n- Locks in Veldara's commitment to keeping strait open during typhoon (our survival depends on this)\n- Demonstrates to international community that arbitration framework is working\n- Raises domestic support through appearance of diplomatic triumph\n- Makes it politically costly for either Naru or Veldara to abandon the arrangement\n\n**Action 2: Emergency Food Imports (Public)**\nExecute emergency food imports NOW, before typhoon season fully disrupts shipping. Cost: -15 Treasury (we have 80, can afford this). Gain: +15 Food (brings us to 39 food).\n- Rationale: Food is our critical bottleneck. We cannot afford to drop below 20 without domestic unrest. At -5/turn consumption, we need buffer.\n- The typhoon will disrupt food production and imports. Pre-positioning is essential.\n- This is defensible domestically and internationally as prudent crisis management.\n\n**Action 3: Maintain Reef Maru Surveillance (Secret)**\nContinue naval patrol presence at Reef Maru, reinforcing the covert deployment from last turn. This action is kept secret to:\n- Maintain plausible deniability about force levels\n- Avoid appearing to Veldara as militarizing despite the partnership announcement\n- Preserve Naru's leverage at Reef Maru without provoking escalation\n- Allow us to maintain sovereignty claim without public military antagonism\n\nSTRATEGIC LOGIC:\n- We are at an inflection point where public stability with Veldara is more valuable than military posturing. Veldara has agreed to keep the strait open—this is an enormous concession that solves our existential vulnerability.\n- Tauma is now isolated. It failed its espionage, its security partnership appeal was rejected (coolly), and it has damaged relationships with both Naru and Veldara. We should avoid giving Tauma an easy target for retaliation.\n- Our food security is fragile. The emergency imports are a critical hedge against typhoon disruption.\n- Maintaining secret Reef Maru presence preserves our claim and leverage without reopening the diplomatic wounds that have just begun to heal.\n- We move from a position of espionage-damaged isolation to one of strategic partnership and controlled military presence. This is a strong ending position.\n\nRISKS CONSIDERED:\n- If Veldara detects our continued Reef Maru reinforcement, they may view it as bad faith. However, they cannot publicly object without admitting they spy on us, and they are committed to the strait-access agreement. The partnership is strong enough to absorb this.\n- Tauma may respond to isolation with escalation. However, Tauma is treasury-depleted (10) and facing potential domestic unrest. It cannot afford major military action while isolated diplomatically.\n- The typhoon will still threaten shipping. But with Veldara's commitment to keep the strait open, we have significantly better odds than other scenarios.\n\nThis turn achieves: diplomatic consolidation, food security hedging, and preserved military leverage—all while appearing reasonable and partnership-oriented to the international community.\n"
+        },
+        "veldara": {
+          "nation": "veldara",
+          "actions": [
+            {
+              "description": "Veldara publicly announces formalization of mutual intelligence non-interference pact and Naru Strait access agreement, confirming both nations' commitment to keep shipping lanes open during typhoon season and cease espionage operations against each other. Frames agreement as model for regional stability.",
+              "visibility": "public",
+              "target": "naru",
+              "category": "diplomatic",
+              "action_type": "appeal_international"
+            },
+            {
+              "description": "Veldara commences construction of permanent military base on Reef Maru, converting naval patrol presence into sovereign territorial infrastructure. Operation conducted with operational security to delay detection by rival nations.",
+              "visibility": "secret",
+              "target": null,
+              "category": "military",
+              "action_type": "establish_base"
+            },
+            {
+              "description": "Veldara transfers 10 Treasury in economic aid to Naru, signaling confidence in emerging partnership and mutual commitment to regional prosperity and typhoon-season cooperation.",
+              "visibility": "public",
+              "target": "naru",
+              "category": "economic",
+              "action_type": "economic_aid"
+            }
+          ],
+          "reasoning": "\nSTRATEGIC ANALYSIS FOR TURN 4:\n\n**Current Position:**\n- Veldara holds strong resources: Military 10 (limited but focused), Treasury 54 (moderate), Food 84 (healthy), Support 75 (solid).\n- We maintain naval presence at Reef Maru with intelligence advantage over Tauma (penetrated comms).\n- Emerging rapprochement with Naru through confidential diplomatic channel (mutual non-interference pact, strait access agreement in principle).\n- Tauma is now isolated diplomatically and exposed as conducting espionage—our counter-intelligence detected their operation.\n- Relationship with Tauma deeply hostile (-70 sentiment); with Naru improving but fragile (-25 sentiment, moving toward understanding).\n\n**Critical Threats:**\n1. Tauma remains militarily strong (45 Military) and is aggressive—failed espionage won't deter further provocations.\n2. Typhoon season incoming—all nations vulnerable; food supply chains at risk.\n3. Naru controls the Strait; maintaining access is existential for our trade income (+8 treasury/turn).\n4. Reef Maru claim remains disputed; military presence alone is not securing sovereignty.\n5. Support at 75 is healthy but could deteriorate if we appear weak or miscalculate.\n\n**Strategic Objectives (Priority Order):**\n1. **Secure Reef Maru claim** through visible consolidation without triggering major escalation.\n2. **Formalize Naru partnership** to ensure Strait access during typhoon season and lock in non-interference pact.\n3. **Counter Tauma** through diplomatic isolation and intelligence advantage without provoking direct military conflict.\n4. **Prepare for typhoon resilience** by ensuring food security and trade continuity.\n\n**Turn 4 Actions:**\n\n**Action 1: Formalize Naru Strait Access Agreement (DIPLOMATIC - PUBLIC)**\nWe publicly announce the confirmation of the mutual non-interference pact and Strait access agreement with Naru. This accomplishes several goals:\n- Locks in Naru's commitment to keep the Strait open during typhoon season (protecting our trade income).\n- Signals to Tauma that we now have a diplomatic partnership with Naru, further isolating Tauma.\n- Demonstrates leadership and confidence—we negotiated peace with a former adversary.\n- Boosts domestic support (+5 to Support via diplomatic success).\n- Publicly constrains both our espionage activity and Naru's, removing the sword of Damocles over the relationship.\n\nThis is wise positioning: we make the non-interference pact public, which sounds statesman-like and signals strength through restraint. Naru saves face by having a public agreement rather than appearing forced into submission.\n\n**Action 2: Establish Military Base on Reef Maru (MILITARY - SECRET)**\nWe immediately begin construction of a permanent military base on Reef Maru. This action:\n- Converts our naval presence into sovereign territorial infrastructure.\n- Signals permanence and non-negotiable claim to the atoll and rare-earth deposit.\n- Establishes forward operating position against Tauma.\n- Uses our military advantage at the atoll (we have intelligence on Tauma's dispositions).\n- Costs -20 Military, -15 Treasury (we have 10 Military and 54 Treasury; this will strain resources but is manageable and critical for long-term positioning).\n\nWe keep this SECRET initially to minimize Tauma's reaction time. By the time it's detected, the base will be partially established and harder to dislodge. This is consistent with our pattern of covert military consolidation (Turn 1 success).\n\n**Action 3: Economic Aid to Naru (ECONOMIC - PUBLIC)**\nWe provide -10 Treasury economic aid to Naru (+10 to their Support). This gesture:\n- Further solidifies the emerging partnership.\n- Shows confidence and good faith (we're not hoarding resources; we trust the relationship).\n- Improves Naru's domestic stability (their Support is already at 100, but demonstrating partnership is valuable).\n- Costs only -10 Treasury (we have 54; we can absorb this).\n- Politically strengthens our position domestically (Support increases as citizens see us leading regional partnership).\n\n**Why These Three Actions:**\n1. We're locking in Naru partnership publicly (diplomatic win, Strait security).\n2. We're consolidating Reef Maru control secretly (long-term resource security).\n3. We're reinforcing Naru alliance with economic gesture (insurance against future wavering).\n\n**Why NOT other options:**\n- Naval blockade of Tauma or Strait: Too aggressive now; we have Naru partnership and don't need to provoke.\n- Defensive posture: Unnecessary; we're not under imminent military threat and our position is improving.\n- Espionage against Naru: Contradicts the non-interference pact we're about to formalize.\n- Emergency food imports: Not needed; we have 84 Food (healthy buffer) and access to Strait ensures trade routes.\n- Ration food: Would tank Support unnecessarily; no crisis yet.\n\n**Risk Assessment:**\n- Base construction will be detected eventually; Tauma will protest loudly but Naru won't oppose (we're partners now).\n- Naru might view the aid as either gratitude or condescension—but context of partnership makes it read as mutual respect.\n- Tauma may escalate militarily, but with 45 Military vs. our 10, we're banking on Naru implicitly backing us and Tauma recognizing the new balance.\n\n**Typhoon Season Readiness:**\nThe Strait access agreement ensures trade income continues. Our food reserves (84) are solid. The base on Reef Maru provides strategic depth. Naru partnership is our insurance policy.\n\nThis turn positions Veldara as the diplomatic architect of regional stability while securing the rare-earth prize and maintaining economic lifelines. We're playing the long game: consolidating power while appearing statesman-like.\n"
+        },
+        "tauma": {
+          "nation": "tauma",
+          "actions": [
+            {
+              "description": "Tauma publicly affirms its support for Naru's tripartite arbitration framework for Reef Maru. Tauma formally pledges to accept the framework's outcome and emphasizes commitment to international law, peaceful resolution, and regional stability. This pivot signals that Tauma's security partnership proposal was misinterpreted and that Tauma genuinely supports multilateral arbitration over unilateral claims.",
+              "visibility": "public",
+              "target": null,
+              "category": "diplomatic",
+              "action_type": "appeal_international"
+            },
+            {
+              "description": "Tauma mobilizes emergency food imports from all available sources to build strategic reserves against the severe typhoon season. Priority is securing supply chains before storms disrupt shipping. This protects food security and demonstrates crisis management competence to domestic population.",
+              "visibility": "public",
+              "target": null,
+              "category": "domestic",
+              "action_type": "emergency_food_imports"
+            },
+            {
+              "description": "Tauma consolidates naval forces in home waters and around Reef Maru in a purely defensive configuration. Enhanced coastal surveillance and harbor defense posture signal non-aggressive intent while protecting territorial integrity. This is a stabilizing military move that does not threaten neighboring nations.",
+              "visibility": "public",
+              "target": null,
+              "category": "military",
+              "action_type": "defensive_posture"
+            }
+          ],
+          "reasoning": "\nSTRATEGIC ANALYSIS FOR TURN 4:\n\nTAUMA's position has deteriorated significantly by end of Turn 3. The nation faces:\n\n**Critical Problems:**\n1. Diplomatic isolation: Naru-Veldara reconciliation cuts Tauma out of coalition-building\n2. Failed espionage: Veldara now actively hostile to Tauma (sentiment -70); counterintelligence threat is real\n3. Strategic miscalculation: Public appeal to Naru backfired; appeared as attempt to sabotage Naru-Veldara talks\n4. Resource constraints: Treasury only 10, Military 45 (moderate but limited)\n5. Dependency vulnerability: Trade routes through Naru Strait now controlled by potentially hostile powers\n\n**Positive Assets:**\n- Strong navy (Military 45) - best in region\n- Good food stores (50, sustainable with production)\n- Decent support (60) - room to build\n- Deep harbors and shipbuilding capability\n- Reef Maru naval presence maintained\n\n**Turn 4 Strategic Objectives:**\n\nGiven the diplomatic realignment, TAUMA must pivot from confrontational positioning to:\n\n1. **De-escalate counterintelligence threat**: Recall/terminate covert operations to reduce Veldara's hostile intentions\n2. **Stabilize food security**: Typhoon season imminent; emergency food imports now critical\n3. **Reframe diplomatic narrative**: Position as peace-oriented nation accepting arbitration, not as aggressive player\n4. **Protect maritime interests**: Maintain naval presence at Reef Maru while signaling non-aggression\n5. **Build support domestically**: Citizens need reassurance given international isolation\n\n**Why These Actions:**\n\nThe failed counterintelligence operation and Tauma's failed diplomatic gambit have created a narrative where Tauma appears to be the spoiler. The best path forward is:\n\n1. **PUBLIC Appeal to International Community (Diplomatic)**: Shift narrative from aggressive positioning to support for Naru's tripartite arbitration framework. This counters the image of Tauma as obstacle to peace. Costs minimal resources, resets diplomatic positioning, and signals acceptance of international law/arbitration. This is necessary to counter the damage from Turn 3's failed security partnership appeal.\n\n2. **EMERGENCY FOOD IMPORTS (Domestic/Economic)**: With Treasury 10 and Food 50, the typhoon season presents existential risk. Emergency food imports cost -15 Treasury (leaving 0 treasury but securing +15 Food to reach 65). This is prudent crisis management. Once the acute typhoon crisis passes, trade income will rebuild treasury. This also signals to domestic population that leadership is managing crisis competently, protecting Support.\n\n3. **DEFENSIVE POSTURE (Military)**: With Military 45, a defensive posture costs -5 Military (leaving 40) and grants +5 Support. This signals to Veldara and others that Tauma is consolidating home waters defensively rather than preparing offensive operations. It also protects morale domestically. The signal is: \"We are securing our territory, not threatening anyone.\"\n\n**Why not other actions:**\n- Naval patrol/base at Reef Maru: Too aggressive given current isolation; would be read as escalation\n- Trade sanctions: Would backfire; Tauma depends on Veldara's goods\n- Espionage: Would worsen counterintelligence exposure and Veldara hostility\n- Ration food: Unnecessary now; better to import and prepare\n- Propaganda: Could backfire in current diplomatic context; better to lead with appeals to arbitration\n\n**Expected Outcome:**\nThese three actions reposition Tauma as:\n- Diplomatically: A nation committed to international law and arbitration (countering spoiler narrative)\n- Militarily: Defensive and non-threatening (easing Veldara hostility)\n- Domestically: Leadership managing typhoon crisis competently (maintaining Support above 60)\n\nThis buys time for the diplomatic situation to stabilize, allows Tauma to weather the typhoon season without collapse, and positions the nation for reconstruction once the crisis passes.\n\n**Treasury Status:** 10 → 0 (after emergency imports). This is sustainable because:\n- Turn 4 income: +5 (fishing, assuming strait open) = 5\n- Food consumption: -5, offset by +15 imports and +5 production = stable\n- Support maintained at 65 through defensive posture (+5) and appeal (+5) = stable at ~70\n\n**Risk Assessment:** Low. All three actions are defensive or diplomatic. They do not escalate military tensions, do not provoke further Veldara response, and stabilize Tauma's most critical vulnerabilities.\n"
+        }
+      },
+      "resolution": {
+        "narrative": "## TURN 4 NARRATIVE: The Typhoon Descends — Tripartite Accord Holds, but Deception Fractures Trust\n\nAs the severe typhoon season strikes the region with full force, three nations confront the ultimate test of their fragile new understanding: can a pact forged in diplomatic back-channels survive the physical storm—and the human impulses to exploit vulnerability?\n\n**The Public Face: Triumphant Accord**\n\nNaru and Veldara's public announcement of the mutual intelligence non-interference pact and Naru Strait access agreement sends a powerful signal across the region and to international observers. Both nations frame the agreement as a model for regional stability and crisis cooperation. President Naru delivers a nationally broadcast address positioning the partnership as the foundation of the tripartite arbitration framework. Citizens in both nations rally behind the vision of leadership willing to transcend espionage wars and economic rivalry in service of collective survival.\n\nVeldara's public formalization of the accord adds binding force and signals genuine commitment to restraint. The treasury transfer of 10 units to Naru—concrete economic aid—reinforces the message: Veldara believes the partnership is real, and is willing to invest resources to make it so.\n\nThe international community takes note. Neutral observers and mediators begin positioning themselves to support the arbitration framework. The narrative of regional reconciliation gains momentum.\n\n**Tauma's Diplomatic Pivot**\n\nTauma, sensing the opening, makes a sharp and public declaration: formal affirmation of support for Naru's tripartite arbitration framework, a pledge to accept the framework's outcome, and emphasis on commitment to international law and peaceful resolution. This pivot is striking. Tauma publicly disavows its earlier heavy-handed security partnership proposal to Naru and instead endorses the very multilateral mechanism that had seemed designed to constrain its own ambitions. \n\nThe move succeeds in multiple dimensions:\n- It signals to the international community that Tauma genuinely supports arbitration, not unilateral conquest.\n- It partly rehabilitates Tauma's image after the counterintelligence probe disaster last turn exposed Tauma as conducting active espionage against Veldara.\n- It positions Tauma as a willing participant in the emerging consensus, rather than as an outsider attempting to sabotage it.\n\nDomestically, Tauma's mobilization of emergency food imports and defensive military consolidation are framed as crisis management competence and commitment to territorial protection—not aggression. Citizens and observers see a nation preparing for hardship with discipline and humility. Support for Tauma's leadership improves as the domestic population perceives strong crisis management.\n\n**The Storm's Hidden Betrayal: Veldara's Covert Base**\n\nBehind the public theatre of accord, however, Veldara is conducting an operation that directly contradicts the spirit—if not the letter—of the intelligence non-interference pact and tripartite arbitration framework: **construction of a permanent military base on Reef Maru.**\n\nThe base is designed to be constructed under operational security, with minimal detection risk. However, **Tauma's vigilant coastal surveillance and harbor defense posture—maintained during Turn 4 as part of its defensive consolidation—proves far more effective than Veldara anticipated.** As construction materials arrive via covert channels and Veldara's engineering teams begin laying foundations and fortifications on Reef Maru's northern shore, Tauma's sensors detect telltale signatures: unusual vessel traffic patterns, acoustic signatures of heavy equipment, thermal imaging anomalies consistent with rapid construction activity.\n\n**Tauma discovers Veldara's base construction with certainty.** The surveillance is conclusive. Veldara is not maintaining a naval patrol presence, as previous understanding suggested—**Veldara is establishing permanent territorial infrastructure designed to unilaterally control the atoll.**\n\nMeanwhile, **Naru's covert reinforcement of its own naval patrol presence at Reef Maru succeeds without detection by Veldara.** Naru's operatives conduct the deployment under diplomatic cover (spare parts shipments, routine supply operations, personnel rotation) and timing (discrete evening departures timed to avoid satellite surveillance windows). Veldara, still focused on base construction and managing its freshly formalized partnership with Naru, does not detect the additional Naru patrol assets arriving at Reef Maru. **Naru's sovereignty position is strengthened without Veldara's knowledge.**\n\n**The Fracture Line Emerges**\n\nBy turn's end, the region has achieved something genuinely surprising: **Naru and Veldara have publicly formalized a binding pact to keep the Strait open, cease espionage, and support tripartite arbitration.** This represents genuine de-escalation on the public stage.\n\nYet beneath the surface, both nations have continued covert military reinforcement of their Reef Maru positions:\n- Veldara is building a permanent base—transforming patrol presence into sovereign infrastructure.\n- Naru is quietly reinforcing its naval presence—maintaining surveillance and military leverage.\n\nAnd crucially, **Tauma has detected Veldara's base construction, exposing the fact that Veldara's public commitment to peaceful arbitration is contradicted by unilateral territorial consolidation.** This discovery shatters Tauma's trust in the accords and in Veldara's good faith.\n\n**The Strategic Trap**\n\nThe irony is sharp: In attempting to formalize peace with Naru while simultaneously building a military base at Reef Maru, Veldara has created a situation where:\n- **Tauma perceives betrayal**—the base construction signals that Veldara is unilaterally consolidating territorial control, not genuinely accepting arbitration.\n- **Naru remains unaware** of Veldara's base, so maintains the public partnership while continuing its own covert reinforcement.\n- **If the base construction becomes publicly known**, it will appear that Veldara entered the pact as deliberate deception—signing agreements while secretly fortifying Reef Maru.\n\nThe typhoon season itself wreaks the expected damage: shipping is disrupted, food supplies are strained for all three nations, and communication becomes difficult. In this chaos, the fragile diplomatic framework faces its greatest test.\n\n**Tauma's Position Hardens**\n\nHaving discovered Veldara's base construction, Tauma's leadership recognizes that the public accord may be strategically advantageous to Veldara (removes Tauma and Naru as active threats while Veldara fortifies) but represents genuine danger to Tauma's own sovereignty claims. Tauma's defensive consolidation takes on new urgency: the posture is no longer merely defensive, but now openly calculated as a counter to Veldara's unilateral consolidation.\n\n**Critical Moment**\n\nThe arbitration framework has achieved initial public success—both nations have endorsed it, international observers are engaged, and the public narrative is one of regional reconciliation. But the hidden facts paint a darker picture: covert military operations continue, trust is being shattered by discovery of hidden construction, and the stage is set for the next escalation cycle.\n\nThe typhoon continues to rage. Ships are battered. Supply chains are disrupted. Yet somehow, amid the storm, three nations must find a way to move toward genuine resolution—not merely diplomatic theatre—or the entire framework will collapse under the weight of hidden betrayals.\n\n---\n\n**CRITICAL INTELLIGENCE BRIEFINGS (Private Intel Revealed This Turn):**\n\n**TAUMA DISCOVERS:**\n- Veldara has commenced construction of a permanent military base on Reef Maru—not merely maintaining patrol presence, but establishing sovereign territorial infrastructure.\n- This discovery contradicts Veldara's public commitment to tripartite arbitration and peaceful resolution.\n- Base construction appears designed to consolidate Veldara's territorial control unilaterally.\n\n**NARU REMAINS UNAWARE** of Veldara's base construction; the covert operation succeeds in evading Naru's sensors despite Naru's active patrol presence.\n\n---\n\n**OUTCOME ASSESSMENT:**\n- **Naru-Veldara pact**: Publicly formalized, appears successful, creates binding framework for strait access and intelligence restraint.\n- **Tauma's position**: Diplomatically rehabilitated through affirmation of arbitration, but strategically compromised by discovery of Veldara's covert base—signals that arbitration may be deceptive framework while Veldara consolidates power.\n- **Reef Maru sovereignty**: Veldara now has temporary military base construction underway; Naru has reinforced patrol presence; Tauma maintains vigilant defensive posture but lacks base infrastructure. **Veldara's covert consolidation is the dominant territorial development this turn.**",
+        "action_results": [
+          {
+            "nation": "naru",
+            "action_description": "Naru formally announces public acceptance of mutual intelligence non-interference pact with Veldara and endorses binding agreement to keep Naru Strait open during typhoon season. President delivers address characterizing partnership as foundation of tripartite arbitration framework and regional stability.",
+            "outcome": "Public announcement is well-received domestically and internationally. Frames Naru as principled statesman power committed to multilateral resolution. Pact is formalized and publicly binding.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "naru",
+            "action_description": "Naru executes emergency pre-typhoon food imports, purchasing and transporting bulk food supplies from regional producers while maritime routes remain open. Strategically positions Naru with enhanced food reserves before typhoon disrupts shipping.",
+            "outcome": "Food imports successfully executed before typhoon season intensifies. Naru's food stores are significantly bolstered for crisis period. Treasury is drawn down to fund imports, but food security is secured.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "naru",
+            "action_description": "Naru maintains and reinforces naval patrol presence at Reef Maru, continuing covert deployment initiated last turn. Patrols monitor territorial waters and maintain constant surveillance of atoll, preserving sovereignty claim and strategic leverage.",
+            "outcome": "Covert reinforcement succeeds without detection by Veldara. Additional patrol assets arrive under diplomatic cover and blend with existing presence. Naru's military surveillance footprint at Reef Maru is strengthened. Sovereignty position is reinforced without alerting Veldara.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "veldara",
+            "action_description": "Veldara publicly announces formalization of mutual intelligence non-interference pact and Naru Strait access agreement, confirming commitment to keep shipping lanes open during typhoon season and cease espionage operations against each other. Frames agreement as model for regional stability.",
+            "outcome": "Public formalization is successful. Veldara's announcement is synchronized with Naru's and both nations present unified front on accord. International community takes note. Agreement appears genuine and binding. Public commitment strengthens domestic support.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "veldara",
+            "action_description": "Veldara commences construction of permanent military base on Reef Maru, converting naval patrol presence into sovereign territorial infrastructure. Operation conducted with operational security to delay detection by rival nations.",
+            "outcome": "Base construction is successfully initiated and proceeds without detection by Naru. However, Tauma's vigilant defensive surveillance detects the construction activity through acoustic signatures, thermal imaging anomalies, and unusual vessel traffic patterns. Base construction is conclusively identified by Tauma. Veldara's covert consolidation of territorial control becomes known to Tauma, but remains hidden from Naru. Strategic implication: Veldara publicly commits to arbitration while secretly fortifying position.",
+            "resource_changes": {},
+            "detected_by": [
+              "tauma"
+            ]
+          },
+          {
+            "nation": "veldara",
+            "action_description": "Veldara transfers 10 Treasury in economic aid to Naru, signaling confidence in emerging partnership and mutual commitment to regional prosperity and typhoon-season cooperation.",
+            "outcome": "Economic aid transfer is completed. Funds are received by Naru and are interpreted as genuine commitment to partnership. Aid strengthens bilateral relationship and signals Veldara's confidence in the pact.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "tauma",
+            "action_description": "Tauma publicly affirms support for Naru's tripartite arbitration framework for Reef Maru. Tauma formally pledges to accept framework's outcome and emphasizes commitment to international law, peaceful resolution, and regional stability. Pivot signals that security partnership proposal was misinterpreted and Tauma genuinely supports multilateral arbitration.",
+            "outcome": "Public declaration is well-received. Tauma's pivot away from unilateral security partnership proposal and toward multilateral arbitration is positively received by international observers. Tauma is rehabilitated from position of aggressive actor to committed partner in tripartite process. Domestic support is bolstered by perception of strong crisis management and commitment to international law.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "tauma",
+            "action_description": "Tauma mobilizes emergency food imports from all available sources to build strategic reserves against severe typhoon season. Priority is securing supply chains before storms disrupt shipping. Protects food security and demonstrates crisis management competence to domestic population.",
+            "outcome": "Food import mobilization is successfully executed. Tauma's food stores are significantly enhanced. Treasury is expended to fund imports, but food security is secured for crisis period. Domestic perception of leadership competence is strengthened.",
+            "resource_changes": {},
+            "detected_by": []
+          },
+          {
+            "nation": "tauma",
+            "action_description": "Tauma consolidates naval forces in home waters and around Reef Maru in purely defensive configuration. Enhanced coastal surveillance and harbor defense posture signal non-aggressive intent while protecting territorial integrity. Stabilizing military move that does not threaten neighboring nations.",
+            "outcome": "Defensive consolidation is completed. Enhanced surveillance posture provides Tauma with early-warning capability and tactical advantage for defensive operations. Notably, Tauma's surveillance detects Veldara's base construction activity at Reef Maru—the surveillance posture proves highly effective at detecting covert activity. Non-threatening posture is perceived positively by international observers.",
+            "resource_changes": {},
+            "detected_by": []
+          }
+        ],
+        "changes": [
+          {
+            "kind": "relationship",
+            "nation_a": "naru",
+            "nation_b": "veldara",
+            "delta": 15,
+            "reason": "Public mutual intelligence non-interference pact and Naru Strait access agreement formalized; both nations publicly commit to cooperation during typhoon season"
+          },
+          {
+            "kind": "relationship",
+            "nation_a": "veldara",
+            "nation_b": "tauma",
+            "delta": -30,
+            "reason": "Tauma detects Veldara's covert construction of permanent military base at Reef Maru; discovery signals Veldara is unilaterally consolidating territorial control while publicly committing to arbitration"
+          },
+          {
+            "kind": "relationship",
+            "nation_a": "naru",
+            "nation_b": "tauma",
+            "delta": 10,
+            "reason": "Tauma publicly affirms support for Naru's tripartite arbitration framework and pledges acceptance of framework's outcome; improved diplomatic alignment"
+          },
+          {
+            "kind": "effect_add",
+            "effect": "Naru-Veldara intelligence non-interference pact formally binding — espionage restraint in effect",
+            "reason": "Both nations publicly announced and formalized mutual intelligence non-interference pact with international observers"
+          },
+          {
+            "kind": "effect_add",
+            "effect": "Naru Strait access agreement confirmed — both nations commit to keeping strait open for all regional trade during typhoon season",
+            "reason": "Naru and Veldara publicly formalized binding agreement to maintain strait access despite typhoon conditions"
+          },
+          {
+            "kind": "effect_add",
+            "effect": "Veldara military base construction underway on Reef Maru — detected by Tauma",
+            "reason": "Veldara's base construction proceeds successfully but is detected by Tauma's enhanced defensive surveillance"
+          },
+          {
+            "kind": "effect_remove",
+            "effect": "Naru espionage detected by Veldara — counter-intelligence alert active",
+            "reason": "Mutual intelligence non-interference pact now in effect; counter-intelligence alert status superseded by formal pact"
+          },
+          {
+            "kind": "effect_remove",
+            "effect": "Mutual intelligence non-interference pact proposed: Naru-Veldara",
+            "reason": "Pact proposed in Turn 3 is now formalized and publicly announced; status elevated from proposal to binding agreement"
+          },
+          {
+            "kind": "effect_remove",
+            "effect": "Naru Strait access agreement proposed: Veldara commits to keeping strait open during typhoon season for all regional trade",
+            "reason": "Strait access agreement proposed in Turn 3 is now formalized and publicly announced; status elevated from proposal to binding agreement"
+          },
+          {
+            "kind": "reef_maru_status",
+            "new_status": "CONTESTED — Veldara construction of permanent military base underway (detected by Tauma); Naru maintains reinforced naval patrol presence (covert, undetected by Veldara); Tauma maintains defensive consolidation. All three nations now have active military infrastructure/presence at atoll. Tripartite arbitration framework nominally governs sovereignty, but covert military consolidation by Veldara undermines credibility of arbitration process.",
+            "reason": "Veldara's base construction and Naru's covert patrol reinforcement both proceed during Turn 4; Tauma discovers Veldara's base but Veldara remains unaware of Naru's reinforcements"
+          }
+        ],
+        "event_injected": null,
+        "private_intel": {
+          "tauma": [
+            "Veldara has commenced construction of permanent military base on Reef Maru. Base construction is conclusively detected via acoustic signatures, thermal imaging, and vessel traffic anomalies. Veldara's public commitment to tripartite arbitration is contradicted by covert unilateral territorial consolidation.",
+            "Base construction appears designed to entrench Veldara's territorial control and convert patrol presence into sovereign infrastructure. This directly undermines the arbitration framework's credibility."
+          ],
+          "naru": [
+            "Naru-Veldara mutual intelligence non-interference pact is now formally binding and publicly announced. Veldara has publicly committed to keeping Naru Strait open during typhoon season.",
+            "Naru's covert patrol reinforcement at Reef Maru succeeds without detection by Veldara. Additional assets are in position and sovereignty claim is strengthened."
+          ],
+          "veldara": [
+            "Veldara-Naru mutual intelligence non-interference pact is now formally binding and publicly announced. Both nations are committed to restraint and keeping Naru Strait open.",
+            "Veldara's base construction at Reef Maru proceeds without detection by Naru and remains covert. Territorial consolidation is advancing as planned."
+          ]
+        },
+        "skill_rolls": [
+          {
+            "attacker": "naru",
+            "defender": "veldara",
+            "difficulty": 20,
+            "attacker_skill": 50,
+            "defender_skill": 70,
+            "roll": 3,
+            "margin": -37,
+            "success": false,
+            "context": "Naru maintains and reinforces covert naval patrol at Reef Maru — does Veldara detect ongoing presence?"
+          },
+          {
+            "attacker": "veldara",
+            "defender": "naru",
+            "difficulty": 40,
+            "attacker_skill": 70,
+            "defender_skill": 50,
+            "roll": 12,
+            "margin": -8,
+            "success": false,
+            "context": "Veldara constructs permanent military base on Reef Maru covertly — does Naru or Tauma detect base construction?"
+          },
+          {
+            "attacker": "veldara",
+            "defender": "tauma",
+            "difficulty": 40,
+            "attacker_skill": 70,
+            "defender_skill": 30,
+            "roll": 2,
+            "margin": 2,
+            "success": true,
+            "context": "Veldara constructs permanent military base on Reef Maru covertly — does Tauma detect base construction?"
+          }
+        ]
+      },
+      "final_state": {
+        "turn": 4,
+        "max_turns": 4,
+        "nations": {
+          "naru": {
+            "name": "naru",
+            "resources": {
+              "military": 15,
+              "treasury": 70,
+              "food": 37,
+              "support": 100
+            },
+            "traits": "Pragmatic strait power. Controls the only two deep-water shipping channels (North and South Channel). Rich from toll revenue but critically dependent on food imports. Small population. Historically neutral and transactional.",
+            "intel_skill": 50
+          },
+          "veldara": {
+            "name": "veldara",
+            "resources": {
+              "military": 0,
+              "treasury": 37,
+              "food": 87,
+              "support": 80
+            },
+            "traits": "Largest island, resource giant. Rich mineral deposits (rare earths), fertile farmland, largest population. Weak navy. Needs Naru Strait for exports. Internal tension between mining and farming interests. Confident, sometimes overreaching. Sees itself as natural regional leader.",
+            "intel_skill": 70
+          },
+          "tauma": {
+            "name": "tauma",
+            "resources": {
+              "military": 40,
+              "treasury": 0,
+              "food": 65,
+              "support": 70
+            },
+            "traits": "Naval power. Archipelago with deep harbors and strong maritime tradition. Best navy in the region. Limited resources beyond fish, no rare earths, poor farming soil. Depends on Veldara for minerals and goods transiting through Naru Strait. Proud, independent, suspicious of Veldara's ambitions.",
+            "intel_skill": 30
+          }
+        },
+        "relationships": [
+          {
+            "nation_a": "naru",
+            "nation_b": "veldara",
+            "sentiment": -10
+          },
+          {
+            "nation_a": "naru",
+            "nation_b": "tauma",
+            "sentiment": 0
+          },
+          {
+            "nation_a": "veldara",
+            "nation_b": "tauma",
+            "sentiment": -100
+          }
+        ],
+        "reef_maru_status": "CONTESTED — Veldara construction of permanent military base underway (detected by Tauma); Naru maintains reinforced naval patrol presence (covert, undetected by Veldara); Tauma maintains defensive consolidation. All three nations now have active military infrastructure/presence at atoll. Tripartite arbitration framework nominally governs sovereignty, but covert military consolidation by Veldara undermines credibility of arbitration process.",
+        "active_effects": [
+          "Severe typhoon season forecast — expected to threaten shipping routes and food supplies",
+          "Veldara naval patrol presence at Reef Maru — detected by Tauma",
+          "Naval standoff developing at Reef Maru — Veldara and Tauma forces in proximity",
+          "Tauma counterintelligence espionage operation against Veldara: DETECTED and compromised",
+          "Naru-Veldara intelligence non-interference pact formally binding — espionage restraint in effect",
+          "Naru Strait access agreement confirmed — both nations commit to keeping strait open for all regional trade during typhoon season",
+          "Veldara military base construction underway on Reef Maru — detected by Tauma"
+        ],
+        "strait_open": true
+      }
+    }
+  ],
+  "summary": {
+    "narrative": "\n## FINAL GAME NARRATIVE: The Reef Maru Standoff and Regional Fragmentation\n\nOver four intense turns, three island-nations pursued overlapping sovereignty claims over Reef Maru—a small atoll harboring a massive rare-earth deposit—while navigating espionage, diplomacy, military posturing, and the threat of a severe typhoon season. The result is a region that achieved public reconciliation on the surface while covert military operations and strategic deception fracture genuine trust.\n\n### THE OPENING GAMBIT (Turn 1)\nNaru seized its geographic advantage, publicly asserting control over the Naru Strait while appealing for international arbitration over Reef Maru. Simultaneously, Veldara and Tauma deployed naval forces to establish presence at the atoll itself. All three nations made public sovereignty declarations, backed by credible military commitment. Naru's domestic support surged; Veldara and Tauma matched Naru's boldness through force and messaging.\n\n### THE ESPIONAGE WARS (Turn 2)\nThe façade of peaceful dispute-resolution collapsed into active espionage. Naru's intelligence probe against Veldara was **detected and compromised**, poisoning Naru-Veldara relations catastrophically. Veldara's successful infiltration of Tauma's military communications gave Veldara a decisive intelligence advantage. Tauma responded with economic aid to Naru, attempting to build an alternative partnership. The intelligence failures revealed all three nations were conducting covert operations, despite public declarations of peaceful intent.\n\n### THE DIPLOMATIC TURNING POINT (Turn 3)\nNaru publicly admitted its espionage error and doubled down on arbitration and infrastructure investment, signaling maturity and restraint. Critically, Veldara and Naru opened a **confidential diplomatic channel**, forging a mutual intelligence non-interference pact and agreement to keep the Naru Strait open during typhoon season. This was a genuine diplomatic breakthrough: former espionage adversaries recognized mutual survival interests transcended territorial rivalry. \n\nHowever, Tauma's attempted counterintelligence probe against Veldara **failed spectacularly**, deepening Veldara's distrust of Tauma and leaving Tauma diplomatically isolated. Tauma's earlier heavy-handed security partnership proposal to Naru appeared designed to sabotage Naru-Veldara talks—and the timing backfired, causing Naru to cool toward Tauma at precisely the moment Tauma needed allies.\n\n### THE STORM AND HIDDEN BETRAYAL (Turn 4)\nThe typhoon season arrived, and with it, the public formalization of the Naru-Veldara accord. Both nations announced binding commitments to intelligence restraint, strait access, and tripartite arbitration. International observers took note. The narrative of regional reconciliation gained credibility.\n\nBut beneath the public theatre, **Veldara embarked on construction of a permanent military base on Reef Maru**—a unilateral consolidation that directly contradicted the spirit of peaceful arbitration. Simultaneously, **Naru quietly reinforced its naval patrol presence at the atoll**, maintaining covert military leverage. \n\n**Tauma's vigilant defensive posture detected Veldara's base construction conclusively.** This discovery shattered Tauma's trust in the accords. Tauma recognized that Veldara had entered the public pact while secretly fortifying Reef Maru—a betrayal disguised as diplomacy. Naru, by contrast, remained unaware of Veldara's construction and continued to honor the public partnership in good faith.\n\n---\n\n## FINAL STRATEGIC POSITION\n\n**REEF MARU STATUS: TRIPARTITE MILITARY STANDOFF**\n- **Veldara**: Permanent military base under construction (detected by Tauma; unknown to Naru)\n- **Naru**: Reinforced naval patrol presence maintained (covert; undetected by Veldara)\n- **Tauma**: Defensive military consolidation and vigilant surveillance\n\nAll three nations now maintain active military infrastructure at the atoll. The arbitration framework exists on paper, but covert consolidation by all parties—particularly Veldara's base construction—has undermined its credibility as a genuine mechanism for neutral dispute resolution.\n\n---\n\n## NATION-BY-NATION ASSESSMENT\n\n### **NARU: Strategic Ambiguity — Winner in Diplomacy, But Outmaneuvered at the Atoll**\n\n**Final Resources:** Military=15, Treasury=70, Food=37, Support=100\n\n**Assessment:**\nNaru achieved the highest Support rating (100) and maintained strong Treasury reserves. Naru's diplomatic strategy was sophisticated: public declarations of sovereignty paired with appeals for international arbitration created an image of reasoned power. The admission of espionage error and pivot toward infrastructure investment burnished leadership credibility.\n\n**Gains:**\n- Successfully formalized binding pact with Veldara (mutual intelligence non-interference, strait access guarantee)\n- Maintained highest domestic Support, signaling stable governance and public confidence\n- Preserved substantial Treasury and Food reserves for crisis management\n- Established covert naval presence at Reef Maru without detection, maintaining military leverage\n\n**Losses:**\n- Early espionage probe against Veldara was detected, causing severe diplomatic setback and eroding trust that took turns to repair\n- Food reserves are lowest among the three (37), suggesting strain despite adequate production\n- Unaware of Veldara's base construction at Reef Maru; Naru's assumption that the public pact translates to genuine restraint may prove dangerously naive in next confrontation cycle\n\n**Turning Point:** Naru's public apology and pivot to infrastructure investment (Turn 3) successfully reframed the espionage failure as a correction rather than a permanent character flaw. This, combined with opening diplomatic channels with Veldara, transformed Naru from a suspect spy into a statesman. However, Naru's failure to detect Veldara's covert base construction leaves it strategically vulnerable if the base becomes a flashpoint.\n\n**Outcome:** Naru is positioned as the public diplomat and regional stabilizer, with strong domestic support and functional alliances. However, Naru's advantage is soft power and relationship management—not hard military or territorial consolidation. Naru's long-term sustainability depends on whether the Veldara pact holds or whether Veldara's base construction triggers a new crisis cycle.\n\n---\n\n### **VELDARA: Strategic Consolidation — Winner in Territorial Control, But Credibility at Risk**\n\n**Final Resources:** Military=0, Treasury=37, Food=87, Support=80\n\n**Assessment:**\nVeldara's resource position is paradoxical: Military reserves are exhausted (0), yet Veldara has achieved the most concrete territorial advantage through base construction. Veldara's Treasury is strained but functional (37), and Food reserves are highest among the three (87), suggesting sound crisis management. Support (80) is solid but not exceptional, reflecting public confidence in crisis performance but also lingering concerns about espionage and military posturing.\n\n**Gains:**\n- Successfully concealed naval patrol deployment to Reef Maru in Turn 1\n- Successfully infiltrated Tauma's military communications, gaining decisive intelligence advantage\n- Formalized binding pact with Naru, transforming former espionage adversary into de facto partner\n- **Established permanent military base on Reef Maru (detected by Tauma but unknown to Naru), achieving most concrete territorial consolidation of any nation**\n- Highest Food reserves (87), indicating strong domestic resilience and crisis management capability\n\n**Losses:**\n- Espionage probe by Naru in Turn 2 caused significant trust damage (though later repaired through negotiation)\n- Military reserves completely depleted (0) through base construction and naval operations—Veldara is militarily exhausted\n- Treasury strained (37); limited capacity for further military deployment or economic initiatives\n- **Tauma's detection of base construction has shattered Tauma's trust and exposed Veldara's covert consolidation as contradicting public arbitration commitments**\n- Credibility of pact with Naru is at risk if base construction becomes public knowledge or causes confrontation\n\n**Turning Point:** Veldara's decision to conduct covert base construction while formalizing the Naru pact (Turn 4) was both Veldara's greatest strategic success and its greatest credibility risk. The base represents genuine territorial consolidation—but it signals to observers and rivals that Veldara views the pact as tactical cover for unilateral consolidation, not genuine commitment to arbitration.\n\n**Outcome:** Veldara is winning the territorial contest (base construction is a major achievement), but at severe cost to military readiness and credibility. Veldara's exhausted military leaves it vulnerable to escalation, and Tauma's detection of the base construction means Tauma will likely move toward confrontation in the next cycle. Veldara's best hope is that Naru remains unaware of the base construction long enough for the base to become militarily impregnable, deterring attack through fait accompli.\n\n---\n\n### **TAUMA: Diplomatic Rehabilitation, Strategic Isolation, and Righteous Anger**\n\n**Final Resources:** Military=40, Treasury=0, Food=65, Support=70\n\n**Assessment:**\nTauma's position is the most difficult to assess. Treasury is completely depleted (0), indicating severe economic strain from emergency food imports and military deployment. Military reserves are highest among the three (40), suggesting strong military readiness despite economic exhaustion. Food reserves (65) are adequate thanks to emergency imports. Support (70) is respectable but lower than Naru (100) or Veldara (80), reflecting both successful crisis management messaging and underlying strategic isolation.\n\n**Gains:**\n- Successfully deployed naval patrol to Reef Maru and maintained vigilant presence throughout game\n- Conducted successful defensive consolidation at home and atoll, maintaining credible deterrent\n- Pivoted diplomatic strategy in Turn 4 to publicly endorse tripartite arbitration, rehabilitating image after failed counterintelligence probe\n- **Detected Veldara's base construction with certainty, providing definitive intelligence on Veldara's covert consolidation**\n- Highest Military reserves (40), maintaining credible force capability for escalation or defense\n- Domestic population remains supportive (70 Support) despite economic strain\n\n**Losses:**\n- Counterintelligence probe against Veldara in Turn 3 **failed catastrophically**, alerting Veldara to Tauma's espionage and deeply damaging Tauma's intelligence credibility\n- Treasury completely depleted (0) through emergency food imports and military deployment—no capacity for economic initiatives or trade-based influence\n- Diplomatic isolation: Tauma's heavy-handed security partnership proposal to Naru in Turn 3 was perceived as an attempt to sabotage Naru-Veldara talks, causing Naru to cool toward Tauma precisely when Tauma needed the relationship most\n- Trapped as observer to Naru-Veldara pact without meaningful leverage in that relationship\n- Detection of Veldara's base construction reveals that Tauma's own diplomatic rehabilitation (endorsing arbitration) may be meaningless if arbitration process is being circumvented by covert consolidation\n\n**Turning Point:** Tauma's failed counterintelligence probe (Turn 3) was a catastrophic strategic error. Had the probe succeeded, Tauma would have gained intelligence parity and stronger negotiating position. Instead, the failure isolated Tauma diplomatically and left Tauma dependent on Naru-Veldara cooperation for regional stability. Tauma's only advantage now is military readiness (40 Military, highest of the three) and the moral authority of having detected Veldara's betrayal.\n\n**Outcome:** Tauma is in the weakest position diplomatically and economically, but holds the strongest hand militarily and has the most accurate intelligence picture. Tauma knows Veldara is consolidating unilaterally; Naru and Veldara do not fully understand each other's covert operations. Tauma's challenge is converting military readiness and intelligence advantage into diplomatic leverage without appearing as the aggressor. Tauma is positioned for escalation but has limited economic capacity to sustain prolonged confrontation.\n\n---\n\n## COMPARATIVE OUTCOME ANALYSIS\n\n| Metric | Naru | Veldara | Tauma |\n|--------|------|---------|-------|\n| **Territorial Consolidation** | Naval patrol (covert) | Permanent base (major advantage) | Defensive posture (status quo) |\n| **Military Readiness** | 15 (depleted) | 0 (exhausted) | 40 (strongest) |\n| **Economic Capacity** | 70 (strong) | 37 (strained) | 0 (depleted) |\n| **Food Security** | 37 (lowest) | 87 (highest) | 65 (adequate) |\n| **Domestic Support** | 100 (strongest) | 80 (solid) | 70 (adequate) |\n| **Diplomatic Relationships** | Pact with Veldara (functional) | Pact with Naru (functional) | Isolated (discovered betrayal) |\n| **Intelligence Position** | Unaware of Veldara base | Unaware of Naru reinforcement | Knows both secrets |\n| **Credibility** | High (public reconciliation) | At risk (covert base contradicts pact) | Vindicated (detected deception) |\n\n---\n\n## GAME-ENDING STRATEGIC IMPLICATIONS\n\n1. **The Arbitration Framework is Hollow:** All three nations publicly endorsed tripartite arbitration, but all three have continued covert military consolidation. The framework exists as diplomatic theatre, not genuine mechanism for neutral dispute resolution.\n\n2. **Naru-Veldara Pact is Fragile:** The pact is functional on paper but rests on incomplete information. Naru is unaware of Veldara's base construction. If Naru discovers the base, Naru will perceive the pact as Veldara's deceptive cover for unilateral consolidation—destroying trust and triggering escalation.\n\n3. **Tauma is the Wildcard:** Tauma's military readiness (40) combined with knowledge of Veldara's betrayal positions Tauma as the nation most likely to trigger the next crisis. Tauma has no Treasury (0) for sustained economic competition, so escalation toward military confrontation is Tauma's most credible option.\n\n4. **Resource Asymmetry Favors Short-Term Escalation:** Veldara's military is exhausted (0); Tauma's is strongest (40); Naru's is modest (15). If confrontation occurs, Veldara cannot respond militarily and would be forced to rely on Naru for support—but Naru may not honor the pact if Naru discovers Veldara's deception.\n\n5. **Food Security as Stability Factor:** Veldara's high Food (87) and Tauma's adequate Food (65) suggest both can sustain longer-term crisis. Naru's low Food (37) is a vulnerability; if Naru Strait access is disrupted, Naru faces food crisis rapidly.\n\n6. **The Next Crisis Trigger:** Discovery of Veldara's base construction by Naru is the most likely flashpoint. If Naru learns that Veldara has established a permanent military base while publicly endorsing arbitration, the pact will collapse, and Naru will pivot toward military alliance with Tauma to counter Veldara's consolidation.\n\n---\n\n## HISTORICAL TURNING POINTS\n\n1. **Turn 2 - Naru's Espionage Detection:** Naru's exposed spy operation against Veldara nearly destroyed the Naru-Veldara relationship and set the tone for the entire middle game. Had Naru's espionage succeeded, Naru would have maintained intelligence parity and avoided the trust damage.\n\n2. **Turn 3 - Naru's Public Apology and Veldara's Confidential Offer:** The pivot from espionage war to secret diplomacy was the game's most consequential moment. This single turn transformed Naru-Veldara from bitter adversaries into de facto partners. Without this reconciliation, the region would likely have descended into military confrontation in Turn 4.\n\n3. **Turn 3 - Tauma's Counterintelligence Failure:** Tauma's failed probe against Veldara cost Tauma the support of Naru (who was already pivoting toward Veldara) and left Tauma isolated. This failure was the turning point that determined Tauma's marginal position at game end.\n\n4. **Turn 4 - Veldara's Base Construction and Tauma's Detection:** Veldara's covert military consolidation, paired with Tauma's discovery of it, set up the endgame irony: Tauma is the only nation with full situational awareness, but Tauma is also the weakest diplomatically and economically. The next crisis will be triggered by information asymmetry.\n\n",
+    "nation_assessments": {
+      "naru": "Naru emerges as the diplomatic victor with strongest domestic support (100) and reasonable Treasury reserves (70). Naru successfully formalized a binding pact with Veldara and positioned itself as a statesman power committed to regional stability. However, Naru's long-term position is precarious: Naru is unaware of Veldara's covert base construction at Reef Maru and has relied on a pact that Veldara has been simultaneously circumventing. Discovery of Veldara's deception will destroy the pact and trigger escalation. Naru's advantage in soft power and diplomatic credibility masks underlying vulnerability: lowest Food reserves (37), modest Military (15), and dependence on the Naru Strait for economic sustenance. In pure territorial consolidation, Naru trails Veldara significantly. Naru's best strategy going forward is to detect Veldara's base before conflict spirals, and to rebuild alliance with Tauma (whose military readiness at 40 is highest of the three) to counter Veldara's consolidation.",
+      "veldara": "Veldara achieved the most concrete territorial gain: permanent military base construction on Reef Maru is a major strategic success that provides enduring claim on the atoll's rare-earth resources. Veldara's Food reserves are highest (87), indicating sound crisis management. However, Veldara's position is deeply compromised by credibility collapse: Tauma has detected the base construction, confirming that Veldara's public commitment to tripartite arbitration was cover for unilateral consolidation. Veldara's Military is completely exhausted (0), leaving Veldara vulnerable to escalation by either Tauma or Naru. Treasury is strained (37), limiting Veldara's capacity for diplomatic buy-offs or economic incentives. Veldara's advantage is fait accompli territorial consolidation; Veldara's vulnerability is military exhaustion and the knowledge that two rivals now understand Veldara's true intentions. Veldara's best strategy going forward is to complete base construction rapidly, harden military defenses using existing naval assets, and hope that Naru remains unaware of the base long enough for it to become impregnable to assault. If Naru discovers the base, Veldara will face combined pressure from Naru and Tauma with no military reserves to respond.",
+      "tauma": "Tauma emerges from the game in the most strategically complex position: militarily strongest (40 Military), but economically depleted (0 Treasury), diplomatically isolated, and morally vindicated by discovery of Veldara's covert consolidation. Tauma has perfect situational awareness—knowing both Veldara's base construction and Naru's reinforced patrol presence—yet lacks the Treasury or diplomatic leverage to convert this knowledge into advantage. Tauma's failed counterintelligence probe (Turn 3) was a catastrophic error that isolated Tauma from Naru precisely when Naru was pivoting toward reconciliation with Veldara. Tauma's Food reserves (65) are adequate for sustaining crisis, but Treasury depletion (0) means Tauma cannot sustain economic competition or buy diplomatic influence. Tauma's position is that of an excluded power holding valid grievances: Tauma can threaten military escalation, but lacks economic or diplomatic resources to prevent it from appearing as aggression. Tauma's best strategy going forward is to ally with Naru against Veldara, leveraging military readiness (40) and knowledge of Veldara's betrayal to convince Naru that the Naru-Veldara pact is a deceptive cover for Veldara's consolidation. If Tauma can convince Naru to abandon the pact and form a military alliance, Tauma's military advantage (40 vs Veldara's 0) becomes decisive."
+    },
+    "reef_maru_outcome": "CONTESTED — Tripartite Arbitration Framework Exists on Paper, But Covert Military Operations Undermine Legitimacy. Veldara has established a permanent military base on Reef Maru (construction underway, detected by Tauma but unknown to Naru); Naru maintains reinforced naval patrol presence at the atoll (covert, undetected by Veldara); Tauma maintains vigilant defensive consolidation and surveillance. All three nations now have active military infrastructure or presence at the atoll, creating a de facto military standoff. The arbitration framework, publicly endorsed by all three nations, nominally governs sovereignty—but simultaneous covert military consolidation by all parties (especially Veldara's base construction) has exposed the framework as strategic theatre rather than genuine mechanism for neutral dispute resolution. The next phase of the crisis will likely be triggered by discovery of Veldara's base by Naru, or by Tauma's escalation based on its knowledge of Veldara's deception. Unless genuine diplomatic breakthrough occurs (unlikely given information asymmetry and mutual deception), the region faces high probability of military confrontation in the next game cycle."
+  }
+}
