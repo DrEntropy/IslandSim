@@ -171,7 +171,7 @@ Key design choices:
 
 ## Status
 
-IslandSim is a working MVP. The full game loop runs end-to-end and produces coherent, interesting outcomes.
+IslandSim is a working MVP. The full game loop runs end-to-end and produces coherent, interesting outcomes.  Last run was added as log `logs/islandsim_20260425T175821.json` (5 turns, Sonnet facilitator, default scenario).  
 
 ### What works
 
