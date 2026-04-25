@@ -2,6 +2,8 @@
 
 A multi-agent tabletop exercise simulator where AI agents represent three island-nations negotiating over a disputed resource discovery. A learning exercise and a test of agentic AI as a stand-in for human decision makers in strategic simulations.
 
+Process note: this repo was also an experiment in working with coding agents. Much of the implementation, debugging, and documentation was developed with help from Codex and Claude, with human direction and review. The project should be read partly as a software MVP and partly as a record of what agent-assisted development made easy, awkward, or worth rethinking.
+
 ![Kalani Archipelago](kalani-archipelago-map.svg)
 
 ## Setup
@@ -197,7 +199,7 @@ The first completed run (4 turns) produced a negotiated three-party governance a
 - ~~**No deterministic adjudication.** Resource changes are entirely LLM-judged. The facilitator can and does ignore cost guidelines.~~ Resolved — rule engine enforces standard action costs and validates facilitator output.
 - ~~**No structured output persistence.** Turn data is printed to stdout only — no machine-readable logs for cross-run analysis.~~ Resolved — structured game logs now saved to `logs/`.
 - ~~**Single hardcoded scenario.** One starting state, one set of nation profiles, one inciting event.~~ Resolved — scenarios now loaded from YAML files with a `--scenario` flag.
-- **No test suite.** The codebase has no automated tests.
+- ~~**No test suite.** The codebase has no automated tests.~~ Partially resolved — the non-LLM rule/model surface now has a focused pytest suite; the live LLM agent loop remains untested.
 - ~~**No repeatability mechanism.** Each run produces different outcomes with no seeding or replay capability.~~ Partially resolved — `--seed` makes rule-engine skill rolls reproducible, but LLM outputs are still provider/model dependent. Full replay still needs mocked or recorded agent responses.
 - ~~**No validation of facilitator outputs.** The system doesn't check that the facilitator's updated world state is internally consistent (e.g., resource changes that don't add up, or values drifting outside 0–100 despite Pydantic constraints on the model).~~ Resolved — rule engine validates and corrects facilitator output.
 
