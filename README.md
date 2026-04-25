@@ -91,6 +91,24 @@ Set `langfuse: false` to disable tracing explicitly. Tracing is also disabled au
 
 To test with cheaper models or fewer turns, edit `config.yaml` — no code changes needed.
 
+## Testing
+
+The repo ships with a small `pytest` suite that pins the deterministic, non-LLM surface — `apply_changes`, `skill_roll`, and `GameLog` validation. It runs in well under a second, makes no network or LLM calls, and is the right thing to run before any change to `islandsim/rules.py` or `islandsim/models.py`.
+
+```bash
+uv sync --group dev          # one-time: install pytest into the dev group
+uv run --group dev pytest    # run the full suite
+uv run --group dev pytest -v # verbose, per-test output
+```
+
+Layout:
+
+- `tests/test_apply_changes.py` — every `StateChange` variant (resource, relationship, strait, effect add/remove, reef-maru status), clamping at 0/100 and ±100, the warning paths for missing relationships and absent effects, and a mixed-list ordering check.
+- `tests/test_skill_roll.py` — seeded reproducibility, the `[-30, 30]` roll bound, the `attacker - defender - difficulty + roll` margin formula, the `margin >= 0` success boundary, and that difficulty subtracts cleanly under a fixed seed.
+- `tests/test_game_log.py` — `GameLog` JSON round-trip, optional `metadata` back-compat, the `TurnResolution._parse_json_string` validator (which coerces stringified-list outputs from misbehaving LLMs back into real lists), and pydantic constraint enforcement on `Resources` and `Relationship.sentiment`.
+
+The LLM-driven loop (country agents, facilitator) is **not** under test — see [Future ideas](#future-ideas) for what that would take.
+
 ## How It Works
 
 Three country agents (Naru, Veldara, Tauma) and one facilitator agent play a turn-based game over a configurable number of turns. Each turn:
@@ -185,62 +203,25 @@ The first completed run (4 turns) produced a negotiated three-party governance a
 
 - **TUI.** The TUI is functional but still a proof of concept. It now shows costs and affordability, but needs stronger input validation, terminal-size polish, and better handling for failed AI/facilitator calls.
 
-## Roadmap
+## History
 
-Ordered roughly by impact-to-effort ratio. Each step builds on the ones before it.
+The roadmap that took IslandSim from initial sketch to MVP wrap-up, highlights only
 
-### 1. Structured game logs
+- **Structured game logs** — *3/25/26.* Save each turn's `TurnActions` and `TurnResolution` as JSON alongside the narrative output.  
+- **Rule engine for standard actions** — *3/30/26.* Programmatic layer that applies resource costs for standard actions (e.g. naval patrol = −10 Military, −5 Treasury) before the facilitator sees them.  The facilitator still handles ambiguous outcomes and narrative.
+- **Scenario configuration** — *4/14/26.* Extracted starting state, economic rules, and nation profiles into YAML scenario files. 
+- **Human plays one nation (TUI)** — *4/20/26.* Textual TUI (`--play <nation>`) driven by a long-lived `GameApp` with Briefing / Waiting / Resolution / Summary screens. Human input produces the same `TurnActions` model as the AI agents, so the rule engine, facilitator, validation, and structured logs stayed unchanged. 
+- **Stochastic resolution** — *4/22/26.* `intel_skill` field on `NationState` seeded per-nation from scenario YAML. `skill_roll` exposed as a facilitator tool (opposed check, attacker vs. defender skill, with difficulty). Every tool call is logged to `TurnResolution.skill_rolls` so we can audit whether the facilitator is re-rolling or selectively skipping the tool to steer the narrative. Scoped to espionage / covert detection initially; never expanded further.
+- **Declarative state changes instead of WorldState rewrites** — *4/23/26.* Switched the facilitator's structured output from a rewritten `WorldState` to a `list[StateChange]`  See: [State changes: declarative deltas, not rewrites](#state-changes-declarative-deltas-not-rewrites) for the full design rationale.
+- **Initial test suite for the non-LLM surface** — *4/25/26.*   See [Testing](#testing).
 
-Save each turn's `TurnActions` and `TurnResolution` as JSON/JSONL alongside the narrative output. This is the foundation for everything else — analysis, replay, regression testing, and evaluation all require machine-readable data. [IMPLEMENTED 3/25/26]
+## Future ideas
 
-### 2. Rule engine for standard actions
-
-Add a programmatic layer that applies resource costs for standard actions (deploy patrol = -10 Military, -5 Treasury) before the facilitator sees them. The facilitator still handles ambiguous outcomes and narrative, but the baseline math is enforced. Validate that facilitator outputs respect resource bounds. [IMPLEMENTED 3/30/26]
-
-### 3. Scenario configuration
-
-Extract `STARTING_STATE`, `ECONOMIC_RULES`, and nation profiles into data files (YAML or TOML). Start with one variant scenario to prove the abstraction, then expand. [IMPLEMENTED 4/14/26]
-
-### 4. Human plays one nation (TUI)
-
-Add a playable interface where a human controls one nation while the other two remain AI-driven. Human input produces the same `TurnActions` model as AI agents, so the rule engine, facilitator, validation, and structured logs stay unchanged. [IMPLEMENTED 4/20/26] — shipped as a Textual TUI (`--play <nation>`) driven by a long-lived `GameApp` with Briefing / Waiting / Resolution / Summary screens. AI country agents run as background tasks during the briefing so the human isn't blocked and their failures can't cancel the briefing.
-
-### 5. Stochastic resolution
-
-Add a `resolve(attacker, defender, difficulty)` function to the rule engine and expose it to the facilitator as a tool. The facilitator still chooses *when* to roll and sets difficulty based on narrative context; the engine returns a binding random result. This injects genuine uncertainty into outcomes that are currently decided by facilitator judgment alone (where Haiku runs have shown bias — every covert Tauma operation was detected).
-
-First cut:
-
-- Add an `intel_skill` field to `NationState`, seeded per-nation from the scenario YAML (e.g. Veldara "sophisticated" → high, Tauma "crude" → low). One skill used for both offense and defense to keep the first iteration simple; split later if asymmetric capability becomes interesting.
-- Roll is opposed: attacker `intel_skill` vs. defender `intel_skill`, modulated by difficulty and optionally by resource state (e.g. a nation with very low Military has less operational cover for espionage).
-- Scope the tool to espionage / covert detection first, then expand to other judgment calls (typhoon severity, custom-action success degree).
-- Log every tool call in `TurnRecord` so we can audit whether the facilitator is re-rolling or selectively skipping the tool to steer the narrative. System prompt should enforce "one roll per resolution event, result is binding."
-[IMPLEMENTED 4/22/26] — `intel_skill` is seeded from scenario YAML, `skill_roll` is exposed as a facilitator tool, `--seed` makes skill-roll noise reproducible, and `TurnResolution.skill_rolls` records every tool call.
-
-Once skills exist, add an `invest_intelligence` standard action that spends Treasury to raise `intel_skill` over time — turning capability into a strategic investment rather than a fixed trait.
-
-### 5.5 Reproducibility / testing
-
-- Add unit tests for scenario loading, economic adjustments, action costs, state-change application, seeded skill rolls, and log rendering.
-- Add a mock or recorded LLM path that replays fixed agent responses for full-loop regression tests without live model calls.
-- Keep run metadata in every new `GameLog` (`scenario_name`, model names, seed, mode, config snapshot) so cross-run comparisons are meaningful.
-
-### 6. Empirical loop (batch runs + evaluation)
-
-- Script that runs N games with a given configuration (scenario × models × prompt variant), collects structured outputs, and reports aggregate metrics: who controls Reef Maru, average resource deltas, conflict vs. negotiation frequency, distribution of final scores.
-- Log schema additions needed first: model identifiers, scenario name, prompt version so runs are comparable.
-- Evaluation layer on top: per-nation strategy classification, facilitator consistency scoring (e.g. are costs applied coherently across runs?), resource trajectory shape. Create score card
-- Goal: be able to say "change X moved outcome Y by Z"  
-
-### 7. Model benchmarking
-
-Once #6 exists, use it to compare models on a defined axis. Primary interest: can a local or small model (qwen, gpt-oss, a smaller Claude) replace larger models for the country agents without meaningful quality loss? Need a concrete quality floor before running — e.g. "narrative coherence score within 10% of Sonnet baseline, turn latency under 15s."  
-
-### 8. Wrap and restart
-
-IslandSim is a toyy learning project; at some point it's more valuable to start fresh with everything learned than to keep extending the toy. The intriguing possibility is packaging the lessons as a skills/plugin set for coding agents — a reusable scaffold for building structured multi-agent simulations.
-
-Use `LESSONS.md` to track insights along the way.
+- **Test the LLM surface.** The current `tests/` suite covers only the non-llm surface — `apply_changes`, `skill_roll`, and `GameLog` validation. A future iteration could exercise the full agent loop by replacing the `pydantic-ai` country and facilitator agents with a Mock that either replays old `GameLog` traces or returns scripted `TurnActions` / `TurnResolution` objects.  
+- **Strategic intelligence investment.** Add an `invest_intelligence` standard action that spends Treasury to raise `intel_skill` over time, turning espionage capability into a strategic investment rather than a fixed scenario-seeded trait. Currently `intel_skill` is set once at game start and never moves.
+- **Empirical loop (batch runs + evaluation).** Script that runs N games over a configuration grid (scenario × models × prompt variant), collects the structured outputs, and reports aggregate metrics: who controls Reef Maru, average resource deltas, conflict-vs.-negotiation frequency, distribution of final scores. Layer on per-nation strategy classification and facilitator consistency scoring (are costs applied coherently across runs?). Goal: be able to say "change X moved outcome Y by Z"   
+- **Model benchmarking.** Once the empirical loop exists, use it to compare models on a defined axis. Primary interest: can a local or small model (qwen, gpt-oss, a smaller Claude) replace larger models for the country agents without meaningful quality loss? Needs a concrete quality floor before running — e.g. "narrative coherence score within 10% of Sonnet baseline, turn latency under 15 s."
+- **Reusable multi-agent simulation scaffold.** The most intriguing direction is packaging the lessons as a skills/plugin set for coding agents — a reusable scaffold for building structured multi-agent simulations (typed agent I/O, declarative state changes, hybrid rule-engine + LLM resolution, structured logs).  
 
  
  

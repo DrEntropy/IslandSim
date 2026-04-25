@@ -2,6 +2,17 @@
 
 This file provides guidance to coding agents when working with code in this repository.
 
+## Project Status: Wrap-Up
+
+**This project is being wrapped up.** It served its purpose as a proof-of-concept MVP demonstrating structured-output multi-agent simulation, declarative state-change handling, and a deterministic + stochastic rule engine alongside LLM resolution. New feature work is not expected; the goal is to leave the repo in a clean, trustworthy state for future reference (or as a starting point for a fresh rebuild).
+
+Implications for agents working here:
+
+- Prefer minimal, surgical changes over refactors. Don't add features beyond what the user asks for.
+- The `Roadmap` and `Future ideas` sections of `README.md` are aspirational — they describe what a future iteration could do, not active work.
+- The `tests/` suite (see below) covers only the non-LLM surface. Don't break it. If you change `islandsim/rules.py` or `islandsim/models.py`, run `uv run --group dev pytest` before declaring done.
+- Don't extend test coverage to the LLM agent loop — that's explicitly deferred to "Future ideas" in the README.
+
 ## Project Overview
 
 IslandSim is a multi-agent tabletop exercise simulator where AI agents represent three island-nations (Naru, Veldara, Tauma) negotiating over a disputed resource discovery. A Facilitator agent acts as GM, resolving actions and injecting events. The game runs turn-based (configurable turns) with a resource system (Military, Treasury, Food, Public Support on 0–100 scales). Scenarios are defined in YAML files. See README.md for full game rules and world design.
@@ -13,7 +24,8 @@ IslandSim is a multi-agent tabletop exercise simulator where AI agents represent
 - Install dependencies: `uv sync`
 - Run the game: `uv run python run_game.py [num_turns] [--scenario name] [--play <nation>] [--seed N]`
 - Render a saved log: `uv run islandsim-log [path] [--out file] [--verbose]` (console script from `islandsim/log_reader.py`)
-- **Testing**: Use 1 turn when verifying game runs (turns are slow due to LLM calls)
+- Run the test suite: `uv run --group dev pytest` (after `uv sync --group dev`). Covers `apply_changes`, `skill_roll`, and `GameLog` validation only — no LLM calls, runs in <1s.
+- **Game-run verification**: Use 1 turn when smoke-testing the live game loop (turns are slow due to LLM calls). For pure-Python changes to `rules.py` / `models.py`, the pytest suite is faster and sufficient.
 - Environment variables in `.env`: `OPENROUTER_API_KEY` (required). Langfuse tracing is optional — enable by setting `LANGFUSE_SECRET_KEY`, `LANGFUSE_PUBLIC_KEY`, `LANGFUSE_BASE_URL` and leaving `langfuse: true` in `config.yaml` (default). Tracing is auto-disabled if `LANGFUSE_SECRET_KEY` is absent.
 
 ## Key Dependencies
@@ -42,6 +54,7 @@ IslandSim is a multi-agent tabletop exercise simulator where AI agents represent
 - `islandsim/prompts.py` — System prompt builders (`build_country_system_prompt`, `build_facilitator_system_prompt`) and per-turn prompt builders (`build_country_prompt`, `build_facilitator_prompt`, `build_summary_prompt`)
 - `islandsim/log_reader.py` — `islandsim-log` console script: renders a `GameLog` JSON file into a human-readable transcript (actions, events, narrative, per-turn resource deltas, final summary). Supports `--out` and `--verbose`.
 - `logs/` — Structured JSON game logs, one file per run named `islandsim_<timestamp>.json`. New runtime logs are ignored by default; curated reference logs can be force-added. Old reference logs become unloadable when model schemas change and should be pruned at that point.
+- `tests/` — Pytest suite covering the deterministic non-LLM surface. `test_apply_changes.py` covers all six `StateChange` variants and their clamping/warning behavior; `test_skill_roll.py` covers the seeded RNG path and margin formula; `test_game_log.py` covers `GameLog` round-trip, the `TurnResolution` JSON-string coercion validator, and pydantic constraint enforcement on `Resources` / `Relationship`. Dev dep declared in `[dependency-groups] dev` in `pyproject.toml`.
 - `test_pydantic.ipynb` — Early demo notebook (pydantic-ai + langfuse integration)
 
 ## Architecture
