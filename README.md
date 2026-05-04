@@ -223,9 +223,8 @@ The roadmap that took IslandSim from initial sketch to MVP wrap-up, highlights o
 - **Strategic intelligence investment.** Add an `invest_intelligence` standard action that spends Treasury to raise `intel_skill` over time, turning espionage capability into a strategic investment rather than a fixed scenario-seeded trait. Currently `intel_skill` is set once at game start and never moves.
 - **Empirical loop (batch runs + evaluation).** Script that runs N games over a configuration grid (scenario × models × prompt variant), collects the structured outputs, and reports aggregate metrics: who controls Reef Maru, average resource deltas, conflict-vs.-negotiation frequency, distribution of final scores. Layer on per-nation strategy classification and facilitator consistency scoring (are costs applied coherently across runs?). Goal: be able to say "change X moved outcome Y by Z"   
 - **Model benchmarking.** Once the empirical loop exists, use it to compare models on a defined axis. Primary interest: can a local or small model (qwen, gpt-oss, a smaller Claude) replace larger models for the country agents without meaningful quality loss? Needs a concrete quality floor before running — e.g. "narrative coherence score within 10% of Sonnet baseline, turn latency under 15 s."
-- **Reusable multi-agent simulation scaffold.** The most intriguing direction is packaging the lessons as a skills/plugin set for coding agents — a reusable scaffold for building structured multi-agent simulations (typed agent I/O, declarative state changes, hybrid rule-engine + LLM resolution, structured logs).  
+- **Reusable multi-agent simulation scaffold.** The most intriguing direction is packaging the lessons as a skills/plugin set for coding agents — a reusable scaffold for building structured multi-agent simulations (typed agent I/O, declarative state changes, hybrid rule-engine + LLM resolution, structured logs).
 
- 
- 
+## License
 
- 
+MIT — see [LICENSE](LICENSE).
