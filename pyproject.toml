@@ -7,12 +7,12 @@ license = "MIT"
 license-files = ["LICENSE"]
 requires-python = ">=3.13"
 dependencies = [
-    "dotenv>=0.9.9",
     "jupyter>=1.1.1",
     "langfuse>=4.0.1",
     "openai>=2.29.0",
     "openrouter>=0.7.11",
     "pydantic-ai>=1.70.0",
+    "python-dotenv>=1.2.2",
     "pyyaml>=6.0",
     "rich>=13.0",
     "textual>=0.80",
